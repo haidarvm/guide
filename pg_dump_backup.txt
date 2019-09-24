@@ -1,0 +1,18 @@
+#import db
+psql -U postgres -d invtcmit -a -f c:/invtcmit.sql
+
+#export db
+pg_dump -U postgres -o -v -d invtcmit > C:/invtcmit.sql
+
+#drop db
+DROP DATABASE invtcmit;
+
+#create db
+CREATE DATABASE invtcmit;
+
+#PGADMIN BACKUP
+pg_dump.exe --host localhost --port 5432 --username "postgres" --role "postgres" --no-password  --format tar --blobs --verbose --file "D:\backup\pg_gps5_11_15.backup" "gps_tcm"
+
+#PGADMIN RESTORE
+/usr/bin/pg_restore --host localhost --port 5432 --username "postgres" --dbname "gps_tcm" --role "postgres" --no-password  --verbose "/home/haidar/public_html/pg_gps5_11_15.backup"
+p

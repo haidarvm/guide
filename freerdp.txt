@@ -1,0 +1,16 @@
+
+
+apt-get install build-essential git-core cmake libssl-dev libx11-dev libxext-dev libxinerama-dev libxcursor-dev libxdamage-dev libxv-dev libxkbfile-dev libasound2-dev libcups2-dev libxml2 libxml2-dev libxrandr-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libavutil-dev libavcodec-dev libcunit1-dev libdirectfb-dev xmlto doxygen libxtst-dev
+
+
+
+cmake -DCMAKE_BUILD_TYPE=Release  -DWITH_FFMPEG=OFF -DWITH_XINERAMA=OFF -DWITH_XCURSOR=OFF -DWITH_DIRECTFB=ON -DCMAKE_INSTALL_PREFIX=/opt/freerdp
+
+cmake  -DTARGET_ARCH=ARM -DWITH_NEON=OFF -DCMAKE_INSTALL_PREFIX=/opt/freerdp
+
+cmake -DCMAKE_BUILD_TYPE=Release -DWITH_FFMPEG=OFF -DWITH_XINERAMA=OFF -DWITH_XCURSOR=OFF -DWITH_DIRECTFB=ON -DTARGET_ARCH=ARM -DWITH_NEON=OFF -DCMAKE_INSTALL_PREFIX=/opt/freerdp
+
+
+dfreerdp -u haidar -p haitech -f -g 1366x768 -x l -z --disable-full-window-drag  --gdi hw --plugin rdpsnd --data alsa --  192.168.1.11:3389
+
+install dfreerdp

@@ -1,0 +1,94 @@
+make clean removes any intermediate or output files from your source / build tree. However, it only affects the source / build tree; it does not touch the rest of the filesystem and so will not remove previously installed software.
+
+If you're lucky, running make uninstall will work. It's up to the library's authors to provide that, however; some authors provide an uninstall target, others don't.
+
+If you're not lucky, you'll have to manually uninstall it. Running make -n install can be helpful, since it will show the steps that the software would take to install itself but won't actually do anything. You can then manually reverse those steps.
+
+
+openssl
+
+./config --prefix=/usr --openssldir=/usr/local/ssl --libdir=lib zlib-dynamic shared && make && make install
+
+#Apache
+./configure \
+  --prefix=/usr/local/apache2 \
+  --enable-cgi \
+  --enable-info \
+  --enable-so \
+  --enable-ssl \
+--enable-cache \
+--enable-mem-cache \
+--enable-proxy-balancer \
+--enable-proxy \
+--enable-proxy-http \
+--enable-disk-cache \
+  --with-ssl=/usr/local/ssl \
+  --enable-module=most \
+  --enable-module=rewrite
+
+
+  --with-libdir=/usr/lib/x86_64-linux-gnu \
+#php56
+./configure \
+  --prefix=/usr/local/php5 \
+  --with-apxs2=/usr/local/apache2/bin/apxs \
+  --with-zlib \
+  --with-zlib-dir=/usr \
+  --with-mysql=/usr \
+  --with-pdo-mysql=/usr \
+  --with-mysqli=/usr/bin/mysql_config \
+  --with-sqlite3=/usr/bin/ \
+  --with-mysql-sock=/var/run/mysqld/mysqld.sock \
+  --mandir=/usr/share/man      \
+  --with-config-file-path=/etc \
+  --datadir=/usr/share/php     \
+  --with-mcrypt \
+  --with-mhash \
+  --with-pdo-sqlite \
+  --with-openssl \
+  --with-openssl-dir=/usr/bin \
+  --enable-soap \
+  --enable-zip \
+  --enable-calendar            \
+  --enable-cli \
+  --with-xmlrpc \
+  --with-gd \
+  --enable-debug \
+  --with-gmp=/usr/include/x86_64-linux-gnu \
+  --with-png-dir=/usr/local/libpng \
+  --with-curl=/usr/local/curl \
+  --disable-cgi \
+  --with-gettext               \
+  --enable-mbstring=all  \
+  --with-gd  \
+  --enable-gd-native-ttf  \
+  --with-jpeg-dir=/usr/local/jpeg \
+  --with-pgsql=/usr \
+  --with-pdo-pgsql \
+  --with-pcre-regex \
+  --with-pear \
+--with-xsl \
+--with-iconv \
+--enable-bcmath \
+--enable-calendar \
+--enable-exif \
+--enable-ftp \
+--enable-gd-native-ttf \
+--enable-sockets \
+--enable-wddx
+
+
+
+#sqlite3
+./configure --prefix=/usr/local/sqlite3 --enable-tempstore=always CFLAGS="-g -O2 -DSQLITE_ENABLE_FTS3=1 -DSQLITE_ENABLE_COLUMN_METADATA=1 -DSQLITE_ENABLE_UNLOCK_NOTIFY=1 -DSQLITE_SECURE_DELETE=1" --enable-releasemode --disable-static --enable-tcl  --enable-shared  --enable-debug --enable-threadsafe --with-tcl=/usr/lib/tcl8.6
+
+
+#libpng
+
+#libjpeg
+
+#libgpd
+./configure --prefix=/usr/local/libgd --with-png=/usr/local/libpng --with-freetype --with-jpeg=/usr/loca/jpeg
+
+#curl
+./configure --prefix=/usr/local/curl --disable-static --with-gssapi --enable-threaded-resolver --without-ssl --with-gnutls

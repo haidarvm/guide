@@ -1,0 +1,26 @@
+ffmpeg -i jajah.avi -s 1920x1080 -c:a copy jajah2.mkv
+ffmpeg -i jajah.avi -s 1280x720 -c:a copy xxx.mp4
+
+
+
+
+ffmpeg -i machine.mkv -s 1280x720 -c:a copy machine.mp4
+
+
+ffmpeg -i rs_sh_40001-0154.avi -s 1280x720 -c:a copy rs_sh4.mp4
+
+
+ffmpeg -i sepedaMotorListrikGesits.mp4 -s 1280x720 -c:a copy sepedaMotorListrikGesits2.mp4
+
+ffmpeg -i part00001-0230.avi -s 1280x720 -c:a copy part0.mp4
+
+ffmpeg -i unlaprofile.mp4 -s 1280x720 -c:a copy unlaprofiles.mp4
+
+
+
+ffmpeg -i pie.mp4 -s 480x480 -c:a copy -an pies.mp4
+
+ffmpeg -i vid_pelepasan.mp4 -s 480x480 -c:a copy vids_pelepasan.mp4
+
+ffmpeg -i nakula.mp4 -s 480x270 -c:a copy vid_nakula.mp4
+

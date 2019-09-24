@@ -1,0 +1,58 @@
+
+ssh-keygen -t rsa -b 4096 -C "haidarvm@gmail.com"
+
+
+#reset to commit version
+git reset --hard 7fa4976
+
+
+
+
+
+
+
+
+
+
+
+git fetch
+git checkout *branch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+UwaisArfa003026
+b1smill4h@g17003026

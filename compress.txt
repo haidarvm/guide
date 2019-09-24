@@ -1,0 +1,1 @@
+zip -r compressed_filename.zip foldername foldername2 foldername3

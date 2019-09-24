@@ -1,0 +1,25 @@
+#tar.gz
+tar -xvzf community_images.tar.gz
+
+
+#tar -cvzf tarballname.tar.gz itemtocompress
+
+#tar
+tar -xf archive.tar -C /target/directory
+
+#tar.bz2
+tar xjvf archive.tar.bz2
+
+#zip
+zip -r archivefile3 /home/joe/papers
+
+
+
+tar - Tape ARchiver
+And the options:
+x - extract
+v - verbose output (lists all files as they are extracted)
+j - deal with bzipped file
+f - read from a file, rather than a tape device
+
+"tar --help" will give you more options and info

@@ -1,0 +1,90 @@
+ 
+Dear kawan2,
+Apa kabaaar 😜...
+
+Setelah sekian lama, saya perbarui juga daftar ini 🙈. Dan masih secara berkala kusebar.
+
+Pemula linux dapat memulai dengan mengikuti group (paguyuban): @GNULinuxIndonesia.
+
+Bagi pengguna GNU/Linux, kalau sudah lebih dari setahun pakai distro, bisa mulai kepo simak distro lain:
+
+🍔 @FedoraID
+🍔 @centosID
+🍔 @openSUSE_ID
+
+🌮 @manjaroID
+🌮 @ArchLinuxID
+🌮 @CodernateLinuxID
+
+🌭 @BlankOnLinux
+🌭 @DebianID
+🌭 @ubuntu_id
+🌭 @mint_id
+🌭 @elementaryID
+🌭 @proxmoxid
+
+🥙 @tealinux
+🥙 @endlessos_id
+🥙 @deepin_indonesia
+
+🍤 @GPG_Indonesia
+🍤 @SlackwareID
+
+🍤 @lfsid
+🍤 @dracoslinuxid
+🍤 @ibislinux
+
+catatan 🥖: mohon maaf kalau ada yang belum dimasukkan 🎃.
+catatan 🥓: namun ada yang sengaja tidak dimasukkan ✋🏽🤡🤚🏽.
+
+Bagi yang suka hacking, lebih baik masuk ke group khusus misalnya:@Metasploitid, @reversingid, @kriptografiid, @Kriptografi, @ForensicaID, @ScrapeID, atau @bashidorg. Supaya tidak terjebak group yang dipenuhi pertanyaan mendasar dari n00b.
+
+Perlu dibikin: 📌 Void Indonesia.
+Invalid Link: SolusID.
+
+Kustomisasi:
+
+🍓 @dotfiles_id
+
+Text Editor:
+
+🍓 @VimID
+🍓 @emacsID
+
+Aplikasi:
+
+🥁 @gimpscape
+🥁 @inkscapedia
+🥁 @LibreOfficeID
+🥁 @BelajarLibreOfficeIndonesia.
+
+Aplikasi Backend:
+
+🥁 @zimbraID
+
+Group (paguyuban) umum:
+
+🍓 @RemasterGNULinuxIndonesia
+🍓 @GNULinuxIndonesia
+🍓 @unixlikeindonesia
+
+Non Linux:
+
+🥐 @freebsdid
+🥐 @setanmerahID
+🕷 @pegelbsd
+
+Group Baru:
+
+🕷 @nixosid
+🕷 @linuxclearID
+🐾 @centos_id
+🐾 @XentaOS
+🐾 @oss_id
+
+Selain distro coba juga environment-nya:
+
+🍩 @gnomeid
+🍪 @kdeid
+
+Sekian 🎸.

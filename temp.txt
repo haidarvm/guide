@@ -1,0 +1,175 @@
+sudo apt-get install -y  php7.2 php7.2-bz2 php7.2-zip php7.2-fpm php7.2-cli php7.2-common php7.2-mbstring php7.2-gd php7.2-intl php7.2-xml php7.2-mysql  php7.2-zip  php7.2-gd php7.2-imap php7.2-curl
+
+
+sudo apt-get install -y  php7.3 php7.3-bz2 php7.3-zip php7.3-fpm php7.3-cli php7.3-common php7.3-mbstring php7.3-gd php7.3-intl php7.3-xml php7.3-mysql  php7.3-zip  php7.3-gd php7.3-imap php7.3-curl
+
+
+sudo systemctl status nginxps.service 
+
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABF5BD827BD9BF62
+
+apache2
+libapache2-mod-php7.2
+
+a92fe6fa4369d05ad82dc59e8dcfd557  gparted-live-0.30.0-1-amd64.iso
+1e7b651e1653ed81b2cb1c68cd1159fb *lubuntu-16.04-desktop-amd64.iso
+0d9fe8e1ea408a5895cbbe3431989295 *ubuntu-16.04.3-desktop-amd64.iso
+10fcd20619dce11fe094e960c85ba4a9 *ubuntu-16.04.3-server-amd64.iso
+
+ssh -L 5901:127.0.0.1:5901 -N -f -l administrator 192.168.1.5
+
+bismillah
+sudo apt-fast install php7.0 php7.0-fpm php7.0-mysql -y
+sudo apt-fast install apache2
+
+sudo apt-fast install -y apache2 php7.0 libapache2-mod-php7.0 php7.0-cli php7.0-common php7.0-mbstring php7.0-gd php7.0-intl php7.0-xml php7.0-mysql php7.0-mcrypt php7.0-zip php7.0-mcrypt php7.0-gd php7.0-imap php7.0-curl
+
+sudo apt-fast install php7.2-mcrypt php7.2-gd php7.2-imap php7.2-curl
+
+sudo apt-get install curl mariadb-server  nginx
+
+8.8.8.8,8.8.4.4
+
+
+.marquee { top: 6em;position: relative;box-sizing: border-box; animation: marquee 15s linear infinite;
+}
+
+<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+	<Directory /home/tim1/public_html>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride None
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+	<Directory "/usr/lib/cgi-bin">
+		AllowOverride None
+		Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+		Order allow,deny
+		Allow from all
+	</Directory>
+cvt 1368 768 
+
+gammu sendsms TEXT 087722271171 -text "Halooo .."
+t
+gammu sendsms TEXT 08986002287 -text "Halooo .. ceck from modem multi syscom server hp pavilion"
+
+sudo gammu -c /etc/gammu-smsdrc sendsms TEXT 08986002287 -text "Halooo .. ceck from modem multi syscom server hp pavilion"
+
+sudo gammu sendsms TEXT 08986002287 -text "Test terminal Halooo .. ceck from modem multi syscom server hp pavilion via terminal"
+
+
+sudo gammu -c /etc/gammu-smsdrc sendsms TEXT 08986002287 -text "Halooo .. ceck from modem multi syscom server hp pavilion via terminal"
+
+
+http://localhost:13131/cgi-bin/sendsms?username=haidar&password=bismillah&text=cobacekaja&to=087722271171&smsc=gsm1
+
+global-sender = 13131
+
+sudo gammu --sendsms text 087722271171
+
+curl -v "http://localhost:13131/cgi-bin/sendsms?username=haidar&password=bismillah&message=Test&to=087722271171"
+13001
+13131
+http://localhost:13131/cgi-bin/sendsms?username=haidar&password=bismillah&message=Testiingplease&to=08986002287&from=087722271171&smsc=gsm1
+
+my-number = 085659658759
+irwan num = 08986002287
+
+xrandr --addmode VGA-1 1366x768
+xrandr --output VGA-1 --mode 1366x768
+
+xrandr --newmode "1368x768_60.00"   85.25  1368 1440 1576 1784  768 771 781 798 -hsync +vsync
+xrandr --addmode VGA-1 1368x768_60.00
+xrandr --output VGA-1 --mode 1368x768_60.00
+
+
+
+xrandr --newmode "1440x900_60.00"  106.50  1440 1528 1672 1904  900 903 909 934 -hsync +vsync
+
+xrandr --newmode "1368x768_59.90"  85.72  1368 1440 1584 1800  768 769 772 795  -HSync +Vsync
+xrandr --addmode VGA-1 1368x768_59.90
+
+xrandr --newmode "1368x768_60.00"  85.86  1368 1440 1584 1800  768 769 772 795  -HSync +Vsync
+
+xrandr --addmode VGA-1 1368x768_60.00
+
+xrandr --output VGA-1 --mode 1368x768_60.00
+
+
+xrandr --addmode VGA-1 1440x900_60.00
+xrandr --output VGA-1 --mode 1440x900_60.00
+
+xrandr --addmode VGA-1 1366x768
+xrandr --output VGA-1 --mode 1366x768
+
+sudo xrandr --addmode VGA-1 "1600x900_60.00"
+
+sudo gammu-smsd-inject TEXT 087722271171 -text "Test message TEXT here"
+858-6497-7669
+sudo gammu-smsd-inject TEXT 085864977669 -text "Test message TEXT here"
+
+sudo gammu --sendsms text 085864977669
+085804914794
+gammu-smsd-inject -c /etc/gammu-smsdrc TEXT +628986002287 -text "Hi, this is inject to db."
+
+sudo gammu -c /etc/gammu-smsdrc --identify
+
+0819644073
+
+gammu-smsd-inject -c /etc/gammu-smsdrc TEXT +62819644073 -text "Hi, this is haidar mansur mar'ie will send you message."
+
+
+gammu-smsd-inject -c /etc/gammu-smsdrc TEXT +628986002287 -text "Hi, this is haidar mansur mar'ie will send you message."
+
+B1sm1ll4h@BTT
+08170272799
+08987163276
+085722133623
+085804914794
+
+
+0818555082
+
+sudo gammu -c /etc/gammurc/gammurc13  --sendsms text 085864977669
+gammu-smsd-inject -c /etc/gammurc/gammurc13 TEXT 08986002287 -text "knp dapet sms dari indosatt ?? kirim dari usb13 coba cek  alhamdulillah"
+
+INSERT INTO outbox(DestinationNumber, TextDecoded, CreatorID) VALUES ('+6287722271171', 'alhamdulillah testing satu per satu kirim dari sql', 'usb0');
+
+gammu-smsd-inject -c /etc/gammurc/gammurc0 TEXT 6287722271171 -text "lhamdulillah testing satu per satu kirim dari sql"
+
+
+GRANT ALL ON *.* to server@'%' IDENTIFIED BY 'b1smill4h'; 
+
+GRANT ALL ON *.* to server@'%' IDENTIFIED BY 'bismillah'; 
+
+GRANT ALL PRIVILEGES ON btt_dev.* To 'server'@'localhost' IDENTIFIED BY 'bismillah';
+
+ALTER TABLE btt_member_details CHANGE idMembersDetails member_details_id INT;
+
+
+ALTER TABLE btt_member_details MODIFY birth_date date  NULL DEFAULT '1970-01-02';
+
+UPDATE users SET created = NULL WHERE created < '0000-01-01 00:00:00'
+
+
+1999-09-00
+
+
+DELETE FROM btt_member WHERE created < '0001-01-01 01:01:01';
+UPDATE btt_member SET created='2015-03-06 00:00:00' WHERE created < '0001-01-01 01:01:01';
+
+
+UPDATE btt_member_details SET birth_date='1986-03-06' WHERE birth_date  = '1999-09-00';
+UPDATE btt_member_details SET birth_date='1986-03-06' WHERE birth_date  < '0000-01-01';
+SELECT *  FROM `btt_member_details` WHERE member_id=1390
+
+ALTER TABLE `btt_member_details` CHANGE `member_details_id` `member_details_id` INT(11) NOT NULL AUTO_INCREMENT;
+
+
+INSERT INTO `btt_member_details` (`birth_date`, `pregnancies`, `history`, `pregnancy_week_register`) VALUES ('1980-01-09', '2', 'healthy', '15')

@@ -1,0 +1,16 @@
+qemu-system-x86_64 -enable-kvm -m 1024  \
+    -smp 4,sockets=2,cores=2,threads=1 -cpu kvm64 \
+    -drive file=/var/lib/libvirt/images/win7.qcow2,if=virtio \
+    -drive file=/home/haidar/Downloads/virtio-win-drivers-20120712-1.iso,media=cdrom,index=1  \
+    -smb /home/haidar/Downloads \
+    -cpu host 
+    -net nic,model=virtio \
+    -netdev tap,fd=25,id=hostnet0 \
+    -device virtio-net-pci,netdev=hostnet0,id=net0,mac=52:54:00:64:2f:95,bus=pci.0,addr=0x3 \
+    -device vfio-pci,host=01:00.0,bus=root.1,addr=00.0,multifunction=on,romfile=gpu0.rom,x-vga=on  \
+    -device vfio-pci,host=01:00.1,bus=root.1,addr=00.1 \
+    -virtfs local,path=/home/haidar/Downloads,mount_tag=host0,security_model=passthrough,id=host0 \
+    -device -usbdevice host=00:1d.0 \
+    -usb -device usb-host,hostbus=3,hostaddr=1 -device usb-host,hostbus=2,hostaddr=1  \
+    -device intel-hda,id=sound0,bus=pci.0,addr=0x4 -device hda-duplex,id=sound0-codec0,bus=sound0.0,cad=0 \
+    -device usb-host,hostbus=1,hostaddr=1 

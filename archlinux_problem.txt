@@ -1,0 +1,47 @@
+arch linux wine ugly font
+https://github.com/opendns/dnscrypt-proxy
+http://www.shellhacks.com/en/Encrypt-DNS-Traffic-With-DNSCrypt
+https://wiki.archlinux.org/index.php/Wine
+arch linux install essential package
+install icon theme style best support
+download audacity
+remove big files find /home/ -xdev -type f -size +100M
+drm:intel_set_pch_fifo_underrun_reporting [i915]] *ERROR* uncleared pch fifo underrun on pch transcoder A
+eclipse php code formater
+arch linux fast browser
+install dropbox
+subdomain codeigniter htaccess
+test tv wifi
+try mesa git for tear free --solve no git need
+ping 61.94.132.56
+fastest browser 
+cara connect ip tv zte tv setbox
+amirah adara
+nadia ali
+
+
+
+
+
+ip link set enp0s3 up
+ip link show dev enp0s3
+systemctl restart dhcpcd.service
+systemctl status dhcpcd.service
+dhcpcd enp0s3
+
+optirun -b none nvidia-settings -c :8
+
+
+NOT SANDBOXED
+[ERROR:flash/platform/pepper/common/pep_process.cpp(19)] CHECK(g_process_type == PROCESS_TYPE_UNKNOWN) failed
+
+
+
+https://aur.archlinux.org/packages/freshplayerplugin-git/
+
+# repair apache
+LoadModule mpm_prefork_module modules/mod_mpm_prefork.so
+
+# Arch Yaourt PKGBUILD
+makepkg -s
+sudo pacman -U *.xz

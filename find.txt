@@ -1,0 +1,19 @@
+find . -iname '*navicat*'
+
+find . -type f -iname "*oracle*"
+
+find . -iname "*oracle*"
+
+find ~/mydir -iname '*.htm' -exec rm {} \;
+
+find /home/ -xdev -type f -size +100M
+
+find . -iname '*libpepflashplayer.so*'
+
+find . -iname '*.sql*'
+
+find /usr/local/ -iname *annobin.so*
+
+
+#find in text file
+grep -inr "cisaranten" post/
