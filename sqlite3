@@ -1,0 +1,26 @@
+SELECT load_extension("/home/haiarch/Downloads/sqlite-src-3081001/spellfix");
+
+
+SELECT load_extension('/home/haiarch/Downloads/sqlite-src-3081001/spellfix.so', 'sqlite3_extension_init');
+
+
+SELECT load_extension('/home/sloki/user/k1285123/sites/mukminin.com/www/application/db/spellfix.so', 'sqlite3_spellfix_init');
+
+SELECT load_extension('/home/haiarch/Downloads/sqlite-src-3081001/spellfix.so');
+
+.load ./home/sloki/user/k1285123/sites/mukminin.com/www/application/db/spellfix.so
+
+.load ./spellfix
+
+select * from spelltest where word MATCH 'sarrow';
+
+
+
+SELECT icu_load_collation('fr_FR', 'french_ci', 1); -- collation with strength=primary
+SELECT 'Événement' COLLATE french_ci = 'evenèment';
+
+SELECT icu_load_collation('ar_AR', 'arabic_ci', 1); -- collation with strength=primary
+SELECT 'Événement' COLLATE arabic_ci = 'evenèment';
+
+
+/home/sloki/user/k1285123/sites/mukminin.com/www/application/db/spellfix.so

@@ -1,0 +1,2 @@
+snap list
+snap run 

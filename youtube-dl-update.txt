@@ -1,0 +1,10 @@
+sudo pip install --upgrade youtube-dl
+
+
+'%(playlist)s/%(chapter_number)s - %(chapter)s/%(playlist_index)s. %(title)s.%(ext)s'
+
+youtube-dl --cookies cookies.json https://www.udemy.com/spring-framework-5-beginner-to-guru/
+
+
+https://www.udemy.com/spring-framework-5-beginner-to-guru/learn/lecture/7506388#overview
+youtube-dl  '%(playlist)s/%(chapter_number)s - %(chapter)s/%(playlist_index)s. %(title)s.%(ext)s' https://www.udemy.com/spring-framework-5-beginner-to-guru/

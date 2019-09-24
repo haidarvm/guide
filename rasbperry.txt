@@ -1,0 +1,32 @@
+CHANGE HOSTNAME (see also https://wiki.debian.org/HowTo/ChangeHostname)
+'grep -R jessie-rpi /etc/*' check which files you need to edit
+'vi /etc/hostname' edit the hostname in /etc/hostname
+'vi /etc/hosts' edit the hostname in /etc/hosts
+'dpkg-reconfigure exim4-config' reconfigure exim4
+'reboot' reboots the system
+
+PREVENT PACKAGE FLASH-KERNEL UPDATING FROM OFFICIAL REPO WITH APT PINNING
+'touch /etc/apt/preferences.d/flash-kernel' create a new file
+'vi /etc/apt/preferences.d/flash-kernel' edit it an add the following lines to it:
+Package: flash-kernel
+Pin: origin repositories.collabora.co.uk
+Pin-Priority: 1000
+'apt-cache policy flash-kernel' check if the package is pinned
+
+GENERATE NEW SSH KEYS (from http://sjoerd.luon.net/posts/2015/02/debian-jessie-on-rpi2/#comment-4c4e1defb59a765819781eddc928fd6d)
+'rm /etc/ssh/ssh_host_*_key*' remove the old ones
+'dpkg-reconfigure openssh-server' create new ones
+
+RECONFIGURE LOCALES AND TIMEZONE
+'dpkg-reconfigure locales'
+'dpkg-reconfigure tzdata'
+
+ACTIVATE ADDITIONAL REPOS
+'vi /etc/apt/sources.list' open editor and add the following:
+deb http://ftp.us.debian.org/debian/ jessie contrib non-free
+deb http://security.debian.org/ jessie/updates main contrib non-free
+deb http://ftp.us.debian.org/debian/ jessie-updates main contrib non-free
+
+NOW YOU CAN SAFELY UPDATE THE SYSTEM
+'apt-get update'
+'apt-get upgrade'

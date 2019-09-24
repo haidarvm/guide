@@ -1,0 +1,63 @@
+#new 
+36.79.248.180
+
+#list accept
+iptables -L -n -v
+#list with line number
+iptables -L INPUT --line-numbers
+iptables -D INPUT 11
+
+#deletes all
+iptables -F // flush all chains
+iptables -t nat -F
+iptables -t mangle -F
+iptables -X // delete all chains
+
+#backup restore ip tables
+iptables-save > /opt/iptables.backup
+iptables-restore < /opt/iptables.backup
+
+#iptables for deletes 
+iptables -D
+
+#new
+iptables -I OUTPUT -o enp0s3 -d 0.0.0.0/0 -j ACCEPT
+iptables -I INPUT -i enp0s3 -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+#other
+iptables -A INPUT -s 127.0.0.0/8 -p tcp -j ACCEPT
+iptables -A INPUT -s 127.0.0.1/32 -j ACCEPT
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A OUTPUT -o lo -j ACCEPT
+iptables -A OUTPUT -o enp0s3 -j ACCEPT
+
+iptables -A INPUT -p tcp --dport 22 --source 36.79.250.160 -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j DROP
+
+# Set the default policy of the INPUT chain to DROP
+iptables -P INPUT DROP
+
+# Accept incomming TCP connections from eth0 on port 80 and 443
+iptables -A INPUT -i enp0s3 -p tcp --dport 22 --source 36.79.248.20 -j ACCEPT
+iptables -D INPUT -s 36.79.250.160/32 -i lo -p tcp -m tcp --dport 22 -j ACCEPT
+iptables -D INPUT -s 36.79.250.160/32 -p tcp -m tcp --dport 5999 -j ACCEPT
+iptables -A INPUT -s 36.85.229.152/32 -p tcp -m tcp --dport 5999 -j ACCEPT
+
+iptables -A INPUT -i enp0s3 -p tcp --dport 22 --source 36.85.229.152 -j ACCEPT
+
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+iptables -A INPUT -p tcp --dport 5999 -j ACCEPT
+iptables -A INPUT -p udp --dport 5999 -j ACCEPT
+
+iptables -D INPUT -p tcp --dport 8080 -j ACCEPT
+iptables -A INPUT -p tcp --dport 8989 -j ACCEPT
+
+
+
+#firewall 
+sudo firewall-cmd --zone=public --add-port=5500/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=8080/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=7080/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=8088/tcp --permanent
+firewall-cmd --permanent --zone=public --add-port=80/tcp

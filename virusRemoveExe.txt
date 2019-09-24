@@ -1,0 +1,1 @@
+find /media/haidar/WDO_MEDIA32/ -iname "*.exe" -exec rm {} \;

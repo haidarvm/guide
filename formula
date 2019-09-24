@@ -1,0 +1,94 @@
+
+‏*2* سورة التوبة (9) ص 192‏
+
+
+صحيح البخاري ٣٧٦٨: حَدَّثَنِي عَمْرُو بْنُ عَلِيٍّ حَدَّثَنَا أَبُو عَاصِمٍ حَدَّثَنَا ابْنُ جُرَيْجٍ عَنْ عَمْرِو بْنِ دِينَارٍ عَنْ عِكْرِمَةَ عَنْ ابْنِ عَبَّاسٍ قَالَ
+اشْتَدَّ غَضَبُ اللَّهِ عَلَى مَنْ قَتَلَهُ نَبِيٌّ وَاشْتَدَّ غَضَبُ اللَّهِ عَلَى مَنْ دَمَّى وَجْهَ رَسُولِ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ
+
+
+Shahih Bukhari 3768: Telah menceritakan kepadaku 'Amru bin Ali telah menceritakan kepada kami Abu 'Ashim telah menceritakan kepada kami Ibnu Juraij dari 'Amru bin Dinar dari Ikrimah dari Ibnu Abbas dia berkata, "Allah sangat murka terhadap orang yang telah dibunuh Nabi, dan Allah sangat murka kepada seseorang yang membuat wajah Rasulullah Shallallahu 'alahi wasallam terluka."
+
+
+/run/media/haiarch/DATA/new/android-x86-4.4-RC2.iso
+
+http://muslimmatters.org/2009/08/31/the-best-online-resources-about-the-quran/
+
+
+SELECT
+   SUBSTRING_INDEX(SUBSTRING_INDEX(text, ' ', 3), ' ', -1) as sura_name,
+   SUBSTRING_INDEX(SUBSTRING_INDEX(text, ' ', 4), ' ', -1) as sura_id,
+   if()
+   SUBSTRING_INDEX(SUBSTRING_INDEX(text, ' ', 6), ' ', -1) AS page
+FROM quran_line  WHERE text LIKE '%*2*%';
+
+
+SELECT if(SUBSTRING_INDEX(SUBSTRING_INDEX(text, ' ', 4), ' ', -1))
+
+
+SELECT COUNT(LENGTH(text) - LENGTH(REPLACE(text, ' ', '')) + 1) 
+FROM quran_line  WHERE text LIKE '%*2*%';
+
+ALTER TABLE quran_line AUTO_INCREMENT = 1
+
+
+
+SELECT * FROM quran_line where TEXT regexp '\\{'
+
++[[:xdigit:]]
+
+SELECT * FROM quran_line where TEXT regexp '\\('
+
+
+SELECT * FROM quran_line where TEXT regexp '^\\{*'  
+
+
+SELECT * FROM quran_line where TEXT REGEXP '^[0-9]+'
+
+SELECT * FROM quran_line where TEXT regexp '[[:xdigit:]]'
+
+SELECT * FROM quran_line where TEXT regexp '
+
+[a-zA-Z]{3}[0-9]{4}'
+
+
+الصِّرَاطَ المُستَقِيمَ {6} صِرَاطَ الَّذِينَ أَنع...
+
+Some text here {6} and here
+
+
+UPDATE quran_line
+SET sura_id = REPLACE(REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(text, ' ', 4), ' ', -1), '(',''),')','')
+WHERE sura_id = 0  AND text LIKE '%*2*%' 
+
+
+| Number            | TEXT                       |
+|------------------------------------------------|
+| 			        | Some text here {6} and here|
+|------------------------------------------------|
+|                   | Some other {7} and here    |
+|------------------------------------------------|
+
+| Number            | TEXT                       |
+--------------------------------------------------
+| 6	                | Some text here {7} and here|
+--------------------------------------------------
+| 7                 | Some other  {7} and here   |
+--------------------------------------------------
+
+
+
+‏*2* سورة آل عمران (3) ص 62‏
+62‏
+
+
+‏*2* سورة آل عمران (3) ص 62‏
+
+
+for filname in * ; do lame -V2 $filname $filename.mp3 ; done
+
+Mari Perbanyak Istighfar, mohon ampun di bulan Sha'ban dan Ramadhan
+Doa Istighfar Nabi Adam QS Al A'raf [7]:23
+
+ رَبَّنَا ظَلَمْنَآ أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ ٱلْخَٰسِرِينَ
+ 
+ "Ya Tuhan kami, kami telah menganiaya diri kami sendiri, dan jika Engkau tidak mengampuni kami dan memberi rahmat kepada kami, niscaya pastilah kami termasuk orang-orang yang merugi."

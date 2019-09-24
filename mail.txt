@@ -1,0 +1,20 @@
+CREATE TABLE `domains` ( `domain_id` INT NOT NULL AUTO_INCREMENT , `domain_name` VARCHAR(50) NOT NULL , PRIMARY KEY (`domain_id`)) ENGINE = InnoDB;
+
+CREATE TABLE `users` ( 
+    `user_id` INT NOT NULL AUTO_INCREMENT,  
+    `domain_id` INT NOT NULL,  
+    `password` VARCHAR(100) NOT NULL,  
+    `email` VARCHAR(100) NOT NULL,  
+    PRIMARY KEY (`user_id`),  
+    UNIQUE KEY `email` (`email`),  
+    FOREIGN KEY (domain_id) REFERENCES domains(domain_id) ON DELETE CASCADE 
+) ENGINE = InnoDB; 
+
+CREATE TABLE `Alias_tbl` (
+    `AliasId` INT NOT NULL AUTO_INCREMENT, 
+    `DomainId` INT NOT NULL, 
+    `Source` varchar(100) NOT NULL, 
+    `Destination` varchar(100) NOT NULL, 
+    PRIMARY KEY (`AliasId`), 
+    FOREIGN KEY (DomainId) REFERENCES Domains_tbl(DomainId) ON DELETE CASCADE
+) ENGINE = InnoDB;
