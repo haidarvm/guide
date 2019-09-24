@@ -1,0 +1,69 @@
+server {
+        server_name  ora19.haidar.id;
+        #root         /home/haidarvm/public_html/;
+
+	error_log /home/haidarvm/public_html/logs/error.log error;
+
+        # Load configuration files for the default server block.
+        #include /etc/nginx/default.d/*.conf;
+
+	add_header 'Access-Control-Allow-Origin' '*';
+  	add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+  	add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+
+
+        location / {
+		proxy_no_cache 1;
+		proxy_cache_bypass 1;
+		# kill cache
+		add_header Last-Modified $date_gmt;
+		add_header Cache-Control 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0';
+		if_modified_since off;
+		expires off;
+		etag off;
+		proxy_set_header Accept-Encoding "";
+		proxy_set_header Origin "";
+		proxy_set_header HOST $host;
+    		proxy_set_header X-Forwarded-Proto $scheme;
+		proxy_set_header X-Forwarded-Host $host:$server_port;
+    		proxy_set_header X-Real-IP $remote_addr;
+    		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        	proxy_pass   http://ora19.haidar.id:8080;
+	}
+
+	location ~* \.(?:manifest|appcache|html?|xml|json)$ {
+    		expires -1;
+	}
+	
+
+       # error_page 404 /404.html;
+       #     location = /40x.html {
+       # }
+
+       # error_page 500 502 503 504 /50x.html;
+       #     location = /50x.html {
+       # }
+    
+   
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/ora19.haidar.id/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/ora19.haidar.id/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+
+server {
+    if ($host = ora19.haidar.id) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+        server_name  ora19.haidar.id;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+}
