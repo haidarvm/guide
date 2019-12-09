@@ -1,7 +1,4 @@
 ####### FIRST INSTALLATION ########
-https://play.google.com/store/apps/details?id=com.haidarvm.ecommerce
-+62 838-2933-6744
-
 
 #link
 https://developers.redhat.com/blog/2016/03/31/no-cost-rhel-developer-subscription-now-available/
@@ -70,6 +67,9 @@ setsebool -P httpd_unified 1
 restorecon -R -v /var/run/nginx*
 
 
+### mysql enterprise ####
+dnf install *.rpm
+
 ### git nginx ###
 
 
@@ -120,16 +120,6 @@ yum groupinstall "X Window System" "KDE Desktop"
 https://www.dailymotion.com
 https://vimeo.com/
 
-#postfix
-firewall-cmd --permanent --add-port=110/tcp --add-port=995/tcp
-firewall-cmd --permanent --add-port=143/tcp --add-port=993/tcp
-firewall-cmd --reload
-
-#sendmail
-chmod 0600 /var/spool/mail/*
-echo "Subject: sendmail test" | sendmail -v haidarvm@gmail.com
-
-
 #epel
 dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 
@@ -147,8 +137,8 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 #mount ntfs
-mount /dev/sdb1 -t ntfs-3g /media/haiSeagate
-mount /dev/sdb2 -t ntfs-3g /media/haiSeagateData
+mount /dev/sdc1 -t ntfs-3g /media/haiSeagate
+mount /dev/sdc2 -t ntfs-3g /media/haiSeagateData
 
 # windows 10
 dd if=/home/testuser/Downloads/rhel-server-7-x86_64-boot.iso of=/dev/sdb bs=512k

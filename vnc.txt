@@ -1,0 +1,55 @@
+vi /etc/gdm/custom.conf
+
+
+WaylandEnable=false
+
+
+dnf install -y tigervnc-server xorg-x11-fonts-Type1
+
+
+/etc/systemd/system/vncserver@:1.service
+
+
+vi /etc/systemd/system/vncserver@:5.service
+
+
+[Unit]
+Description=Remote desktop service (VNC)
+After=syslog.target network.target
+
+[Service]
+Type=forking
+WorkingDirectory=/home/haidarvm
+User=haidarvm
+Group=haidarvm
+
+PIDFile=/home/haidarvm/.vnc/%H%i.pid
+
+ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
+ExecStart=/usr/bin/vncserver -autokill %i
+ExecStop=/usr/bin/vncserver -kill %i
+
+Restart=on-success
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target
+
+
+vncserver
+
+setenforce 0
+
+systemctl daemon-reload
+
+systemctl start vncserver@:1.service
+
+systemctl enable vncserver@:1.service
+
+
+firewall-cmd --permanent --add-port=5905/tcp
+
+
+#security group cloud
+firewall-cmd --reload
+

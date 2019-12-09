@@ -3,8 +3,8 @@ ffmpeg -i jajah.avi -s 1280x720 -c:a copy xxx.mp4
 
 
 
-
-ffmpeg -i machine.mkv -s 1280x720 -c:a copy machine.mp4
+#mkvToMp4
+ffmpeg -i documentaryBandungMuslimAnimator3small-o3ytByGFPcU.mkv -s 1280x720 -c:a copy documentaryBandungMuslimAnimator3small-o3ytByGFPcU.mp4
 
 
 ffmpeg -i rs_sh_40001-0154.avi -s 1280x720 -c:a copy rs_sh4.mp4
@@ -23,4 +23,24 @@ ffmpeg -i pie.mp4 -s 480x480 -c:a copy -an pies.mp4
 ffmpeg -i vid_pelepasan.mp4 -s 480x480 -c:a copy vids_pelepasan.mp4
 
 ffmpeg -i nakula.mp4 -s 480x270 -c:a copy vid_nakula.mp4
+
+#jokervbatman
+ffmpeg -i vokoscreen-2019-12-03_00-03-11.mp4 -s 480x270 -c:a copy vokoscreen-2019-12-03_00-03-11JokerVBatman.mp4
+ffmpeg -i vokoscreen-2019-12-03_00-41-53BatmanVJoker.mp4 -s 480x270 -c:a copy vokoscreen-2019-12-03_00-41-53BatmanVJokers.mp4
+ffmpeg -i vokoscreen-2019-12-03_02-36-57.mp4 -s 480x270 -c:a copy vokoscreen-2019-12-03_02-36-57s.mp4
+
+ffmpeg -i tutorialKoniSukabumi.mp4 -s 480x270 -c:a copy tutorialKoniSukabumi2.mp4
+tutorialKoniSukabumi.mp4
+
+
+#record screen
+ffmpeg -f x11grab -y -r 30 -s 1600x900 -i :1 -f alsa -ac 2 -i hw:0 -vcodec libx264  -preset ultrafast -qp 0  springRest.mkv
+
+#mkvToMp3
+ffmpeg -i SlipknotALiar_sFuneral_nkYf8ylQk9I.webm -vn -c:a libmp3lame SlipknotALiar_sFuneral_nkYf8ylQk9I.mp3
+ffmpeg -i AvengedSevenfoldSoFarAwayDKuySrTxIBs.mkv -vn -c:a libmp3lame AvengedSevenfoldSoFarAwayDKuySrTxIBs.mp3
+
+
+
+ffmpeg -i AvengedSevenfoldSoFarAwayLiveAtTheGRAMMYMuseum®-dw6YHdYk4WA.mkv -vn -c:a libmp3lame AvengedSevenfoldSoFarAwayLiveAtTheGRAMMYMuseum®-dw6YHdYk4WA.mp3
 
