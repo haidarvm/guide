@@ -27,6 +27,7 @@ sudo su -l nginx -s /bin/bash
 
 sudo chmod -R 770 /home/jabarnews/public_html
 
+sudo userdel -r flatearth
 
 chgrp www-data /home/myuser/public_html
 chmod g+rwxs /home/myuser/public_html

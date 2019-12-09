@@ -46,6 +46,38 @@ Raw Payload: { "empno": 9999 }
 $ curl -i -X DELETE --data-binary @/tmp/delete-payload.json -H "Content-Type: application/json" http://ol7-121.localdomain:8080/ords/pdb1/testuser1/testmodule8/emp/
 
 
+#create ords cursor nested json
+SELECT DEPARTMENT_NAME,
+DEPARTMENT_ID,
+CURSOR(SELECT e.EMPLOYEE_ID,
+			  e.LAST_NAME, 
+			  CURSOR(SELECT j.START_DATE, j.END_DATE, j.JOB_ID
+	   FROM  JOB_HISTORY j
+	   WHERE  e.EMPLOYEE_ID = j.EMPLOYEE_ID
+	   ORDER BY e.EMPLOYEE_ID) AS "job_history"
+	   FROM  EMPLOYEES e
+	   WHERE  e.DEPARTMENT_ID = d.DEPARTMENT_ID
+	   ORDER BY e.EMPLOYEE_ID) AS "employees"
+FROM  DEPARTMENTS d
+ORDER BY d.DEPARTMENT_NAME	  
+
+
+SELECT product_name,
+category_id, 
+CURSOR(SELECT c.category_id, 
+            c.category_name
+       FROM category c
+       WHERE c.category_id = p.category_id
+      ) as "category"
+FROM product p
+ORDER BY p.id
+
+
+SELECT cart_id, session_id, customer_id,
+CURSOR( select t.customer_id, c.fullname
+          FROM customer
+      )
+
 URL        : https://ora19.haidar.id/ords/commerce/product/
 Method     : DELETE
 Header     : Content-Type: application/json
@@ -82,7 +114,34 @@ curl -X POST --user haicommerce:4Lk4hFi114001 -H "Content-Type: application/json
 curl -i -X POST -d "{\"session_id\" : \"sdfdsf123\" }" -k --user haicommerce:4Lk4hFi114001 https://ora19.haidar.id/ords/commerce/cart/
 
 #ords get
-curl -i -k --user znb:4Lk4hF1s099001 https://znbindonesia.com/ora//product/?q={'$orderby':{"price":"DESC"}}
+curl -i -k --user znb:4Lk4hF1s099001 https://znbindonesia.com/ora/product/27 -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+
+curl -i -k --user znb:4Lk4hF1s099001 https://znbindonesia.com/ora/cart/6 -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+curl -i -k --user znb:4Lk4hF1s099001 https://znbindonesia.com/ora/product/?q={"$orderby":{"price":"DESC"}}
+
+
+curl -i -k https://znbindonesia.com/api/product/21 -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+
+curl -i -k --user znb:4Lk4hF1s099001 https://znbindonesia.com/ora/cartline/12 -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+
+
+curl -i -k --user znb:4Lk4hF1s099001 https://znbindonesia.com/ora//product/?q={'$orderby':{"price":"DESC"}} -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+curl -X POST -d @file server:port -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+
+curl -i -k https://javanews.tv/api/read/7155 -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+
+curl -i -k https://ora19.haidar.id/ords/znb/get/product -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+curl -i -k https://znbindonesia.com/api/product/21 -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+
 
 #ords like
 {"city_name": {"$instr":"jakarta"}, "$orderby": {"city_id" : "ASC"}}
