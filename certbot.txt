@@ -1,3 +1,6 @@
+sudo /usr/bin/certbot-auto renew --dry-run
+
+
 sudo certbot --nginx -d javanews.tv -d www.javanews.tv -d m.javanews.tv -d www.m.javanews.tv
 
 sudo certbot --nginx -d algoritma-politika.com -d www.algoritma-politika.com 

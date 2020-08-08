@@ -18,7 +18,7 @@ dnf install -y oracle-database-preinstall-18c-1.0-1.el7.x86_64.rpm
 dnf install -y oracle-database-xe-18c-1.0-1.x86_64.rpm 
 
 #run configure
-/etc/init.d/oracle-xe configure
+/etc/init.d/oracle-xe-18c configure
 
 #export home & sid
 export ORACLE_SID=XE
@@ -44,7 +44,7 @@ select name from v$pdbs;
 SELECT banner FROM v$version WHERE ROWNUM = 1;
 
 #create new user
-alter user annas identified by "A1l4h38b1S3002" account unlock;  
+alter user haidar identified by "A1l4h38b1S3002" account unlock;  
 alter session set "_ORACLE_SCRIPT"=true;
 CREATE USER haidar IDENTIFIED BY "apassword";
 GRANT CREATE SESSION TO haidar;

@@ -8,8 +8,10 @@ git reset --hard 7fa4976
 
 
 
-
-
+#ignore this configuration if not working add this
+git rm -r  --cached .
+git add .
+git commit -m 'fixed ignore'
 
 
 
@@ -18,8 +20,11 @@ git reset --hard 7fa4976
 git fetch
 git checkout *branch
 
+git diff
 
 
+
+git show HEAD~1
 
 
 
