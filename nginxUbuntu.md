@@ -1,10 +1,10 @@
 server {
-    listen 80;
+    listen 8000;
 
-    root /home/nakula/public_html/jabarnews;
+    root /var/www/html/project4;
     index index.php index.html index.htm;
 
-    server_name jabarnews.test;
+    server_name haidarvm.ddns.net;
     
 	location / {
         #autoindex on;
