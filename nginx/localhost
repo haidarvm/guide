@@ -1,0 +1,36 @@
+    server {
+        listen       80 default_server;
+        listen       [::]:80 default_server;
+        server_name  _;
+        root         /home/haidar/public_html;
+	error_log	   /home/haidar/public_html/logs/error.log error;
+
+
+        # Load configuration files for the default server block.
+        include /etc/nginx/default.d/*.conf;
+
+        location /materi {
+		autoindex on;
+		add_before_body /materi/top.html;
+                add_after_body /materi/bot.html;
+		autoindex_localtime on;
+	    	autoindex_exact_size off;		
+        }
+
+	location /mark/ {
+    		proxy_pass http://localhost:3000;
+		proxy_http_version 1.1;
+    		proxy_set_header Upgrade $http_upgrade;
+    		proxy_set_header Connection "Upgrade";
+    		proxy_set_header X-Real-IP $remote_addr;
+	}
+
+
+        error_page 404 /404.html;
+            location = /40x.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+            location = /50x.html {
+        }
+    }

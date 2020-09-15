@@ -1,7 +1,4 @@
 ####### FIRST INSTALLATION ########
-https://play.google.com/store/apps/details?id=com.haidarvm.ecommerce
-+62 838-2933-6744
-
 
 #link
 https://developers.redhat.com/blog/2016/03/31/no-cost-rhel-developer-subscription-now-available/
@@ -43,11 +40,7 @@ firewall-cmd --permanent --zone=public --add-service=https
 firewall-cmd --zone=public --add-port=5500/tcp --permanent
 firewall-cmd --zone=public --add-port=8080/tcp --permanent
 firewall-cmd --reload
-firewall-cmd --zone=public --add-port=369/tcp --permanent
 sudo firewall-cmd --list-all
-
-
-firewall-cmd --zone=public --add-service=mysql --permanent
 
 ####### END INSTALLATION ########
 
@@ -63,26 +56,19 @@ sudo usermod -a -G nginx haidarvm
 chgrp nginx /home/haidarvm/public_html
 chmod g+rwxs /home/haidarvm/public_html
 
-sudo chown -R nginx: /home/
+
 sudo chown -R www-data:"$USER" /webdirectory
 
 chcon -R -t httpd_sys_rw_content_t /home/haidarvm
-chcon -R -t httpd_sys_content_rw_t /home/haidarvm/wp-content/uploads/
-chcon -R -t httpd_sys_content_rw_t /home/client/didikpos/public_html/wp-content/uploads/
-chcon -R -t httpd_sys_rw_content_t /home/client/didikpos/public_html/wp-content/uploads/
-restorecon -R /home/client/didikpos/public_html/wp-content/uploads/
-
-
-chcon -R -t httpd_sys_rw_content_t /home/client/kkijabar/public_html/wp-content/uploads/
-
-
-
 restorecon -R /home
 setsebool -P httpd_can_network_connect 1
 setsebool -P httpd_read_user_content 1
 setsebool -P httpd_unified 1
 restorecon -R -v /var/run/nginx*
 
+
+### mysql enterprise ####
+dnf install *.rpm
 
 ### git nginx ###
 
@@ -122,12 +108,7 @@ systemctl isolate graphical
 yum groupinstall "X Window System" Desktop
 yum groupinstall "X Window System" "KDE Desktop"
 
-#javac
-nano /etc/bashrc
-export JAVA_HOME=/usr/lib/jvm/java-11
-export PATH=$PATH:$JAVA_HOME/bin
-source /etc/bashrc
-echo $JAVA_HOME
+
 
 #coordinates
 -6.931003,107.67614
@@ -138,17 +119,6 @@ echo $JAVA_HOME
 #cant play 
 https://www.dailymotion.com
 https://vimeo.com/
-
-#postfix
-firewall-cmd --permanent --add-port=110/tcp --add-port=995/tcp
-firewall-cmd --permanent --add-port=143/tcp --add-port=993/tcp
-firewall-cmd --permanent --add-port=8787/tcp --add-port=8787/tcp
-firewall-cmd --reload
-
-#sendmail
-chmod 0600 /var/spool/mail/*
-echo "Subject: sendmail test" | sendmail -v haidarvm@gmail.com
-
 
 #epel
 dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
@@ -167,8 +137,8 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 #mount ntfs
-mount /dev/sdb1 -t ntfs-3g /media/haiSeagate
-mount /dev/sdb2 -t ntfs-3g /media/haiSeagateData
+mount /dev/sdc1 -t ntfs-3g /media/haiSeagate
+mount /dev/sdc2 -t ntfs-3g /media/haiSeagateData
 
 # windows 10
 dd if=/home/testuser/Downloads/rhel-server-7-x86_64-boot.iso of=/dev/sdb bs=512k
@@ -475,14 +445,6 @@ dnf whatprovides libgconf-2.so.4
 dnf --releasever=29 --showduplicates list $pkgname
 dnf deplist curl
 dnf reinstall $(repoquery --requires --recursive --resolve gdm)
-<<<<<<< HEAD
-sudo dnf --disablerepo=elrepo-kernel
-=======
-dnf config-manager --disablerepo elrepo-kernel
->>>>>>> 009f5e5778ca6355b72db10a83f9f2e5ca00d178
-dnf config-manager --set-disabled
-dnf config-manager --set-enabled 
-dnf --remove-repo elrepo-kernel
 
 #annobin
 -iplugindir=<path/to/dir/containing/annobin>

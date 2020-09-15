@@ -7,3 +7,31 @@ zip -r -s 4G beritainspart.zip beritainspiratif05jun.zip
 zip -s 0 beritainspart.zip --out unsplitberitains05jun.zip
 
 unzip unsplitberitains05jun.zip
+
+
+#extract rar
+unrar x files.rar
+
+#extract tar
+tar -xvf yourfile.tar
+tar -C /myfolder -xvf yourfile.tar
+
+#extrac bz2
+bzip2 -d your-filename-here.bz2
+
+#decompress
+7z e archive.zip
+
+
+
+
+<p>I've heard the phrase "dry run" being used with the meaning of rehearsal, experiment or test exercise in various contexts. For example:</p>&#xA;&#xA;<ul>&#xA;<li><p>They did a <strong>dry run</strong> of the demonstration before showing it to the CEO.</p></li>&#xA;<li><p>Practice with a <strong>dry run</strong>. Organise a dress rehearsal within two weeks of the wedding to ensure...</p></li>&#xA;<li><p>A <strong>dry run</strong> of the software release will be executed to ensure that the release plan is correct and clear to everybody.  </p></li>&#xA;</ul>&#xA;&#xA;<p>However, <strong>wet run</strong> would not make sense in any of these contexts. So, why "dry"? Where does "dry run" come from?</p>&#xA;
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<posts>
+  <row Id="2" PostTypeId="1" ParentId="2"  AcceptedAnswerId="12" CreationDate="2010-08-05T19:37:29.890" Score="62" ViewCount="41129" Body="&lt;p&gt;Doesn't &quot;quint&quot; mean &quot;five&quot;?  What does that have to do with the meaning of &quot;quintessential&quot;?&lt;/p&gt;&#xA;" OwnerUserId="16" LastEditorUserId="9001" LastEditDate="2016-12-19T20:32:34.127" LastActivityDate="2016-12-19T20:32:34.127" Title="Where does the &quot;quint&quot; in &quot;quintessential&quot; come from?" Tags="&lt;meaning&gt;&lt;etymology&gt;" AnswerCount="7" CommentCount="5" FavoriteCount="7" ContentLicense="CC BY-SA 2.5" />
+
+  <row Id="5" PostTypeId="2" ParentId="2" CreationDate="2010-08-05T19:40:58.213" Score="6" Body="&lt;p&gt;It's the fifth element after earth, air, fire, and water, so it is presumably superior to those or completing those.&lt;/p&gt;&#xA;" OwnerUserId="21" LastActivityDate="2010-08-05T19:40:58.213" CommentCount="0" ContentLicense="CC BY-SA 2.5" />
+ </posts>
+ </xml>
