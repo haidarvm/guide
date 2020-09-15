@@ -27,6 +27,21 @@ git diff
 git show HEAD~1
 
 
+#create existing to git
+echo "# simple-php-template" >> README.md
+git init
+git add README.md
+git commit -am "first commit"
+git remote add origin git@github.com:haidarvm/bench.git
+git pull origin master
+git push -u origin master
+
+
+git show HEAD~1
+
+
+#git revert one file only
+git checkout HEAD -- composer.json
 
 
 

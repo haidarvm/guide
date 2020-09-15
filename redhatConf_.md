@@ -475,11 +475,7 @@ dnf whatprovides libgconf-2.so.4
 dnf --releasever=29 --showduplicates list $pkgname
 dnf deplist curl
 dnf reinstall $(repoquery --requires --recursive --resolve gdm)
-<<<<<<< HEAD
-sudo dnf --disablerepo=elrepo-kernel
-=======
 dnf config-manager --disablerepo elrepo-kernel
->>>>>>> 009f5e5778ca6355b72db10a83f9f2e5ca00d178
 dnf config-manager --set-disabled
 dnf config-manager --set-enabled 
 dnf --remove-repo elrepo-kernel

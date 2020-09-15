@@ -1,4 +1,4 @@
-sudo adduser <username> sudo
+sudo useradd -m -c "haidarvm" haidarvm  -s /bin/bash 
 sudo usermod -a -G sudo <username>
 
 #/etc/sudoers

@@ -1,0 +1,7 @@
+
+#change ssh port
+Port 936
+
+systemctl restart sshd
+
+netstat -tulpn | grep ssh
