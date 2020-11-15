@@ -7,20 +7,6 @@
 
 
 
-# create db
-#!/usr/bin/env bash
-
-echo  "Enter Your root_pass: "
-read -s root_pass 
-echo  "Enter Your user_pass: "
-read -s user_pass 
-read -p "Enter Your Database: "  new_database
-mysql -u root -p$root_pass --execute="CREATE DATABASE $new_database;";
-mysql -u root -p$root_pass --execute="CREATE USER '$new_database'@'localhost' IDENTIFIED BY '$user_pass'";
-mysql -u root -p$root_pass --execute="GRANT ALL ON $new_database.* TO '$new_database'@'localhost';"
-
-
-# create db dan user
 
 #!/usr/bin/env bash
 

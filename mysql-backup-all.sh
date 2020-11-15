@@ -1,7 +1,7 @@
 #!/bin/bash
 #----------------------------------------
 # OPTIONS
-# @daily sh /scripts/mysql-backup.sh >> /var/log/mysql-backup.log 2>&1
+# @daily sh /home/haidarvm/scripts/mysql-backup-all.sh >> /var/log/mysql-backup.log 2>&1
 #----------------------------------------
 USER='root'       # MySQL User
 PASSWORD='hai2coders' # MySQL Password

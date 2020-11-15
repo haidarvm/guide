@@ -1,1 +1,0 @@
-tar -xvzf community_images.tar.gz

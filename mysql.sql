@@ -1,20 +1,20 @@
-#completely remove
+-- completely remove
 sudo apt-get --purge remove "mariadb*"
 
 
-#install from official
+-- install from official
 curl -LsS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
 
-#completely remove mariadb
+-- completely remove mariadb
 apt-get --purge remove "mariadb*"
 
 
-CREATE USER 'todayid'@'localhost';
+-- create user
+CREATE USER 'haidarvm'@'localhost';
+GRANT ALL PRIVILEGES ON haidarvm.* To 'haidarvm'@'localhost' IDENTIFIED BY 'b1smill4h@t2256';
 
-GRANT ALL PRIVILEGES ON todayid.* To 'todayid'@'localhost' IDENTIFIED BY 'b1smill4h@t2256';
 
-
-=== create user =====
+--  create user =====
 CREATE USER 'jabarnewscom'@'206.189.153.149' IDENTIFIED BY 'b1smill4hjnews477';
 
 GRANT ALL PRIVILEGES ON jabarnews.* To 'jabarnewscom'@'206.189.153.149' IDENTIFIED BY 'b1smill4hjnews477';
@@ -22,11 +22,15 @@ GRANT ALL PRIVILEGES ON jabarnews.* To 'jabarnewscom'@'206.189.153.149' IDENTIFI
 GRANT ALL ON jabarnews.* TO 'jabarnewscom'@'206.189.153.149';
 FLUSH PRIVILEGES;
 
+-- delete user ----
+DROP USER 'bloguser'@'localhost';
+
 
 mysql -u userName -p -f -D dbName < script.sql
 
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'hai2coders';
-
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'hai2coders';
+FLUSH PRIVILEGES;
 
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'hai2coders';
 
@@ -44,11 +48,21 @@ FLUSH PRIVILEGES;
 UPDATE urls
 SET url = REPLACE(url, 'domain1.com/images/', 'domain2.com/otherfolder/')
 
+UPDATE wp_posts set `post_content` = REPLACE(post_content, 'kitabemas.or.id', 'kitabemas.online');
+UPDATE wp_posts set `guid` = REPLACE(guid, 'kitabemas.online', 'kitabemas.or.id')
+
 UPDATE skpkai_pdf_user
 SET image_name = REPLACE(image_name, '/home/skpkai/public_html/', '/home/client/skpkai/public_html/')
 
 ALTER TABLE old_table_name RENAME new_table_name;
 
+---findReplace utfmb
+sed 's/utf8mb4_0900_ai_ci/utf8_general_ci/g' original-mysql-data.sql > updated-mysql-data.sql
+sed 's/utf8mb4/utf8/g' original-mysql-data.sql > updated-mysql-data.sql
+
+
+sed 's/utf8mb4_0900_ai_ci/utf8_general_ci/g' 2020-10-26-fisipunla > updated-2020-10-26-fisipunla.sql
+sed 's/utf8mb4/utf8/g' updated-2020-10-26-fisipunla.sql > updated2-2020-10-26-fisipunla.sql
 
 select GROUP_CONCAT(stat SEPARATOR ' ') from (select concat('KILL ',id,';') as stat from information_schema.processlist) as stats;
 
@@ -82,16 +96,16 @@ CREATE TABLE `stack`.`Posts`  (
 );
 
 
- <row Id="1" PostTypeId="1" AcceptedAnswerId="161" CreationDate="2010-08-05T19:34:49.473" Score="54" ViewCount="166544" Body="&lt;p&gt;When should I use &lt;em&gt;can&lt;/em&gt;? When should I use &lt;em&gt;could&lt;/em&gt;?&lt;br&gt;&#xA;What is right under what context?&lt;/p&gt;&#xA;" OwnerUserId="9" LastEditorUserId="300" LastEditDate="2013-01-24T22:00:48.513" LastActivityDate="2015-06-12T21:02:26.507" Title="When do I use &quot;can&quot; or &quot;could&quot;?" Tags="&lt;word-choice&gt;&lt;tenses&gt;&lt;politeness&gt;&lt;subjunctive-mood&gt;&lt;can-could&gt;" AnswerCount="6" CommentCount="4" FavoriteCount="36" ContentLicense="CC BY-SA 3.0" />
+ <row Id="1" PostTypeId="1" AcceptedAnswerId="161" CreationDate="2010-08-05T19:34:49.473" Score="54" ViewCount="166544" Body="&lt;p&gt;When should I use &lt;em&gt;can&lt;/em&gt;? When should I use &lt;em&gt;could&lt;/em&gt;?&lt;br&gt;&-- xA;What is right under what context?&lt;/p&gt;&-- xA;" OwnerUserId="9" LastEditorUserId="300" LastEditDate="2013-01-24T22:00:48.513" LastActivityDate="2015-06-12T21:02:26.507" Title="When do I use &quot;can&quot; or &quot;could&quot;?" Tags="&lt;word-choice&gt;&lt;tenses&gt;&lt;politeness&gt;&lt;subjunctive-mood&gt;&lt;can-could&gt;" AnswerCount="6" CommentCount="4" FavoriteCount="36" ContentLicense="CC BY-SA 3.0" />
 
-#duplicate table
+-- duplicate table
 CREATE TABLE tbl_new AS SELECT * FROM tbl_old;
 
-#load txt
+-- load txt
 LOAD DATA LOCAL 
     INFILE '/tmp/mtext.txt' INTO TABLE json
 
-#convert xml to sql
+-- convert xml to sql
 LOAD XML LOCAL INFILE 'Posts.xml' INTO TABLE Posts;
 
 
@@ -103,8 +117,8 @@ LOAD XML LOCAL INFILE 'Tags.xml'
 INTO TABLE Tags
 ROWS IDENTIFIED BY 'Tags';
 
-#export csv
+-- export csv
 mysqldump -u root -p -t  -T/tmp  stack Posts --fields-terminated-by=','
 
-#clean id
+-- clean id
 INSERT INTO Posts_id (post_id)  SELECT id FROM Posts;
