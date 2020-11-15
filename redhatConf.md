@@ -40,11 +40,14 @@ sudo systemctl restart firewalld.service
 #firewall
 firewall-cmd --permanent --zone=public --add-service=http
 firewall-cmd --permanent --zone=public --add-service=https
+firewall-cmd --permanent --zone=public --add-service=ssh
 firewall-cmd --zone=public --add-port=5500/tcp --permanent
 firewall-cmd --zone=public --add-port=8080/tcp --permanent
+firewall-cmd --zone=public --add-port=9236/tcp --permanent
 firewall-cmd --reload
 firewall-cmd --zone=public --add-port=369/tcp --permanent
 sudo firewall-cmd --list-all
+firewall-cmd  --remove-service=ssh
 
 
 firewall-cmd --zone=public --add-service=mysql --permanent
@@ -70,10 +73,11 @@ chcon -R -t httpd_sys_rw_content_t /home/haidarvm
 chcon -R -t httpd_sys_content_rw_t /home/haidarvm/wp-content/uploads/
 chcon -R -t httpd_sys_content_rw_t /home/client/didikpos/public_html/wp-content/uploads/
 chcon -R -t httpd_sys_rw_content_t /home/client/didikpos/public_html/wp-content/uploads/
+restorecon -R /home/client/didikpos/public_html
 restorecon -R /home/client/didikpos/public_html/wp-content/uploads/
 
 
-chcon -R -t httpd_sys_rw_content_t /home/client/kkijabar/public_html/wp-content/uploads/
+chcon -R -t httpd_sys_rw_content_t /home/client/didikpos/public_html/wp-content/uploads/
 
 
 
@@ -84,10 +88,66 @@ setsebool -P httpd_unified 1
 restorecon -R -v /var/run/nginx*
 
 
+## composer ###
+wget https://getcomposer.org/installer -O composer-installer.php
+sudo php composer-installer.php --filename=composer --install-dir=/usr/local/bin 
+composer --version
+
+
 ### git nginx ###
 
 
 ### git user ###
+
+
+
+### php7.4 ###
+dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+rpm -qa | grep epel
+dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+rpm -qa | grep remi
+dnf module list php
+dnf module reset php
+dnf module enable php:remi-7.4
+dnf install php-process php-cli php-pgsql php-mysqlnd php-json php-gd php-mbstring php-xml php-curl php-opcache php-devel php-fpm php-readline
+firewall-cmd --zone=public --add-port=8787/tcp --permanent
+firewall-cmd --reload
+
+## certbot stop nginx first ##
+certbot certonly -d www.haidarid.xyz -d haidarid.xyz
+
+
+### postgresql-server ###
+dnf module reset postgresql
+dnf module enable postgresql:12
+dnf install postgresql postgresql-server
+rpm -ql postgresql-server
+sudo postgresql-setup --initdb
+
+### change mirror ###
+dnf -y install yum-utils 
+nano dnf.conf
+
+#dnf.conf
+[main]
+gpgcheck=1
+installonly_limit=3
+clean_requirements_on_remove=True
+best=False
+skip_if_unavailable=True
+fastestmirror=1
+
+## ssh no password ##
+PasswordAuthentication no
+TCPKeepAlive yes
+ClientAliveInterval 60
+ClientAliveCountMax 3
+
+semanage port -a -t ssh_port_t -p tcp 2236
+firewall-cmd --zone=public --add-port=2236/tcp --permanent
+ 
+## wrk ##
+make WITH_LUAJIT=/usr WITH_OPENSSL=/usr
 
 
 #### certbot ####
@@ -95,6 +155,7 @@ wget https://dl.eff.org/certbot-auto
 sudo mv certbot-auto /usr/local/bin/certbot-auto
 sudo chown root /usr/local/bin/certbot-auto
 sudo chmod 0755 /usr/local/bin/certbot-auto
+
 
 sudo /usr/local/bin/certbot-auto --nginx
 
@@ -465,6 +526,7 @@ dnf group
 dnf grouplist	
 dnf groupinfo "Basic Web Server"
 dnf groupinstall "Web Server" -y
+dnf groupinstall "Development Tools" -y
 dnf groupinstall "Server with GUI" -y
 dnf repolist all
 dnf repository-packages epel list
@@ -475,11 +537,8 @@ dnf whatprovides libgconf-2.so.4
 dnf --releasever=29 --showduplicates list $pkgname
 dnf deplist curl
 dnf reinstall $(repoquery --requires --recursive --resolve gdm)
-<<<<<<< HEAD
 sudo dnf --disablerepo=elrepo-kernel
-=======
 dnf config-manager --disablerepo elrepo-kernel
->>>>>>> 009f5e5778ca6355b72db10a83f9f2e5ca00d178
 dnf config-manager --set-disabled
 dnf config-manager --set-enabled 
 dnf --remove-repo elrepo-kernel
@@ -595,7 +654,7 @@ xfce4-terminal --tab --title='Py3' -x bash -c "source activate py35 && python; e
 xfce4-terminal --tab --title='bc' -x bash -c "bc; exec bash"
 xfce4-terminal --tab --title='ud' -x bash -c "pacaur -Syu; exec bash"
 
-#resolve
+### resolve ###
 ./bin/resolve  --link-flags "-L/usr/lib64/libssl.so"
 ./bin/resolve  -Dwithout_openssl
 sudo ln -s /usr/lib64/libssl.so.1.1 /usr/lib/libssl.so.10
@@ -1146,3 +1205,7 @@ Removed:
 
 
 Hey, why didn't Jesus tell you that sperm and eggs don't carry dna? That made you look really stupid
+
+
+###
+Assalamaulaikum, syar cek Telegram yaa, sorry dah 1 bln ga pegang hp ,, ini pake hp istri

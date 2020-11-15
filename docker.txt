@@ -9,6 +9,9 @@ ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'hai2coders';
 docker run -t -d --name debiantest debian
 docker exec -it my_debian bash
 
+#docker ubuntu 18.04
+docker run -it --name centostest ubuntu:18.04 bash
+
 
 docker run --name mariadbtest --net=host -e MYSQL_ROOT_PASSWORD=hai2coders -v /var/lib/mariadb:/var/lib/mysql -d mariadb
 
@@ -22,6 +25,7 @@ docker run --name mysqltest --net=host -v /var/lib/mysql/:/var/lib/mysql/ mysql/
 docker run --name mysqltest --net=host -e MYSQL_ROOT_PASSWORD=hai2coders -v /var/run/mysqld/mysql.sock:/var/run/mysqld/mysql.sock -d mysql/mysql-server
 
 docker run --name mysql2 --net=host -it -e MYSQL_ROOT_PASSWORD=hai2coders -v /host:/shared -d mysql/mysql-server
+
 
 #run
 mysql -h 127.0.0.1 -u root -p
@@ -67,7 +71,7 @@ docker exec -it postgrestest psql -U postgres
 
 #centos
 docker run --name centostest --net=host centos
-docker run -it --name hb centostest bash
+docker run -it --name centostest centos bash
 docker run -it --name hb --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw"  hp-setup
 docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" gui-app
 docker exec -it centos /bin/bash
@@ -78,7 +82,9 @@ docker run -it  -e DISPLAY=$DISPLAY  -v /tmp/.X11-unix:/tmp/.X11-unix jdeathe/ce
 
 docker run -it  -e DISPLAY=$DISPLAY  -v /tmp/.X11-unix:/tmp/.X11-unix  ubuntu bash
 
-
+#centos
+docker run -it --name centostest centos bash
+ 
 xhost +
 docker run -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY centos
 

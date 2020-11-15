@@ -1,7 +1,9 @@
 ffmpeg -i jajah.avi -s 1920x1080 -c:a copy jajah2.mkv
 ffmpeg -i jajah.avi -s 1280x720 -c:a copy xxx.mp4
 
-
+GundalaNegeriIniButuhPatriot
+Tenang, nanti muncul sosok Gundala di Negeri Ini Butuh Patriot
+https://t.me/c/1119791486/144138
 
 #mkvToMp4
 ffmpeg -i documentaryBandungMuslimAnimator3small-o3ytByGFPcU.mkv -s 1280x720 -c:a copy documentaryBandungMuslimAnimator3small-o3ytByGFPcU.mp4
@@ -16,12 +18,28 @@ ffmpeg -i part00001-0230.avi -s 1280x720 -c:a copy part0.mp4
 
 ffmpeg -i unlaprofile.mp4 -s 1280x720 -c:a copy unlaprofiles.mp4
 
+ffmpeg -i doliving.mp4 -s 640x480 -c:a copy dolivings.mp4
+
+##crop blackscreen
+ffplay -vf "crop = 640:480:200:100" dolivings.mp4
+ffmpeg -i dolivings.mp4  -vf "crop = 640:480:200:100" -c:a copy dolivingsb.mp4
+
 
 ffmpeg -i SHOWREELLIVINGIMAGINATION-vTgx0El4LdU.mkv -s 1920x1080 -c:a copy -strict -2 SHOWREELLIVINGIMAGINATION-vTgx0El4LdU.mp4
 
 
+ffmpeg -i komjenPolDharmaPongrekunDesainGlobalmiripkerjaIBLISviaPropagandaKETAKUTANSbagaiKontrol-2dInoRRSlY8.webm -s 480x270 -c:a copy -strict -2 komjenPolDharmaPongrekunDesainGlobalmiripkerjaIBLISviaPropagandaKETAKUTANSbagaiKontrol-2dInoRRSlY8.mp4
+
+
+
+ffmpeg -i DOPAMINE_DETOX-RESET_OTAK-HALAU_MALAS-kO622GyHa28.webm -s 480x270 -c:a copy -strict -2 DOPAMINE_DETOX-RESET_OTAK-HALAU_MALAS-kO622GyHa28.mp4
+
 ffmpeg -i 0608finalTreniBotBlender3DAnimation-ZKBzHRNX890.mkv -s 1920x1080 -c:a copy -strict -2 0608finalTreniBotBlender3DAnimation-ZKBzHRNX890.mp4
 
+
+ffmpeg -i bagasCimahiBandungSyari.mp4 -s 480x480 -c:a copy bagasCimahiBandungSyarie2.mp4
+
+ffmpeg -i 2020-10-31-204301.webm -s 480x480 -c:a copy 2020-10-31-204301.mp4
 
 ffmpeg -i mie.webm -s 360x270 -c:a copy -strict -2 mie.mp4
 
@@ -34,6 +52,8 @@ ffmpeg -i nakula.mp4 -s 480x270 -c:a copy vid_nakula.mp4
 ffmpeg -i dago.mp4 -s 480x270 -c:a copy dago2.mp4
 
 ffmpeg -i diniHaidar07032015.mp4 -s 480x270 -c:a copy diniHaidar07032015s.mp4
+
+ffmpeg -i doliving.mkv -s 1280x720 -c:a copy doliving.mp4
 
 
 #jokervbatman
@@ -53,13 +73,40 @@ ffmpeg -i lpcd17.mp4 -s  1280x720 -c:a copy lpcd17_720.mp4
 ffmpeg -i banjir.mp4 -s  480x270 -c:a copy banjir2.mp4
 
 
+
+ffmpeg -i pain.mkv -s  480x270 -c:a copy pain.mp4
+
+ffmpeg -i king810-killem_all.mp4 -s 852x480 -c:a copy king810-killem_all0.mp4
+
+
+ffmpeg -i idhand.mkv -s 852x480 -c:a copy -strict -2 idhand.mp4
+
+ffmpeg -i virzarindu.mkv -s 852x480 -c:a copy -strict -2 virzarindu.mp4
+
+ffmpeg -i lovenox.mp4 -s 270x270  -c:a copy -strict -2 lovenoxs.mp4
+
+ffmpeg -i lovenox.mp4 -s 176x352  -c:a copy -strict -2 lovenoxss.mp4
+
+ffmpeg -i jokerwake.mp4 -s 1280x720 -c:a copy -strict -2 jokerwakes.mp4
+
+ffmpeg -i budayawanSunda7EdfYXIxEWc.mkv -s 852x480 -c:a copy -strict -2 budayawanSunda7EdfYXIxEWc.mp4
+
+
+ffmpeg -i oppa.mp4 -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" outoppa.mp4
+
+
+ffmpeg -i oppa.mp4 -movflags faststart -s 480x480  -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" outoppa.mp4
+
 ffmpeg -i cepot.mp4 -s  480x270 -c:a copy cepot2.mp4
 
 ffmpeg -i cepot2.mp4 -filter:v scale=270:-1 -c:a copy cepot3.mp4
 
 
+ffmpeg -i kecoa.webm -filter:v scale=270:-1 -c:a copy -strict -2 kecoa.mp4
 ffmpeg -i steal.mp4 -filter:v scale=270:-1 -c:a copy steal2.mp4
 
+
+ffmpeg -i gunDrumerSlipknot-BMOh6r-erqI.mp4 -ss 00:00:00 -t 00:03:00 -filter:v scale=480:-1 -c:a copy gunDrumerSlipknots-BMOh6r-erqI.mp4
 
 ffmpeg -y -i XVR_ch1_main_20200625120000_20200625130000.dav -vcodec libx264 -crf 24 XVR_ch1_main_20200625120000_20200625130000.mp4
 

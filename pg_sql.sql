@@ -1,5 +1,22 @@
+-- go to postgres bash
+sudo su - postgres
+psql
+
 -- create password
 \password
+
+
+-- change main conf md5
+nano /var/lib/pgsql/12/data/pg_hba.conf
+
+-- connect
+psql -U postgres -h localhost
+psql -U postgres
+
+-- create databsae
+CREATE DATABASE invtcmit;
+ 
+
 
 -- show all db
 \l
@@ -20,6 +37,22 @@ id SERIAL,
 name varchar,
 salary bigint,
 age int
+);
+
+CREATE TABLE "user" (
+  "user_id" SERIAL PRIMARY KEY,
+  "username" varchar(200) NOT NULL,
+  "fullname" varchar(2000)  NOT NULL,
+  "create_at" timestamp NOT NULL DEFAULT NOW(),
+  "last_login" timestamp 
+);
+
+CREATE TABLE transaction (
+trx_id SERIAL PRIMARY KEY,
+trx_type int,
+account_id int,
+amount BIGINT,
+trx_date timestamp NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE posts_id (
@@ -80,6 +113,10 @@ CREATE TABLE public.posts (
 	contentlicense varchar NULL
 );
 
+
+#rename table
+ALTER TABLE "Posts" RENAME TO posts;
+ALTER TABLE "PostsId" RENAME TO postsid;
 
 id posttypeid acceptedanswerid creationdate creationdate score viewcount owneruserid lasteditoruserid lasteditdate lastactivitydate title tags answercount commentcount favoritecount contentlicense
 
