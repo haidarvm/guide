@@ -1,4 +1,4 @@
-sudo pip install --upgrade youtube-dl
+sudo pip3 install --upgrade youtube-dl
 
 
 '%(playlist)s/%(chapter_number)s - %(chapter)s/%(playlist_index)s. %(title)s.%(ext)s'
