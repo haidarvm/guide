@@ -76,7 +76,7 @@ chcon -R -t httpd_sys_rw_content_t /home/client/didikpos/public_html/wp-content/
 restorecon -R /home/client/didikpos/public_html
 restorecon -R /home/client/didikpos/public_html/wp-content/uploads/
 
-
+### run once
 chcon -R -t httpd_sys_rw_content_t /home/client/didikpos/public_html/wp-content/uploads/
 
 

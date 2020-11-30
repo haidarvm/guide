@@ -20,6 +20,19 @@ ffmpeg -i unlaprofile.mp4 -s 1280x720 -c:a copy unlaprofiles.mp4
 
 ffmpeg -i doliving.mp4 -s 640x480 -c:a copy dolivings.mp4
 
+#replace audio
+ffmpeg -i input_video.mp4 -i replacement_audio.m4a -vcodec copy -acodec copy -map 0:0 -map 1:0 output.mp4     
+ffmpeg -i tutorInputIdKei.mp4 -i audioKei.ac3 -vcodec copy -acodec copy -map 0:0 -map 1:0 tutorInputIdKeiR.mp4
+
+#crop video from start to
+ffmpeg -ss 00:00:01 -i tutorInputIdKeiR.mp4 -to 00:00:31 -c copy tutorInputIdKeiRs.mp4
+
+#format for WA 
+ffmpeg -i tutorInputIdKeiRs.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p tutorInputIdKeiRse.mp4
+ffmpeg -i finalPonWIP2016.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p finalPonWIP2016.mp4
+ffmpeg -i 0608finalTreniBotBlender3DAnimation-ZKBzHRNX890.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p 0608finalTreniBotBlender3DAnimation.mp4
+
+
 ##crop blackscreen
 ffplay -vf "crop = 640:480:200:100" dolivings.mp4
 ffmpeg -i dolivings.mp4  -vf "crop = 640:480:200:100" -c:a copy dolivingsb.mp4

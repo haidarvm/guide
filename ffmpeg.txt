@@ -52,6 +52,8 @@ ffmpeg -i lpcd17.mp4 -s  1280x720 -c:a copy lpcd17_720.mp4
 
 ffmpeg -i banjir.mp4 -s  480x270 -c:a copy banjir2.mp4
 
+ffmpeg -i BerandalYayan0001-4347.mkv -s  480x270 -c:a copy BerandalYayan.mp4
+
 
 ffmpeg -i cepot.mp4 -s  480x270 -c:a copy cepot2.mp4
 

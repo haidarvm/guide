@@ -24,6 +24,7 @@ FLUSH PRIVILEGES;
 
 -- delete user ----
 DROP USER 'bloguser'@'localhost';
+DROP USER 'ekampusid'@'localhost';
 
 
 mysql -u userName -p -f -D dbName < script.sql
