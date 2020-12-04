@@ -20,6 +20,10 @@ ffmpeg -i unlaprofile.mp4 -s 1280x720 -c:a copy unlaprofiles.mp4
 
 ffmpeg -i doliving.mp4 -s 640x480 -c:a copy dolivings.mp4
 
+#Yayan Ruhian petarung silat terhebat se Indonesia, Music Score By Mike Shinoda (LinkinPark), Directed By Gareth Evans (The Raid Redemption)
+ffmpeg -i TheRaidRedemption95KhOcXR1OA.mkv -s 480x270 -c:a copy -strict -2 TheRaidRedemption95KhOcXR1OA.mp4
+
+
 #replace audio
 ffmpeg -i input_video.mp4 -i replacement_audio.m4a -vcodec copy -acodec copy -map 0:0 -map 1:0 output.mp4     
 ffmpeg -i tutorInputIdKei.mp4 -i audioKei.ac3 -vcodec copy -acodec copy -map 0:0 -map 1:0 tutorInputIdKeiR.mp4
@@ -32,6 +36,11 @@ ffmpeg -i tutorInputIdKeiRs.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix
 ffmpeg -i finalPonWIP2016.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p finalPonWIP2016.mp4
 ffmpeg -i 0608finalTreniBotBlender3DAnimation-ZKBzHRNX890.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p 0608finalTreniBotBlender3DAnimation.mp4
 
+ffmpeg -i THERAID2MovieClip_KitchenFightScene2014-hwZ1G9fKPI8.mkv -s 640x480 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p THERAID2MovieClip_KitchenFightScene2014-hwZ1G9fKPI8.mp4 
+
+
+
+ffmpeg -i JohnWickChapter3Parabellum2019ShinobiAssassinFightScene9_12MovieclipsBUqJMPAtmdY.mkv -s 640x480 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p JohnWickChapter3Parabellum2019ShinobiAssassinFightScene9_12MovieclipsBUqJMPAtmdY.mp4 
 
 ##crop blackscreen
 ffplay -vf "crop = 640:480:200:100" dolivings.mp4
