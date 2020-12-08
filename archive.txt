@@ -41,6 +41,9 @@ zip -s 0 beritainspart.zip --out unsplitberitains05jun.zip
 
 unzip unsplitberitains05jun.zip
 
+#to iso
+dd if=/dev/sr0 of=TellMeMoreDu.iso
+
 tar - Tape ARchiver
 And the options:
 x - extract
