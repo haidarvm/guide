@@ -86,7 +86,7 @@ setsebool -P httpd_can_network_connect 1
 setsebool -P httpd_read_user_content 1
 setsebool -P httpd_unified 1
 restorecon -R -v /var/run/nginx*
-
+semanage permissive -a httpd_t
 
 ## composer ###
 wget https://getcomposer.org/installer -O composer-installer.php
@@ -488,6 +488,10 @@ CMD dbus-daemon --system --fork && /usr/bin/firefox
 
 
 
+#check last status service boot
+sudo systemctl list-units
+sudo systemctl list-units --state failed 
+sudo systemctl list-unit-files --type=service
 
 #running kernel
 5.2.8-1.el8.elrepo.x86_64 
