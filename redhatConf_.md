@@ -103,6 +103,9 @@ sudo /usr/local/bin/certbot-auto --nginx --verbose --debug --email haidarvm@gmai
 # copy paste list software
 setxkbmap
 
+#update grub2
+grub2-mkconfig -o /boot/efi/EFI/redhat/grub.cfg
+
 #fastest make
 time make -j$(nproc)
 
