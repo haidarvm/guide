@@ -71,15 +71,28 @@ sudo chown -R www-data:"$USER" /webdirectory
 
 chcon -R -t httpd_sys_rw_content_t /home/haidarvm
 chcon -R -t httpd_sys_content_rw_t /home/haidarvm/wp-content/uploads/
-chcon -R -t httpd_sys_content_rw_t /home/client/didikpos/public_html/wp-content/uploads/
-chcon -R -t httpd_sys_rw_content_t /home/client/didikpos/public_html/wp-content/uploads/
-restorecon -R /home/client/didikpos/public_html
-restorecon -R /home/client/didikpos/public_html/wp-content/uploads/
+chcon -R -t httpd_sys_content_rw_t /home/client/example/public_html/wp-content/uploads/
+chcon -R -t httpd_sys_rw_content_t /home/client/example/public_html/wp-content/uploads/
+restorecon -R /home/client/example/public_html
+restorecon -R /home/client/example/public_html/wp-content/uploads/
+
+##nginx stable
+
+#nginx-stable /etc/yum.repos.d/nginx.repo
+nginx-stable]
+name=nginx stable repo
+baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+gpgcheck=1
+enabled=1
+gpgkey=https://nginx.org/keys/nginx_signing.key
+module_hotfixes=true
+
+
+dnf config-manager --set-enabled nginx-stable
+dnf install nginx
 
 ### run once
-chcon -R -t httpd_sys_rw_content_t /home/client/didikpos/public_html/wp-content/uploads/
-
-
+chcon -R -t httpd_sys_rw_content_t /home/client/example/public_html/wp-content/uploads/
 
 restorecon -R /home
 setsebool -P httpd_can_network_connect 1
@@ -216,6 +229,14 @@ dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.r
 
 
 #install rpm fusion
+sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo rpm -ivh https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm 
+sudo rpm -ivh https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm
+sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-$(uname -m)-rpms"
+sudo dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-*-rpms"
+dnf repolist rpmfusion-*
+ 
 gstreamer-plugins-ffmpeg gstreamer-plugins-good gstreamer-plugins-good-extras gstreamer-plugins-bad-free gstreamer-plugins-ugly gstreamer1-{ffmpeg,libav,plugins-{good,ugly,bad{,-free,-nonfree}}} gstreamer1-plugin-mpg123
 
 startx
@@ -260,6 +281,13 @@ yum install kernel-ml kernel-ml-{devel,tools,tools-libs} grub2-tools
 yum install -y dkms gcc redhat-lsb-languages
 # rpm -Uvh kernel-headers-2.6.18-194.el5.x86_64.rpm
 
+#update grub2
+grub2-mkconfig -o /boot/efi/EFI/redhat/grub.cfg
+
+
+#nvidia
+sudo dnf config-manager --add-repo=https://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-rhel8.repo
+sudo dnf module install nvidia-driver:latest
 
 #gcc 9.1
 
@@ -394,6 +422,9 @@ sudo subscription-manager repos --enable rhel-8-for-x86_64-supplementary-source-
 dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm 
 
 
+#sealert setroubleshoot
+dnf install setroubleshoot setools
+
 #first install
 subscription-manager register --auto-attach
 subscription-manager register
@@ -523,6 +554,12 @@ rpm --prefix=/home/haidar/rpm bind-chroot*.rpm
 rpm -Uvh --nodeps $(repoquery --location winswitch)
 rpm -Uvh --nodeps mssql-server*rpm
 
+
+#dnf repair
+dnf clean all
+rm -r /var/cache/dnf
+dnf upgrade
+
 #dnf command
 dnf info nginx
 dnf module disable php
@@ -541,10 +578,11 @@ dnf whatprovides libgconf-2.so.4
 dnf --releasever=29 --showduplicates list $pkgname
 dnf deplist curl
 dnf reinstall $(repoquery --requires --recursive --resolve gdm)
-sudo dnf --disablerepo=elrepo-kernel
+dnf --disablerepo=elrepo-kernel
 dnf config-manager --disablerepo elrepo-kernel
 dnf config-manager --set-disabled
 dnf config-manager --set-enabled 
+dnf config-manager --set-enabled nginx
 dnf --remove-repo elrepo-kernel
 
 #annobin
