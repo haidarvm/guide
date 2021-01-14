@@ -2,6 +2,8 @@ flatpak list
 
 flatpak run
 
+flatpak run org.inkscape.Inkscape
+
 flatpak search gimp
 
 flatpak install flathub org.gimp.GIMP 

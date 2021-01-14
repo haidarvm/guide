@@ -1,5 +1,28 @@
+ffmpeg -i modernHousePreview.avi -s 1280x720 -c:a copy modernHousePreview.mp4
+
+ffmpeg -i houseFailedRotate.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p houseFailedRotate.mp4
+
+
+ffmpeg -i houseWorksRotate.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p houseWorksRotate.mp4
+
+
+ffmpeg -i modernHousePreview.avi -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p modernHousePreview.mp4
+
+ffmpeg -i finalfinalfinalfinal.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p finalfinalfinalfinalSmall.mp4
+
+-c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p 
+
 ffmpeg -i jajah.avi -s 1920x1080 -c:a copy jajah2.mkv
-ffmpeg -i jajah.avi -s 1280x720 -c:a copy xxx.mp4
+ffmpeg -i jajah.avi -s 1920x1080 -c:a copy jajah2.mkv
+ffmpeg -i bumperOutroTL.avi -c:a copy bumperOutroTL.mp4
+
+ffmpeg -i bumperOutroTL.avi -c:v libx264 -c:a aac -strict experimental bumperOutroTL.mp4
+
+
+#soundOnly
+ffmpeg -i finalEditingTanahLandTemp.mp4 -acodec copy  finalEditingTanahLandTemp.aac
+ffmpeg  -i faisalvkangIrfanSp.mkv -acodec copy    -to 00:08:09 faisalvkangIrfanSp.aac
+ffmpeg -i faisalvkangIrfanSp.aac -map 0:a:0 -b:a 96k faisalvkangIrfanSp.mp3
 
 GundalaNegeriIniButuhPatriot
 Tenang, nanti muncul sosok Gundala di Negeri Ini Butuh Patriot
@@ -10,7 +33,6 @@ ffmpeg -i documentaryBandungMuslimAnimator3small-o3ytByGFPcU.mkv -s 1280x720 -c:
 
 
 ffmpeg -i rs_sh_40001-0154.avi -s 1280x720 -c:a copy rs_sh4.mp4
-
 
 ffmpeg -i sepedaMotorListrikGesits.mp4 -s 1280x720 -c:a copy sepedaMotorListrikGesits2.mp4
 
@@ -23,6 +45,14 @@ ffmpeg -i doliving.mp4 -s 640x480 -c:a copy dolivings.mp4
 #Yayan Ruhian petarung silat terhebat se Indonesia, Music Score By Mike Shinoda (LinkinPark), Directed By Gareth Evans (The Raid Redemption)
 ffmpeg -i TheRaidRedemption95KhOcXR1OA.mkv -s 480x270 -c:a copy -strict -2 TheRaidRedemption95KhOcXR1OA.mp4
 
+#to davinci
+ffmpeg -i input.mp4 -c:v dnxhd -profile:v dnxhr_hq output.mov
+ffmpeg -i limp.mp4  -c:v dnxhd -profile:v dnxhr_hq -c:a pcm_s16le limp.mov
+ffmpeg -i limp.mp4 -c:v dnxhd -profile:v dnxhr_hq -pix_fmt yuv422p -c:a pcm_s16le limp.mov
+ffmpeg -i tanah.mp4  -c:v dnxhd -profile:v dnxhr_hq -c:a pcm_s16le tanah.mov                     
+ffmpeg -i finalEditingTanahLandTemp.mp4  -c:v dnxhd -profile:v dnxhr_hq -c:a pcm_s16le finalEditingTanahLandTemp.mov
+
+ffmpeg -i tanah.mp4  -c:v dnxhd -profile:v dnxhr_hq -c:a pcm_s16le tanah.mov                     
 
 #replace audio
 ffmpeg -i input_video.mp4 -i replacement_audio.m4a -vcodec copy -acodec copy -map 0:0 -map 1:0 output.mp4     

@@ -8,6 +8,8 @@ curl -LsS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
 -- completely remove mariadb
 apt-get --purge remove "mariadb*"
 
+-- repair database
+mysqlcheck -uberitainspiratifnew -p beritainspiratifnew
 
 -- create user
 CREATE USER 'haidarvm'@'localhost';
