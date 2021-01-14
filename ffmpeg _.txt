@@ -1,5 +1,21 @@
+toWa
+ffmpeg -i finalfinalfinalfinalYoutube.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p finalfinalfinalfinalWa.mp4
+
+ffmpeg -i /home/haidar/Documents/tanahLand/SUPER_FINAL_TANAH_LAND.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p /home/haidar/Documents/tanahLand/SUPER_FINAL_TANAH_LAND_WA.mp4
+
+ffmpeg -i finalfinalfinalfinalWa.mp4 -s 1280x720 -c:a copy finalfinalfinalfinalWaSmall.mp4
+
+ffmpeg -i finalWatermark_0001-1577.mp4 -s 1280x720 -c:a copy finalWatermark.mp4
+
+
 ffmpeg -i jajah.avi -s 1920x1080 -c:a copy jajah2.mkv
 ffmpeg -i jajah.avi -s 1280x720 -c:a copy xxx.mp4
+
+#watermark
+ffmpeg -i finalfinalfinalfinalWaSmall.mp4 -i haidarvm.png -filter_complex \
+"[1:v]scale=25:20[wat];[0:v][wat]overlay=10:main_h-overlay_h-10[outv]" \
+-map "[outv]" -map 0:a finalfinalfinalfinalWaSmallWatermark.mp4
+
 
 GundalaNegeriIniButuhPatriot
 Tenang, nanti muncul sosok Gundala di Negeri Ini Butuh Patriot

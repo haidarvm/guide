@@ -31,6 +31,11 @@ usermod -aG wheel haidarvm
 
 #createswapfile https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-centos-7
 
+#nmcli connect
+nmcli con add type ethernet con-name haidar ifname enp0s3
+
+#nmcli wifi
+nmcli device wifi con "ssid" password "p455w04d"
 
 #install firewall iptables
 sudo dnf install -y firewalld
@@ -564,6 +569,10 @@ https://forums.gentoo.org/viewtopic-p-8336448.html?sid=527bc0cd156b3ad40d11584f1
 ./autogen.sh --enable-dependency-tracking  --enable-debug --enable-gbm-allocation  --enable-tests --enable-shared
 
 
+#setting timezone
+timedatectl list-timezones
+timedatectl set-timezone Asia/Jakarta
+
 #qemu
 git clone https://git.qemu.org/git/qemu.git
 cd qemu
@@ -992,9 +1001,7 @@ virt-install --name win10 --memory 2048 --vcpus 1 --disk size=14 --os-variant wi
 #steam install flatpak
 dnf install glibc.i686
 
-#setting timezone
-timedatectl list-timezones
-timedatectl set-timezone Asia/Jakarta
+
 
 
 #davinci resolve

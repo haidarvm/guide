@@ -8,6 +8,10 @@ psql
 
 -- change main conf md5
 nano /var/lib/pgsql/12/data/pg_hba.conf
+nano /etc/postgresql/13/main/pg_hba.conf
+
+sudo systemctl restart postgresql
+
 
 -- connect
 psql -U postgres -h localhost
