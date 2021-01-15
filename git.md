@@ -1,6 +1,9 @@
 #create rsa
 ssh-keygen -t rsa -b 4096 -C "haidarvm@gmail.com"
-
+git config --global user.name "haidarvm"
+git config --global user.email "haidarvm@gmail.com"
+git pull origin master
+git push origin master
 
 #reset to commit version
 git reset --hard 7fa4976
@@ -69,7 +72,7 @@ echo "# simple-php-template" >> README.md
 git init
 git add README.md
 git commit -am "first commit"
-git remote add origin git@github.com:haidarvm/bench.git
+git remote add origin git@github.com:haidarvm/reponya.gitcom:haidarvm/bench.git
 git pull origin master
 git push -u origin master
 

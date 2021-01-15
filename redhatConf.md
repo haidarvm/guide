@@ -119,7 +119,7 @@ composer --version
 
 
 
-### php7.4 ###
+### php-fpm-7.4.14 ###
 dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 rpm -qa | grep epel
 dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
@@ -232,6 +232,8 @@ echo "Subject: sendmail test" | sendmail -v haidarvm@gmail.com
 #epel
 dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 
+#urar unrar
+7z x file.rar
 
 #install rpm fusion
 sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
@@ -241,6 +243,12 @@ sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-$(uname -
 sudo dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-*-rpms"
 dnf repolist rpmfusion-*
+dnf install aria2 -y
+dnf install ffmpeg
+dnf install vlc mpv
+
+#install firefox
+aria2c https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US
  
 gstreamer-plugins-ffmpeg gstreamer-plugins-good gstreamer-plugins-good-extras gstreamer-plugins-bad-free gstreamer-plugins-ugly gstreamer1-{ffmpeg,libav,plugins-{good,ugly,bad{,-free,-nonfree}}} gstreamer1-plugin-mpg123
 
