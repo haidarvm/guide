@@ -130,3 +130,9 @@ mysqldump -u root -p -t  -T/tmp  stack Posts --fields-terminated-by=','
 
 -- clean id
 INSERT INTO Posts_id (post_id)  SELECT id FROM Posts;
+
+--- beritainspiratif repair ---
+CREATE TABLE wprg_popular_posts_inno AS SELECT * FROM wprg_popular_posts; 
+ALTER TABLE wprg_popular_posts_inno ENGINE = INNODB;
+ALTER TABLE wprg_popular_posts RENAME wprg_popular_posts_bak;
+ALTER TABLE wprg_popular_posts_inno RENAME wprg_popular_posts;
