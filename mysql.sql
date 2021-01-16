@@ -16,6 +16,10 @@ mysqlcheck -uberitainspiratifnew -p beritainspiratifnew
 mysql -u username -p set global log_bin_trust_function_creators=1;
 
 
+-- mysql check variables
+SHOW VARIABLES;
+SHOW VARIABLES LIKE '%max_connect%';
+
 -- create user
 CREATE USER 'haidarvm'@'localhost';
 GRANT ALL PRIVILEGES ON haidarvm.* To 'haidarvm'@'localhost' IDENTIFIED BY 'b1smill4h@t2256';
