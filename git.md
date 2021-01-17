@@ -81,7 +81,9 @@ git show HEAD~1
 git checkout HEAD -- composer.json
 
 
-
+#git check changes
+git diff
+git diff --cached
 
 
 
