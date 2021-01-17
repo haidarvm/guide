@@ -119,7 +119,7 @@ composer --version
 
 
 
-### php7.4 ###
+### php-fpm-7.4.14 ###
 dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 rpm -qa | grep epel
 dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
@@ -179,8 +179,23 @@ sudo /usr/local/bin/certbot-auto --nginx
 
 sudo /usr/local/bin/certbot-auto --nginx --verbose --debug --email haidarvm@gmail.com -d haidarvm.com -d www.haidarvm.com -d ali.haidarvm.com
 
+
+### install dropbox ###
+aria2c https://linux.dropbox.com/packages/nautilus-dropbox-2.10.0.tar.bz2
+tar xjf ./nautilus-dropbox-2.10.0.tar.bz2
+cd ./nautilus-dropbox-2.10.0
+dnf install nautilus-devel
+alternatives --set python /usr/bin/python2
+dnf install pygtk2-devel
+
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+~/.dropbox-dist/dropboxd
+echo fs.inotify.max_user_watches=100000 | sudo tee -a /etc/sysctl.conf; sudo sysctl -p
 # copy paste list software
 setxkbmap
+#update grub2
+grub2-mkconfig -o /boot/efi/EFI/redhat/grub.cfg
+
 
 #fastest make
 time make -j$(nproc)
@@ -232,6 +247,8 @@ echo "Subject: sendmail test" | sendmail -v haidarvm@gmail.com
 #epel
 dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 
+#urar unrar
+7z x file.rar
 
 #install rpm fusion
 sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
@@ -241,6 +258,12 @@ sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-$(uname -
 sudo dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-*-rpms"
 dnf repolist rpmfusion-*
+dnf install aria2 -y
+dnf install ffmpeg
+dnf install vlc mpv
+
+#install firefox
+aria2c https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US
  
 gstreamer-plugins-ffmpeg gstreamer-plugins-good gstreamer-plugins-good-extras gstreamer-plugins-bad-free gstreamer-plugins-ugly gstreamer1-{ffmpeg,libav,plugins-{good,ugly,bad{,-free,-nonfree}}} gstreamer1-plugin-mpg123
 
@@ -933,12 +956,74 @@ make CFLAGS='-lz' CXXFLAGS='-lz'
 #baseos repo
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/package_manifest/chap-baseos-repository
 
+## Cara install Gtk3.20+ theme Nodic
+
+# install https://extensions.gnome.org/extension/19/user-themes/
+# gnome-tweaks -> extensions -> User themes -> On
+git clone git@github.com:EliverLara/Nordic.git
+sudo cp -r Nordic/ /usr/share/themes/
+# gnome-tweaks -> appearance -> Themes -> Nordic
+
+## install icon gnome ##
+https://www.gnome-look.org/s/Gnome/p/1348081
+tar xvf McMuse-purple.tar.xz 
+sudo cp -r McMuse-purple /usr/share/icons/
+# gnome-tweaks -> appearance -> Icons -> McMuse-purple
+
+## install gnome shell themes ##
+git clone https://github.com/metro2222/Rounded-Rectangle-dark-transparent/
+cd Rounded-Rectangle-dark-transparent/
+sudo cp -r  Rounded-Rectangle-dark-transparent\ 1.6v/ /usr/share/themes/
+# gnome-tweaks -> appearance -> Shell -> Rounded-Rectangle-dark-transparent\ 1.6v
+
+
+
+## install pcmanfm build libfm pcmanfm
+
+# Download (HTTP): https://downloads.sourceforge.net/pcmanfm/libfm-1.3.1.tar.xz
+# Installation of libfm-extra
+./configure --prefix=/usr     \
+            --sysconfdir=/etc \
+            --with-extra-only \
+            --with-gtk=no     \
+            --disable-static  &&
+make
+sudo make install
+
+# install menu-cache
+# Download (HTTP): https://downloads.sourceforge.net/lxde/menu-cache-1.1.0.tar.xz
+tar xvf menu-cache-1.1.0.tar.xz
+cd menu-cache-1.1.0/
+aria2c http://www.linuxfromscratch.org/patches/blfs/svn/menu-cache-1.1.0-consolidated_fixes-1.patch
+patch -Np1 -i ../menu-cache-1.1.0-consolidated_fixes-1.patch
+
+./configure --prefix=/usr    \
+            --disable-static &&
+make
+sudo make install
+# Installation of libfm
+tar xvf libfm-1.3.1.tar.xz
+cd libfm-1.3.1/
+
+./configure --prefix=/usr     \
+            --sysconfdir=/etc \
+            --disable-static  &&
+make
+sudo make install 
+
+# install pcmanfm
+# Download (HTTP): https://downloads.sourceforge.net/pcmanfm/pcmanfm-1.3.1.tar.xz
+tar xvf pcmanfm-1.3.1.tar.xz 
+cd pcmanfm-1.3.1/
+./configure --prefix=/usr     \
+            --sysconfdir=/etc &&
+make
+sudo make install
 
 #pkg
 flatpak, snap, ppa , apt, appimage, build from source
 
 #ask serverfault stackoverflow or other
-#build libfm pcmanfm
 #Install Menu Cache by running the following commands:
 ./configure --prefix=/usr --disable-static 
 
@@ -1039,7 +1124,9 @@ virt-install --name win10 --memory 2048 --vcpus 1 --disk size=14 --os-variant wi
 #steam install flatpak
 dnf install glibc.i686
 
-
+#setting timezone
+timedatectl list-timezones
+timedatectl set-timezone Asia/Jakarta
 
 
 #davinci resolve
@@ -1253,8 +1340,3 @@ Removed:
 
 
 
-Hey, why didn't Jesus tell you that sperm and eggs don't carry dna? That made you look really stupid
-
-
-###
-Assalamaulaikum, syar cek Telegram yaa, sorry dah 1 bln ga pegang hp ,, ini pake hp istri
