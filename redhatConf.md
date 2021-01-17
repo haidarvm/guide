@@ -991,6 +991,7 @@ make
 sudo make install
 
 # install menu-cache
+# Download (HTTP): https://downloads.sourceforge.net/lxde/menu-cache-1.1.0.tar.xz
 tar xvf menu-cache-1.1.0.tar.xz
 cd menu-cache-1.1.0/
 aria2c http://www.linuxfromscratch.org/patches/blfs/svn/menu-cache-1.1.0-consolidated_fixes-1.patch
@@ -1008,12 +1009,16 @@ cd libfm-1.3.1/
             --sysconfdir=/etc \
             --disable-static  &&
 make
+sudo make install 
 
-
-# Download (HTTP): https://downloads.sourceforge.net/lxde/menu-cache-1.1.0.tar.xz
-
-
-
+# install pcmanfm
+# Download (HTTP): https://downloads.sourceforge.net/pcmanfm/pcmanfm-1.3.1.tar.xz
+tar xvf pcmanfm-1.3.1.tar.xz 
+cd pcmanfm-1.3.1/
+./configure --prefix=/usr     \
+            --sysconfdir=/etc &&
+make
+sudo make install
 
 #pkg
 flatpak, snap, ppa , apt, appimage, build from source
