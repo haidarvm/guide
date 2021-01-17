@@ -1,8 +1,11 @@
-#installmariabd rhel
+Cara install MariaDB-server-10.5.8-1 terbaru
+#installmariabd-rhel
 curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
+dnf update
+dnf install MariaDB-server
 
-
-#/etc/yum.repos.d/MariaDB.repo
+$ nano /etc/yum.repos.d/MariaDB.repo 
+#mariadb
 [mariadb]
 name = MariaDB
 baseurl = http://yum.mariadb.org/10.3/centos7-amd64

@@ -2,7 +2,8 @@ CREATE USER 'todayid'@'localhost' IDENTIFIED BY 'b1smill4h@t2256';
 
 GRANT ALL PRIVILEGES ON todayid.* To 'todayid'@'localhost' IDENTIFIED BY 'b1smill4h@t2256';
 
-
+-- error ERROR 1419 (HY000) at line 31369: You do not have the SUPER privilege and binary logging is enabled 
+mysql -u username -p set global log_bin_trust_function_creators=1;
 
 
 === create user =====
