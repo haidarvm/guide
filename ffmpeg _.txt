@@ -7,6 +7,8 @@ ffmpeg -i finalfinalfinalfinalWa.mp4 -s 1280x720 -c:a copy finalfinalfinalfinalW
 
 ffmpeg -i finalWatermark_0001-1577.mp4 -s 1280x720 -c:a copy finalWatermark.mp4
 
+#scale 480
+ffmpeg -i vaccineDown.mp4 -filter:v scale=480:-1 -c:a copy vaccineDowns.mp4
 
 ffmpeg -i jajah.avi -s 1920x1080 -c:a copy jajah2.mkv
 ffmpeg -i jajah.avi -s 1280x720 -c:a copy xxx.mp4

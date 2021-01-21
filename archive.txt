@@ -2,7 +2,8 @@
 tar -xvzf community_images.tar.gz
 
 
-#tar -cvzf tarballname.tar.gz itemtocompress
+#compress
+tar -cvzf tarballname.tar.gz itemtocompress
 
 #tar
 tar -xf archive.tar -C /target/directory
