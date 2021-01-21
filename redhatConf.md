@@ -687,11 +687,11 @@ qemu-system-x86_64 --enable-kvm -cpu max -smp 2 -m 4G -hda win10 -net nic,model=
 
 #rhel kvm import
 --selinux-relabel
-virt-customize -a rhel-8.0-x86_64-kvm.qcow2 --root-password password:bismillah --uninstall cloud-init 
+virt-customize -a rhel-8.3-x86_64-kvm.qcow2 --root-password password:bismillah --uninstall cloud-init 
 
 net=192.168.122.0/24,dhcpstart=192.168.122.9,
 
-qemu-system-x86_64 --enable-kvm -cpu max -smp 2 -m 4G -hda rhel-8.0-x86_64-kvm.qcow2 -device e1000,netdev=net0  -netdev user,id=net0,hostfwd=tcp::60022-:22 -vga virtio -display sdl,gl=on -soundhw hda
+qemu-system-x86_64 --enable-kvm -cpu max -smp 2 -m 4G -hda rhel-8.3-x86_64-kvm.qcow2 -device e1000,netdev=net0  -netdev user,id=net0,hostfwd=tcp::60022-:22 -vga virtio -display sdl,gl=on -soundhw hda
 
 #arm aarch64
 qemu-system-aarch64  -cpu max -smp 2 -m 4G -M virt -hda rhel-8.0-update-1-aarch64-kvm.qcow2 -netdev nic,model=virtio -device e1000,netdev=net0 -netdev user,id=mynet0,net=192.168.122.0/24,dhcpstart=192.1.122.9,hostfwd=tcp::60022-:22 -vga virtio -display sdl -soundhw hda
@@ -703,6 +703,11 @@ iptables -A OUTPUT -p tcp --sport 80 -o virbr0  -m conntrack --ctstate ESTABLISH
 iptables -A OUTPUT -i virbr0 -p tcp -m tcp --dport 80 -j ACCEPT
 
 -net user
+
+#convert qcow2 to img
+qemu-img convert rhel8.3-kvm.qcow2 -O raw rhel8.3-kvm.img
+
+#resize img
 
 #convert Vmdk to qcow2
 qemu-img convert -f vmdk -O qcow2 image.vmdk image.qcow2
