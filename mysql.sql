@@ -22,15 +22,15 @@ SHOW VARIABLES LIKE '%max_connect%';
 
 -- create user
 CREATE USER 'haidarvm'@'localhost';
-GRANT ALL PRIVILEGES ON haidarvm.* To 'haidarvm'@'localhost' IDENTIFIED BY 'b1smill4h@t2256';
+GRANT ALL PRIVILEGES ON haidarvm.* To 'haidarvm'@'localhost' IDENTIFIED BY 'bismillah';
 
 
 --  create user =====
-CREATE USER 'jabarnewscom'@'206.189.153.149' IDENTIFIED BY 'b1smill4hjnews477';
+CREATE USER 'jabarnewscom'@'206.189.153.114' IDENTIFIED BY 'bismillah';
 
-GRANT ALL PRIVILEGES ON jabarnews.* To 'jabarnewscom'@'206.189.153.149' IDENTIFIED BY 'b1smill4hjnews477';
+GRANT ALL PRIVILEGES ON jabarnews.* To 'jabarnewscom'@'206.189.153.114' IDENTIFIED BY 'bismillah';
 
-GRANT ALL ON jabarnews.* TO 'jabarnewscom'@'206.189.153.149';
+GRANT ALL ON jabarnews.* TO 'jabarnewscom'@'206.189.153.114';
 FLUSH PRIVILEGES;
 
 -- delete user ----
@@ -40,21 +40,21 @@ DROP USER 'ekampusid'@'localhost';
 
 mysql -u userName -p -f -D dbName < script.sql
 
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'hai2coders';
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'hai2coders';
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'bismillah';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'bismillah';
 FLUSH PRIVILEGES;
 
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'hai2coders';
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'bismillah';
 
-CREATE USER 'haidar'@'%' IDENTIFIED BY 'hai2coders';
-CREATE USER 'dini'@'172.17.0.1' IDENTIFIED BY 'hai2coders';
-GRANT ALL ON *.* TO 'dini'@'172.17.0.1' IDENTIFIED BY 'hai2coders';
-GRANT ALL PRIVILEGES ON *.* To 'dini'@'172.17.0.1' IDENTIFIED BY 'hai2coders';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.17.0.%' IDENTIFIED BY 'hai2coders' WITH GRANT OPTION;
-GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'hai2coders';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'hai2coders' WITH GRANT OPTION;
+CREATE USER 'haidar'@'%' IDENTIFIED BY 'bismillah';
+CREATE USER 'dini'@'172.17.0.1' IDENTIFIED BY 'bismillah';
+GRANT ALL ON *.* TO 'dini'@'172.17.0.1' IDENTIFIED BY 'bismillah';
+GRANT ALL PRIVILEGES ON *.* To 'dini'@'172.17.0.1' IDENTIFIED BY 'bismillah';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.17.0.%' IDENTIFIED BY 'bismillah' WITH GRANT OPTION;
+GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'bismillah';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'bismillah' WITH GRANT OPTION;
 
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'hai2coders';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'bismillah';
 FLUSH PRIVILEGES;
 
 UPDATE urls
@@ -67,6 +67,9 @@ UPDATE skpkai_pdf_user
 SET image_name = REPLACE(image_name, '/home/skpkai/public_html/', '/home/client/skpkai/public_html/')
 
 ALTER TABLE old_table_name RENAME new_table_name;
+
+-- disable strict group by conf
+sql-mode = "STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
 
 ---findReplace utfmb
 sed 's/utf8mb4_0900_ai_ci/utf8_general_ci/g' original-mysql-data.sql > updated-mysql-data.sql

@@ -10,8 +10,12 @@ ffmpeg -i finalWatermark_0001-1577.mp4 -s 1280x720 -c:a copy finalWatermark.mp4
 #scale 480
 ffmpeg -i vaccineDown.mp4 -filter:v scale=480:-1 -c:a copy vaccineDowns.mp4
 
+ffmpeg -i SUPER_FINAL_TANAH_LAND.mp4 -filter:v scale=720:-1 -c:a copy SUPER_FINAL_TANAH_LANDs.mp4
+
 ffmpeg -i jajah.avi -s 1920x1080 -c:a copy jajah2.mkv
 ffmpeg -i jajah.avi -s 1280x720 -c:a copy xxx.mp4
+
+ffmpeg -i SUPER_FINAL_TANAH_LAND.mp4 -s 1280x720 -c:a copy SUPER_FINAL_TANAH_LANDs.mp4
 
 #watermark
 ffmpeg -i finalfinalfinalfinalWaSmall.mp4 -i haidarvm.png -filter_complex \

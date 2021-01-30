@@ -81,21 +81,6 @@ chcon -R -t httpd_sys_rw_content_t /home/client/example/public_html/wp-content/u
 restorecon -R /home/client/example/public_html
 restorecon -R /home/client/example/public_html/wp-content/uploads/
 
-##nginx stable
-
-#nginx-stable /etc/yum.repos.d/nginx.repo
-nginx-stable]
-name=nginx stable repo
-baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
-gpgcheck=1
-enabled=1
-gpgkey=https://nginx.org/keys/nginx_signing.key
-module_hotfixes=true
-
-
-dnf config-manager --set-enabled nginx-stable
-dnf install nginx
-
 ### run once
 chcon -R -t httpd_sys_rw_content_t /home/client/example/public_html/wp-content/uploads/
 
@@ -105,6 +90,26 @@ setsebool -P httpd_read_user_content 1
 setsebool -P httpd_unified 1
 restorecon -R -v /var/run/nginx*
 semanage permissive -a httpd_t
+
+##nginx stable
+
+#nginx-stable /etc/yum.repos.d/nginx.repo
+[nginx-stable]
+name=nginx stable repo
+baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+gpgcheck=1
+enabled=1
+gpgkey=https://nginx.org/keys/nginx_signing.key
+module_hotfixes=true
+dnf config-manager --set-enabled nginx-stable
+dnf install nginx
+
+## reppair failed to set locale
+localectl set-locale LANG=en_US.UTF-8
+localectl
+dnf install langpacks-en glibc-all-langpacks -y
+
+
 
 ## composer ###
 wget https://getcomposer.org/installer -O composer-installer.php
@@ -160,7 +165,7 @@ PasswordAuthentication no
 TCPKeepAlive yes
 ClientAliveInterval 60
 ClientAliveCountMax 3
-
+UsePAM no
 semanage port -a -t ssh_port_t -p tcp 2236
 firewall-cmd --zone=public --add-port=2236/tcp --permanent
  
@@ -256,7 +261,7 @@ sudo rpm -ivh https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.n
 sudo rpm -ivh https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm
 sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-$(uname -m)-rpms"
 sudo dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-*-rpms"
+# sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-*-rpms"
 dnf repolist rpmfusion-*
 dnf install aria2 -y
 dnf install ffmpeg
@@ -445,6 +450,7 @@ sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpm
 sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-source-rpms
 sudo subscription-manager repos --enable rhel-8-for-x86_64-rt-source-rpms
 sudo subscription-manager repos --enable rhel-8-for-x86_64-supplementary-source-rpms
+sudo subscription-manager repos --disable codeready-builder-for-rhel-8-x86_64-eus-rpms
 
 
 dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm 
@@ -474,8 +480,6 @@ export LD_RUN_PATH=/usr/local/lib
     --with-zlib=../zlib-1.2.11 --enable-shared
     
 http://cdn.geekbench.com/Geekbench-4.4.1-Linux.tar.gz
-
-
 
 
 
@@ -552,16 +556,12 @@ sudo systemctl list-units
 sudo systemctl list-units --state failed 
 sudo systemctl list-unit-files --type=service
 
-#running kernel
-5.2.8-1.el8.elrepo.x86_64 
-5.2.8-1.el8.elrepo.x86_64
-
 mssqlpass
 12Bismillah
 sqlcmd -S localhost -U SA -P '<YourPassword>'
 sqlcmd -S localhost -U SA -P 12Bismillah
 
-#check ip
+## check ip
 ip addr show
 
 #rpm command
@@ -608,6 +608,8 @@ dnf deplist curl
 dnf reinstall $(repoquery --requires --recursive --resolve gdm)
 dnf --disablerepo=elrepo-kernel
 dnf config-manager --disablerepo elrepo-kernel
+dnf config-manager --disablerepo codeready-builder-for-rhel-8-x86_64-eus-rpms
+dnf config-manager --disable codeready-builder-for-rhel-8-x86_64-eus-rpms
 dnf config-manager --set-disabled
 dnf config-manager --set-enabled 
 dnf config-manager --set-enabled nginx
