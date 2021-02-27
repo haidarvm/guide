@@ -57,6 +57,10 @@ firewall-cmd  --remove-service=ssh
 
 firewall-cmd --zone=public --add-service=mysql --permanent
 
+
+#hostnamectl
+hostnamectl set-hostname cloud.haidarvm.com
+
 ####### END INSTALLATION ########
 
 ### tigervnc ###
@@ -95,6 +99,10 @@ semanage permissive -d httpd_t
 ##nginx stable
 
 #nginx-stable /etc/yum.repos.d/nginx.repo
+=======
+## nginx stable
+
+nano /etc/yum.repos.d/nginx.repo
 [nginx-stable]
 name=nginx stable repo
 baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
@@ -110,6 +118,22 @@ localectl set-locale LANG=en_US.UTF-8
 localectl
 dnf install langpacks-en glibc-all-langpacks -y
 
+=======
+## installmariabd rhel
+curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
+dnf update
+dnf install MariaDB-server
+
+$ nano /etc/yum.repos.d/MariaDB.repo 
+#mariadb
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.3/centos7-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+
+### run once
+chcon -R -t httpd_sys_rw_content_t /home/client/example/public_html/wp-content/uploads/
 
 
 ## composer ###
@@ -171,12 +195,29 @@ ClientAliveCountMax 3
 UsePAM no
 semanage port -a -t ssh_port_t -p tcp 2236
 firewall-cmd --zone=public --add-port=2236/tcp --permanent
+=======
+MaxStartups 3 
+Port 2255
+semanage port -a -t ssh_port_t -p tcp 2255
+firewall-cmd --zone=public --add-port=2255/tcp --permanent
+chmod 700 /home/haidarvm/.ssh
+chmod 600 /home/haidarvm/.ssh/authorized_keys
+vi /home/haidarvm/.ssh/
+ssh-copy-id username@remote_host -p 2235
+
+# disable sudo promt 
+sudo visudo
+# uncomment
+%wheel  ALL=(ALL)       NOPASSWD: ALL
  
 ## wrk ##
 make WITH_LUAJIT=/usr WITH_OPENSSL=/usr
 
 
 #### certbot ####
+dnf install certbot python3-certbot-nginx
+
+
 wget https://dl.eff.org/certbot-auto
 sudo mv certbot-auto /usr/local/bin/certbot-auto
 sudo chown root /usr/local/bin/certbot-auto
@@ -187,6 +228,7 @@ sudo /usr/local/bin/certbot-auto --nginx
 
 sudo /usr/local/bin/certbot-auto --nginx --verbose --debug --email haidarvm@gmail.com -d haidarvm.com -d www.haidarvm.com -d ali.haidarvm.com
 
+#cockpit
 
 ### install dropbox ###
 aria2c https://linux.dropbox.com/packages/nautilus-dropbox-2.10.0.tar.bz2
@@ -223,6 +265,11 @@ systemctl set-default graphical.target
 systemctl isolate graphical
 yum groupinstall "X Window System" Desktop
 yum groupinstall "X Window System" "KDE Desktop"
+startx
+
+#disable gui
+systemctl get-default​
+systemctl set-default multi-user.target ​
 
 #javac
 nano /etc/bashrc
@@ -265,7 +312,9 @@ sudo rpm -ivh https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-relea
 sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-$(uname -m)-rpms"
 sudo dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 # sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-*-rpms"
+sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-*-rpms"
 dnf repolist rpmfusion-*
+dnf update
 dnf install aria2 -y
 dnf install ffmpeg
 dnf install vlc mpv
@@ -275,9 +324,11 @@ aria2c https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=
  
 gstreamer-plugins-ffmpeg gstreamer-plugins-good gstreamer-plugins-good-extras gstreamer-plugins-bad-free gstreamer-plugins-ugly gstreamer1-{ffmpeg,libav,plugins-{good,ugly,bad{,-free,-nonfree}}} gstreamer1-plugin-mpg123
 
-startx
-#
-systemctl set-default graphical
+
+#fix datetime
+systemctl stop chronyd
+chronyd -q
+systemctl start chronyd
 
 #sdkman
 # SDK Man replaced GVM. Using for Groovy, Gradle, and Maven Version Management
@@ -439,8 +490,8 @@ echo $XDG_SESSION_TYPE
 #ntfs
 
 #download iso boot
-sha256sum boot.iso
-https://developers.redhat.com/download-manager/content/origin/files/sha256/2d/2d4fac3cdf416975d8335933bee3c88729bfd3d0537da427a36a1db60a4d955e/rhel-server-7.7-x86_64-boot.iso
+sha256sum rhel-8.3-x86_64-boot.iso
+https://access.cdn.redhat.com/content/origin/files/sha256/1b/1b73ebfebd1f9424c806032168873b067259d8b29f4e9d39ae0e4009cce49b93/rhel-8.3-x86_64-boot.iso?user=9099afdb5227ec27d7a195ebbc9226da&_auth_=1611075893_87f5d58376ec1de1556b72c7e0e557d3
 https://developers.redhat.com/products/rhel/download
 download.devel.redhat.com/composes/latest-RHEL7/compose/server/x86_64/os
 
