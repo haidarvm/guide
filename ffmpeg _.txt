@@ -1,6 +1,9 @@
 toWa
 ffmpeg -i finalfinalfinalfinalYoutube.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p finalfinalfinalfinalWa.mp4
 
+
+ffmpeg -i VID-20210209-WA0013djarum.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p VID-20210209-WA0013djarums.mp4
+
 ffmpeg -i /home/haidar/Documents/tanahLand/SUPER_FINAL_TANAH_LAND.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p /home/haidar/Documents/tanahLand/SUPER_FINAL_TANAH_LAND_WA.mp4
 
 ffmpeg -i finalfinalfinalfinalWa.mp4 -s 1280x720 -c:a copy finalfinalfinalfinalWaSmall.mp4
