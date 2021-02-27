@@ -11,6 +11,9 @@ apt-get --purge remove "mariadb*"
 -- repair database
 mysqlcheck -uberitainspiratifnew -p beritainspiratifnew
 
+-- all database
+mysqlcheck -c -u root -p --all-databases
+
 
 -- error ERROR 1419 (HY000) at line 31369: You do not have the SUPER privilege and binary logging is enabled 
 mysql -u username -p set global log_bin_trust_function_creators=1;

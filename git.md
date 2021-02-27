@@ -72,9 +72,9 @@ echo "# simple-php-template" >> README.md
 git init
 git add README.md
 git commit -am "first commit"
-git remote add origin git@github.com:haidarvm/reponya.gitcom:haidarvm/bench.git
-git pull origin master
-git push -u origin master
+git remote add origin git@github.com:haidarvm/reponya
+git pull 
+git push 
 
 
 git show HEAD~1

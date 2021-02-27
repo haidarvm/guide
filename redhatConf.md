@@ -90,6 +90,7 @@ setsebool -P httpd_read_user_content 1
 setsebool -P httpd_unified 1
 restorecon -R -v /var/run/nginx*
 semanage permissive -a httpd_t
+semanage permissive -d httpd_t
 
 ##nginx stable
 
@@ -136,6 +137,8 @@ dnf install php-process php-cli php-pgsql php-mysqlnd php-json php-gd php-mbstri
 firewall-cmd --zone=public --add-port=8787/tcp --permanent
 firewall-cmd --reload
 
+# to downgrade php 7.3
+yum downgrade php\*
 ## certbot stop nginx first ##
 certbot certonly -d www.haidarid.xyz -d haidarid.xyz
 
