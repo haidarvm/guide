@@ -1,6 +1,8 @@
 toWa
 ffmpeg -i finalfinalfinalfinalYoutube.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p finalfinalfinalfinalWa.mp4
 
+ffmpeg -i iklan-djarum-coklat-fix.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p iklan-djarum-coklat-fix-all.mp4
+
 
 ffmpeg -i VID-20210209-WA0013djarum.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p VID-20210209-WA0013djarums.mp4
 
