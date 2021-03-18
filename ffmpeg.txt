@@ -66,12 +66,10 @@ ffmpeg -i tutorInputIdKeiRs.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix
 ffmpeg -i finalPonWIP2016.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p finalPonWIP2016.mp4
 ffmpeg -i 0608finalTreniBotBlender3DAnimation-ZKBzHRNX890.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p 0608finalTreniBotBlender3DAnimation.mp4
 
-<<<<<<< HEAD:ffmpeg _.txt
 ffmpeg -i rammsteinAmerika.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p rammsteinAmerika.mp4
 
 ffmpeg -ss 00:00:01 -i HaidarvmNonPointTFrabia.mp4 -to 00:03:31 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p HaidarvmNonPointTFrabia2.mp4
 
-=======
 ffmpeg -i THERAID2MovieClip_KitchenFightScene2014-hwZ1G9fKPI8.mkv -s 640x480 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p THERAID2MovieClip_KitchenFightScene2014-hwZ1G9fKPI8.mp4 
 
 
@@ -80,7 +78,6 @@ ffmpeg -i LimpBizkitEatYouAliveOfficialVideo_Cb24kLd459Y.mkv -s 640x480 -c:v lib
 
 
 ffmpeg -i JohnWickChapter3Parabellum2019ShinobiAssassinFightScene9_12MovieclipsBUqJMPAtmdY.mkv -s 640x480 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p JohnWickChapter3Parabellum2019ShinobiAssassinFightScene9_12MovieclipsBUqJMPAtmdY.mp4 
->>>>>>> 43aa06216f3729b2d16c7d70ea981f8446864446:ffmpeg_.txt
 
 ##crop blackscreen
 ffplay -vf "crop = 640:480:200:100" dolivings.mp4
