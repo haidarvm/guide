@@ -84,6 +84,14 @@ sed 's/utf8mb4/utf8/g' updated-2020-10-26-fisipunla.sql > updated2-2020-10-26-fi
 
 select GROUP_CONCAT(stat SEPARATOR ' ') from (select concat('KILL ',id,';') as stat from information_schema.processlist) as stats;
 
+-- group concat order desc
+SELECT GROUP_CONCAT(category_id ORDER BY category_id DESC)  FROM `wput_list_category` WHERE `post_id` = 5798
+
+
+-- update quran table
+update  quranindo 
+INNER join quran ON quranindo.id = quran.id
+SET ayah = quran.ayah_text
 
 CREATE TABLE posts (
     id int NOT NULL AUTO_INCREMENT,
