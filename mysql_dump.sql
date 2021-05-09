@@ -10,6 +10,9 @@ mysqldump -u root -p --all-databases > all_databases.sql
 mysqldump -u root -p --databases db1 db2 db3 | gzip > db_all_backupT430Apr2.sql.gz
 
 #toGzip
+mysqldump -u root -p database_name  > dump.sql
+
+#toGzip
 mysqldump -u root -p database_name | gzip > dump.gz
 
 #restore
