@@ -35,7 +35,7 @@ usermod -aG wheel haidarvm
 nmcli con add type ethernet con-name haidar ifname enp0s3
 
 #nmcli wifi
-nmcli device wifi con "ssid" password "p455w04d"
+nmcli device wifi con "ssid" password "password"
 
 #install firewall iptables
 sudo dnf install -y firewalld
