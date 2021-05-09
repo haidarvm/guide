@@ -17,3 +17,4 @@ mysqldump -u root -p database_name | gzip > dump.gz
 
 #restore
 mysql -u root -p < database.sql
+mysqldump -u root -p --databases adhi beritainspiratif didikpos flatearthid haidarvm javanewstv manfaaatmaduid prianganholiday skpkai > dball_backup15okt1319.sql

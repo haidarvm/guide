@@ -1,2 +1,0 @@
- 
-echo "25d483341ccd0d522a6660b00db933787c86c47b42f1845bcf997127f4b61e9d *ubuntu-19.04-live-server-amd64.iso" | shasum -a 256 --check
