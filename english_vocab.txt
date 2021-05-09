@@ -9,4 +9,6 @@ retention
 cognition
 encounter
 enlighten
-sieve
+sieve 
+decree = surat keputusan
+devise = plan

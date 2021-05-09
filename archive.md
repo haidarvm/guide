@@ -1,7 +1,6 @@
 #tar.gz
 tar -xvzf community_images.tar.gz
 
-
 #compress
 tar -cvzf tarballname.tar.gz itemtocompress
 tar -cvzf pcimahpindai.tar.gz pcimah
@@ -32,6 +31,8 @@ bzip2 -d your-filename-here.bz2
 tar -xvf backup.tar.xz
 
 #zip
+zip archive.zip archive.sql
+
 zip -r archivefile3 /home/joe/papers
 
 zip -r compressed_filename.zip foldername foldername2 foldername3
