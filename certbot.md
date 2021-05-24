@@ -11,6 +11,8 @@ sudo certbot --nginx -d desabatukaras.com -d www.desabatukaras.com
 
 sudo certbot --nginx -d webcantik.com -d www.webcantik.com
 
+# Certonly
+
 
 certbot certonly --standalone -d haidarvm.site -d www.haidarvm.site -m haidarvm@gmail.com --agree-tos
 

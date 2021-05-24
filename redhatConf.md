@@ -1,6 +1,6 @@
 ####### FIRST INSTALLATION ########
 https://play.google.com/store/apps/details?id=com.haidarvm.ecommerce
-+62 838-2933-6744
+## first Step
 
 
 #link
@@ -16,6 +16,10 @@ vi /etc/ssh/sshd_config
 PasswordAuthentication yes
 systemctl restart sshd
 
+# security check sealart
+
+# sealert setroubleshoot
+dnf install setroubleshoot setools
 
 #add subscription
 subscription-manager register --auto-attach
@@ -57,6 +61,7 @@ firewall-cmd  --remove-service=ssh
 
 firewall-cmd --zone=public --add-service=mysql --permanent
 
+firewall-cmd remove port
 
 #hostnamectl
 hostnamectl set-hostname cloud.haidarvm.com
@@ -510,8 +515,7 @@ sudo subscription-manager repos --disable codeready-builder-for-rhel-8-x86_64-eu
 dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm 
 
 
-#sealert setroubleshoot
-dnf install setroubleshoot setools
+
 
 #first install
 subscription-manager register --auto-attach
