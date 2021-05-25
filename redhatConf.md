@@ -1,9 +1,9 @@
-####### FIRST INSTALLATION ########
+## FIRST INSTALLATION ##
 https://play.google.com/store/apps/details?id=com.haidarvm.ecommerce
 ## first Step
+https://developers.redhat.com/rhel8
 
-
-#link
+# link 
 https://developers.redhat.com/blog/2016/03/31/no-cost-rhel-developer-subscription-now-available/
 
 #download new
@@ -12,7 +12,7 @@ https://haidarvm.com/rhel-8.0-update-3-x86_64-kvm.qcow2
 #step one enable ssh press i then :wq
 vi /etc/ssh/sshd_config
 
-#edit at bottom 
+# edit at bottom 
 PasswordAuthentication yes
 systemctl restart sshd
 
@@ -21,32 +21,32 @@ systemctl restart sshd
 # sealert setroubleshoot
 dnf install setroubleshoot setools
 
-#add subscription
+# add subscription
 subscription-manager register --auto-attach
 
-#enable autocomplete
+# enable autocomplete
 dnf install bash-completion
 
-#create new user
+# create new user
 sudo useradd -m -c "haidarvm" haidarvm -s /bin/bash 
 
-#make sudo
+# make sudo
 usermod -aG wheel haidarvm
 
-#createswapfile https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-centos-7
+# createswapfile https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-centos-7
 
-#nmcli connect
+# nmcli connect
 nmcli con add type ethernet con-name haidar ifname enp0s3
 
-#nmcli wifi
+# nmcli wifi
 nmcli device wifi con "ssid" password "password"
 
-#install firewall iptables
+# install firewall iptables
 sudo dnf install -y firewalld
 sudo systemctl enable firewalld
 sudo systemctl restart firewalld.service 
 
-#firewall
+# firewall
 firewall-cmd --permanent --zone=public --add-service=http
 firewall-cmd --permanent --zone=public --add-service=https
 firewall-cmd --permanent --zone=public --add-service=ssh
@@ -57,16 +57,17 @@ firewall-cmd --reload
 firewall-cmd --zone=public --add-port=369/tcp --permanent
 sudo firewall-cmd --list-all
 firewall-cmd  --remove-service=ssh
-
-
 firewall-cmd --zone=public --add-service=mysql --permanent
 
-firewall-cmd remove port
+# firewall-cmd remove port
+firewall-cmd --zone=public --remove-port=10050/tcp
+firewall-cmd --runtime-to-permanent 
+firewall-cmd --reload 
 
-#hostnamectl
+# hostnamectl
 hostnamectl set-hostname cloud.haidarvm.com
 
-####### END INSTALLATION ########
+## END INSTALLATION 
 
 ### tigervnc ###
 
