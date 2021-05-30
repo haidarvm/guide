@@ -5,7 +5,8 @@ sudo usermod -a -G sudo <username>
 
 ssh-keygen -t rsa -b 4096 -C "haidarvm@gmail.com"
 
-bismillah12
+
+sudo useradd -m -c "telegram" telegram  -s /bin/bash 
 
 sudo useradd -m -c "mark" mark  -s /bin/bash 
 

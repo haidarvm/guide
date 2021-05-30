@@ -1,10 +1,16 @@
 ## FIRST INSTALLATION ##
-https://play.google.com/store/apps/details?id=com.haidarvm.ecommerce
 ## first Step
+
+Download
 https://developers.redhat.com/rhel8
 
 # link 
 https://developers.redhat.com/blog/2016/03/31/no-cost-rhel-developer-subscription-now-available/
+
+
+#make live usb from minimal .iso
+lsblk
+sudo dd if=/home/haidar/Downloads/app/rhel-8.4-x86_64-boot.iso  of=/dev/sda bs=512k
 
 #download new
 https://haidarvm.com/rhel-8.0-update-3-x86_64-kvm.qcow2
@@ -67,7 +73,10 @@ firewall-cmd --reload
 # hostnamectl
 hostnamectl set-hostname cloud.haidarvm.com
 
-## END INSTALLATION 
+# find available application streams
+yum module list               
+
+## END INSTALLATION ##
 
 ### tigervnc ###
 
@@ -106,6 +115,8 @@ semanage permissive -d httpd_t
 
 #nginx-stable /etc/yum.repos.d/nginx.repo
 =======
+
+## https://play.google.com/store/apps/details?id=com.haidarvm.ecommerce
 ## nginx stable
 
 nano /etc/yum.repos.d/nginx.repo
@@ -501,6 +512,12 @@ https://access.cdn.redhat.com/content/origin/files/sha256/1b/1b73ebfebd1f9424c80
 https://developers.redhat.com/products/rhel/download
 download.devel.redhat.com/composes/latest-RHEL7/compose/server/x86_64/os
 
+#first install
+subscription-manager register --auto-attach
+subscription-manager register
+subscription-manager auto-attach
+subscription-manager subscribe
+
 #enable extra repos
 sudo subscription-manager repos
 sudo subscription-manager list --available
@@ -516,13 +533,6 @@ sudo subscription-manager repos --disable codeready-builder-for-rhel-8-x86_64-eu
 dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm 
 
 
-
-
-#first install
-subscription-manager register --auto-attach
-subscription-manager register
-subscription-manager auto-attach
-subscription-manager subscribe
 
 #symlink python
 sudo ln -s /usr/bin/python3.4 /usr/bin/python
