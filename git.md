@@ -1,15 +1,15 @@
-#create rsa
+# create rsa
 ssh-keygen -t rsa -b 4096 -C "haidarvm@gmail.com"
 git config --global user.name "haidarvm"
 git config --global user.email "haidarvm@gmail.com"
 git pull origin master
 git push origin master
 
-#reset to commit version
+# reset to commit version
 git reset --hard 7fa4976
 
 
-#begin git
+# begin git
 git branch exercise6
 git checkout exercise6
 
@@ -25,19 +25,19 @@ git commit -am 'exercise6 belajar variable'
 git push
 
 
-#merge to master
+# merge to master
 git checkout master
 git merge exercise6
 git push origin master
 
 
-#ignore this configuration if not working add this
+# ignore this configuration if not working add this
 git rm -r  --cached .
 git add .
 git commit -m 'fixed ignore'
 
 
-#create branch
+# create branch
 git branch
 git branch production
 
