@@ -7,13 +7,9 @@ https://developers.redhat.com/rhel8
 # link 
 https://developers.redhat.com/blog/2016/03/31/no-cost-rhel-developer-subscription-now-available/
 
-
 #make live usb from minimal .iso
 lsblk
 sudo dd if=/home/haidar/Downloads/app/rhel-8.4-x86_64-boot.iso  of=/dev/sda bs=512k
-
-#download new
-https://haidarvm.com/rhel-8.0-update-3-x86_64-kvm.qcow2
 
 #step one enable ssh press i then :wq
 vi /etc/ssh/sshd_config
@@ -21,8 +17,6 @@ vi /etc/ssh/sshd_config
 # edit at bottom 
 PasswordAuthentication yes
 systemctl restart sshd
-
-# security check sealart
 
 # sealert setroubleshoot
 dnf install setroubleshoot setools
@@ -78,6 +72,8 @@ yum module list
 
 ## END INSTALLATION ##
 
+# security check sealart
+
 ### tigervnc ###
 
 #### nginx #### gpasswd
@@ -111,10 +107,10 @@ restorecon -R -v /var/run/nginx*
 semanage permissive -a httpd_t
 semanage permissive -d httpd_t
 
-##nginx stable
+## nginx stable
 
-#nginx-stable /etc/yum.repos.d/nginx.repo
-=======
+# nginx-stable /etc/yum.repos.d/nginx.repo
+
 
 ## https://play.google.com/store/apps/details?id=com.haidarvm.ecommerce
 ## nginx stable
@@ -135,7 +131,7 @@ localectl set-locale LANG=en_US.UTF-8
 localectl
 dnf install langpacks-en glibc-all-langpacks -y
 
-=======
+
 ## installmariabd rhel
 curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
 dnf update
@@ -174,7 +170,7 @@ rpm -qa | grep remi
 dnf module list php
 dnf module reset php
 dnf module enable php:remi-7.4
-dnf install php-process php-cli php-pgsql php-mysqlnd php-json php-gd php-mbstring php-xml php-curl php-opcache php-devel php-fpm php-readline
+dnf install php-process php-cli php-pgsql php-mysqlnd php-json php-gd php-mbstring php-xml php-curl php-opcache php-devel php-fpm php-readline -y
 firewall-cmd --zone=public --add-port=8787/tcp --permanent
 firewall-cmd --reload
 
@@ -280,8 +276,9 @@ sudo dmidecode | grep -A 9 "System Information"
 #gui enable
 systemctl set-default graphical.target
 systemctl isolate graphical
+sudo dnf groupinstall "KDE (K Desktop Environment)"
 yum groupinstall "X Window System" Desktop
-yum groupinstall "X Window System" "KDE Desktop"
+dnf groupinstall "X Window System" "KDE Desktop"
 startx
 
 #disable gui
@@ -333,7 +330,7 @@ sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-*-rpms"
 dnf repolist rpmfusion-*
 dnf update
 dnf install aria2 -y
-dnf install ffmpeg
+dnf install ffmpeg -y
 dnf install vlc mpv
 
 #install firefox
@@ -346,6 +343,9 @@ gstreamer-plugins-ffmpeg gstreamer-plugins-good gstreamer-plugins-good-extras gs
 systemctl stop chronyd
 chronyd -q
 systemctl start chronyd
+
+#download new
+https://haidarvm.com/rhel-8.0-update-3-x86_64-kvm.qcow2
 
 #sdkman
 # SDK Man replaced GVM. Using for Groovy, Gradle, and Maven Version Management
@@ -374,14 +374,14 @@ why my gnome terminal no colorful
 
 #kernel
 
-yum install https://www.elrepo.org/elrepo-release-8.0-2.el8.elrepo.noarch.rpm
+dnf install install https://www.elrepo.org/elrepo-release-8.el8.elrepo.noarch.rpm
 yum --enablerepo=elrepo-kernel info kernel-ml
 dnf config-manager --enable elrepo-kernel
 dnf config-manager --disable elrepo-kernel
 yum --enablerepo=elrepo-kernel install kernel-ml
-yum remove  kernel-{devel,tools,tools-libs}
-yum -y --enablerepo=elrepo-kernel install kernel-ml-{devel,headers,tools,tools-libs}
-yum install kernel-ml kernel-ml-{devel,tools,tools-libs} grub2-tools
+dnf remove  kernel-{devel,tools,tools-libs}
+dnf -y --enablerepo=elrepo-kernel install kernel-ml-{devel,headers,tools,tools-libs}
+dnf install kernel-ml kernel-ml-{devel,tools,tools-libs} grub2-tools
 yum install -y dkms gcc redhat-lsb-languages
 # rpm -Uvh kernel-headers-2.6.18-194.el5.x86_64.rpm
 
@@ -528,11 +528,13 @@ sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-sou
 sudo subscription-manager repos --enable rhel-8-for-x86_64-rt-source-rpms
 sudo subscription-manager repos --enable rhel-8-for-x86_64-supplementary-source-rpms
 sudo subscription-manager repos --disable codeready-builder-for-rhel-8-x86_64-eus-rpms
-
-
 dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm 
 
-
+# install flatpak
+sudo dnf install flatpak
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+killall gnome-software
+rm -rf ~/.cache/gnome-software
 
 #symlink python
 sudo ln -s /usr/bin/python3.4 /usr/bin/python
@@ -795,7 +797,7 @@ sudo make install
 /usr/local/bin/convert logo: logo.gif
 magick identify -verbose myImage.png
 
-#xfce save terminal
+# xfce save terminal
 xfce4-terminal --maximize --title='Neovim' -x bash -c "nvr -s; exec bash"
 xfce4-terminal --tab --title='psql' -x bash -c "psql -d zzz; exec bash"
 xfce4-terminal --tab --title='Cypher-shell' -x bash -c "cd /mnt/Vancouver/Programming/data/hmdb; exec bash"
@@ -804,6 +806,8 @@ xfce4-terminal --tab --title='Py3' -x bash -c "source activate py35 && python; e
 xfce4-terminal --tab --title='bc' -x bash -c "bc; exec bash"
 xfce4-terminal --tab --title='ud' -x bash -c "pacaur -Syu; exec bash"
 
+
+***
 ### resolve ###
 ./bin/resolve  --link-flags "-L/usr/lib64/libssl.so"
 ./bin/resolve  -Dwithout_openssl
@@ -1054,7 +1058,8 @@ sudo cp -r  Rounded-Rectangle-dark-transparent\ 1.6v/ /usr/share/themes/
 
 
 
-## install pcmanfm build libfm pcmanfm
+###### install pcmanfm build libfm pcmanfm #########
+sudo dnf install intltool gtk2-devel -y
 
 # Download (HTTP): https://downloads.sourceforge.net/pcmanfm/libfm-1.3.1.tar.xz
 # Installation of libfm-extra
@@ -1089,12 +1094,23 @@ sudo make install
 
 # install pcmanfm
 # Download (HTTP): https://downloads.sourceforge.net/pcmanfm/pcmanfm-1.3.1.tar.xz
+
+# pkgconfig
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+
 tar xvf pcmanfm-1.3.1.tar.xz 
 cd pcmanfm-1.3.1/
 ./configure --prefix=/usr     \
             --sysconfdir=/etc &&
 make
 sudo make install
+# lxmenu-data
+git clone git@github.com:lxde/lxmenu-data.git
+./configure --prefix=/usr --sysconfdir=/etc && make
+make install
+
+#### done PCManFM ####
+
 
 #pkg
 flatpak, snap, ppa , apt, appimage, build from source
