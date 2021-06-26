@@ -1,17 +1,26 @@
 ffmpeg -i modernHousePreview.avi -s 1280x720 -c:a copy modernHousePreview.mp4
 
+# whatsapp
 ffmpeg -i houseFailedRotate.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p houseFailedRotate.mp4
-
 
 ffmpeg -i houseWorksRotate.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p houseWorksRotate.mp4
 
+<<<<<<< HEAD:ffmpeg.md
+=======
 
 ffmpeg -i MeningkatkanKecerdasan.avi -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p MeningkatkanKecerdasan.mp4
 
 
+>>>>>>> 1b6c32c5fc279f4de246aab49e894934a8a2a7fe:ffmpeg.txt
 ffmpeg -i modernHousePreview.avi -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p modernHousePreview.mp4
 
 ffmpeg -i finalfinalfinalfinal.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p finalfinalfinalfinalSmall.mp4
+
+ffmpeg -i agusMeet2.mkv -s 480x270 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p agusMeetUiUx.mp4      
+ffmpeg -i rhelZ230Demo500gb.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p rhelZ230Demo500gb.mp4
+
+ffmpeg -i 45NoSupers_1_small.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p 45NoSupers_1_smalls.mp4
+
 
 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p 
 
@@ -21,6 +30,20 @@ ffmpeg -i bumperOutroTL.avi -c:a copy bumperOutroTL.mp4
 
 ffmpeg -i bumperOutroTL.avi -c:v libx264 -c:a aac -strict experimental bumperOutroTL.mp4
 
+# combine two vid
+$ cat files.txt
+file 'file 1.mkv'
+file 'file 2.mkv'
+file 'file 3.mkv'
+file 'file 4.mkv'
+ffmpeg -f concat -safe 0 -i files.txt -c copy output.mkv
+
+# remove sound
+ffmpeg -i VID20210602153511.mp4 -c copy -an VID20210602153511_no_sound.mp4
+
+# loop sound
+sox bensound-creativeminds.mp3 looped_bensound-creativeminds_loops.mp3 repeat 50
+ffmpeg -i VID20210602153511_no_sound.mp4 -i bensound-creativeminds_loops.mp3 -shortest VID20210602153511_free_music.mp4
 
 #soundOnly
 ffmpeg -i finalEditingTanahLandTemp.mp4 -acodec copy  finalEditingTanahLandTemp.aac
@@ -130,9 +153,11 @@ ffmpeg -i vokoscreen-2020-03-27_14-46-07.mp4 -s  480x270 -c:a copy  coronaThisIs
 
 
 ffmpeg -i lpcd17.mp4 -s  1280x720 -c:a copy lpcd17_720.mp4
-
+ffmpeg -i VID20210602153511_no_sound.mp4 -s  1280x720 -c:a copy VID20210602153511_no_sound_small.mp4
 
 ffmpeg -i banjir.mp4 -s  480x270 -c:a copy banjir2.mp4
+
+ffmpeg -i 45NoSupers_1.mp4 -s  480x270 -c:a copy 45NoSupers_1_small.mp4
 
 
 
