@@ -1,11 +1,12 @@
 Cara install MariaDB-server-10.5.8-1 terbaru
-#installmariabd-rhel
+# installmariabd-rhel
 curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
 dnf update
 dnf install MariaDB-server
 sudo systemctl restart mariadb.service 
 sudo systemctl enable mariadb.service 
-mysql_secure_installation
+mariadb-secure-installation
+
 #mysqladmin password
 
 $ nano /etc/yum.repos.d/MariaDB.repo 
