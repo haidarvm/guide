@@ -28,6 +28,14 @@ CREATE USER 'haidarvm'@'localhost';
 GRANT ALL PRIVILEGES ON haidarvm.* To 'haidarvm'@'localhost' IDENTIFIED BY 'bismillah';
 
 
+-- create users
+CREATE TEMPORARY TABLE usertemp SELECT * FROM users WHERE ID = 5;
+UPDATE usertemp SET ID = 8 WHERE ID = 5;
+INSERT INTO users SELECT * FROM usertemp WHERE ID = 8;
+
+-- insert wp users
+INSERT INTO `users` (`user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `user_registered`, `user_activation_key`, `user_status`, `display_name`) VALUES ('muhtoha', SHA1(UUID()), 'muhtoha', 'muhtoha@gmail.com', 'http://haidarvm.com', NOW(), UUID(), '1', 'muhtoha');
+
 --  create user =====
 CREATE USER 'jabarnewscom'@'206.189.153.114' IDENTIFIED BY 'bismillah';
 

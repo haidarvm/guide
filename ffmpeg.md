@@ -5,6 +5,13 @@ ffmpeg -i houseFailedRotate.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix
 
 ffmpeg -i houseWorksRotate.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p houseWorksRotate.mp4
 
+<<<<<<< HEAD:ffmpeg.md
+=======
+
+ffmpeg -i MeningkatkanKecerdasan.avi -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p MeningkatkanKecerdasan.mp4
+
+
+>>>>>>> 1b6c32c5fc279f4de246aab49e894934a8a2a7fe:ffmpeg.txt
 ffmpeg -i modernHousePreview.avi -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p modernHousePreview.mp4
 
 ffmpeg -i finalfinalfinalfinal.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p finalfinalfinalfinalSmall.mp4
