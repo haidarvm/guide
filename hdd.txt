@@ -12,3 +12,5 @@ sudo parted -l
 woeusb
 
 sudo woeusb --tgt-fs NTFS -d /home/haidar/Documents/backup/iso/Win10_20H2_EnglishInternational_x64.iso /dev/sdc
+
+# hdd health check

@@ -23,3 +23,5 @@ rm -r ~/.config/pulse; pulseaudio -k
 
 # remove ppa
 sudo add-apt-repository --remove ppa:mozillateam/ppa
+
+# upgrade grub2
