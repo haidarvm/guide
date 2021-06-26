@@ -243,6 +243,32 @@ sudo /usr/local/bin/certbot-auto --nginx --verbose --debug --email haidarvm@gmai
 
 #cockpit
 
+## Cara install Gtk3.20+ theme Nodic
+sudo dnf install gnome-tweaks
+sudo dnf install gnome-shell chrome-gnome-shell gnome-shell-extension-alternate-tab
+
+# install https://extensions.gnome.org/extension/19/user-themes/
+# gnome-tweaks -> extensions -> User themes -> On
+git clone git@github.com:EliverLara/Nordic.git
+sudo cp -r Nordic/ /usr/share/themes/
+# gnome-tweaks -> appearance -> Themes -> Nordic
+
+# install dash to panel
+
+# install arc menu
+## install icon gnome ##
+https://www.gnome-look.org/s/Gnome/p/1348081
+tar xvf McMuse-purple.tar.xz 
+sudo cp -r McMuse-purple /usr/share/icons/
+# gnome-tweaks -> appearance -> Icons -> McMuse-purple
+
+## install gnome shell themes ##
+git clone https://github.com/metro2222/Rounded-Rectangle-dark-transparent/
+cd Rounded-Rectangle-dark-transparent/
+sudo cp -r  Rounded-Rectangle-dark-transparent\ 1.6v/ /usr/share/themes/
+# gnome-tweaks -> appearance -> Shell -> Rounded-Rectangle-dark-transparent\ 1.6v
+
+
 ### install dropbox ###
 aria2c https://linux.dropbox.com/packages/nautilus-dropbox-2.10.0.tar.bz2
 tar xjf ./nautilus-dropbox-2.10.0.tar.bz2
@@ -1035,26 +1061,6 @@ make CFLAGS='-lz' CXXFLAGS='-lz'
 
 #baseos repo
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/package_manifest/chap-baseos-repository
-
-## Cara install Gtk3.20+ theme Nodic
-
-# install https://extensions.gnome.org/extension/19/user-themes/
-# gnome-tweaks -> extensions -> User themes -> On
-git clone git@github.com:EliverLara/Nordic.git
-sudo cp -r Nordic/ /usr/share/themes/
-# gnome-tweaks -> appearance -> Themes -> Nordic
-
-## install icon gnome ##
-https://www.gnome-look.org/s/Gnome/p/1348081
-tar xvf McMuse-purple.tar.xz 
-sudo cp -r McMuse-purple /usr/share/icons/
-# gnome-tweaks -> appearance -> Icons -> McMuse-purple
-
-## install gnome shell themes ##
-git clone https://github.com/metro2222/Rounded-Rectangle-dark-transparent/
-cd Rounded-Rectangle-dark-transparent/
-sudo cp -r  Rounded-Rectangle-dark-transparent\ 1.6v/ /usr/share/themes/
-# gnome-tweaks -> appearance -> Shell -> Rounded-Rectangle-dark-transparent\ 1.6v
 
 
 

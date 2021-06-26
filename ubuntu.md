@@ -20,3 +20,6 @@ echo "25d483341ccd0d522a6660b00db933787c86c47b42f1845bcf997127f4b61e9d *ubuntu-1
 **done
 # broken sound
 rm -r ~/.config/pulse; pulseaudio -k
+
+# remove ppa
+sudo add-apt-repository --remove ppa:mozillateam/ppa
