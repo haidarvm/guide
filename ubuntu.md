@@ -25,3 +25,7 @@ rm -r ~/.config/pulse; pulseaudio -k
 sudo add-apt-repository --remove ppa:mozillateam/ppa
 
 # upgrade grub2
+
+
+# install with php odrej
+
