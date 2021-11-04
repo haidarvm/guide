@@ -34,6 +34,10 @@ SET PASSWORD FOR 'root'@'%.loc.gov' = PASSWORD('newpass');
 SET PASSWORD FOR 'root'@'localhost' = PASSWORD('0070079@hF1AL&h');
 
 
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('Bismillah');
+FLUSH PRIVILEGES;
+
+
 #repairDatabase
 mysqlcheck -uberitainspiratifnew -p beritainspiratifnew
 mysqlcheck -uroemahmedia -p roemahmedia

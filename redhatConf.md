@@ -99,6 +99,9 @@ restorecon -R /home/client/example/public_html/wp-content/uploads/
 ### run once
 chcon -R -t httpd_sys_rw_content_t /home/client/example/public_html/wp-content/uploads/
 
+chcon -R -t httpd_sys_rw_content_t  /var/www/html
+
+
 restorecon -R /home
 setsebool -P httpd_can_network_connect 1
 setsebool -P httpd_read_user_content 1
@@ -145,8 +148,6 @@ baseurl = http://yum.mariadb.org/10.3/centos7-amd64
 gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck=1
 
-### run once
-chcon -R -t httpd_sys_rw_content_t /home/client/example/public_html/wp-content/uploads/
 
 
 ## composer ###
@@ -206,8 +207,6 @@ TCPKeepAlive yes
 ClientAliveInterval 60
 ClientAliveCountMax 3
 UsePAM no
-semanage port -a -t ssh_port_t -p tcp 2236
-firewall-cmd --zone=public --add-port=2236/tcp --permanent
 =======
 MaxStartups 3 
 Port 2255
@@ -350,9 +349,9 @@ sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch
 sudo rpm -ivh https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm 
 sudo rpm -ivh https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm
 sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-$(uname -m)-rpms"
+sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-*-rpms"
 sudo dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 # sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-*-rpms"
-sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-*-rpms"
 dnf repolist rpmfusion-*
 dnf update
 dnf install aria2 -y
@@ -1067,7 +1066,7 @@ https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/pa
 ###### install pcmanfm build libfm pcmanfm #########
 sudo dnf install intltool gtk2-devel -y
 
-# Download (HTTP): https://downloads.sourceforge.net/pcmanfm/libfm-1.3.1.tar.xz
+# Download (HTTP): https://downloads.sourceforge.net/pcmanfm/libfm-1.3.2.tar.xz
 # Installation of libfm-extra
 ./configure --prefix=/usr     \
             --sysconfdir=/etc \
@@ -1089,8 +1088,8 @@ patch -Np1 -i ../menu-cache-1.1.0-consolidated_fixes-1.patch
 make
 sudo make install
 # Installation of libfm
-tar xvf libfm-1.3.1.tar.xz
-cd libfm-1.3.1/
+tar xvf libfm-1.3.2.tar.xz
+cd libfm-1.3.2/
 
 ./configure --prefix=/usr     \
             --sysconfdir=/etc \
@@ -1112,6 +1111,7 @@ make
 sudo make install
 # lxmenu-data
 git clone git@github.com:lxde/lxmenu-data.git
+./autogen.sh
 ./configure --prefix=/usr --sysconfdir=/etc && make
 make install
 

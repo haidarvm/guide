@@ -26,6 +26,7 @@ ffmpeg -i 45NoSupers_1_small.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pi
 
 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p 
 
+
 ffmpeg -i jajah.avi -s 1920x1080 -c:a copy jajah2.mkv
 ffmpeg -i jajah.avi -s 1920x1080 -c:a copy jajah2.mkv
 ffmpeg -i bumperOutroTL.avi -c:a copy bumperOutroTL.mp4
@@ -173,6 +174,8 @@ ffmpeg -i idhand.mkv -s 852x480 -c:a copy -strict -2 idhand.mp4
 ffmpeg -i virzarindu.mkv -s 852x480 -c:a copy -strict -2 virzarindu.mp4
 
 ffmpeg -i lovenox.mp4 -s 270x270  -c:a copy -strict -2 lovenoxs.mp4
+
+ffmpeg -i djarum.mp4 -s 426x240  -c:a copy -strict -2 ldjarums.mp4
 
 ffmpeg -i lovenox.mp4 -s 176x352  -c:a copy -strict -2 lovenoxss.mp4
 

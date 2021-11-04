@@ -94,37 +94,3 @@ git diff --cached
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-UwaisArfa003026
-b1smill4h@g17003026
-
-
-Oh yaa, Jazakallah Nuhun jga saran nya.Ku dah konsumsi Combo Herbal ampir 1 minggu Alhamdulillah
-- Habbats Oil
-- Zaitun Oil
-- Madu
-- Propolis Trigona 
-
-+ Murotal Al Baqarah ... mulai berasa banget berkurang batuk2 & berdehem2, nyeri leher berkurang bgt
-dan bersin2 tiap pagi sudah jarang 🙏👍😊
