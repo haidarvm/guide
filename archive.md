@@ -5,6 +5,9 @@ tar -xvzf community_images.tar.gz
 tar -cvzf tarballname.tar.gz itemtocompress
 tar -cvzf pcimahpindai.tar.gz pcimah
 
+# no compress
+tar -cvf myfolder.tar myfolder
+
 #tar
 tar -xf archive.tar -C /target/directory
 

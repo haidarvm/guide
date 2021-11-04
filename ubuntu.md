@@ -1,8 +1,8 @@
 # extras
 sudo apt-get install ubuntu-restricted-extras
 
-# install php
-sudo apt install php-fpm php-cli php-pgsql php-mysql php-json php-gd php-mbstring php-xml php-curl php-zip php-fpm php-readline
+# install php8.0
+sudo apt install php8.0-fpm php8.0-cli php8.0-pgsql php8.0-mysql  php8.0-gd php8.0-mbstring php8.0-xml php8.0-curl php8.0-zip php8.0-fpm php8.0-readline
 
 # install mariadb
 sudo apt-get install software-properties-common
@@ -27,5 +27,5 @@ sudo add-apt-repository --remove ppa:mozillateam/ppa
 # upgrade grub2
 
 
-# install with php odrej
+# install with php8.0 odrej
 
