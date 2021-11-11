@@ -721,6 +721,16 @@ systemctl list-unit-files --state=enabled
 systemctl list-units --state=failed
 
 
+#generate ssl
+openssl req -newkey rsa:4096 \
+            -x509 \
+            -sha256 \
+            -days 3650 \
+            -nodes \
+            -out rsbhaktimedicare.com.crt \
+            -keyout haidar.com.key
+
+
 #qtcore
 https://forums.gentoo.org/viewtopic-p-8336448.html?sid=527bc0cd156b3ad40d11584f1601a096
 
