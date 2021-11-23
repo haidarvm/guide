@@ -1,9 +1,3 @@
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'hai2coders' WITH GRANT OPTION;
-
-FLUSH PRIVILEGES;
-
-ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'hai2coders';
-
 
 #debian
 docker run -t -d --name debiantest debian
@@ -18,6 +12,9 @@ docker run -t -d --name clearlinuxtest clearlinux
 
 #start by name
 sudo docker start centos7
+
+#nginx
+docker run -it --rm -d -p 8080:80 --name nginxtest nginx
 
 #exec docker
 sudo docker exec -u root -it centos7 bash
@@ -40,6 +37,12 @@ sudo docker stop centos7
 
 #remove image
 docker rmi <image-id>
+
+#docker copy from host to container
+docker cp foo.txt container_id:/home/
+#docker copy from container to host
+docker cp container_id:/home/foo.txt foo.txt
+
 
 #run as root
 sudo docker exec -u root -it centos7 bash
