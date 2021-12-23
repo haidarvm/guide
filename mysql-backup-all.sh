@@ -4,7 +4,7 @@
 # @daily sh /home/haidarvm/scripts/mysql-backup-all.sh >> /var/log/mysql-backup.log 2>&1
 #----------------------------------------
 USER='root'       # MySQL User
-PASSWORD='hai2coders' # MySQL Password
+PASSWORD='haidar' # MySQL Password
 DAYS_TO_KEEP=0    # 0 to keep forever
 GZIP=1            # 1 = Compress
 BACKUP_PATH='/home/haidar/Documents/backups/mysql'

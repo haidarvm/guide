@@ -53,6 +53,11 @@ vi ~/.config/openbox/autostart
 #(sleep 1s && nitrogen --restore) &
 (sleep 1s && sh ~/.fehbg) &
 
+# install https://github.com/fernandotcl/pa-applet
+pa-applet
+
+# install xfce4-power-manager
+
 xrandr --size 1366x768 &
 
 # A panel for good times

@@ -53,7 +53,7 @@ firewall-cmd --permanent --zone=public --add-service=ssh
 firewall-cmd --zone=public --add-port=5500/tcp --permanent
 firewall-cmd --zone=public --add-port=8080/tcp --permanent
 firewall-cmd --zone=public --add-port=9236/tcp --permanent
-firewall-cmd --reload
+sudo firewall-cmd --reload
 firewall-cmd --zone=public --add-port=369/tcp --permanent
 sudo firewall-cmd --list-all
 firewall-cmd  --remove-service=ssh
@@ -63,6 +63,9 @@ firewall-cmd --zone=public --add-service=mysql --permanent
 firewall-cmd --zone=public --remove-port=10050/tcp
 firewall-cmd --runtime-to-permanent 
 firewall-cmd --reload 
+
+# nginx enable different port
+semanage port -a -t http_port_t  -p tcp 8080
 
 # hostnamectl
 hostnamectl set-hostname cloud.haidarvm.com
@@ -151,7 +154,7 @@ gpgcheck=1
 
 
 ## composer ###
-wget https://getcomposer.org/installer -O composer-installer.php
+curl -o composer-installer.php https://getcomposer.org/installer
 sudo php composer-installer.php --filename=composer --install-dir=/usr/local/bin 
 composer --version
 
@@ -170,7 +173,7 @@ dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 rpm -qa | grep remi
 dnf module list php
 dnf module reset php
-dnf module enable php:remi-7.4
+dnf module enable php:remi-8.0
 dnf install php-process php-cli php-pgsql php-mysqlnd php-json php-gd php-mbstring php-xml php-curl php-opcache php-devel php-fpm php-readline -y
 firewall-cmd --zone=public --add-port=8787/tcp --permanent
 firewall-cmd --reload
@@ -210,6 +213,8 @@ UsePAM no
 =======
 MaxStartups 3 
 Port 2255
+# installl 	semanage
+dnf install policycoreutils-python-utils
 semanage port -a -t ssh_port_t -p tcp 2255
 firewall-cmd --zone=public --add-port=2255/tcp --permanent
 chmod 700 /home/haidarvm/.ssh
@@ -284,6 +289,9 @@ setxkbmap
 #update grub2
 grub2-mkconfig -o /boot/efi/EFI/redhat/grub.cfg
 
+#for cloud server
+sudo grub2-mkconfig -o /etc/grub2.cfg
+
 
 #fastest make
 time make -j$(nproc)
@@ -330,7 +338,6 @@ https://vimeo.com/
 #postfix
 firewall-cmd --permanent --add-port=110/tcp --add-port=995/tcp
 firewall-cmd --permanent --add-port=143/tcp --add-port=993/tcp
-firewall-cmd --permanent --add-port=8787/tcp --add-port=8787/tcp
 firewall-cmd --reload
 
 #sendmail
