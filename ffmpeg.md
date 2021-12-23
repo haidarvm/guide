@@ -28,7 +28,6 @@ ffmpeg -i 45NoSupers_1_small.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pi
 
 
 ffmpeg -i jajah.avi -s 1920x1080 -c:a copy jajah2.mkv
-ffmpeg -i jajah.avi -s 1920x1080 -c:a copy jajah2.mkv
 ffmpeg -i bumperOutroTL.avi -c:a copy bumperOutroTL.mp4
 
 ffmpeg -i bumperOutroTL.avi -c:v libx264 -c:a aac -strict experimental bumperOutroTL.mp4

@@ -3,10 +3,21 @@ arp -a
 nmap -sP 192.168.1.0/24
 
 
+#traceroute
 
 
+#setting dns globally
+vi /etc/systemd/resolved.conf
+DNS=67.207.67.2 67.207.67.3
+DNS=9.9.9.9 149.112.112.112
+sudo systemctl restart systemd-resolved.service
 
+#check it with
+resolvectl dns
+systemd-resolve --status
 
+#manually 
+sudo resolvectl dns wlp2s0 8.8.8.8 4.4.4.4
 
 iftop 
 sudo nethogs

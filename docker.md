@@ -36,13 +36,18 @@ sudo docker run fe1f71042611
 sudo docker stop centos7
 
 #remove image
-docker rmi <image-id>
+docker rmi -f <image-id>
+
+#remove container
+docker rm f926834ede53
 
 #docker copy from host to container
 docker cp foo.txt container_id:/home/
 #docker copy from container to host
 docker cp container_id:/home/foo.txt foo.txt
 
+# add name container id 
+docker rename 345df9ed5b47 new_name
 
 #run as root
 sudo docker exec -u root -it centos7 bash
@@ -76,9 +81,7 @@ docker start
 #no service
 yum install initscripts
 
-
 docker run --rm -d --network host --name nginxtest nginx
-
 
 docker run --name mysqltest --net=host -e MYSQL_ROOT_PASSWORD=hai2coders -d mysql/mysql-server:latest
 
@@ -113,6 +116,7 @@ docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthor
 docker exec -it centos /bin/bash
 
 docker run -it  -e DISPLAY=$DISPLAY  -v /tmp/.X11-unix:/tmp/.X11-unix  centos bash
+docker run -it  --name rockytest -e DISPLAY=$DISPLAY  -v /tmp/.X11-unix:/tmp/.X11-unix  rockylinux/rockylinux bash
 
 docker run -it  -e DISPLAY=$DISPLAY  -v /tmp/.X11-unix:/tmp/.X11-unix jdeathe/centos-ssh bash
 
@@ -174,3 +178,70 @@ iptables -t nat -A POSTROUTING -p tcp -d 192.168.1.25 --dport 80 -j SNAT --to-so
 
 iptables -t nat -A OUTPUT -d 192.168.1.25 -j DNAT --to-destination 10.88.0.52
 
+
+## build dockerize php using podman Part 1
+
+# create index.php <?php echo "haidart test podman" ?>
+
+# create Dockerfile
+FROM php:7.2-apache
+COPY index.php /var/www/html/index.php
+EXPOSE 80
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+
+# build an image
+sudo podman build -t phphaidemo:v1 . 
+
+# run image
+sudo podman run -d -p9090:80 phpdemo:v1
+
+# docker check log
+sudo docker logs --tail=50  container_name
+
+# docker login
+docker login --username=haidarvm --email=haidarvm@haidarvm.com
+
+# check container size
+docker system df
+
+sudo du -sh /var/lib/docker/ 
+docker ps --size
+
+## build dockerize php clearlinux base using podman Part 2
+# create foldername
+mkdir haidockcl
+cd haidockcl
+# create index.php 
+nano index.php
+<?php echo "haidart test podman" ?>
+
+# create Dockerfile
+nano Dockerfile
+FROM clearlinux:base
+#install php-basic	
+RUN swupd update && swupd bundle-add php-basic 
+#copy file
+COPY index.php /var/www/html/index.php
+EXPOSE 80
+CMD ["php","-S","0.0.0.0:80", "-t", "/var/www/html"]
+
+# build an image
+sudo podman build -t haidockcl:v1 . 
+
+# compose 
+sudo docker-compose up -d
+sudo podman-compose up -d
+
+# remember set selinux to 0
+sudo setenforce 0
+
+#rebuild
+sudo podman-compose up --force-recreate --build -d
+
+sudo docker-compose up --force-recreate --build -d
+
+# run image
+sudo podman run -d -p9191:80 haidockcl:v1
+
+# or
+sudo podman run -p 9191:80 haidockcl
