@@ -36,9 +36,12 @@ tar -xvf backup.tar.xz
 #zip
 zip archive.zip archive.sql
 
-zip -r archivefile3 /home/joe/papers
+zip -r archivefile3.zip /home/joe/papers
 
 zip -r compressed_filename.zip foldername foldername2 foldername3
+
+#zip no compress
+zip -0 -r mydir.zip mydir
 
 #Part zip
 zip -r -s 4G beritainspart.zip beritainspiratif05jun.zip 

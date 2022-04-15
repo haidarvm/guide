@@ -13,13 +13,8 @@ git reset --hard 7fa4976
 git branch exercise6
 git checkout exercise6
 
-#buat file baru exercise6.py input coding nya lalu save
-#test running file .py nya di terminal
-python exercise6.py
 
-#jika ada error maka Format document pastikan tidak ada yg merah2
-
-
+# common
 git add .
 git commit -am 'exercise6 belajar variable'
 git push
@@ -56,11 +51,29 @@ git push origin master
 git checkout production
 git checkout master app/controller/pg.php
 
+# remove untrack files
+git clean -n -d
+
+# beware confirm deletion
+git clean -d -f
+
+# remove with folder # if hacked, virus, malware or unknow changes
+git clean -f -d
+
 #change branch
 git fetch
-git checkout *branch
+git checkout branch
 
 git diff
+
+#check diff  haven't git add yet
+git diff myfile.txt
+
+#check changes
+git diff HEAD HEAD^
+
+#already git add
+git diff --cached myfile.txt
 
 
 
@@ -88,6 +101,32 @@ git checkout HEAD -- composer.json
 git diff
 git diff --cached
 
+
+# add one more ssh
+You can create one more key pair, say id_rsa_personal.pub, and add it to the Github account.
+
+Next, create/edit the .ssh/config file.
+
+# Default GitHub
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa
+
+Host github-public
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_public
+
+Host github-personal
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_personal
+The above file will help you to use more than one Github account. For background info, refer to the answers to this question.
+
+Next, you will need to alter your .git/config remote url to point to:
+
+git@github-personal:<gh_username>/<gh_reponame>.git
 
 
 

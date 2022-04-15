@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^(.*)$ http://example.com/$1 [R=301,L]

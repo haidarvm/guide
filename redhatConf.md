@@ -18,6 +18,28 @@ vi /etc/ssh/sshd_config
 PasswordAuthentication yes
 systemctl restart sshd
 
+## ssh no password ##
+PasswordAuthentication no
+PermitRootLogin no
+TCPKeepAlive yes
+ClientAliveInterval 60
+ClientAliveCountMax 3
+UsePAM no
+=======
+MaxStartups 3 
+Port 2255
+# installl 	semanage
+dnf install policycoreutils-python-utils
+semanage port -a -t ssh_port_t -p tcp 2255
+firewall-cmd --zone=public --add-port=2255/tcp --permanent
+firewall-cmd --reload
+vi /etc/ssh/sshd_config
+uncomment Port 22 change to Port 2255
+chmod 700 /home/haidarvm/.ssh
+chmod 600 /home/haidarvm/.ssh/authorized_keys
+vi /home/haidarvm/.ssh/
+ssh-copy-id username@remote_host -p 2235
+
 # sealert setroubleshoot
 dnf install setroubleshoot setools
 
@@ -47,6 +69,8 @@ sudo systemctl enable firewalld
 sudo systemctl restart firewalld.service 
 
 # firewall
+sudo firewall-cmd --add-service={http,https} --permanent
+
 firewall-cmd --permanent --zone=public --add-service=http
 firewall-cmd --permanent --zone=public --add-service=https
 firewall-cmd --permanent --zone=public --add-service=ssh
@@ -78,6 +102,11 @@ yum module list
 # security check sealart
 
 ### tigervnc ###
+
+
+### openlitespeed ###
+sudo rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el8.noarch.rpm
+sudo dnf install -y openlitespeed lsphp81 lsphp81-mysqlnd lsphp81-process lsphp81-mbstring lsphp81-gd lsphp81-opcache lsphp81-bcmath lsphp81-pdo lsphp81-common lsphp81-xml
 
 #### nginx #### gpasswd
 gpasswd -a nginx haidarvm
@@ -164,6 +193,9 @@ composer --version
 
 ### git user ###
 
+### install essential ###
+dnf install net-tools
+
 
 
 ### php-fpm-7.4.14 ###
@@ -174,7 +206,7 @@ rpm -qa | grep remi
 dnf module list php
 dnf module reset php
 dnf module enable php:remi-8.0
-dnf install php-process php-cli php-pgsql php-mysqlnd php-json php-gd php-mbstring php-xml php-curl php-opcache php-devel php-fpm php-readline -y
+dnf install php-process php-cli php-pgsql php-mysqlnd php-json php-intl php-gd php-mbstring php-xml php-fpm php-curl php-opcache php-devel php-fpm php-readline -y
 firewall-cmd --zone=public --add-port=8787/tcp --permanent
 firewall-cmd --reload
 
@@ -203,24 +235,6 @@ clean_requirements_on_remove=True
 best=False
 skip_if_unavailable=True
 fastestmirror=1
-
-## ssh no password ##
-PasswordAuthentication no
-TCPKeepAlive yes
-ClientAliveInterval 60
-ClientAliveCountMax 3
-UsePAM no
-=======
-MaxStartups 3 
-Port 2255
-# installl 	semanage
-dnf install policycoreutils-python-utils
-semanage port -a -t ssh_port_t -p tcp 2255
-firewall-cmd --zone=public --add-port=2255/tcp --permanent
-chmod 700 /home/haidarvm/.ssh
-chmod 600 /home/haidarvm/.ssh/authorized_keys
-vi /home/haidarvm/.ssh/
-ssh-copy-id username@remote_host -p 2235
 
 # disable sudo promt 
 sudo visudo
@@ -594,6 +608,18 @@ http://cdn.geekbench.com/Geekbench-4.4.1-Linux.tar.gz
 ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'root';
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'hai2coders';
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
+
+
+# install docker
+sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf update
+sudo dnf install -y docker-ce docker-ce-cli containerd.io
+docker --version
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo systemctl status docker
+sudo usermod -aG docker username
+docker run hello-world
 
 #podman
 podman ps -a
