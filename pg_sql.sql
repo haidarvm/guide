@@ -1,3 +1,10 @@
+sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+sudo dnf -qy module disable postgresql
+sudo dnf install -y postgresql14-server
+sudo /usr/pgsql-14/bin/postgresql-14-setup initdb || postgresql-setup --initdb
+sudo systemctl enable postgresql-14
+sudo systemctl start postgresql-14
+
 -- go to postgres bash
 sudo su - postgres
 psql
@@ -6,21 +13,38 @@ psql
 \password
 
 
+sudo systemctl restart postgresql
 -- change main conf md5
 nano /var/lib/pgsql/12/data/pg_hba.conf
 nano /etc/postgresql/13/main/pg_hba.conf
 
-sudo systemctl restart postgresql
+local   all             postgres                                md5
 
+sudo vi /var/lib/pgsql/main/pg_ident.conf
 
 -- connect
 psql -U postgres -h localhost
 psql -U postgres
 
--- create databsae
-CREATE DATABASE invtcmit;
- 
 
+-- pgadmin4-web
+sudo rpm -i https://ftp.postgresql.org/pub/pgadmin/pgadmin4/yum/pgadmin4-redhat-repo-2-1.noarch.rpm
+
+-- Install for desktop mode only.
+sudo dnf install pgadmin4-desktop
+
+-- Install for web mode only.
+sudo dnf install pgadmin4-web
+
+-- install for web only
+sudo /usr/pgadmin4/bin/setup-web.sh
+
+-- open in browser
+http://localhost:88/pgadmin4/browser
+
+
+-- create databsae
+CREATE DATABASE invtcmit; 
 
 -- show all db
 \l
@@ -30,6 +54,9 @@ CREATE DATABASE invtcmit;
 
 -- show tables
 \dt
+
+-- show create table
+pg_dump -U <user> -h <host> -st <tablename> <db name>
 
 CREATE TABLE posts (
 id SERIAL,

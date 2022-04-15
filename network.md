@@ -1,9 +1,19 @@
+# show ip address
+ip a
+
 #list all network
 arp -a
 nmap -sP 192.168.1.0/24
 
-
 #traceroute
+
+#list all port
+sudo nmap -sTU -O ip_address
+
+# display TCP information,
+ss -t
+
+#
 
 
 #setting dns globally
@@ -15,6 +25,10 @@ sudo systemctl restart systemd-resolved.service
 #check it with
 resolvectl dns
 systemd-resolve --status
+
+#check dns record
+host -t ns domain.com
+host -t txt domain.com
 
 #manually 
 sudo resolvectl dns wlp2s0 8.8.8.8 4.4.4.4

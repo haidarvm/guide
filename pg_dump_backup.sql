@@ -1,6 +1,7 @@
 -- import db
 psql -U postgres -d invtcmit -a -f c:/invtcmit.sql
 psql -U postgres -h localhost -d stack -a -f stack_pg.sql
+psql -U postgres -d stack -a -f stack_pg.sql
 
 -- export db
 pg_dump -U postgres -o -v -d invtcmit > C:/invtcmit.sql

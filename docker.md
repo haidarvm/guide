@@ -1,11 +1,16 @@
-
-#debian
-docker run -t -d --name debiantest debian
+# debian
+docker run -t -d --name debiantest debian:slim
 docker run -t -d --name centos7 centos/httpd-24-centos7 
 docker exec -it my_debian bash
 
 #pull centos 7
 docker pull centos:7
+
+# docker pull mysql latest 
+docker pull mysql:latest
+docker run --name mytest -p 33060:3306 -e MYSQL_ROOT_PASSWORD=Bismillah -d mysql
+docker exec -it mytest mysql -uroot -p
+docker exec -it mytest bash
 
 #run 
 docker run -t -d --name clearlinuxtest clearlinux
@@ -35,37 +40,47 @@ sudo docker run fe1f71042611
 #stop running docker
 sudo docker stop centos7
 
+## how to ###
+
 #remove image
 docker rmi -f <image-id>
 
 #remove container
 docker rm f926834ede53
 
-#docker copy from host to container
+#run with local folder
+docker run -v <host_dir>:<container_dir>  imagename 
+docker run -v /home/haidar/public_html/test/php/apps/:/var/www/apps -t -d --name ubfgator ubuntu:focal
+
+# go to container folder
+chroot /var/lib/docker/containers/2465790aa2c4*/root/
+
+# docker copy from host to container
 docker cp foo.txt container_id:/home/
-#docker copy from container to host
+
+# docker copy from container to host
 docker cp container_id:/home/foo.txt foo.txt
 
 # add name container id 
 docker rename 345df9ed5b47 new_name
 
-#run as root
+# run as root
 sudo docker exec -u root -it centos7 bash
 
-#docker ubuntu 18.04
+# docker ubuntu 18.04
 docker run -it --name centostest ubuntu:18.04 bash
 
-docker run --name mariadbtest --net=host -e MYSQL_ROOT_PASSWORD=hai2coders -v /var/lib/mariadb:/var/lib/mysql -d mariadb
+docker run --name mariadbtest --net=host -e MYSQL_ROOT_PASSWORD=Bismillah -v /var/lib/mariadb:/var/lib/mysql -d mariadb
 
-docker run -p 3306:3306 --name mysqltest  --network=host -e MYSQL_ROOT_PASSWORD=hai2coders -d mysql
+docker run -p 3306:3306 --name mysqltest  --network=host -e MYSQL_ROOT_PASSWORD=Bismillah -d mysql
 
 docker run --name mysql1 -p 3306:3306 --network=host -e MYSQL_ROOT_PASSWORD=password -v mysql:/var/lib/mysql -d mysql/mysql-server
 
 #correct to run mysql using local
 docker run --name mysqltest --net=host -v /var/lib/mysql/:/var/lib/mysql/ mysql/mysql-server
-docker run --name mysqltest --net=host -e MYSQL_ROOT_PASSWORD=hai2coders -v /var/run/mysqld/mysql.sock:/var/run/mysqld/mysql.sock -d mysql/mysql-server
+docker run --name mysqltest --net=host -e MYSQL_ROOT_PASSWORD=Bismillah -v /var/run/mysqld/mysql.sock:/var/run/mysqld/mysql.sock -d mysql/mysql-server
 
-docker run --name mysql2 --net=host -it -e MYSQL_ROOT_PASSWORD=hai2coders -v /host:/shared -d mysql/mysql-server
+docker run --name mysql2 --net=host -it -e MYSQL_ROOT_PASSWORD=Bismillah -v /host:/shared -d mysql/mysql-server
 
 
 #run
@@ -83,29 +98,30 @@ yum install initscripts
 
 docker run --rm -d --network host --name nginxtest nginx
 
-docker run --name mysqltest --net=host -e MYSQL_ROOT_PASSWORD=hai2coders -d mysql/mysql-server:latest
+docker run --name mysqltest --net=host -e MYSQL_ROOT_PASSWORD=Bismillah -d mysql/mysql-server:latest
 
 #lighttpd
 docker run --rm -d --network host --name lighttpd lighttpd
 
+
 #oracle
-docker run --name oraclexe -d -p 51521:1521 -p 55500:5500 -e ORACLE_PWD=hai2coders -e ORACLE_CHARACTERSET=AL32UTF8 oracle/database:18.4.0-xe
-docker run --name oraclexe -d -p 1521:1521 -p 5500:5500 -e ORACLE_PWD=hai2coders -e ORACLE_CHARACTERSET=AL32UTF8 oracle/database:18.4.0-xe
+docker run --name oraclexe -d -p 51521:1521 -p 55500:5500 -e ORACLE_PWD=Bismillah -e ORACLE_CHARACTERSET=AL32UTF8 oracle/database:18.4.0-xe
+docker run --name oraclexe -d -p 1521:1521 -p 5500:5500 -e ORACLE_PWD=Bismillah -e ORACLE_CHARACTERSET=AL32UTF8 oracle/database:18.4.0-xe
 
 docker exec -it --user=oracle oraclexe bash
-./sqlplus  sys/hai2coders@//localhost:1521/XE as sysdba
-./sqlplus sys/hai2coders@\"localhost:1521/XEPDB1\" as sysdba
-./sqlplus haidar/hai2coders@\"localhost:1521/XEPDB1\"
+./sqlplus  sys/Bismillah@//localhost:1521/XE as sysdba
+./sqlplus sys/Bismillah@\"localhost:1521/XEPDB1\" as sysdba
+./sqlplus haidar/Bismillah@\"localhost:1521/XEPDB1\"
  
 alter session set "_ORACLE_SCRIPT"=true;
-CREATE USER haidar IDENTIFIED BY "hai2coders";
-alter user haidar identified by "hai2coders" account unlock; 
+CREATE USER haidar IDENTIFIED BY "Bismillah";
+alter user haidar identified by "Bismillah" account unlock; 
 GRANT CREATE SESSION TO haidar;
 GRANT CONNECT TO haidar;
 grant all privileges to haidar;
 
 #postgres
-docker run --name postgrestest --net=host -e POSTGRES_PASSWORD=hai2coders -d postgres
+docker run --name postgrestest --net=host -e POSTGRES_PASSWORD=Bismillah -d postgres
 docker exec -it postgrestest psql -U postgres
 
 #centos
@@ -172,12 +188,13 @@ iptables -t nat -A POSTROUTING -p tcp --dport 80 -d 192.168.1.25 -j SNAT --to 10
 iptables -t nat -A PREROUTING -i enp0s25:2 -p tcp --dport 80 -d 10.88.0.52 -j DNAT --to-destination 192.168.1.25
 iptables -t nat -A POSTROUTING -p tcp -s 192.168.1.25 -d 192.168.1.25 --dport 80 -j SNAT --to 10.88.0.52
 
-
 iptables -t nat -A PREROUTING -s 192.168.1.25 -p tcp -j DNAT --to-destination 10.88.0.52
 iptables -t nat -A POSTROUTING -p tcp -d 192.168.1.25 --dport 80 -j SNAT --to-source 10.88.0.52
 
 iptables -t nat -A OUTPUT -d 192.168.1.25 -j DNAT --to-destination 10.88.0.52
 
+
+# docker
 
 ## build dockerize php using podman Part 1
 

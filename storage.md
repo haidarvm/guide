@@ -1,7 +1,7 @@
 sudo du -hsx * | sort -rh | head -10
 
 #count total size folder
-du -sh bench
+du -sh .
 
 #get hdd info
 sudo cfdisk /dev/sdb
