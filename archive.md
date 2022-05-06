@@ -44,9 +44,9 @@ zip -r compressed_filename.zip foldername foldername2 foldername3
 zip -0 -r mydir.zip mydir
 
 #Part zip
-zip -r -s 4G beritainspart.zip beritainspiratif05jun.zip 
+zip -r -s 4G folder.zip folder.zip 
 
-zip -s 0 beritainspart.zip --out unsplitberitains05jun.zip
+zip -s 0 folder.zip --out unsplitfolder05jun.zip
 
 unzip unsplitberitains05jun.zip
 

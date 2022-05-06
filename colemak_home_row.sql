@@ -9,7 +9,7 @@ SELECT * FROM `kamus` where kata not like '%b%' and kata not like '%c%' and kata
 
 
 
-antar antara antena anti antre area arena arti  asar asin atas eror insan instan intens intro iritasi ironis istana istri nanti nanas nasi neon niat nista nona onar otoritas rasa rasio rata rentan resistor retas retina rias riset roti saat sana sini santai saran sarat sastra satria seni sensor sarana setan setia setir siasat sinar sisi sita sore sortir stres taat tani tas tata tatanan tatar  tato tenar tentara teori teras teror tetes tinta ton transisi tren 
+antar antara antena anti antre area arena arti  asar asin atas eror insan instan intens intro iritasi ironis istana istri nanti nanas nasi neon niat nista nona onar otoritas rasa rasio rata rentan resistor retas retina rias riset roti saat sana sini santai saran sarat sastra satria seni sensor sarana setan setia setir siasat sinar sisi sita sore sortir stres strata taat tani tas tata tatanan tatar  tato tenar tentara teori teras teror tetes tinta ton transisi tren air
 
 
 'antar','antara','antena','anti','antre','area','arena','arti','asar','asin','atas','eror','seai','insan','','instan','intense','intro','iritasi','ironis','istana','istri','nanti','nanas','nasi','neon','niat','nista','nona','onar','otoritas','rasa','rasio','rata','rentan','resistor','retas','retina','rias','riset','roti','saat','sana','sini','santai','saran','sarat','sastra','satria','seni','sensor','sarana','setan','setia','setir','siasat','sinar','sisi','sita','sore','sortir','stres','taat','tani','tas','tata','tatanan','tatar','tato','tenar','tentara','teori','teras','teror','tetes','tinta','ton','transisi','tren'

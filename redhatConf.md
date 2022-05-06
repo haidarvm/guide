@@ -55,7 +55,24 @@ sudo useradd -m -c "haidarvm" haidarvm -s /bin/bash
 # make sudo
 usermod -aG wheel haidarvm
 
-# createswapfile https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-centos-7
+# createswapfile 
+https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-centos-7
+sudo dd if=/dev/zero of=/swapfile count=4096 bs=1MiB
+ls -lh /swapfile
+sudo chmod 600 /swapfile
+ls -lh /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+swapon -s
+sudo nano /etc/fstab
+/swapfile   swap    swap    sw  0   0
+cat /proc/sys/vm/swappiness
+sudo sysctl vm.swappiness=10
+sudo nano /etc/sysctl.conf
+vm.swappiness = 10
+vm.vfs_cache_pressure = 50
+sudo sysctl vm.vfs_cache_pressure=50
+
 
 # nmcli connect
 nmcli con add type ethernet con-name haidar ifname enp0s3
