@@ -48,6 +48,12 @@ sudo usermod -aG docker $USER
 reboot
 docker pull mysql:latest
 
+# snap install
+sudo snap install winbox
+snap find browser
+snap list
+
+
 # install with php8.1 odrej
 sudo apt-get install ca-certificates apt-transport-https software-properties-common wget curl lsb-release -y
 curl -sSL https://packages.sury.org/php/README.txt | sudo bash -x

@@ -6,11 +6,7 @@ certbot certonly --standalone -d haidarvm.site -d www.haidarvm.site -m haidarvm@
 
 sudo certbot --nginx -d haidar.online -d www.haidar.online
 
-
-sudo certbot --nginx -d www.jabarnews.com -d jabarnews.com -d pmin.jabarnews.com -d m.jabarnews.com -d s.jabarnews.com  
-
-sudo certbot --nginx -d haidar.id -d www.haidar.id -d m.haidar.id 
-
+sudo certbot --nginx -d www.example.com -d example.com   
 
 
 sudo add-apt-repository ppa:certbot/certbot

@@ -9,7 +9,7 @@ curl -LsS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
 apt-get --purge remove "mariadb*"
 
 -- repair database
-mysqlcheck -uberitainspiratifnew -p beritainspiratifnew
+mysqlcheck -uusername -p databasename
 
 -- all database
 mysqlcheck -c -u root -p --all-databases
@@ -127,6 +127,12 @@ SELECT GROUP_CONCAT(category_id ORDER BY category_id DESC)  FROM `wput_list_cate
 
 -- select json object
 SELECT (UNIX_TIMESTAMP(created_at)*1000) as unix1, UNIX_TIMESTAMP(created_at) as unix FROM post_data; 
+
+-- select most common
+SELECT column, COUNT(*) AS datas 
+FROM table 
+GROUP BY column 
+ORDER BY datas DESC
 
 -- select longest char
 ORDER BY LENGTH(description) DESC LIMIT 10;
