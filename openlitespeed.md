@@ -18,6 +18,9 @@ certbot certonly --non-interactive --webroot -w /usr/local/lsws/example/html -d 
 sudo usermod -aG yourUserName lsadm
 sudo gpasswd -a yourUserName lsadm
 
+# set html path to group and nobody owner
+chown -R username:nobody /path/to/dir/html
+
 # for renew 
 sudo systemctl stop lsws
 

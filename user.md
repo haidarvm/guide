@@ -5,32 +5,21 @@ sudo usermod -a -G sudo <username>
 
 ssh-keygen -t rsa -b 4096 -C "haidarvm@gmail.com"
 
-
-sudo useradd -m -c "telegram" telegram  -s /bin/bash 
-
-sudo useradd -m -c "mark" mark  -s /bin/bash 
-
 sudo useradd -m -c "haidarvm" haidarvm  -s /bin/bash 
-
-
-sudo useradd -m -c "prianganholiday" prianganholiday  -s /bin/bash 
-
-sudo useradd -m -c "javanewstv" javanewstv  -s /bin/bash 
 
 sudo useradd -m -c "admin" admin  -s /bin/bash 
 
-sudo useradd -m -c "flatearthid" flatearthid  -s /bin/bash 
+sudo usermod -aG www-data haidarvm
+sudo usermod -a -G  nginx haidarvm
 
-sudo useradd -m -c "beritainspiratif" beritainspiratif  -s /bin/bash 
+# check user group
+groups
+id -Gn haidarvm
 
-sudo usermod -aG www-data jabarnews
-sudo usermod -a -G  nginx ec2-user
-
-
-#deleted_user
+# deleted_user
 userdel -r mark
 
-#login nginx bash
+# login nginx bash
 sudo su -l nginx -s /bin/bash
 
 sudo chmod -R 770 /home/jabarnews/public_html
@@ -46,11 +35,8 @@ sudo chmod g+rwxs /home/ec2-user/public_html
 
 
 sudo groupadd ec2-user
-sudo useradd -g jabarnews -G www-data jabarnews
-sudo useradd -g todayid -G www-data,ftp todayid
-sudo useradd -g ec2-user -G nginx ec2-user
-
+sudo useradd -g haidarvm -G www-data haidarvm
 grep 'grpup-name-here' /etc/group
 
-sudo groupadd jabarnews
-sudo useradd -g jabarnews -G www-data,ftp jabarnews
+sudo groupadd haidarvm
+sudo useradd -g haidarvm -G www-data,ftp haidarvm
