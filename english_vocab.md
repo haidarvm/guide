@@ -34,3 +34,11 @@ sift
 preciding
 #sul
 conjure
+#b fools
+sages
+#d your time is nigh
+nigh
+#d
+deity
+#i
+palaces

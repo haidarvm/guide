@@ -86,7 +86,8 @@ ffmpeg -i tanah.mp4  -c:v dnxhd -profile:v dnxhr_hq -c:a pcm_s16le tanah.mov
 ffmpeg -i input_video.mp4 -i replacement_audio.m4a -vcodec copy -acodec copy -map 0:0 -map 1:0 output.mp4     
 ffmpeg -i tutorInputIdKei.mp4 -i audioKei.ac3 -vcodec copy -acodec copy -map 0:0 -map 1:0 tutorInputIdKeiR.mp4
 
-#crop video from start to
+#crop video from start time to
+ffmpeg -i movie.mp4 -ss 00:08:03 -t 00:01:40 -async 1 cut.mp4
 ffmpeg -ss 00:00:01 -i tutorInputIdKeiR.mp4 -to 00:00:31 -c copy tutorInputIdKeiRs.mp4
 
 #format for WA whatsapp
