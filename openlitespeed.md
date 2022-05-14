@@ -25,7 +25,11 @@ chown -R username:nobody /path/to/dir/html
 sudo systemctl stop lsws
 
 sudo certbot certonly -d www.example.com -d example.com
- 
+
+# logs
+$VH_ROOT/logs/$VH_NAME_error.log
+$VH_ROOT/logs/$VH_NAME_access.log
+
 #### create new vhost ####
 
 [Basic] restart 

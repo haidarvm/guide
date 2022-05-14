@@ -226,6 +226,44 @@ mysqldump -u root -p -t  -T/tmp  stack Posts --fields-terminated-by=','
 -- clean id
 INSERT INTO Posts_id (post_id)  SELECT id FROM Posts;
 
+-- province insert ignore
+INSERT IGNORE INTO province(province_name) SELECT province from district ORDER BY province ASC;
+
+-- insert city with province
+INSERT IGNORE INTO city(province_name, city_name) SELECT province, city FROM district ORDER BY city ASC;
+
+-- mapping province id 
+SELECT p.province_id, p.province_name, c.province_name
+FROM city c
+INNER JOIN province p ON p.province_name = c.province_name 
+
+-- Update city with provicen id
+UPDATE city c
+INNER JOIN province p ON p.province_name = c.province_name 
+SET c.province_id = p.province_id
+
+-- mapping city_id on district
+SELECT c.city_id, c.city_name, d.city
+FROM district d
+INNER JOIN city c ON c.city_name = d.city
+
+-- Update district with city id
+UPDATE district d
+INNER JOIN city c ON c.city_name = d.city
+SET d.city_id = c.city_id
+
+
+SELECT * FROM `district`
+WHERE city_id=362
+
+-- select same value 
+SELECT district, count(*) AS c
+FROM district
+GROUP BY district
+HAVING c > 1
+ORDER BY c DESC
+
+
 --- beritainspiratif repair ---
 CREATE TABLE wprg_popular_posts_inno AS SELECT * FROM wprg_popular_posts; 
 ALTER TABLE wprg_popular_posts_inno ENGINE = INNODB;

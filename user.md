@@ -11,10 +11,14 @@ sudo useradd -m -c "admin" admin  -s /bin/bash
 
 sudo usermod -aG www-data haidarvm
 sudo usermod -a -G  nginx haidarvm
+sudo usermod -aG  nobody haidarvm
 
 # check user group
 groups
 id -Gn haidarvm
+
+# user group able to modify files
+sudo chmod -R g+w /srv/www
 
 # deleted_user
 userdel -r mark
