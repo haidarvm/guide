@@ -5,7 +5,7 @@
 #----------------------------------------
 USER='root'       # MySQL User
 PASSWORD='haidar' # MySQL Password
-DAYS_TO_KEEP=0    # 0 to keep forever
+DAYS_TO_KEEP=30    # 0 to keep forever
 GZIP=1            # 1 = Compress
 BACKUP_PATH='/home/haidar/Documents/backups/mysql'
 #----------------------------------------

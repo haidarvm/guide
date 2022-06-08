@@ -9,10 +9,7 @@ ffmpeg -i houseFailedRotate.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix
 
 ffmpeg -i houseWorksRotate.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p houseWorksRotate.mp4
 
-
-
 ffmpeg -i MeningkatkanKecerdasan.avi -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p MeningkatkanKecerdasan.mp4
-
 
 ffmpeg -i modernHousePreview.avi -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p modernHousePreview.mp4
 
@@ -23,9 +20,7 @@ ffmpeg -i rhelZ230Demo500gb.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix
 
 ffmpeg -i 45NoSupers_1_small.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p 45NoSupers_1_smalls.mp4
 
-
 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p 
-
 
 ffmpeg -i jajah.avi -s 1920x1080 -c:a copy jajah2.mkv
 ffmpeg -i bumperOutroTL.avi -c:a copy bumperOutroTL.mp4
@@ -224,6 +219,15 @@ ffmpeg -i badPeople1scut.mp4  -vcodec libx264 -crf 27 -preset veryfast -c:a copy
 
 ffmpeg -ss 00:25:31 -i badPeople1.mp4 -to 00:30:39 -c copy badPeople1sa.mp4
 
+
+# split half vertical
+ffmpeg -i input -filter_complex "[0]crop=iw/2:ih:0:0[left];[0]crop=iw/2:ih:ow:0[right]" -map "[left]" left.mp4 -map "[right]" right.mp4
+
+#example
+ffmpeg -i tutorTmux.mkv -filter_complex "[0]crop=iw/2:ih:ow:0[right]" -map "[right]" -map 0:a -c:a copy tutorTmuxr2.mp4
+
+# split half horizontal
+ffmpeg -i input -filter_complex "[0]crop=iw:ih/2:0:0[top];[0]crop=iw:ih/2:0:oh[bottom]" -map "[top]" top.mp4 -map "[bottom]" bottom.mp4
 
 
 XVR_ch2_main_20200625130000_20200625140000ed.dav

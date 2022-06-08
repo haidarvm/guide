@@ -110,6 +110,11 @@ RewriteRule ^(.*)$ index.php?/$1 [L]
     deny from all
 </Directory>
 
+#laravel
+RewriteRule . /laravel/public/index.php [L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
 
 chmod 640 .htaccess
 chown nobody:nobody html/.htaccess

@@ -36,6 +36,9 @@ git commit -m 'fixed ignore'
 git branch
 git branch production
 
+# check last commit
+git diff --name-only HEAD^..HEAD
+git show --summary
 
 #remove big file
 git filter-branch --index-filter 'git rm --cached --ignore-unmatch a b' HEAD
