@@ -29,11 +29,15 @@ SHOW VARIABLES LIKE '%max_connect%';
 -- show create tables sql format
 SHOW CREATE TABLE `customer_address`;
 
+-- check list users
+Select user from mysql.user;  
 
 -- create user
 CREATE USER 'haidarvm'@'localhost';
 GRANT ALL PRIVILEGES ON haidarvm.* To 'haidarvm'@'localhost' IDENTIFIED BY 'bismillah';
 
+-- enable remote login by comment
+#bind-address   = 127.0.0.1
 
 -- create users
 CREATE TEMPORARY TABLE usertemp SELECT * FROM users WHERE ID = 5;
@@ -42,6 +46,8 @@ INSERT INTO users SELECT * FROM usertemp WHERE ID = 8;
 
 -- insert wp users
 INSERT INTO `users` (`user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `user_registered`, `user_activation_key`, `user_status`, `display_name`) VALUES ('muhtoha', SHA1(UUID()), 'muhtoha', 'muhtoha@gmail.com', 'http://haidarvm.com', NOW(), UUID(), '1', 'muhtoha');
+
+
 
 --  create user =====
 CREATE USER 'jabarnewscom'@'206.189.153.114' IDENTIFIED BY 'bismillah';
@@ -256,7 +262,7 @@ SET d.city_id = c.city_id
 SELECT * FROM `district`
 WHERE city_id=362
 
--- select same value 
+-- select same value / duplicate
 SELECT district, count(*) AS c
 FROM district
 GROUP BY district

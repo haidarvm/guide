@@ -55,7 +55,8 @@ docker run -v /home/haidar/public_html/test/php/apps/:/var/www/apps -t -d --name
 # go to container folder
 chroot /var/lib/docker/containers/2465790aa2c4*/root/
 
-# docker copy from host to container
+# docker copy from host to container --use container name
+docker cp folder focal:/var/www/html/
 docker cp foo.txt container_id:/home/
 
 # docker copy from container to host
