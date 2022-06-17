@@ -94,6 +94,7 @@ firewall-cmd --permanent --zone=public --add-service=ssh
 firewall-cmd --zone=public --add-port=5500/tcp --permanent
 firewall-cmd --zone=public --add-port=8080/tcp --permanent
 firewall-cmd --zone=public --add-port=9236/tcp --permanent
+
 sudo firewall-cmd --reload
 firewall-cmd --zone=public --add-port=369/tcp --permanent
 sudo firewall-cmd --list-all
@@ -101,7 +102,7 @@ firewall-cmd  --remove-service=ssh
 firewall-cmd --zone=public --add-service=mysql --permanent
 
 # firewall-cmd remove port
-firewall-cmd --zone=public --remove-port=10050/tcp
+firewall-cmd --zone=public --remove-port=8484/tcp
 firewall-cmd --runtime-to-permanent 
 firewall-cmd --reload 
 
