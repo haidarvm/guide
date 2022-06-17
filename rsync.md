@@ -1,3 +1,12 @@
+# copy file with progress
+rsync -av --progress '/home/haidar/Downloads/app/Orangepizero2_3.0.0_debian_bullseye_desktop_xfce_linux5.16.17.img' /run/media/haidar/3933-3738
+
+rsync -av --progress '/home/haidar/Downloads/app/Orangepizero2_3.0.0_debian_bullseye_desktop_xfce_linux5.16.17.img' /run/media/haidar/sandisk64/
+
+# with verifying
+rsync -avzh '/home/haidar/Downloads/app/Orangepizero2_3.0.0_debian_bullseye_desktop_xfce_linux5.16.17.img' /run/media/haidar/3933-3738
+
+
 # to get from ip 1.7
 rsync -avzhe ssh pi@192.168.1.7:/var/www/ /var/www/
 rsync -avzhe ssh pi@192.168.1.3:/var/www/ /var/www/

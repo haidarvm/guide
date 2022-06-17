@@ -36,7 +36,7 @@ git commit -m 'fixed ignore'
 git branch
 git branch production
 
-# check last commit
+# check last commit history
 git diff --name-only HEAD^..HEAD
 git show --summary
 

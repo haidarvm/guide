@@ -26,3 +26,10 @@ UUID=aa88ba34-bdb5-4eda-a973-401d68c5547d /media/other         xfs     defaults 
 # check before restart
 mount -a
 mount -fav
+
+
+# mount readonly sdcard
+hdparm -r0 /dev/sda
+
+mount -orw,remount /dev/sda1
+sudo mount -o rw /dev/sda1 /media/sandiskmicro

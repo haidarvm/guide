@@ -42,16 +42,34 @@ sudo gpasswd -a www-data haidar
 
 #install docker
 sudo apt install docker.io
+sudo apt install docker-compose
 sudo systemctl start docker.service
 sudo systemctl enable docker.service
 sudo usermod -aG docker $USER
 reboot
 docker pull mysql:latest
 
-# snap install
-sudo snap install winbox
-snap find browser
-snap list
+# remove firefox snap
+sudo snap remove firefox
+
+# install firefox official
+sudo add-apt-repository ppa:mozillateam/ppa
+echo '
+Package: *
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 1001
+' | sudo tee /etc/apt/preferences.d/mozilla-firefox
+
+* ## install firefox
+sudo apt install firefox
+
+# install lxde ubuntu server
+sudo apt update
+sudo apt install lxde
+
+# resize swap
+size="4G" && file_swap=/swapfile_$size.img && sudo touch $file_swap && sudo fallocate -l $size /$file_swap && sudo mkswap /$file_swap && sudo swapon -p 20 /$file_swap
+
 
 
 # install with php8.1 odrej

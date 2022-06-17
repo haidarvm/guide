@@ -78,6 +78,10 @@ CREATE TABLE "user" (
   "last_login" timestamp 
 );
 
+-- uniq
+ALTER TABLE "user" ADD CONSTRAINT uniqusername UNIQUE (username);
+ALTER TABLE "mt_user" ADD CONSTRAINT uniqemail UNIQUE (email);
+
 CREATE TABLE transaction (
 trx_id SERIAL PRIMARY KEY,
 trx_type int,
