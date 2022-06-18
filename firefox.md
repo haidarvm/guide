@@ -8,3 +8,20 @@ The solution that worked for me:
 
 If the above STILL DOES NOT WORK, try setting browser.fixup.fallback-to-https to false from about:config
 
+
+
+# change tab
+Ctrl + Tab
+Ctrl + Shift + Tab
+
+# close tab
+Ctrl + W
+
+# close windows
+Ctrl + Shift W
+
+# new window
+Ctrl + W
+
+# new Private Window
+Ctrl + Shift + P
