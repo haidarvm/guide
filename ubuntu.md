@@ -54,20 +54,30 @@ sudo snap remove firefox
 
 # install firefox official
 sudo add-apt-repository ppa:mozillateam/ppa
-echo '
-Package: *
-Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 1001
-' | sudo tee /etc/apt/preferences.d/mozilla-firefox
-
-* ## install firefox
+sudo apt update
 sudo apt install firefox
+
+# install firefox from source
+wget -O ~/Firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64"
+sudo tar xjf ~/Firefox.tar.bz2 -C /opt/
+sudo mv /usr/lib/firefox/firefox /usr/lib/firefox/firefox_backup
+sudo ln -s /opt/firefox/firefox /usr/lib/firefox/firefox
 
 # install lxde ubuntu server
 sudo apt update
 sudo apt install lxde
 
-# resize swap
+# make new swap file
+touch /media/swapfile.img
+dd if=/dev/zero of=/media/fasthdd/swapfile.img bs=1024 count=4M
+mkswap /media/swapfile.img
+# Add this line to /etc/fstab
+/media/swapfile.img swap swap sw 0 0
+swapon /media/swapfile.img
+cat /proc/swaps
+grep 'Swap' /proc/meminfo
+
+# resize swap one command
 size="4G" && file_swap=/swapfile_$size.img && sudo touch $file_swap && sudo fallocate -l $size /$file_swap && sudo mkswap /$file_swap && sudo swapon -p 20 /$file_swap
 
 
