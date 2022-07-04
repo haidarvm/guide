@@ -4,8 +4,6 @@ sudo /usr/bin/certbot-auto renew --dry-run
 
 certbot certonly --standalone -d example.site -d www.example.site -m haidarvm@gmail.com --agree-tos
 
-sudo certbot --nginx -d haidar.online -d www.haidar.online
-
 sudo certbot --nginx -d www.example.com -d example.com   
 
 

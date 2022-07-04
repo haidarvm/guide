@@ -43,8 +43,15 @@ ssh-copy-id username@remote_host -p 2235
 # sealert setroubleshoot
 dnf install setroubleshoot setools
 
+# install from free developer
+https://developers.redhat.com/products/rhel/download
+
 # add subscription
 subscription-manager register --auto-attach
+
+# or online
+subscription-manager register --username <username> --password <password> --auto-attach
+subscription-manager register
 
 # enable autocomplete
 dnf install bash-completion
@@ -64,11 +71,12 @@ ls -lh /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
 swapon -s
-sudo nano /etc/fstab
+# install at startup
+sudo vi /etc/fstab
 /swapfile   swap    swap    sw  0   0
 cat /proc/sys/vm/swappiness
 sudo sysctl vm.swappiness=10
-sudo nano /etc/sysctl.conf
+sudo vi /etc/sysctl.conf
 vm.swappiness = 10
 vm.vfs_cache_pressure = 50
 sudo sysctl vm.vfs_cache_pressure=50
@@ -700,7 +708,7 @@ CMD dbus-daemon --system --fork && /usr/bin/firefox
 
 #check last status service boot
 sudo systemctl list-units
-sudo systemctl list-units --state failed 
+sudo systemctl list-units --state failed
 sudo systemctl list-unit-files --type=service
 
 mssqlpass
