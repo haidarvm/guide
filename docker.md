@@ -55,6 +55,10 @@ docker run -v /home/haidar/public_html/test/php/apps/:/var/www/apps -t -d --name
 # go to container folder
 chroot /var/lib/docker/containers/2465790aa2c4*/root/
 
+# eth0 network oly
+edit ipv4 routes
+use this connection only for resources on this network
+
 # docker copy from host to container --use container name
 docker cp folder focal:/var/www/html/
 docker cp foo.txt container_id:/home/

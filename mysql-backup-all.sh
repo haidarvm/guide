@@ -7,7 +7,7 @@ USER='root'       # MySQL User
 PASSWORD='haidar' # MySQL Password
 DAYS_TO_KEEP=30    # 0 to keep forever
 GZIP=1            # 1 = Compress
-BACKUP_PATH='/home/haidar/Documents/backups/mysql'
+BACKUP_PATH='/home/haidar/Documents/backup/mysql/'
 #----------------------------------------
 
 # Create the backup folder
@@ -25,7 +25,7 @@ for db in $databases; do
     continue
   fi
   
-  date=$(date -I)
+  date=$(date +"%d-%m-%y_%H-%M")
   if [ "$GZIP" -eq 0 ] ; then
     echo "Backing up database: $db without compression"      
     mysqldump -u $USER -p$PASSWORD --databases $db > $BACKUP_PATH/$date-$db.sql

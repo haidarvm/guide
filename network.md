@@ -13,9 +13,6 @@ sudo nmap -sTU -O ip_address
 # display TCP information,
 ss -t
 
-#
-
-
 #setting dns globally
 vi /etc/systemd/resolved.conf
 DNS=67.207.67.2 67.207.67.3
@@ -23,38 +20,61 @@ DNS=9.9.9.9 149.112.112.112
 sudo systemctl restart systemd-resolved.service
 
 #check it with
-resolvectl dns
+# resolvectl dns
 systemd-resolve --status
 
-#check dns record
+# check dns record
 host -t ns domain.com
 host -t txt domain.com
 
-#manually 
+#create hostpot 
+nmcli dev wifi hotspot ifname wlp0s20u5 ssid rhelThinkCentre password "rhelthink"
+
+nmcli con add type wifi ifname wlp0s20u10 con-name Hostspot autoconnect yes ssid rhelThinkCentre
+nmcli con modify Hostspot 802-11-wireless.mode ap 802-11-wireless.band bg ipv4.method shared
+nmcli con modify Hostspot wifi-sec.psk "rhelthink"
+
+# turn off eth0
+ifdown eth0
+
+# connect wifi 
+nmcli device wifi rescan
+nmcli device wifi rescan
+nmcli device wifi connect my_lil_router password 1234567890
+
+# manually 
 sudo resolvectl dns wlp2s0 8.8.8.8 4.4.4.4
 
+# monitoring
 iftop 
 sudo nethogs
 
-host haidar.mukminin.com 8.8.8.8 
+
 
 sudo tcpdump -i wlo1 dst host 118.98.97.151
 
 ping 180.253.26.191
 ping bandung telkom
 
-Ane nyobain pake windows sukses dan lancar auto start service
-tapi berhubung ane sudah pensiun dari windows skrg pake Linux
+# lookup network
+nslookup reddit.com
+dig reddit.com
+host reddit.com 8.8.8.8 
 
-Bagi yg ingin coba di linux (Arch Linux) cara nya gampang install dnscrypt-proxy 
+sudo apt install  dnscrypt-proxy
 
-$ sudo pacman -S dnscrypt-proxy
+sudo nano /etc/resolv.conf
 
-$ sudo nano /etc/resolv.conf
-
-hapus semua nameserver jadi
+# hapus semua nameserver jadi
 nameserver 127.0.0.1
 nameserver 127.0.0.2
+
+# modem serial
+dmesg | egrep -i --color 'serial|ttyS'
+
+# set chmod 
+sudo gpasswd --add ${USER} dialout
+sudo chmod 666 /dev/ttys0
 
 $ sudo systemctl start dnscrypt-proxy
 
@@ -67,7 +87,6 @@ Lalu test buka http://vimeo.com
 blok site
 vimeo.com
 reddit.com
-
 
 
 xrandr --output HDMI1 --gamma 0.5:1.0:1.0

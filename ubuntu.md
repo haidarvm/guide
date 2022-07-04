@@ -2,6 +2,24 @@
 https://mirror.repository.id/ubuntu-cd/18.04.6/ubuntu-18.04.6-live-server-amd64.iso
 https://mirror.repository.id/ubuntu-cd/jammy/ubuntu-22.04-beta-live-server-amd64.iso
 
+#rename mirror ubuntu apt source list
+sudo sed -i 's|http://us.archive.ubuntu.com|http://download.nus.edu.sg|g' /etc/apt/sources.list
+
+sudo sed -i 's|https://mirror.amscloud.co.id|http://archive.ubuntu.com|g' /etc/apt/sources.list.d/original.list
+
+sudo sed -i 's|http://archive.ubuntu.com|https://mirror.amscloud.co.id|g' /etc/apt/sources.list.d/original.list
+
+sudo sed -i 's|http://mirrors.tuna.tsinghua.edu.cn|http://archive.ubuntu.com|g' /etc/apt/sources.list
+
+sudo sed -i 's|http://mirror.0x.sg|http://mirrors.tuna.tsinghua.edu.cn|g' /etc/apt/sources.list
+
+sudo sed -i 's|http://deb.debian.org|http://mirror.dewabiz.com|g' /etc/apt/sources.list
+
+sudo sed -i 's|http://archive.ubuntu.com|http://mirrors.tuna.tsinghua.edu.cn|g' /etc/apt/sources.list
+
+
+sudo sed -i 's|http://mirrors.tuna.tsinghua.edu.cn|http://ports.ubuntu.com/|g' /etc/apt/sources.list
+sudo sed -i 's|http://ports.ubuntu.com/|http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports|g' /etc/apt/sources.list
 
 # extras
 sudo apt-get install ubuntu-restricted-extras
@@ -79,6 +97,7 @@ grep 'Swap' /proc/meminfo
 
 # resize swap one command
 size="4G" && file_swap=/swapfile_$size.img && sudo touch $file_swap && sudo fallocate -l $size /$file_swap && sudo mkswap /$file_swap && sudo swapon -p 20 /$file_swap
+
 
 
 
