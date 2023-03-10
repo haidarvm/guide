@@ -1,0 +1,11 @@
+The new intel core i7 5820K with Blender
+
+Hi,
+
+I see your post on forum :
+New Intel i7 5920K
+
+did you try using Intel core i7 5820K
+with this BMW Benchmark 
+
+could you tell specific of your new Hardware and how long does the render take ?

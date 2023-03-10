@@ -1,0 +1,25 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Android Studio
+Exec=/home/haidar/Downloads/app/android-studio/bin/studio.sh
+Icon=/home/haidar/Downloads/app/android-studio/bin/studio.png
+Type=Application
+Categories=Development;
+
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=IntelliJ IDEA
+Exec=/home/haidar/Downloads/app/idea-IU-192.5728.98/bin/idea.sh
+Icon=/home/haidar/Downloads/app/idea-IU-192.5728.98/bin/idea.png
+Type=Application
+Categories=Development;
+
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=Postman
+Exec=/home/haidar/Downloads/app/Postman/Postman
+Icon=/home/haidar/Downloads/app/Postman/app/resources/app/assets/icon.png
+Type=Application
+Categories=Development;

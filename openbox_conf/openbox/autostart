@@ -1,0 +1,9 @@
+et wallpaper
+#(sleep 1s && nitrogen --restore) &
+(sleep 1s && sh ~/.fehbg) &
+
+xrandr --size 1600x900 &
+
+tint2 &
+
+setxkbmap us -variant colemak &

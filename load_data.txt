@@ -1,0 +1,4 @@
+LOAD DATA LOCAL INFILE '/home/haiarch/Downloads/islam/quran.txt' 
+IGNORE INTO TABLE `quran_line` 
+COLUMNS TERMINATED BY '\t' 
+LINES TERMINATED BY '\n' (`text`);

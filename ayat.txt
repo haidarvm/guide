@@ -1,0 +1,10 @@
+/opt/adobe-air-sdk/bin/adl -nodebug /opt/airapps/ayat/META-INF/AIR/application.xml /opt/airapps/ayat/
+
+DESKTOP_SESSION="gnome" /opt/adobe-air-sdk/bin/adl -nodebug /opt/airapps/9imam/META-INF/AIR/application0.xml /opt/airapps/9imam/
+
+
+
+http://cdn.ksu.edu.sa/quran/ayat/safahat1/50.png
+
+
+"/opt/Adobe AIR/Versions/1.0/Adobe AIR Application Installer /" /opt/airapps/9imam/setup.air

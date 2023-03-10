@@ -1,0 +1,12 @@
+
+#change ssh port
+Port 936
+
+systemctl restart sshd
+
+netstat -tulpn | grep ssh
+
+
+sshd
+ClientAliveInterval 60
+ClientAliveCountMax 3

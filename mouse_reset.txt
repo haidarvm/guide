@@ -1,0 +1,7 @@
+To revert from #18 solution delete /etc/modprobe.d/psmouse.conf file with:
+
+sudo rm /etc/modprobe.d/psmouse.conf
+
+and reboot notebook or reload psmouse driver with
+
+sudo modprobe -r psmouse && sudo modprobe psmouse

@@ -1,0 +1,13 @@
+apt-get remove exim4 && apt-get  install postfix && postfix stop
+apt-get install dovecot-core dovecot-imapd
+sudo apt-get install dovecot-common
+sudo apt-get install postgresql postfix-pgsql
+sudo apt-get install dovecot-lmtpd dovecot-pgsql
+
+mail haidarvm@gmail.com
+
+
+echo "test message" | mailx -s 'test subject' haidarvm@gmail.com
+
+
+echo "test message" | mailx -s 'test subject' haidarvm@yahoo.com

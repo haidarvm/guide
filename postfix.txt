@@ -1,0 +1,12 @@
+/etc/letsencrypt/live/haidar.id/fullchain.pem 
+/etc/letsencrypt/live/haidar.id/privkey.pem 
+
+
+/etc/letsencrypt/live/jabarnews.com/fullchain.pem 
+/etc/letsencrypt/live/jabarnews.com/privkey.pem 
+
+
+v=spf1 +a +ip4:206.189.34.19  ~all
+
+
+

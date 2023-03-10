@@ -1,0 +1,44 @@
+sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O/usr/local/bin/youtube-dl
+sudo chmod a+rx /usr/local/bin/youtube-dl
+ 
+
+sudo pip3 install --upgrade youtube-dl
+
+
+'%(playlist)s/%(chapter_number)s - %(chapter)s/%(playlist_index)s. %(title)s.%(ext)s'
+
+youtube-dl --cookies cookies.json https://www.udemy.com/spring-framework-5-beginner-to-guru/
+
+
+https://www.udemy.com/spring-framework-5-beginner-to-guru/learn/lecture/7506388#overview
+youtube-dl  '%(playlist)s/%(chapter_number)s - %(chapter)s/%(playlist_index)s. %(title)s.%(ext)s' https://www.udemy.com/spring-framework-5-beginner-to-guru/
+
+
+
+Orangpun datang
+Dan akan kembali
+Kehidupan kan jadi satu
+Di kehidupan yang kedua
+Akan menjadi lebih indah
+Siapakah yang dapat melaksanakan
+Sekarang berusaha mewujudkannya
+
+Cahaya cinta perlahan menyilaukan
+Itulah mimpi kehidupan kedua
+Mimpi itu dari mana datanganya
+
+Jawabnya ada diujung langit
+Kita kesana dengan seorang anak
+Anak yang tangkas dan juga pemberani
+
+Bertarunglah Dragon Ball
+Dengan segala kemampuan yang ada
+Bila kembali dari langit
+Semoga hidup kan jadi lebih baik
+
+Tugas yang berat dilaksanakan
+Berjuang agar lebih baik
+Siapa yang dapat melaksanakannya
+Dan berusaha mewujudkan
+Semua itu demi hidup yang baik
+Hanya dia yang mampu melaksanakannya.***

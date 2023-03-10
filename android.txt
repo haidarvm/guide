@@ -1,0 +1,49 @@
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+
+export PATH=$PATH:/opt/gradle/gradle-4.1/bin
+
+
+keytool -genkey -v -keystore jabarnews.jks -alias jabarkey -keyalg RSA -keysize 2048 -validity 10000
+
+
+keytool -list -keystore jabarnews.jks
+
+apksigner sign --ks my.keystore app.apk
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore  jabarnews.keystore /home/haidar/public_html/news/mobile/platforms/android/app/build/outputs/apk/debug/jabarnews.apk JabarNews
+
+
+storeFile=/home/haidar/public_html/news/mobile/jabarnews.keystore
+storeType=jks
+keyAlias=jabarkey
+keyPassword=b1smill4h
+storePassword=b1smill4h
+
+
+{
+     "android": {
+         "debug": {
+             "keystore": "..\android.keystore",
+             "storePassword": "android",
+             "alias": "mykey1",
+             "password" : "password",
+             "keystoreType": ""
+         },
+         "release": {
+             "keystore": "..\android.keystore",
+             "storePassword": "",
+             "alias": "mykey2",
+             "password" : "password",
+             "keystoreType": ""
+         }
+     }
+ }
+
+cordova run android --buildConfig
+cordova build android --buildConfig
+
+cordova build android --release --keystore="jabarnews.jks" --storePassword=b1smill4h --alias=jabarkey
+
+
+cordova run android --release -- --keystore=jabarnews.keystore --storePassword= --alias=jabarkey --password=

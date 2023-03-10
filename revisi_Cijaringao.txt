@@ -1,0 +1,26 @@
+Selamat! Akun hosting Anda telah disetup.
+
+Email ini berisi informasi akun hosting baru Anda.
+
+Domain: cijaringaoecoland.org
+Username: k9472698
+Password: d25g9Nn0Xe
+Plan Hosting: MWN BISNIS A CPANEL
+Alamat IP Server: 103.11.74.17
+Name Server 1: dns1.masterwebnet.com
+Name Server 2: dns2.masterwebnet.com
+Name Server 3: dns3.masterweb.com
+Name Server 4: dns4.masterweb.net
+
+FTP Hostname: cijaringaoecoland.org atau 103.11.74.17
+Webpage URL: http://www.cijaringaoecoland.org
+Control Panel: http://www.cijaringaoecoland.org/cpanel
+URL Sementara: http://103.11.74.17/~k9472698
+
+mail.cijaringaoecoland.org.	14400	IN	CNAME	cijaringaoecoland.org
+
+email 	info@cijaringaoecoland.org
+pass	mutia123
+
+email	infocijaringao@gmail.com
+pass	tanurtarawang	

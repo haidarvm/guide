@@ -1,0 +1,1 @@
+./UnitySetup-2019.1.0f2 --unattended -l /home/haidar/Downloads/app/unity/

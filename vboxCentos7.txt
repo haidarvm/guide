@@ -1,0 +1,10 @@
+echo $KERN_DIR
+export KERN_DIR=/usr/src/kernels/2.6.32-431.29.2.el6.i686
+/etc/init.d/vboxdrv setup
+
+# yum update
+# yum install gcc
+# yum install kernel-devel
+# yum install bzip2
+# mount /dev/sr0 /media/cdrom
+# ./VBoxLinuxAdditions.run 

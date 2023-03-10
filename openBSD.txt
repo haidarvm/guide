@@ -1,0 +1,10 @@
+# restart service
+sudo rcctl reload sshd
+
+# update
+syspatch
+pkg_add -Uu
+
+
+# pkg
+$ ls /usr/ports
