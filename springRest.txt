@@ -1,0 +1,21 @@
+#add auto rest
+@RepositoryRestResource(collectionResourceRel = "article", path = "articles")
+
+#post to many to one curl
+
+curl -i -H "Content-Type:text/uri-list" --data-binary @customer.txt http://localhost:8787/api/customer/2 --data '{"address" : "jl bojonegoro"}'  -X POST http://localhost:8787/api/address
+
+
+curl -H "Content-Type: application/json" --data '{"customer": "http://localhost:8787/api/customer/2", "fullAddress": "jl ters jakarta no 35435"}' -X POST http://localhost:8787/api/address
+
+#postman
+{"customer": "http://localhost:8787/api/customer/2", "fullAddress": "jl jakarta no 123"}
+
+
+#curl
+curl -i --user haidartech:bismillah http://localhost:8787/api/customer
+
+curl -i --user haidartech:bismillah http://bangsawan.co.id/api/customer
+
+
+curl -i http://localhost:8787/api/customer

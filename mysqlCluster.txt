@@ -1,0 +1,88 @@
+./mysql_install_db --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --defaults-file=/usr/local/mysql/my.cnf
+
+export PATH=$PATH:/usr/local/mysql/bin
+
+scripts/mysql_install_db --user=mysql --datadir=/opt/mysql/data
+
+
+To start mysqld at boot time you have to copy
+support-files/mysql.server to the right place for your system
+
+PLEASE REMEMBER TO SET A PASSWORD FOR THE MySQL root USER !
+To do so, start the server, then issue the following commands:
+
+./bin/mysqladmin -u root password 'root'
+./bin/mysqladmin -u root -h haipi3 password 'root'
+
+
+ndb_mgmd --initial --config-dir=/usr/local/mysql/conf -f /usr/local/mysql/conf/config.ini
+
+ndb_mgmd --config-dir=/usr/local/mysql/conf -f /usr/local/mysql/conf/config.ini
+ndb_mgmd -f /usr/local/mysql/conf/config.ini --config-dir=/usr/local/mysql/conf --ndb-nodeid=4
+
+# The database nodes
+[mysqld]
+ndbcluster
+# IP address of the cluster management node
+ndb-connectstring=192.168.1.4
+[mysql_cluster]
+# IP address of the cluster management node
+ndb-connectstring=192.168.1.4
+
+
+# show 
+ndb_mgm -e show
+
+
+# bench
+INSERT IGNORE INTO testtable SELECT FLOOR(RAND()*100000) FROM testtable;
+
+
+CREATE TABLE IF NOT EXISTS `articles` (
+  `id` int(10) unsigned NOT NULL,
+  `title` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `body` text CHARACTER SET utf8 COLLATE utf8_unicode_ci
+) ENGINE=NDBCLUSTER AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE person
+(
+ID int NOT NULL AUTO_INCREMENT,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+PRIMARY KEY (ID)
+) ENGINE=NDBCLUSTER;
+
+INSERT INTO person (LastName,FirstName) VALUES ('haidar','marie');
+
+
+# php code
+
+ <?php
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "mysqlclustertest";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT LastName, FirstName  FROM person";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+    }
+} else {
+    echo "0 results";
+}
+$conn->close();
+?> 

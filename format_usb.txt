@@ -1,0 +1,1 @@
+sudo mkfs.vfat -n 'Ubuntu' -I /dev/sdb1

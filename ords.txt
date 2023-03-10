@@ -1,0 +1,155 @@
+#Get Table Data Using Paging 
+GET http://localhost:8080/ords/ordstest/emp/?offset=10&limit=5
+
+https://ora19.haidar.id/ords/commerce/product/?offset=1&limit=5
+
+
+#Get Table Data Using Query 
+GET http://localhost:8080/ords/ordstest/emp/?q={"deptno":{"$lte":20}}
+
+https://ora19.haidar.id/ords/commerce/product/?q={"price":100000}
+
+#Insert table row
+curl -i -H "Content-Type: application/json" -X POST -d "{ \"empno\" :7, \"ename\": \"JBOND\", \"job\":\"SPY\", \"deptno\" :11 }" "http://localhost:8080/ords/ordstest/emp/
+Content-Type: application/json
+ 
+{ "empno" :7, "ename": "JBOND", "job":"SPY", "deptno" :11 }
+
+
+curl -i -X POST -d "{ \"product_name\" : \"haistock\", \"price\": \"50000\" }" -H "Content-Type: application/json" https://ora19.haidar.id/ords/commerce/product/
+
+ 
+{ "product_name" : "haistock", "price": "50000" }
+
+
+curl -H "Content-Type: application/json"  --data '{"customer_id" : 2, "address" : "new street"}' -X PATCH https://example.com/ords/address/59
+
+#run query
+curl -i -X POST --user ORDSTEST:ordstest --data-binary "select sysdate from dual" -H "Content-Type: application/sql" -k https://localhost:8088/ords/ordstest/_/sql
+
+curl -i -X POST --user haicommerce:4Lk4hFi114001 --data-binary "select sysdate from dual" -H "Content-Type: application/sql" -k https://ora19.haidar.id/ords/commerce/product/
+
+
+curl -H "Content-Type: application/json" --data '{"customer_id" : 2, "address" : "jl bojonegoro"}' --user znb:4Lk4hF1s099001 -X POST https://znbindonesia.com/ora/address/
+
+curl -H "Content-Type: application/json"  --data '{"customer_id" : 2, "address" : "jl cingised"}' --user znb:4Lk4hF1s099001 -X PATCH https://znbindonesia.com/ora/address/59
+
+curl -H "Content-Type: application/json"  --data '{"customer_id" : 2, "address" : "jl cingised"}' --user znb:4Lk4hF1s099001 -X PUT https://znbindonesia.com/ora/address/59
+
+
+#delete row
+URL        : http://ol7-121.localdomain:8080/ords/pdb1/testuser1/testmodule8/emp/
+Method     : DELETE
+Header     : Content-Type: application/json
+Raw Payload: { "empno": 9999 }
+
+$ curl -i -X DELETE --data-binary @/tmp/delete-payload.json -H "Content-Type: application/json" http://ol7-121.localdomain:8080/ords/pdb1/testuser1/testmodule8/emp/
+
+
+#create ords cursor nested json
+SELECT DEPARTMENT_NAME,
+DEPARTMENT_ID,
+CURSOR(SELECT e.EMPLOYEE_ID,
+			  e.LAST_NAME, 
+			  CURSOR(SELECT j.START_DATE, j.END_DATE, j.JOB_ID
+	   FROM  JOB_HISTORY j
+	   WHERE  e.EMPLOYEE_ID = j.EMPLOYEE_ID
+	   ORDER BY e.EMPLOYEE_ID) AS "job_history"
+	   FROM  EMPLOYEES e
+	   WHERE  e.DEPARTMENT_ID = d.DEPARTMENT_ID
+	   ORDER BY e.EMPLOYEE_ID) AS "employees"
+FROM  DEPARTMENTS d
+ORDER BY d.DEPARTMENT_NAME	  
+
+
+SELECT product_name,
+category_id, 
+CURSOR(SELECT c.category_id, 
+            c.category_name
+       FROM category c
+       WHERE c.category_id = p.category_id
+      ) as "category"
+FROM product p
+ORDER BY p.id
+
+
+SELECT cart_id, session_id, customer_id,
+CURSOR( select t.customer_id, c.fullname
+          FROM customer
+      )
+
+URL        : https://ora19.haidar.id/ords/commerce/product/
+Method     : DELETE
+Header     : Content-Type: application/json
+Raw Payload: { "id": 21 }
+
+
+curl -i -X DELETE --data-binary @delete-payload.json -H "Content-Type: application/json" https://ora19.haidar.id/ords/commerce/product/
+
+
+https://ora19.haidar.id/ords/commerce/product/?q={"$orderby":{"id":"DESC"}}
+q={"$orderby":{"ENAME":"ASC"}}
+
+
+#ords post
+curl -i -H "Content-Type: application/json" -X POST -d "{ \"province_id\" :101, \"province\": \"Iowa\" }"  http://ora19.haidar.id/ords/commerce/province_ongkir
+
+curl -i -X POST --user DEMO:demo --data-binary "select sysdate from dual" -H "Content-Type: application/sql" -k https://localhost:8088/ords/demo/_/sql
+
+curl -i -X POST --user haicommerce:4Lk4hFi114001 --data-binary "select sysdate from dual" -H "Content-Type: application/sql" -k https://ora19.haidar.id/ords/commerce/province_ongkir/
+
+curl -i -X POST --user haicommerce:4Lk4hFi114001 -d "{\"cart_id\": 344 \"session_id\" : \"sdfdsf123\" }" -H "Content-Type: application/sql" -k https://ora19.haidar.id/ords/commerce/cart/
+
+curl -i -X POST -d "{\"cart_id\": 344 \"session_id\" : \"sdfdsf123\" }" -H "Content-Type: application/json" -k https://ora19.haidar.id/ords/commerce/cart/
+
+curl -i https://ora19.haidar.id/ords/commerce/province_ongkir/
+
+curl -i -k --user haicommerce:4Lk4hFi114001 https://ora19.haidar.id/ords/commerce/cart/
+
+curl -X POST --user haicommerce:4Lk4hFi114001 -H "Content-Type: application/json" -d '{ "session_id": "haidarSessionIdNew8844"}' https://ora19.haidar.id/ords/commerce/cart/
+
+curl -X POST --user haicommerce:4Lk4hFi114001 -H "Content-Type: application/json" -d '{ "address": "jl cingised b no 24"}' https://ora19.haidar.id/ords/commerce/address/
+
+
+curl -i -X POST -d "{\"session_id\" : \"sdfdsf123\" }" -k --user haicommerce:4Lk4hFi114001 https://ora19.haidar.id/ords/commerce/cart/
+
+#ords get
+curl -i -k --user znb:4Lk4hF1s099001 https://znbindonesia.com/ora/product/27 -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+
+curl -i -k --user znb:4Lk4hF1s099001 https://znbindonesia.com/ora/cart/6 -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+curl -i -k --user znb:4Lk4hF1s099001 https://znbindonesia.com/ora/product/?q={"$orderby":{"price":"DESC"}}
+
+
+curl -i -k https://znbindonesia.com/api/product/21 -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+
+curl -i -k --user znb:4Lk4hF1s099001 https://znbindonesia.com/ora/cartline/12 -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+
+
+curl -i -k --user znb:4Lk4hF1s099001 https://znbindonesia.com/ora//product/?q={'$orderby':{"price":"DESC"}} -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+curl -X POST -d @file server:port -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+
+curl -i -k https://javanews.tv/api/read/7155 -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+
+curl -i -k https://ora19.haidar.id/ords/znb/get/product -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+curl -i -k https://znbindonesia.com/api/product/21 -w %{time_connect}:%{time_starttransfer}:%{time_total}
+
+
+
+#ords like
+{"city_name": {"$instr":"jakarta"}, "$orderby": {"city_id" : "ASC"}}
+
+{"city_name": {"$like":"Jakarta%"}}
+http://ora19.haidar.id/ords/commerce/city_ongkir?q={"city_name": {"$like":"Jakarta%"}, "$orderby": {"city_id" : "DESC"}}
+
+
+
+
+./sql haicommerce/4Lk4hFi114001@ora19.haidar.id:1521/orclpdb.haidar.id

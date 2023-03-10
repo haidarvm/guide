@@ -1,0 +1,4 @@
+echo "/usr/local/lib" >> /etc/ld.so.conf
+locate libGeoIP.so.1
+ldconfig
+updatedb

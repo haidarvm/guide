@@ -1,0 +1,14 @@
+ 
+readlink -f $(which java)
+
+
+JAVA_HOME=/usr/java/jdk-11.0.4/bin/java/
+
+sudo alternatives --install /usr/bin/javac javac /usr/java/jdk-11.0.4/javac 2
+alternatives --config java
+
+
+alternatives --install /usr/bin/jar jar /opt/jdk1.8.0_201/bin/jar 2
+alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_201/bin/javac 2
+alternatives --set jar /opt/jdk1.8.0_201/bin/jar
+alternatives --set javac /opt/jdk1.8.0_201/bin/javac

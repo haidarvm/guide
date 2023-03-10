@@ -1,0 +1,15 @@
+Berikut cabang Ilmu Qur'an
+- Ilmu Lughat
+- Ilmu Nahwu
+- Ilmu Sharaf
+- Ilmu Isytiqaq
+- Ilmu Ma'ani
+- Ilmu Bayan
+- Ilmu Qira'at
+- Ilmu Aqa'id
+- Ilmu Usul Fiqih
+- Ilmu Asbabun-Nuzul
+- Ilmu Nasikh Mansukh
+- Ilmu Fiqih
+- Ilmu Hadits
+- Ilmu Wahbi

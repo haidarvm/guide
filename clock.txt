@@ -1,0 +1,2 @@
+hwclock --set --date="7/18/09 19:23:00"
+hwclock --hctosys

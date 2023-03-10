@@ -1,0 +1,19 @@
+ siege -d10 -c10 -t1m http://192.168.1.3/index.html
+ 
+192.168.1.11     haipi
+192.168.1.4     haipi2
+192.168.1.7     haipi4
+
+
+ssh-copy-id -i pi@192.168.1.14
+
+
+sudo hdparm -tT /dev/mmcblk0
+
+# config.txt	
+force_turbo=1 #Voids Warranty!!!
+arm_freq=1000
+sdram_freq=500
+core_freq=500
+over_voltage=6
+gpu_mem=320

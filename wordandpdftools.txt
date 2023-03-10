@@ -1,0 +1,11 @@
+#convert doc to pdf
+lowriter --headless --convert-to pdf *.doc 
+
+#combine pdf
+pdfunite in-1.pdf in-2.pdf in-n.pdf out.pdf
+
+
+pdfunite *.pdf all.pdf
+
+
+pdfunite PenawaranAplikasiYP3I.pdf invoiceYP3IHusnulChtimah.pdf PenawaranAplikasiYP3IdanInvoice.pdf
