@@ -1,15 +1,23 @@
 #  find
 /findhere
 
-# copy one line
+# copy one line copy current line, 
 yy
+3yy
+y%
+y^
+yiw
 
+# paste paste before cursor, paste after cursor
+P
+p
 # go to line 
 :27
 
 # cut line
 
 # delete line
-
-
+dd
+3dd
+d$
 # 

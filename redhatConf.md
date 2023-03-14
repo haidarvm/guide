@@ -305,7 +305,15 @@ sudo /usr/local/bin/certbot-auto --nginx
 
 sudo /usr/local/bin/certbot-auto --nginx --verbose --debug --email haidarvm@gmail.com -d haidarvm.com -d www.haidarvm.com -d ali.haidarvm.com
 
-#cockpit
+# cockpit
+$ sudo semanage port -a -t websm_port_t -p tcp PORT_NUMBER
+sudo semanage port -a -t websm_port_t -p tcp PORT_NUMBER
+sudo systemctl edit cockpit.socket
+[Socket]
+ListenStream=
+ListenStream=PORT_NUMBER
+
+
 
 ## Cara install Gtk3.20+ theme Nodic
 sudo dnf install gnome-tweaks

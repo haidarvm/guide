@@ -15,8 +15,12 @@ psql
 -- create password
 \password
 
-
+-- reset password
+nano /var/lib/pgsql/13/data/pg_hba.conf
+edit line : 
+local   all             all                                trust
 sudo systemctl restart postgresql
+
 -- change main conf md5
 nano /var/lib/pgsql/12/data/pg_hba.conf
 nano /etc/postgresql/13/main/pg_hba.conf
