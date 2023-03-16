@@ -20,4 +20,9 @@ p
 dd
 3dd
 d$
-# 
+
+# find and replace , current line, replace all, replace all in file, find and delete all
+:s/foo/bar/
+:s/foo/bar/g
+:%s/foo/bar/g
+:s/foo//g

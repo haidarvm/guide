@@ -1,4 +1,7 @@
-# restart service
+#  service
+doas rcctl check sshd
+doas rcctl start sshd
+doas rcctl enable sshd
 sudo rcctl reload sshd
 
 # update
@@ -6,5 +9,11 @@ syspatch
 pkg_add -Uu
 
 
-# pkg
+# pkg list ports
 $ ls /usr/ports
+
+# pkg info
+pkg info -Q apache2
+
+
+# pkg remove
