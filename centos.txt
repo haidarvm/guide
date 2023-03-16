@@ -1,0 +1,5 @@
+# centos 7
+# epel 
+yum -y install epel-release
+sudo yum install dnf
+sudo dnf install httpd 
