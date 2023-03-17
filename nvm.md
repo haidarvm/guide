@@ -13,9 +13,8 @@ nvm ls-remote
 # list downloaded
 
 # use
-nvm use node
+nvm use node 16
 nvm run node --version
-
 
 # uninstall 
 nvm uninstall 16

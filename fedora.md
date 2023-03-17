@@ -6,6 +6,14 @@ obmenu generator
 #update grub2
 sudo grub2-mkconfig -o /etc/grub2-efi.cfg
 
+# install rpmfusion
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+# install rpmfusion non free
+sudo dnf install rpmfusion-free-release-tainted
+sudo dnf install rpmfusion-nonfree-release-tainted
+
 #disable selinux
 sudo setenforce 0
 
@@ -16,3 +24,17 @@ SELINUX to disabled
 
 # remi
 dnf install https://rpms.remirepo.net/fedora/remi-release-35.rpm
+
+
+# enable wayland screenshare
+Make sure you have enabled pipewire screenshare in chrome://flags.
+
+Make sure you dont run fullscreen apps to share, else you might need to disable fullscreen unredirect
+
+# install anydesk
+sudo dnf install gtkglext-libs
+wget -c 'https://download.anydesk.com/linux/anydesk_6.2.0-1_x86_64.rpm' -P /tmp
+# if upgrade
+sudo rpm -Uvh --nodeps /tmp/anydesk_6.2.0-1_x86_64.rpm
+# if fresh install
+sudo rpm -ivh --nodeps /tmp/anydesk_6.2.0-1_x86_64.rpm

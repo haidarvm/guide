@@ -14,6 +14,10 @@ mysqlcheck -uusername -p databasename
 -- all database
 mysqlcheck -c -u root -p --all-databases
 
+-- repair  database
+mysqlcheck dbname table tbname
+
+
 
 -- error ERROR 1419 (HY000) at line 31369: You do not have the SUPER privilege and binary logging is enabled 
 mysql -u username -p set global log_bin_trust_function_creators=1;
@@ -29,8 +33,8 @@ SHOW VARIABLES LIKE '%max_connect%';
 -- show create tables sql format
 SHOW CREATE TABLE `customer_address`;
 
--- check list users
-Select user from mysql.user;  
+-- check list  show users, check user
+Select user,host from mysql.user; 
 
 -- create user
 CREATE USER 'haidarvm'@'localhost';
@@ -62,6 +66,11 @@ DROP USER 'ekampusid'@'localhost';
 
 mysql -u userName -p -f -D dbName < script.sql
 
+
+CREATE USER 'root'@'%' IDENTIFIED BY 'Bismillah';
+GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'Bismillah';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Bismillah' WITH GRANT OPTION;
+
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'bismillah';
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'bismillah';
 FLUSH PRIVILEGES;
@@ -69,10 +78,13 @@ FLUSH PRIVILEGES;
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'bismillah';
 
 CREATE USER 'haidar'@'%' IDENTIFIED BY 'bismillah';
-CREATE USER 'dini'@'172.17.0.1' IDENTIFIED BY 'bismillah';
-GRANT ALL ON *.* TO 'dini'@'172.17.0.1' IDENTIFIED BY 'bismillah';
-GRANT ALL PRIVILEGES ON *.* To 'dini'@'172.17.0.1' IDENTIFIED BY 'bismillah';
+
+CREATE USER 'john'@'172.17.0.2' IDENTIFIED BY 'bismillah';
+GRANT ALL ON *.* TO 'john'@'172.17.0.2' IDENTIFIED BY 'bismillah';
+GRANT ALL PRIVILEGES ON *.* To 'john'@'172.17.0.2' IDENTIFIED BY 'bismillah';
+
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.17.0.%' IDENTIFIED BY 'bismillah' WITH GRANT OPTION;
+
 GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'bismillah';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'bismillah' WITH GRANT OPTION;
 
@@ -116,7 +128,7 @@ updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMEST
 ALTER TABLE `whatevertable` ADD `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL  AFTER `created_at`;
 
 -- alter change field to update time on update
-ALTER TABLE whatevertable  CHANGE whatevercolumn  whatevercolumn TIMESTAMP NOT NULL  DEFAULT CURRENT_TIMESTAMP   ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE whatevertable  CHANGE whatevercolumn  TIMESTAMP NOT NULL  DEFAULT CURRENT_TIMESTAMP   ON UPDATE CURRENT_TIMESTAMP;
 
 -- alter change data type
 ALTER TABLE post_data MODIFY body JSON;

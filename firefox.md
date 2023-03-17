@@ -25,3 +25,9 @@ Ctrl + W
 
 # new Private Window
 Ctrl + Shift + P
+
+
+# repair woe usb
+sudo touch /etc/ld.so.conf.d/gtk3.conf
+echo '/usr/lib64/gtk-3.0/modules' | sudo tee /etc/ld.so.conf.d/gtk3.conf
+sudo ldconfig

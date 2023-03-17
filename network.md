@@ -49,7 +49,11 @@ sudo resolvectl dns wlp2s0 8.8.8.8 4.4.4.4
 iftop 
 sudo nethogs
 
+# vpn 
 
+# reverse ssh
+ssh -R 22:2022 haidar@dont-look-at.me
+ssh -p 2022 haider@dont-look-at.me sh
 
 sudo tcpdump -i wlo1 dst host 118.98.97.151
 
