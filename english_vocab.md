@@ -48,8 +48,32 @@ hollow
 loathe
 #r
 diverse
+#nger
+atrocious
+#melahap
+devour (eat)
+#sA
+dementia
+#pb
+discrepancies
+#menyimpang
+deviant
+#diragukan pengarangnya
+Apocrypha
+#my
+#tBth
+irrefutable
+i mean cadaver
+#melebar
+with eyes so dilated
+#gelis
+fitful
+#send
+demselfies
 #h
 solace
+#perjalanan
+commute
 #pd
 complacent
 #kec
@@ -72,3 +96,5 @@ hideous
 elaborate
 #S
 Epitome
+#mb
+deteriorating

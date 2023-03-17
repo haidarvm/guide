@@ -21,10 +21,18 @@ sudo gpasswd -a yourUserName lsadm
 # set html path to group and nobody owner
 chown -R username:nobody /path/to/dir/html
 
+
+# setup php change php setting
+https://openlitespeed.org/kb/change-php-settings-by-vhost-and-user/
+ 
 # for renew 
 sudo systemctl stop lsws
 
 sudo certbot certonly -d www.example.com -d example.com
+
+# firewall
+firewall-cmd --zone=public --add-port=7080/tcp --permanent
+firewall-cmd --reload
 
 # logs
 $VH_ROOT/logs/$VH_NAME_error.log
@@ -77,6 +85,8 @@ Domains * = example.com
 
 # create vhost with proxy reverse
 
+
+# denied file xmlrc
 
 # log filename
 $VH_ROOT/logs/$VH_NAME_error.log

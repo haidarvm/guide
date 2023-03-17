@@ -1,4 +1,5 @@
 ## FIRST INSTALLATION ##
+## try rhel 9 ##
 ## first Step
 
 Download
@@ -161,6 +162,7 @@ chcon -R -t httpd_sys_rw_content_t  /var/www/html
 
 
 restorecon -R /home
+setsebool -P httpd_enable_homedirs 1
 setsebool -P httpd_can_network_connect 1
 setsebool -P httpd_read_user_content 1
 setsebool -P httpd_unified 1
@@ -232,7 +234,7 @@ rpm -qa | grep remi
 dnf module list php
 dnf module reset php
 dnf module enable php:remi-8.0
-dnf install php-process php-cli php-pgsql php-mysqlnd php-json php-intl php-gd php-mbstring php-xml php-fpm php-curl php-opcache php-devel php-fpm php-readline -y
+dnf install php-process  php-cli php-pgsql php-mysqlnd php-json php-intl php-gd php-mbstring php-xml php-fpm php-curl php-opcache php-devel php-fpm php-zip php-readline -y
 firewall-cmd --zone=public --add-port=8787/tcp --permanent
 firewall-cmd --reload
 
@@ -286,6 +288,10 @@ sudo /usr/local/bin/certbot-auto --nginx
 sudo /usr/local/bin/certbot-auto --nginx --verbose --debug --email haidarvm@gmail.com -d haidarvm.com -d www.haidarvm.com -d ali.haidarvm.com
 
 #cockpit
+
+# install gui
+sudo dnf groupinstall workstation
+
 
 ## Cara install Gtk3.20+ theme Nodic
 sudo dnf install gnome-tweaks
@@ -385,8 +391,13 @@ chmod 0600 /var/spool/mail/*
 echo "Subject: sendmail test" | sendmail -v haidarvm@gmail.com
 
 
-#epel
+# epel
 dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
+# epel 9
+subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
+dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+
 
 #urar unrar
 7z x file.rar

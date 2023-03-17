@@ -5,6 +5,8 @@ ffmpeg -i modernHousePreview.avi -s 1280x720 -c:a copy modernHousePreview.mp4
 ffmpeg -i 45NoSupers_1_smalls.mp4 -s 426x240 -c:a copy -strict -2 45NoSupers_1_small240.mp4
 
 # whatsapp
+ffmpeg -i 20220808_1756151.MP4 -s 720x1280 -c:a copy binamarga.mp4
+
 ffmpeg -i houseFailedRotate.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p houseFailedRotate.mp4
 
 ffmpeg -i houseWorksRotate.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p houseWorksRotate.mp4

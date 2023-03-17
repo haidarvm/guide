@@ -99,6 +99,20 @@ grep 'Swap' /proc/meminfo
 size="4G" && file_swap=/swapfile_$size.img && sudo touch $file_swap && sudo fallocate -l $size /$file_swap && sudo mkswap /$file_swap && sudo swapon -p 20 /$file_swap
 
 
+# nginx 
+# ubuntu php
+# pass PHP scripts to FastCGI server
+#
+location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+#
+#       # With php-fpm (or other unix sockets):
+		fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+#       # With php-cgi (or other tcp sockets):
+#       fastcgi_pass 127.0.0.1:9000;
+}
+
+
 
 
 # install with php8.1 odrej
@@ -120,3 +134,10 @@ location ~ \.php$ {
 		include snippets/fastcgi-php.conf;
 		fastcgi_pass unix:/run/php/php7.4-fpm.sock;
 }
+
+
+## ubuntu bionic install composer
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+HASH="$(wget -q -O - https://composer.github.io/installer.sig)"
+php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php --install-dir=/usr/local/bin --filename=composer
