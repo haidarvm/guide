@@ -14,6 +14,13 @@ mysqlcheck -uusername -p databasename
 -- all database
 mysqlcheck -c -u root -p --all-databases
 
+<<<<<<< HEAD
+=======
+-- repair  database
+mysqlcheck dbname table tbname
+
+
+>>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
 
 -- error ERROR 1419 (HY000) at line 31369: You do not have the SUPER privilege and binary logging is enabled 
 mysql -u username -p set global log_bin_trust_function_creators=1;
@@ -29,8 +36,13 @@ SHOW VARIABLES LIKE '%max_connect%';
 -- show create tables sql format
 SHOW CREATE TABLE `customer_address`;
 
+<<<<<<< HEAD
 -- check list users
 Select user from mysql.user;  
+=======
+-- check list  show users, check user
+Select user,host from mysql.user; 
+>>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
 
 -- create user
 CREATE USER 'haidarvm'@'localhost';
@@ -62,6 +74,14 @@ DROP USER 'ekampusid'@'localhost';
 
 mysql -u userName -p -f -D dbName < script.sql
 
+<<<<<<< HEAD
+=======
+
+CREATE USER 'root'@'%' IDENTIFIED BY 'Bismillah';
+GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'Bismillah';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Bismillah' WITH GRANT OPTION;
+
+>>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'bismillah';
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'bismillah';
 FLUSH PRIVILEGES;
@@ -69,19 +89,32 @@ FLUSH PRIVILEGES;
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'bismillah';
 
 CREATE USER 'haidar'@'%' IDENTIFIED BY 'bismillah';
+<<<<<<< HEAD
 CREATE USER 'dini'@'172.17.0.1' IDENTIFIED BY 'bismillah';
 GRANT ALL ON *.* TO 'dini'@'172.17.0.1' IDENTIFIED BY 'bismillah';
 GRANT ALL PRIVILEGES ON *.* To 'dini'@'172.17.0.1' IDENTIFIED BY 'bismillah';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.17.0.%' IDENTIFIED BY 'bismillah' WITH GRANT OPTION;
+=======
+
+CREATE USER 'john'@'172.17.0.2' IDENTIFIED BY 'bismillah';
+GRANT ALL ON *.* TO 'john'@'172.17.0.2' IDENTIFIED BY 'bismillah';
+GRANT ALL PRIVILEGES ON *.* To 'john'@'172.17.0.2' IDENTIFIED BY 'bismillah';
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.17.0.%' IDENTIFIED BY 'bismillah' WITH GRANT OPTION;
+
+>>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
 GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'bismillah';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'bismillah' WITH GRANT OPTION;
 
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'bismillah';
 FLUSH PRIVILEGES;
 
+<<<<<<< HEAD
 UPDATE users
 SET pass = md5('Bismillah') WHERE ID=3
 
+=======
+>>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
 UPDATE urls
 SET url = REPLACE(url, 'domain1.com/images/', 'domain2.com/otherfolder/')
 
@@ -101,8 +134,13 @@ sed 's/utf8mb4_0900_ai_ci/utf8_general_ci/g' original-mysql-data.sql > updated-m
 sed 's/utf8mb4/utf8/g' original-mysql-data.sql > updated-mysql-data.sql
 
 
+<<<<<<< HEAD
 sed 's/utf8mb4_0900_ai_ci/utf8_general_ci/g' 2020-10-26-wp > updated-2020-10-26-wp.sql
 sed 's/utf8mb4/utf8/g' updated-2020-10-26-wp.sql > updated2-2020-10-26-wp.sql
+=======
+sed 's/utf8mb4_0900_ai_ci/utf8_general_ci/g' 2020-10-26-fisipunla > updated-2020-10-26-fisipunla.sql
+sed 's/utf8mb4/utf8/g' updated-2020-10-26-fisipunla.sql > updated2-2020-10-26-fisipunla.sql
+>>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
 
 select GROUP_CONCAT(stat SEPARATOR ' ') from (select concat('KILL ',id,';') as stat from information_schema.processlist) as stats;
 
@@ -119,7 +157,11 @@ updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMEST
 ALTER TABLE `whatevertable` ADD `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL  AFTER `created_at`;
 
 -- alter change field to update time on update
+<<<<<<< HEAD
 ALTER TABLE whatevertable  CHANGE whatevercolumn  whatevercolumn TIMESTAMP NOT NULL  DEFAULT CURRENT_TIMESTAMP   ON UPDATE CURRENT_TIMESTAMP;
+=======
+ALTER TABLE whatevertable  CHANGE whatevercolumn  TIMESTAMP NOT NULL  DEFAULT CURRENT_TIMESTAMP   ON UPDATE CURRENT_TIMESTAMP;
+>>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
 
 -- alter change data type
 ALTER TABLE post_data MODIFY body JSON;

@@ -1,11 +1,22 @@
 # debian
+<<<<<<< HEAD
 docker run -t -d --name debiantest debian:slim
 docker run -t -d --name centos7 centos/httpd-24-centos7 
 docker exec -it my_debian bash
 
 #pull centos 7
 docker pull centos:7
+docker pull debian:testing-slim
+docker run -t -d --name debiantest debian:testing-slim
+docker exec -it debiantest bash
+apt update
 
+# ubuntu bionic
+docker run -t -d --name bionictest ubuntu:bionic
+
+#pull centos 7
+docker pull centos:7
+docker run -t -d --name centos7 centos/httpd-24-centos7 
 # docker pull mysql latest 
 docker pull mysql:latest
 docker run --name mytest -p 33060:3306 -e MYSQL_ROOT_PASSWORD=Bismillah -d mysql
@@ -55,6 +66,18 @@ docker run -v /home/haidar/public_html/test/php/apps/:/var/www/apps -t -d --name
 # go to container folder
 chroot /var/lib/docker/containers/2465790aa2c4*/root/
 
+
+# run with running container
+# docker commit CONTAINERID NEWIMAGENAME
+docker commit 10300d2992f4  bionictest
+
+# go to container folder
+chroot /var/lib/docker/containers/2465790aa2c4*/root/
+
+# eth0 network oly
+edit ipv4 routes
+use this connection only for resources on this network
+
 # docker copy from host to container --use container name
 docker cp folder focal:/var/www/html/
 docker cp foo.txt container_id:/home/
@@ -64,6 +87,13 @@ docker cp container_id:/home/foo.txt foo.txt
 
 # add name container id 
 docker rename 345df9ed5b47 new_name
+
+
+# get ip address
+docker inspect -f '{{ .NetworkSettings.IPAddress }}' container_name_or_container_id
+
+podman inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name_or_container_id>
+
 
 # run as root
 sudo docker exec -u root -it centos7 bash
@@ -212,6 +242,23 @@ sudo podman build -t phphaidemo:v1 .
 
 # run image
 sudo podman run -d -p9090:80 phpdemo:v1
+
+
+# podman build with dockerfile
+podman build -t ubuntubionic -f ./Dockerfile
+
+# run 
+podman run -it ubuntubionic
+podman run -p 8080:80 --name bionictest  ubuntubionic
+podman run -p 8080:80 --name bionic --rm ubuntubionic
+podman run -p 8090:80 --name bionic bionictest
+
+
+# run with volume
+podman run --name ubuntubionic \
+  -v /home/haidar/public_html/test/rs/medicalapp-alislam:/usr/share/nginx/html:Z \
+  -p 9080:80 -d ubuntu:bionic
+
 
 # docker check log
 sudo docker logs --tail=50  container_name

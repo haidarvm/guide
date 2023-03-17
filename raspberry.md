@@ -8,7 +8,8 @@ cd /rootfs/etc
 
 # simple dhcpd
 sudo vi /etc/dhcpcd.conf
-
+cd /rootfs/etc
+sudo nano dhcpcd.conf
 # uncomment this
 slaac private
 interface eth0

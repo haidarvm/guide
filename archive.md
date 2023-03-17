@@ -1,6 +1,16 @@
 #tar.gz
 tar -xvzf community_images.tar.gz
 
+
+#is faster than, tar -xf file.tar
+dd bs=4M conv=fsync if=file.tar | tar -xf -
+
+# 
+
+dd command is for taking input faster, pipe "|" is for giving that input to tar, tar -xf is telling it to extract data,  "-" is to tell input is from stdin
+
+
+
 #compress
 tar -cvzf tarballname.tar.gz itemtocompress
 tar -cvzf pcimahpindai.tar.gz pcimah
@@ -10,6 +20,21 @@ tar -cvf myfolder.tar myfolder
 
 #tar
 tar -xf archive.tar -C /target/directory
+
+
+#atau di bash nya arahin ke root dulu
+cd /root
+
+cd /home/haidar/Documents/
+sudo tar -zcvpf rootall.tar.gz  /root
+
+tar -C /root/ -cvf rootall2.tar selecteddir
+
+tar -C /root -cvf rootall.tar.gz .
+
+tar -xvzf rootall.tar.gz  --strip-components=1
+
+tar -C /home/haidar/Documents/ -cvf rootall.tar.gz .
 
 #gz
 gunzip -k file.gz
@@ -26,6 +51,11 @@ tar -C /myfolder -xvf yourfile.tar
 
 #extrac bz2
 bzip2 -d your-filename-here.bz2
+
+#extract to 
+tar -xf /home/haidar/Documents/distFG.tar -C /root/
+
+#backup 
 
 #decompress
 7z e archive.zip

@@ -21,11 +21,25 @@ sudo gpasswd -a yourUserName lsadm
 # set html path to group and nobody owner
 chown -R username:nobody /path/to/dir/html
 
+<<<<<<< HEAD
+=======
+
+# setup php change php setting
+https://openlitespeed.org/kb/change-php-settings-by-vhost-and-user/
+ 
+>>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
 # for renew 
 sudo systemctl stop lsws
 
 sudo certbot certonly -d www.example.com -d example.com
 
+<<<<<<< HEAD
+=======
+# firewall
+firewall-cmd --zone=public --add-port=7080/tcp --permanent
+firewall-cmd --reload
+
+>>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
 # logs
 $VH_ROOT/logs/$VH_NAME_error.log
 $VH_ROOT/logs/$VH_NAME_access.log
@@ -78,6 +92,8 @@ Domains * = example.com
 # create vhost with proxy reverse
 
 
+
+# denied file xmlrc
 # log filename
 $VH_ROOT/logs/$VH_NAME_error.log
 $VH_ROOT/logs/$VH_NAME_access.log

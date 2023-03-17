@@ -2,6 +2,11 @@
 ## first Step
 
 # begin Download
+=======
+## try rhel 9 ##
+## first Step
+
+Download
 https://developers.redhat.com/rhel8
 
 # link 
@@ -46,6 +51,13 @@ dnf install setroubleshoot setools
 # add subscription
 subscription-manager register --auto-attach
 
+# install from free developer
+https://developers.redhat.com/products/rhel/download
+
+# or online
+subscription-manager register --username <username> --password <password> --auto-attach
+subscription-manager register
+
 # enable autocomplete
 dnf install bash-completion
 
@@ -69,6 +81,12 @@ sudo nano /etc/fstab
 cat /proc/sys/vm/swappiness
 sudo sysctl vm.swappiness=10
 sudo nano /etc/sysctl.conf
+# install at startup
+sudo vi /etc/fstab
+/swapfile   swap    swap    sw  0   0
+cat /proc/sys/vm/swappiness
+sudo sysctl vm.swappiness=10
+sudo vi /etc/sysctl.conf
 vm.swappiness = 10
 vm.vfs_cache_pressure = 50
 sudo sysctl vm.vfs_cache_pressure=50
@@ -98,6 +116,9 @@ firewall-cmd --zone=public --add-port=9236/tcp --permanent
 sudo firewall-cmd --reload
 firewall-cmd --zone=public --add-port=012/tcp --permanent
 sudo firewall-cmd --list-all
+firewall-cmd --zone=public --add-port=369/tcp --permanent
+sudo firewall-cmd --list-all
+firewall-cmd  --remove-service=ssh
 firewall-cmd --zone=public --add-service=mysql --permanent
 
 # firewall-cmd remove port
@@ -107,6 +128,7 @@ firewall-cmd --reload
 
 # firewall remove service
 firewall-cmd  --remove-service=ssh --permanent
+firewall-cmd --reload 
 
 # nginx enable different port
 semanage port -a -t http_port_t  -p tcp 8080
@@ -167,6 +189,7 @@ chcon -R -t httpd_sys_rw_content_t  /var/www/html
 
 
 restorecon -R /home
+setsebool -P httpd_enable_homedirs 1
 setsebool -P httpd_can_network_connect 1
 setsebool -P httpd_read_user_content 1
 setsebool -P httpd_unified 1
@@ -239,6 +262,7 @@ dnf install net-tools
 
 
 ### php-fpm-8.0 ###
+### php-fpm-7.4.14 ###
 dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 rpm -qa | grep epel
 dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
@@ -246,7 +270,7 @@ rpm -qa | grep remi
 dnf module list php
 dnf module reset php
 dnf module enable php:remi-8.0
-dnf install php-process php-cli php-pgsql php-mysqlnd php-json php-intl php-gd php-mbstring php-xml php-fpm php-curl php-opcache php-devel php-fpm php-readline -y
+dnf install php-process  php-cli php-pgsql php-mysqlnd php-json php-intl php-gd php-mbstring php-xml php-fpm php-curl php-opcache php-devel php-fpm php-zip php-readline -y
 firewall-cmd --zone=public --add-port=8787/tcp --permanent
 firewall-cmd --reload
 
@@ -291,6 +315,9 @@ make WITH_LUAJIT=/usr WITH_OPENSSL=/usr
 $ sudo firewall-cmd --permanent --service cockpit --add-port=PORT_NUMBER/tcp
 $ sudo firewall-cmd --permanent --service cockpit --remove-port=OLD_PORT_NUMBER/tcp
 
+make WITH_LUAJIT=/usr WITH_OPENSSL=/usr
+
+
 #### certbot ####
 dnf install certbot python3-certbot-nginx
 
@@ -313,6 +340,8 @@ sudo systemctl edit cockpit.socket
 ListenStream=
 ListenStream=PORT_NUMBER
 
+# install gui
+sudo dnf groupinstall workstation
 
 
 ## Cara install Gtk3.20+ theme Nodic
@@ -417,10 +446,16 @@ echo "Subject: sendmail test" | sendmail -v haidarvm@gmail.com
 dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 
+
+# epel 9
+subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
+dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+
+
 #urar unrar
 7z x file.rar
 
-#install rpm fusion
+#install rpm fusion 9
 sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 sudo rpm -ivh https://download1.rpmfusion.org/free/el/rpmfusion-free-release-9.noarch.rpm 
 sudo rpm -ivh https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-9.noarch.rpm
@@ -428,6 +463,16 @@ sudo subscription-manager repos --enable "codeready-builder-for-rhel-9-$(uname -
 sudo subscription-manager repos --enable "codeready-builder-for-rhel-9-*-rpms"
 sudo dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 # sudo subscription-manager repos --enable "codeready-builder-for-rhel-9-*-rpms"
+
+#install rpm fusion 8
+sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo rpm -ivh https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm 
+sudo rpm -ivh https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm
+sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-$(uname -m)-rpms"
+sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-*-rpms"
+sudo dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
+# sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-*-rpms"
 dnf repolist rpmfusion-*
 dnf update
 dnf install aria2 -y
@@ -742,6 +787,10 @@ sudo systemctl list-unit-files --type=service
 sudo systemd-analyze critical-chain
 sudo systemd-analyze
 sudo systemd-analyze blame
+#check last status service boot
+sudo systemctl list-units
+sudo systemctl list-units --state failed
+sudo systemctl list-unit-files --type=service
 
 mssqlpass
 12Bismillah
@@ -1164,7 +1213,7 @@ https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/pa
 
 
 
-###### install  build libfm pcmanfm #########
+###### install pcmanfm build libfm pcmanfm #########
 sudo dnf install intltool gtk2-devel -y
 
 # Download (HTTP): https://downloads.sourceforge.net/pcmanfm/libfm-1.3.2.tar.xz
@@ -1182,7 +1231,9 @@ sudo make install
 tar xvf menu-cache-1.1.0.tar.xz
 cd menu-cache-1.1.0/
 aria2c http://www.linuxfromscratch.org/patches/blfs/svn/menu-cache-1.1.0-consolidated_fixes-1.patch
+
 patch -Np1 -i ./menu-cache-1.1.0-consolidated_fixes-1.patch
+patch -Np1 -i ../menu-cache-1.1.0-consolidated_fixes-1.patch
 
 ./configure --prefix=/usr    \
             --disable-static &&
@@ -1215,7 +1266,6 @@ git clone git@github.com:lxde/lxmenu-data.git
 ./autogen.sh
 ./configure --prefix=/usr --sysconfdir=/etc && make
 sudo make install
-
 #### done PCManFM ####
 
 
