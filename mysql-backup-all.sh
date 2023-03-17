@@ -25,7 +25,8 @@ for db in $databases; do
     continue
   fi
   
-  date=$(date -I)
+  #date=$(date -I)
+  date=$(date +"%d-%m-%y_%H-%M")
   if [ "$GZIP" -eq 0 ] ; then
     echo "Backing up database: $db without compression"      
     mysqldump -u $USER -p$PASSWORD --databases $db > $BACKUP_PATH/$date-$db.sql

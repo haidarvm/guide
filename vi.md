@@ -11,6 +11,7 @@ yiw
 # paste paste before cursor, paste after cursor
 P
 p
+
 # go to line 
 :27
 

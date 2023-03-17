@@ -2,6 +2,27 @@
 https://mirror.repository.id/ubuntu-cd/18.04.6/ubuntu-18.04.6-live-server-amd64.iso
 https://mirror.repository.id/ubuntu-cd/jammy/ubuntu-22.04-beta-live-server-amd64.iso
 
+<<<<<<< HEAD
+=======
+#rename mirror ubuntu apt source list
+sudo sed -i 's|http://us.archive.ubuntu.com|http://download.nus.edu.sg|g' /etc/apt/sources.list
+
+sudo sed -i 's|https://mirror.amscloud.co.id|http://archive.ubuntu.com|g' /etc/apt/sources.list.d/original.list
+
+sudo sed -i 's|http://archive.ubuntu.com|https://mirror.amscloud.co.id|g' /etc/apt/sources.list.d/original.list
+
+sudo sed -i 's|http://mirrors.tuna.tsinghua.edu.cn|http://archive.ubuntu.com|g' /etc/apt/sources.list
+
+sudo sed -i 's|http://mirror.0x.sg|http://mirrors.tuna.tsinghua.edu.cn|g' /etc/apt/sources.list
+
+sudo sed -i 's|http://deb.debian.org|http://mirror.dewabiz.com|g' /etc/apt/sources.list
+
+sudo sed -i 's|http://archive.ubuntu.com|http://mirrors.tuna.tsinghua.edu.cn|g' /etc/apt/sources.list
+
+
+sudo sed -i 's|http://mirrors.tuna.tsinghua.edu.cn|http://ports.ubuntu.com/|g' /etc/apt/sources.list
+sudo sed -i 's|http://ports.ubuntu.com/|http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports|g' /etc/apt/sources.list
+>>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
 
 # extras
 sudo apt-get install ubuntu-restricted-extras
@@ -81,6 +102,24 @@ grep 'Swap' /proc/meminfo
 size="4G" && file_swap=/swapfile_$size.img && sudo touch $file_swap && sudo fallocate -l $size /$file_swap && sudo mkswap /$file_swap && sudo swapon -p 20 /$file_swap
 
 
+<<<<<<< HEAD
+=======
+# nginx 
+# ubuntu php
+# pass PHP scripts to FastCGI server
+#
+location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+#
+#       # With php-fpm (or other unix sockets):
+		fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+#       # With php-cgi (or other tcp sockets):
+#       fastcgi_pass 127.0.0.1:9000;
+}
+
+
+
+>>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
 
 # install with php8.1 odrej
 sudo apt-get install ca-certificates apt-transport-https software-properties-common wget curl lsb-release -y
@@ -101,3 +140,13 @@ location ~ \.php$ {
 		include snippets/fastcgi-php.conf;
 		fastcgi_pass unix:/run/php/php7.4-fpm.sock;
 }
+<<<<<<< HEAD
+=======
+
+
+## ubuntu bionic install composer
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+HASH="$(wget -q -O - https://composer.github.io/installer.sig)"
+php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+>>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06

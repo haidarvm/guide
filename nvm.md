@@ -19,3 +19,8 @@ nvm run node --version
 
 # uninstall 
 nvm uninstall 16
+nvm use node 16
+nvm run node --version
+
+# uninstall 
+nvm uninstall 16

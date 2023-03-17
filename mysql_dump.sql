@@ -24,3 +24,8 @@ mysqldump -u root -p --databases  haidarvm otherdb elesedb > dball_backup15okt13
 mysqldump -u root -p  --no-data --routines --triggers dbname > dbname_triggers.sql
 
 mysqldump -u root -p databasename > databasename.sql
+mysqldump -u root -p --databases haidarvm otherdb elesedb > dball_backup15okt1319.sql
+
+
+#dump triggers only
+mysqldump -u root -p  --no-data --routines --triggers dbname > dbname_triggers.sql

@@ -9,6 +9,10 @@ sudo useradd -m -c "haidarvm" haidarvm  -s /bin/bash
 
 sudo useradd -m -c "admin" admin  -s /bin/bash 
 
+
+# with directory
+sudo useradd -m -d /home/player/dony -c "dony" dony  -s /bin/bash 
+
 sudo usermod -aG www-data haidarvm
 sudo usermod -a -G  nginx haidarvm
 sudo usermod -aG  nobody haidarvm
