@@ -24,6 +24,12 @@ sudo sed -i 's|http://ports.ubuntu.com/|http://mirrors.tuna.tsinghua.edu.cn/ubun
 # extras
 sudo apt-get install ubuntu-restricted-extras
 
+# locale
+sudo locale-gen en_US
+sudo locale-gen en_US.UTF-8
+sudo dpkg-reconfigure locales
+sudo update-locale LANG=en_US.UTF-8
+
 # install php8.1
 sudo apt install php8.1-fpm php8.1-cli php8.1-mysql  php8.1-gd php8.1-mbstring php8.1-xml php8.1-curl php8.1-zip php8.1-fpm php8.1-readline
 

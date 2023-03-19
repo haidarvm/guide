@@ -9,3 +9,7 @@ usermod -aG sudo username
 
 # change user
 su - haidar
+
+
+# dnsmasq
+sudo apt install dnsmasq

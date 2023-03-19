@@ -346,6 +346,9 @@ ListenStream=PORT_NUMBER
 # install gui
 sudo dnf groupinstall workstation
 
+## install rpmforge
+rhel 7 only
+
 
 ## Cara install Gtk3.20+ theme Nodic
 sudo dnf install gnome-tweaks
@@ -382,6 +385,12 @@ sudo mount -t virtiofs apps /mnt/app
 
 # bridge vm qemu-kvm
 https://www.redhat.com/sysadmin/setup-network-bridge-VM
+
+
+## install aria2
+autoreconf -i
+./configure
+make
 
 
 ### install dropbox ###
@@ -1244,7 +1253,7 @@ sudo make install
 # Download (HTTP): https://downloads.sourceforge.net/lxde/menu-cache-1.1.0.tar.xz
 tar xvf menu-cache-1.1.0.tar.xz
 cd menu-cache-1.1.0/
-aria2c http://www.linuxfromscratch.org/patches/blfs/svn/menu-cache-1.1.0-consolidated_fixes-1.patch
+aria2c https://www.linuxfromscratch.org/patches/blfs/svn/menu-cache-1.1.0-consolidated_fixes-1.patch
 
 patch -Np1 -i ./menu-cache-1.1.0-consolidated_fixes-1.patch
 patch -Np1 -i ../menu-cache-1.1.0-consolidated_fixes-1.patch
@@ -1254,6 +1263,7 @@ patch -Np1 -i ../menu-cache-1.1.0-consolidated_fixes-1.patch
 make
 sudo make install
 # Installation of libfm
+aria2c https://downloads.sourceforge.net/pcmanfm/libfm-1.3.2.tar.xz
 tar xvf libfm-1.3.2.tar.xz
 cd libfm-1.3.2/
 
@@ -1264,7 +1274,7 @@ make
 sudo make install 
 
 # install pcmanfm
-# Download (HTTP): https://downloads.sourceforge.net/pcmanfm/pcmanfm-1.3.1.tar.xz
+aria2c https://downloads.sourceforge.net/pcmanfm/pcmanfm-1.3.1.tar.xz
 
 # pkgconfig
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
@@ -1280,6 +1290,14 @@ git clone git@github.com:lxde/lxmenu-data.git
 ./autogen.sh
 ./configure --prefix=/usr --sysconfdir=/etc && make
 sudo make install
+
+# menulibre
+aria2c https://github.com/bluesabre/menulibre/releases/download/menulibre-2.2.3/menulibre-2.2.3.tar.gz
+cd menulibre-2.2.3
+sudo pip install distutils-extra-python
+sudo python3 setup.py install
+
+
 #### done PCManFM ####
 
 
