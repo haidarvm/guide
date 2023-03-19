@@ -33,3 +33,9 @@ hdparm -r0 /dev/sda
 
 mount -orw,remount /dev/sda1
 sudo mount -o rw /dev/sda1 /media/sandiskmicro
+
+# remove entry boot uefi
+sudo dnf install efibootmgr
+sudo modprobe efivars
+sudo efibootmgr
+sudo efibootmgr -b 1 -B

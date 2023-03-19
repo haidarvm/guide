@@ -21,7 +21,7 @@ git push
 
 
 # merge to master
-git checkout master
+git checkout main
 git merge exercise6
 git push origin master
 

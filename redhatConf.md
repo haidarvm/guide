@@ -263,9 +263,9 @@ dnf install net-tools
 
 ### php-fpm-8.0 ###
 ### php-fpm-7.4.14 ###
-dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 rpm -qa | grep epel
-dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
 rpm -qa | grep remi
 dnf module list php
 dnf module reset php
@@ -305,6 +305,10 @@ sudo visudo
 # uncomment
 %wheel  ALL=(ALL)       NOPASSWD: ALL
  
+ 
+## ocs url gnome look
+sudo dnf install  ocs-url-3.1.0-1.fc20.x86_64.rpm
+ 
 ## wrk ##
 sudo dnf -y groupinstall 'Development Tools'
 sudo dnf -y install openssl-devel git zlib-devel
@@ -312,6 +316,9 @@ make WITH_LUAJIT=/usr WITH_OPENSSL=/usr
 
 
 # install cockpit
+$ sudo semanage port -a -t websm_port_t -p tcp PORT_NUMBER
+sudo semanage port -a -t websm_port_t -p tcp PORT_NUMBER
+sudo systemctl edit cockpit.socket
 $ sudo firewall-cmd --permanent --service cockpit --add-port=PORT_NUMBER/tcp
 $ sudo firewall-cmd --permanent --service cockpit --remove-port=OLD_PORT_NUMBER/tcp
 
@@ -332,10 +339,6 @@ sudo /usr/local/bin/certbot-auto --nginx
 
 sudo /usr/local/bin/certbot-auto --nginx --verbose --debug --email haidarvm@gmail.com -d haidarvm.com -d www.haidarvm.com -d ali.haidarvm.com
 
-# cockpit
-$ sudo semanage port -a -t websm_port_t -p tcp PORT_NUMBER
-sudo semanage port -a -t websm_port_t -p tcp PORT_NUMBER
-sudo systemctl edit cockpit.socket
 [Socket]
 ListenStream=
 ListenStream=PORT_NUMBER
@@ -368,6 +371,17 @@ git clone https://github.com/metro2222/Rounded-Rectangle-dark-transparent/
 cd Rounded-Rectangle-dark-transparent/
 sudo cp -r  Rounded-Rectangle-dark-transparent\ 1.6v/ /usr/share/themes/
 # gnome-tweaks -> appearance -> Shell -> Rounded-Rectangle-dark-transparent\ 1.6v
+
+
+## virtualization
+dnf install qemu-kvm libvirt virt-install virt-viewer virt-manager -y
+dnf install spice-vdagent
+sudo mkdir /mnt/apps
+sudo mount -t virtiofs apps /mnt/app
+
+
+# bridge vm qemu-kvm
+https://www.redhat.com/sysadmin/setup-network-bridge-VM
 
 
 ### install dropbox ###
