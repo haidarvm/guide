@@ -15,3 +15,13 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 
 
 # command
+
+
+# create windows
+Ctrl + b c
+# next win
+Ctrl + b n
+# rename win
+ctrl + b ,
+# close  current
+ctrl + b &

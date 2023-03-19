@@ -8,7 +8,10 @@ nmap -sP 192.168.1.0/24
 #traceroute
 
 #list all port
-sudo nmap -sTU -O ip_address
+sudo nmap -sTU -O 192.168.1.1
+
+# list if blocked
+sudo nmap -sTU -O -Pn 192.168.1.1
 
 # display TCP information,
 ss -t
@@ -40,6 +43,28 @@ systemd-resolve --status
 # check dns record
 host -t ns domain.com
 host -t txt domain.com
+
+# change IP armbian /etc/network/interface
+allow-hotplug eth0
+auto eth0
+iface eth0 inet static
+        address 192.168.1.76
+        gateway 192.168.1.1
+        
+# change IP interfaces /etc/network/interface
+# Ethernet adapter 0
+auto eth0
+allow-hotplug eth0
+#no-auto-down eth0
+iface eth0 inet static
+address 192.168.1.78
+netmask 255.255.255.0
+gateway 192.168.1.1
+#dns-nameservers 192.168.1.1
+dns-nameservers 1.1.1.1 192.168.1.1
+
+# change IP nmcli
+nmcli con mod enps03 ipv4.addresses 192.168.2.20/24
 
 #create hostpot 
 nmcli dev wifi hotspot ifname wlp0s20u5 ssid rhelThinkCentre password "rhelthink"
