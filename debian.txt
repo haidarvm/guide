@@ -1,2 +1,0 @@
-#debian reset pass recovery
-go to recovery grub menu

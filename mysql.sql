@@ -14,13 +14,11 @@ mysqlcheck -uusername -p databasename
 -- all database
 mysqlcheck -c -u root -p --all-databases
 
-<<<<<<< HEAD
-=======
+
 -- repair  database
 mysqlcheck dbname table tbname
 
 
->>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
 
 -- error ERROR 1419 (HY000) at line 31369: You do not have the SUPER privilege and binary logging is enabled 
 mysql -u username -p set global log_bin_trust_function_creators=1;
@@ -36,13 +34,10 @@ SHOW VARIABLES LIKE '%max_connect%';
 -- show create tables sql format
 SHOW CREATE TABLE `customer_address`;
 
-<<<<<<< HEAD
 -- check list users
 Select user from mysql.user;  
-=======
 -- check list  show users, check user
 Select user,host from mysql.user; 
->>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
 
 -- create user
 CREATE USER 'haidarvm'@'localhost';
@@ -74,27 +69,26 @@ DROP USER 'ekampusid'@'localhost';
 
 mysql -u userName -p -f -D dbName < script.sql
 
-<<<<<<< HEAD
-=======
-
+-- change root pass
 CREATE USER 'root'@'%' IDENTIFIED BY 'Bismillah';
 GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'Bismillah';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Bismillah' WITH GRANT OPTION;
 
->>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
+
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'bismillah';
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'bismillah';
 FLUSH PRIVILEGES;
 
+-- change pass
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'bismillah';
 
 CREATE USER 'haidar'@'%' IDENTIFIED BY 'bismillah';
-<<<<<<< HEAD
-CREATE USER 'dini'@'172.17.0.1' IDENTIFIED BY 'bismillah';
-GRANT ALL ON *.* TO 'dini'@'172.17.0.1' IDENTIFIED BY 'bismillah';
-GRANT ALL PRIVILEGES ON *.* To 'dini'@'172.17.0.1' IDENTIFIED BY 'bismillah';
+
+-- create new user
+CREATE USER 'bass'@'172.17.0.1' IDENTIFIED BY 'bismillah';
+GRANT ALL ON *.* TO 'bass'@'172.17.0.1' IDENTIFIED BY 'bismillah';
+GRANT ALL PRIVILEGES ON *.* To 'bass'@'172.17.0.1' IDENTIFIED BY 'bismillah';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.17.0.%' IDENTIFIED BY 'bismillah' WITH GRANT OPTION;
-=======
 
 CREATE USER 'john'@'172.17.0.2' IDENTIFIED BY 'bismillah';
 GRANT ALL ON *.* TO 'john'@'172.17.0.2' IDENTIFIED BY 'bismillah';
@@ -102,19 +96,26 @@ GRANT ALL PRIVILEGES ON *.* To 'john'@'172.17.0.2' IDENTIFIED BY 'bismillah';
 
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.17.0.%' IDENTIFIED BY 'bismillah' WITH GRANT OPTION;
 
->>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
 GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'bismillah';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'bismillah' WITH GRANT OPTION;
 
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'bismillah';
 FLUSH PRIVILEGES;
 
-<<<<<<< HEAD
+-- Grant new user to database
+GRANT ALL privileges ON `mydb`.* TO 'john'@localhost IDENTIFIED BY 'mypassword';
+-- for anywhere
+GRANT ALL privileges ON `mydb`.* TO 'john'@'%' IDENTIFIED BY 'mypassword';
+
+-- revoke user
+REVOKE ALL PRIVILEGES ON *.* from 'bass'@'%';
+REVOKE GRANT OPTION ON *.* from 'bass'@'%';
+FLUSH PRIVILEGES;
+
+-- update user
 UPDATE users
 SET pass = md5('Bismillah') WHERE ID=3
 
-=======
->>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
 UPDATE urls
 SET url = REPLACE(url, 'domain1.com/images/', 'domain2.com/otherfolder/')
 

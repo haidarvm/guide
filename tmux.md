@@ -1,6 +1,9 @@
 # tmux kill session
 tmux kill-session
 
+# add mouse  add ~/.tmux.conf
+setw -g mouse on
+
 # ressurect
 git clone https://github.com/tmux-plugins/tmux-resurrect ~/tmux-plugins
 
