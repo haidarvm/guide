@@ -21,20 +21,13 @@ sudo gpasswd -a yourUserName lsadm
 # set html path to group and nobody owner
 chown -R username:nobody /path/to/dir/html
 
-<<<<<<< HEAD
-=======
-
 # setup php change php setting
 https://openlitespeed.org/kb/change-php-settings-by-vhost-and-user/
  
->>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
-# for renew 
 sudo systemctl stop lsws
 
 sudo certbot certonly -d www.example.com -d example.com
 
-<<<<<<< HEAD
-=======
 # firewall
 firewall-cmd --zone=public --add-port=7080/tcp --permanent
 firewall-cmd --reload

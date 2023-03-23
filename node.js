@@ -1,4 +1,5 @@
 # forerever
+npm install forever -g
 
 # start 
 forever start app.js 
