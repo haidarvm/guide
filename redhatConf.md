@@ -45,8 +45,18 @@ chmod 600 /home/haidarvm/.ssh/authorized_keys
 vi /home/haidarvm/.ssh/
 ssh-copy-id username@remote_host -p 2235
 
+#check the logs
+journalctl -t sshd
+
+# install memcahed
+sudo dnf install memcached libmemcached
+
+# zRAM
+
 # sealert setroubleshoot
 dnf install setroubleshoot setools
+
+# read sealert terminal
 
 # add subscription
 subscription-manager register --auto-attach
@@ -148,25 +158,29 @@ yum module list
 
 ### openlitespeed ###
 sudo rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el8.noarch.rpm
-sudo dnf install -y openlitespeed lsphp81 lsphp81-mysqlnd lsphp81-process lsphp81-mbstring lsphp81-gd lsphp81-opcache lsphp81-bcmath lsphp81-pdo lsphp81-common lsphp81-xml
+sudo dnf install -y openlitespeed lsphp82 lsphp82-mysqlnd lsphp82-process lsphp82-mbstring lsphp82-gd lsphp82-opcache lsphp82-bcmath lsphp82-pdo lsphp82-common lsphp82-xml
+
+sudo dnf install -y openlitespeed lsphp82 lsphp82-mysqlnd lsphp82-process lsphp82-mbstring lsphp82-gd lsphp82-opcache lsphp82-bcmath lsphp82-pdo lsphp82-common lsphp82-xml lsphp82-mbstring lsphp82-intl 
+
 
 #### nginx #### gpasswd
-gpasswd -a nginx haidarvm
-chmod g+x /home/haidarvm
-chmod g+x /home/haidarvm/public_html
+gpasswd -a nginx haidar
+chmod g+x /home/public_html
+chmod g+x /home/public_html
 systemctl restart nginx.service
 systemctl restart php-fpm.service
-sudo usermod -a -G nginx haidarvm
-chgrp nginx /home/haidarvm/public_html
-chmod g+rwxs /home/haidarvm/public_html
+sudo usermod -aG nginx haidarvm
+chgrp nginx /home/public_html
+chmod g+rwxs /home/public_html
+chmod og+x /home/public_html
 
 # begin
 
 sudo chown -R nginx: /home/
 sudo chown -R www-data:"$USER" /webdirectory
 
-chcon -R -t httpd_sys_rw_content_t /home/haidarvm
-chcon -R -t httpd_sys_content_rw_t /home/haidarvm/wp-content/uploads/
+chcon -R -t httpd_sys_rw_content_t /home/public_html
+chcon -R -t httpd_sys_content_rw_t /home/public_html/wp-content/uploads/
 chcon -R -t httpd_sys_content_rw_t /home/client/example/public_html/wp-content/uploads/
 chcon -R -t httpd_sys_rw_content_t /home/client/example/public_html/wp-content/uploads/
 restorecon -R /home/client/example/public_html
@@ -270,11 +284,11 @@ rpm -qa | grep remi
 dnf module list php
 dnf module reset php
 dnf module enable php:remi-8.0
-dnf install php-process  php-cli php-pgsql php-mysqlnd php-json php-intl php-gd php-mbstring php-xml php-fpm php-curl php-opcache php-devel php-fpm php-zip php-readline -y
+dnf install php-process  php-cli php-pgsql php-mysqlnd php-json php-intl php-gd php-mbstring php-xml php-fpm php-curl php-opcache php-devel php-fpm php-zip php-readline php-sodium -y
 firewall-cmd --zone=public --add-port=8787/tcp --permanent
 firewall-cmd --reload
 
-# to downgrade php 7.3
+# to downgrade php 8.1 or 7.4
 yum downgrade php\*
 ## certbot stop nginx first ##
 certbot certonly -d www.haidarid.xyz -d haidarid.xyz
@@ -315,14 +329,17 @@ sudo dnf -y install openssl-devel git zlib-devel
 make WITH_LUAJIT=/usr WITH_OPENSSL=/usr
 
 
-# install cockpit
-$ sudo semanage port -a -t websm_port_t -p tcp PORT_NUMBER
+# install cockpit and change Port
+vi /usr/lib/systemd/system/cockpit.socket
+# edit port
+[Socket]
+ListenStream=PORT_NUMBER
 sudo semanage port -a -t websm_port_t -p tcp PORT_NUMBER
-sudo systemctl edit cockpit.socket
-$ sudo firewall-cmd --permanent --service cockpit --add-port=PORT_NUMBER/tcp
-$ sudo firewall-cmd --permanent --service cockpit --remove-port=OLD_PORT_NUMBER/tcp
+sudo firewall-cmd --permanent --service cockpit --add-port=PORT_NUMBER/tcp
+sudo firewall-cmd --permanent --service cockpit --remove-port=OLD_PORT_NUMBER/tcp
+sudo firewall-cmd --reload
+sudo systemctl restart cockpit.socket cockpit.service
 
-make WITH_LUAJIT=/usr WITH_OPENSSL=/usr
 
 
 #### certbot ####
@@ -379,7 +396,9 @@ sudo cp -r  Rounded-Rectangle-dark-transparent\ 1.6v/ /usr/share/themes/
 ## virtualization
 dnf install qemu-kvm libvirt virt-install virt-viewer virt-manager -y
 dnf install spice-vdagent
-sudo mkdir /mnt/apps
+
+# in guest vm
+sudo mkdir /mnt/app
 sudo mount -t virtiofs apps /mnt/app
 
 
@@ -859,6 +878,7 @@ dnf groupinstall "Server with GUI" -y
 dnf repolist all
 dnf repository-packages epel list
 dnf repolist
+# rhel 8 only
 dnf groupinfo Virtualization
 dnf provides libcrypt.so.1
 dnf whatprovides libgconf-2.so.4
@@ -1558,7 +1578,7 @@ sudo usermod -aG nginx haidar
 sudo gpasswd -a nginx haidar
 
 location /dept/ {
-	alias /home/haidarvm/public_html/indeks-kepuasan/dept/;
+	alias /home/public_html/indeks-kepuasan/dept/;
 }
 
 Maaf Mau tanya ada yg pernah build Golang base App from source di RHEL ?

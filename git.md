@@ -1,5 +1,10 @@
 # create rsa
 ssh-keygen -t rsa -b 4096 -C "haidarvm@gmail.com"
+# new
+ssh-keygen -t ed25519 -C "haidarvm@gmail.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+
 git config --global user.name "haidarvm"
 git config --global user.email "haidarvm@gmail.com"
 git pull origin master
@@ -7,6 +12,7 @@ git push origin master
 
 # reset to commit version
 git reset --hard 7fa4976
+
 
 
 # begin git
@@ -49,6 +55,10 @@ git checkout master
 git pull origin master
 git merge test
 git push origin master
+
+# bad permissioon
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/*
 
 #git add master to branch
 git checkout production
@@ -106,11 +116,20 @@ git diff --cached
 
 
 # add one more ssh
+
+# generate new ssh
+
 You can create one more key pair, say id_rsa_personal.pub, and add it to the Github account.
 
 Next, create/edit the .ssh/config file.
 
 # Default GitHub
+
+# multiple repo
+Host github.com-repo-0
+        Hostname github.com
+        IdentityFile=/home/user/.ssh/repo-0_deploy_key
+
 Host github.com
   HostName github.com
   User git

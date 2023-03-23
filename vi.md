@@ -16,6 +16,7 @@ p
 :27
 
 # cut line
+dd
 
 # delete line
 dd

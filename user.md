@@ -21,6 +21,9 @@ sudo usermod -aG  nobody haidarvm
 groups
 id -Gn haidarvm
 
+# remove user group
+gpasswd --delete user group
+
 # user group able to modify files
 sudo chmod -R g+w /srv/www
 

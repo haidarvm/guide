@@ -6,6 +6,8 @@ obmenu generator
 #update grub2
 sudo grub2-mkconfig -o /etc/grub2-efi.cfg
 
+# dnf install gui
+
 # install rpmfusion
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
@@ -16,6 +18,9 @@ sudo dnf install rpmfusion-nonfree-release-tainted
 
 #disable selinux
 sudo setenforce 0
+
+# install gui
+dnf groupinstall "Cinnamon Desktop"
 
 # open config
 vi /etc/selinux/config

@@ -3,6 +3,10 @@ sudo du -hsx * | sort -rh | head -10
 #count total size folder
 du -sh .
 
+# check nvme version
+lshw -class disk  
+hwinfo --disk
+
 #get hdd info
 sudo cfdisk /dev/sdb
 

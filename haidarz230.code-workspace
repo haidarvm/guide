@@ -4,13 +4,13 @@
 			"path": "."
 		},
 		{
-			"path": "../republikbobotoh"
+			"path": "../someproject"
 		},
 		{
-			"path": "../yhcmutiara24"
+			"path": "../otherproject"
 		},
 		{
-			"path": "../mangtukang"
+			"path": "../"
 		}
 	]
 }
