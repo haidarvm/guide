@@ -13,6 +13,12 @@ git push origin master
 # reset to commit version
 git reset --hard 7fa4976
 
+# remove with history
+git filter-branch --index-filter 'git rm -rf --cached --ignore-unmatch path_to_file' HEAD
+
+pip3 install git-filter-repo
+git filter-repo --path <path to the file or directory> --invert-paths
+git push origin --force --all
 
 
 # begin git
