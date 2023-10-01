@@ -1,0 +1,3 @@
+insatll plugin
+alsa audio
+

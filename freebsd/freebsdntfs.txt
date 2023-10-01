@@ -1,0 +1,7 @@
+/etc/rc.conf
+fusefs_enable="YES"
+fuse_load="YES" 
+
+ kldload fuse
+ 
+doas ntfs-3g /dev/da0p3 /mnt -o ro

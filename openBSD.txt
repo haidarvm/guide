@@ -12,8 +12,19 @@ pkg_add -Uu
 # pkg list ports
 $ ls /usr/ports
 
-# pkg info
-pkg info -Q apache2
-
+# pkg info pkg search
+pkg_info -Q apache2
 
 # pkg remove
+pkg_delete package
+
+# pkg installed
+pkg_info | grep php
+
+
+# reset password
+
+
+# certbot
+certbot certonly --webroot -w /var/www/htdocs -d example.com
+

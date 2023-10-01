@@ -18,6 +18,9 @@ mysqlcheck -c -u root -p --all-databases
 -- repair  database
 mysqlcheck dbname table tbname
 
+-- import database ignore error 
+mysql -u root -p -f -D dbName < dbName.sql
+
 
 
 -- error ERROR 1419 (HY000) at line 31369: You do not have the SUPER privilege and binary logging is enabled 
@@ -38,6 +41,38 @@ SHOW CREATE TABLE `customer_address`;
 Select user from mysql.user;  
 -- check list  show users, check user
 Select user,host from mysql.user; 
+
+-- event scheduler
+CREATE EVENT myevent
+    ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 5 MINUTE
+    DO
+      UPDATE `USER` SET Active = 1;
+
+-- event two 
+SET GLOBAL event_scheduler="ON"; 
+CREATE EVENT `user_created_this_month_schedule` 
+ON SCHEDULE EVERY 1 MINUTE STARTS '2023-08-28 12:58:00'
+ON COMPLETION NOT PRESERVE ENABLE DO UPDATE sm_sensor SET  = 0 WHERE user_data_id = 7;
+SHOW EVENTS;
+
+
+--  event 
+DELIMITER $$
+
+DROP EVENT IF EXISTS run_event $$
+
+CREATE DEFINER=`root`@`%` 
+EVENT `run_event` 
+ON SCHEDULE EVERY 5 MINUTE STARTS '2023-28-08 12:54:00' 
+ON COMPLETION NOT PRESERVE ENABLE
+DO 
+BEGIN
+  SIGNAL SQLSTATE '01000' SET MESSAGE_TEXT = 'run_event started';
+  CALL my_procedure;
+  SIGNAL SQLSTATE '01000' SET MESSAGE_TEXT = 'run_event finished';
+END $$
+
+
 
 -- create user
 CREATE USER 'haidarvm'@'localhost';
@@ -63,8 +98,7 @@ GRANT ALL ON jabarnews.* TO 'jabarnewscom'@'206.189.153.114';
 FLUSH PRIVILEGES;
 
 -- delete user ----
-DROP USER 'bloguser'@'localhost';
-DROP USER 'ekampusid'@'localhost';
+DROP USER 'username'@'localhost';
 
 
 mysql -u userName -p -f -D dbName < script.sql
@@ -84,15 +118,29 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'bismillah';
 
 CREATE USER 'haidar'@'%' IDENTIFIED BY 'bismillah';
 
--- create new user
+-- create new user for certain IP
+CREATE USER 'asep'@'172.17.0.2' IDENTIFIED BY 'bismillah';
+GRANT ALL ON *.* TO 'asep'@'172.17.0.2' IDENTIFIED BY 'bismillah';
+GRANT ALL PRIVILEGES ON *.* To 'asep'@'172.17.0.2' IDENTIFIED BY 'bismillah';
+FLUSH PRIVILEGES;
+
+-- grant asep anywhere
+GRANT ALL ON *.* TO 'asep'@'%' IDENTIFIED BY 'bismillah';
+GRANT ALL PRIVILEGES ON *.* TO 'asep'@'%' IDENTIFIED BY 'bismillah' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+-- create new user for all IP 
+CREATE USER 'asep'@'%' IDENTIFIED BY 'bismillah';
+GRANT ALL ON *.* TO 'asep'@'%' IDENTIFIED BY 'bismillah';
+GRANT ALL PRIVILEGES ON *.* To 'asep'@'%' IDENTIFIED BY 'bismillah';
+FLUSH PRIVILEGES;
+
 CREATE USER 'bass'@'172.17.0.1' IDENTIFIED BY 'bismillah';
 GRANT ALL ON *.* TO 'bass'@'172.17.0.1' IDENTIFIED BY 'bismillah';
 GRANT ALL PRIVILEGES ON *.* To 'bass'@'172.17.0.1' IDENTIFIED BY 'bismillah';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.17.0.%' IDENTIFIED BY 'bismillah' WITH GRANT OPTION;
 
-CREATE USER 'john'@'172.17.0.2' IDENTIFIED BY 'bismillah';
-GRANT ALL ON *.* TO 'john'@'172.17.0.2' IDENTIFIED BY 'bismillah';
-GRANT ALL PRIVILEGES ON *.* To 'john'@'172.17.0.2' IDENTIFIED BY 'bismillah';
+
 
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.17.0.%' IDENTIFIED BY 'bismillah' WITH GRANT OPTION;
 
@@ -135,13 +183,8 @@ sed 's/utf8mb4_0900_ai_ci/utf8_general_ci/g' original-mysql-data.sql > updated-m
 sed 's/utf8mb4/utf8/g' original-mysql-data.sql > updated-mysql-data.sql
 
 
-<<<<<<< HEAD
-sed 's/utf8mb4_0900_ai_ci/utf8_general_ci/g' 2020-10-26-wp > updated-2020-10-26-wp.sql
-sed 's/utf8mb4/utf8/g' updated-2020-10-26-wp.sql > updated2-2020-10-26-wp.sql
-=======
 sed 's/utf8mb4_0900_ai_ci/utf8_general_ci/g' 2020-10-26-fisipunla > updated-2020-10-26-fisipunla.sql
 sed 's/utf8mb4/utf8/g' updated-2020-10-26-fisipunla.sql > updated2-2020-10-26-fisipunla.sql
->>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
 
 select GROUP_CONCAT(stat SEPARATOR ' ') from (select concat('KILL ',id,';') as stat from information_schema.processlist) as stats;
 
@@ -158,12 +201,10 @@ updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMEST
 ALTER TABLE `whatevertable` ADD `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL  AFTER `created_at`;
 
 -- alter change field to update time on update
-<<<<<<< HEAD
 ALTER TABLE whatevertable  CHANGE whatevercolumn  whatevercolumn TIMESTAMP NOT NULL  DEFAULT CURRENT_TIMESTAMP   ON UPDATE CURRENT_TIMESTAMP;
-=======
+
 ALTER TABLE whatevertable  CHANGE whatevercolumn  TIMESTAMP NOT NULL  DEFAULT CURRENT_TIMESTAMP   ON UPDATE CURRENT_TIMESTAMP;
 >>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
-
 -- alter change data type
 ALTER TABLE post_data MODIFY body JSON;
 

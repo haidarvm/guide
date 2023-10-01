@@ -6,7 +6,7 @@
 ##   Written By: Rahul Kumar
 ##   URL: https://tecadmin.net/bash-script-mysql-database-backup/
 ##   Last Update: Jan 05, 2019
-##
+## @daily sh /home/user/scripts/mysql-backup-all.sh >> /var/log/mysql-backup.log 2>&1
 ################################################################
 
 export PATH=/bin:/usr/bin:/usr/local/bin
@@ -15,7 +15,7 @@ TODAY=`date +"%d%b%Y"`
 ################################################################
 ################## Update below values  ########################
 
-DB_BACKUP_PATH='/backup/dbbackup'
+DB_BACKUP_PATH='/home/user/backupdb'
 MYSQL_HOST='localhost'
 MYSQL_PORT='3306'
 MYSQL_USER='root'

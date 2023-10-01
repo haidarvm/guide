@@ -32,7 +32,7 @@ sudo certbot certonly -d www.example.com -d example.com
 firewall-cmd --zone=public --add-port=7080/tcp --permanent
 firewall-cmd --reload
 
->>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
+
 # logs
 $VH_ROOT/logs/$VH_NAME_error.log
 $VH_ROOT/logs/$VH_NAME_access.log
@@ -60,10 +60,10 @@ Compress Archive = Yes
 Enable Rewrite = Yes
 Auto Load from .htaccess = Yes
 Log Level = 5 `9 for detail`
-Rewrite Rules
+#Rewrite Rules
 RewriteCond %{HTTPS} off
 RewriteRule (.*) https://%{HTTP_HOST}/%{REQUEST_URI} [R,L]
-
+RewriteRule ^.*\.git.* - [R=404]
 
 [SSL] restart
 Private Key File = /etc/letsencrypt/live/example.com/privkey.pem
@@ -98,12 +98,15 @@ make sure add both port 80 map and https
 RewriteCond %{HTTPS} off
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
-# wp .htaccess
+# BEGIN WordPress
+RewriteEngine On
 RewriteBase /
-RewriteRule ^/index\.php$ - [L]
+RewriteRule ^/index.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
+# END WordPress
+
 
 # ci .htaccess
 RewriteBase /

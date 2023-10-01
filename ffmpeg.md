@@ -4,6 +4,9 @@ ffmpeg -i modernHousePreview.avi -s 1280x720 -c:a copy modernHousePreview.mp4
 # resize 360 
 ffmpeg -i 45NoSupers_1_smalls.mp4 -s 426x240 -c:a copy -strict -2 45NoSupers_1_small240.mp4
 
+ffmpeg -i teaser.mp4 -s 640x480 -c:a copy -strict -2 teasers.mp4
+ffmpeg -i teaser.mp4 -s 320x240 -c:a copy -strict -2 teasers.mp4
+
 # whatsapp
 # resize 360
 
@@ -99,6 +102,12 @@ ffmpeg -i tutorInputIdKei.mp4 -i audioKei.ac3 -vcodec copy -acodec copy -map 0:0
 ffmpeg -i movie.mp4 -ss 00:08:03 -t 00:01:40 -async 1 cut.mp4
 ffmpeg -ss 00:00:01 -i tutorInputIdKeiR.mp4 -to 00:00:31 -c copy tutorInputIdKeiRs.mp4
 
+ffmpeg -i sholawat.mp4 -ss 00:00:03 -t 00:05:08 -async 1 sholawats.mp4
+
+# cut video
+ffmpeg -i input.mp4 -ss 00:00:04 -to 00:03:18 -c:v copy -c:a copy output2.mp4
+
+
 #format for WA whatsapp
 ffmpeg -i tutorInputIdKeiRs.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p tutorInputIdKeiRse.mp4
 ffmpeg -i finalPonWIP2016.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p finalPonWIP2016.mp4
@@ -138,7 +147,8 @@ ffmpeg -i bagasCimahiBandungSyari.mp4 -s 480x480 -c:a copy bagasCimahiBandungSya
 
 ffmpeg -i 2020-10-31-204301.webm -s 480x480 -c:a copy 2020-10-31-204301.mp4
 
-ffmpeg -i mie.webm -s 360x270 -c:a copy -strict -2 mie.mp4
+ffmpeg -i opendragon.webm -s  1280x720  -c:a copy -strict -2 opendragon.mp4
+
 
 ffmpeg -i pie.mp4 -s 480x480 -c:a copy -an pies.mp4
 

@@ -141,10 +141,11 @@ firewall-cmd  --remove-service=ssh --permanent
 firewall-cmd --reload 
 
 # nginx enable different port
-semanage port -a -t http_port_t  -p tcp 8080
+semanage port -a -t http_port_t -p tcp 8080
+semanage port -m -t http_port_t -p tcp 88
 
 # hostnamectl
-hostnamectl set-hostname cloud.haidarvm.com
+hostnamectl set-hostname cloud.example.com
 
 # find available application streams
 yum module list               
@@ -158,7 +159,8 @@ yum module list
 
 ### openlitespeed ###
 sudo rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el8.noarch.rpm
-sudo dnf install -y openlitespeed lsphp82 lsphp82-mysqlnd lsphp82-process lsphp82-mbstring lsphp82-gd lsphp82-opcache lsphp82-bcmath lsphp82-pdo lsphp82-common lsphp82-xml
+
+sudo dnf install -y openlitespeed lsphp81 lsphp81-mysqlnd lsphp81-process lsphp81-mbstring lsphp81-gd lsphp81-opcache lsphp81-bcmath lsphp81-pdo lsphp81-common lsphp81-xml lsphp81-mbstring lsphp81-intl 
 
 sudo dnf install -y openlitespeed lsphp82 lsphp82-mysqlnd lsphp82-process lsphp82-mbstring lsphp82-gd lsphp82-opcache lsphp82-bcmath lsphp82-pdo lsphp82-common lsphp82-xml lsphp82-mbstring lsphp82-intl 
 
@@ -184,7 +186,7 @@ chcon -R -t httpd_sys_content_rw_t /home/public_html/wp-content/uploads/
 chcon -R -t httpd_sys_content_rw_t /home/client/example/public_html/wp-content/uploads/
 chcon -R -t httpd_sys_rw_content_t /home/client/example/public_html/wp-content/uploads/
 restorecon -R /home/client/example/public_html
-restorecon -R /home/client/example/public_html/wp-content/uploads/
+restorecon -R /var/www/html/example/public/uploads/
 
 ## apache
 sudo chown -R apache:ftpname /home/ftpname
@@ -236,6 +238,12 @@ localectl
 dnf install langpacks-en glibc-all-langpacks -y
 
 
+## sudo password timeout
+sudo visudo
+# add 
+Defaults        timestamp_timeout=120
+ 
+
 ## installmariabd rhel
 curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
 dnf update
@@ -283,13 +291,13 @@ dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
 rpm -qa | grep remi
 dnf module list php
 dnf module reset php
-dnf module enable php:remi-8.0
+dnf module enable php:remi-8.1
 dnf install php-process  php-cli php-pgsql php-mysqlnd php-json php-intl php-gd php-mbstring php-xml php-fpm php-curl php-opcache php-devel php-fpm php-zip php-readline php-sodium -y
 firewall-cmd --zone=public --add-port=8787/tcp --permanent
 firewall-cmd --reload
 
 # to downgrade php 8.1 or 7.4
-yum downgrade php\*
+dnf downgrade php\*
 ## certbot stop nginx first ##
 certbot certonly -d www.haidarid.xyz -d haidarid.xyz
 
@@ -362,6 +370,7 @@ ListenStream=PORT_NUMBER
 
 # install gui
 sudo dnf groupinstall workstation
+sudo dnf group install "Server with GUI"
 
 ## install rpmforge
 rhel 7 only
@@ -501,6 +510,7 @@ dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.r
 sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 sudo rpm -ivh https://download1.rpmfusion.org/free/el/rpmfusion-free-release-9.noarch.rpm 
 sudo rpm -ivh https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-9.noarch.rpm
+# on rocky sudo dnf –enablerepo=crb install ladspa
 sudo subscription-manager repos --enable "codeready-builder-for-rhel-9-$(uname -m)-rpms"
 sudo subscription-manager repos --enable "codeready-builder-for-rhel-9-*-rpms"
 sudo dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
@@ -876,8 +886,14 @@ dnf groupinstall "Web Server" -y
 dnf groupinstall "Development Tools" -y
 dnf groupinstall "Server with GUI" -y
 dnf repolist all
+dnf repolist all --enabled
 dnf repository-packages epel list
 dnf repolist
+
+# remove dnf repo
+rm /etc/yum.repos.d/file_name.repo
+
+
 # rhel 8 only
 dnf groupinfo Virtualization
 dnf provides libcrypt.so.1
@@ -889,8 +905,7 @@ dnf --disablerepo=elrepo-kernel
 dnf config-manager --disablerepo elrepo-kernel
 dnf config-manager --disablerepo codeready-builder-for-rhel-8-x86_64-eus-rpms
 dnf config-manager --disable codeready-builder-for-rhel-8-x86_64-eus-rpms
-dnf config-manager --set-disabled
-dnf config-manager --set-enabled 
+dnf config-manager --set-disabled code
 dnf config-manager --set-enabled nginx
 dnf --remove-repo elrepo-kernel
 

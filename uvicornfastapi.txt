@@ -1,0 +1,10 @@
+## run with ip and port
+uvicorn main:app --host 0.0.0.0 --port 8008
+
+## run with auto reload
+uvicorn main:app --host 0.0.0.0 --port 8008 --reload
+
+## export path command not found
+vi ~/.bash_profile
+## add
+export PATH="$HOME/.local/bin:$PATH"

@@ -1,0 +1,2 @@
+# test
+minicom -b 9600 -D /dev/ttyUSB1 -H --wrap
