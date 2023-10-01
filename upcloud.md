@@ -5,3 +5,11 @@ UUID=90eb431f-5c16-45bd-899a-006223fc4bf8 /home/player         xfs     defaults 
 
 
 UUID="90eb431f-5c16-45bd-899a-006223fc4bf8"
+
+
+# add custom ISO
+Add From url in menu storage
+Go to server -> storage -> add device 25gb
+remove the old storage
+
+Go to server -> optional boot order, cdrom, storage

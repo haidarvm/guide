@@ -6,7 +6,7 @@ psql -U postgres -d stack -a -f stack_pg.sql
 -- export db
 pg_dump dbname > db.sql
 pg_dump -U postgres -F c dbname > dbname.tar
-pg_dump -U postgres dangerousdb | gzip > dangerousdb.gz
+pg_dump -U postgres dbname.sql | gzip > dbname.sql.gz
 
 
 -- restore db
@@ -16,7 +16,7 @@ pg_restore -U postgres -Ft -d dbcooper < dbcooper.tar
 pg_restore -U postgres -Ft -C -d dbcooper < dbcooper.tar
 
 -- restore
-psql -f dbcopper.sql
+psql -U postgres dbname -f  dbcopper.sql
 
 
 pg_dump -h localhost -U postgres --format plain --verbose --file wprg_posts.sql --table public.wprg_posts jabarnews

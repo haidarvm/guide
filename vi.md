@@ -1,6 +1,12 @@
 #  find
 /findhere
 
+# find incase sensitive
+/\ccopyright 
+/copyright\c 
+/copyri\cght
+
+
 # copy one line copy current line, 
 yy
 3yy

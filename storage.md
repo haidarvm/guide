@@ -1,3 +1,4 @@
+# check last 10 most usage
 sudo du -hsx * | sort -rh | head -10
 
 #count total size folder
@@ -43,3 +44,13 @@ sudo dnf install efibootmgr
 sudo modprobe efivars
 sudo efibootmgr
 sudo efibootmgr -b 1 -B
+
+# copy sdcard
+sudo fdisk -l
+sudo umount /dev/mmcblk0 || /dev/sda1
+sudo dd if=/dev/mmcblk0 of=~/sd-card-copy.img bs=1M status=progress
+# insert new one
+sudo fdisk -l
+sudo umount /dev/mmcblk0
+# to write
+sudo dd if=~/sd-card-copy.img of=/dev/mmcblk0 bs=1M status=progress

@@ -4,6 +4,7 @@ ssh-keygen -t rsa -b 4096 -C "haidarvm@gmail.com"
 ssh-keygen -t ed25519 -C "haidarvm@gmail.com"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
+cat ~/.ssh/id_ed25519.pub
 
 git config --global user.name "haidarvm"
 git config --global user.email "haidarvm@gmail.com"
@@ -52,6 +53,9 @@ git branch production
 git diff --name-only HEAD^..HEAD
 git show --summary
 
+# git remove commit
+git rebase and d
+
 #remove big file
 git filter-branch --index-filter 'git rm --cached --ignore-unmatch a b' HEAD
 git filter-branch --tree-filter 'rm -f DVD-rip' HEAD
@@ -72,6 +76,9 @@ git checkout master app/controller/pg.php
 
 # remove untrack files
 git clean -n -d
+
+#revert all changes git
+git clean -fd
 
 # beware confirm deletion
 git clean -d -f

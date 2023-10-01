@@ -32,3 +32,6 @@ forever stopall
 
 # forever restart id
 forever restart 0
+
+# forever clean logs
+forever cleanlogs 
