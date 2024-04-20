@@ -1,0 +1,2 @@
+# pkg
+pkg install postgresql15-server postgresql15-client

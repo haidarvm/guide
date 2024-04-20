@@ -4,7 +4,7 @@ ssh-keygen -t rsa -b 4096 -C "haidarvm@gmail.com"
 ssh-keygen -t ed25519 -C "haidarvm@gmail.com"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
-cat ~/.ssh/id_ed25519.pub
+cat ~/.ssh/id_ed25519.pub  ## without email
 
 git config --global user.name "haidarvm"
 git config --global user.email "haidarvm@gmail.com"

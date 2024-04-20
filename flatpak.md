@@ -18,3 +18,5 @@ flatpak install flathub org.gimp.GIMP
 flatpak uninstall 
 
 flatpak update
+
+# check version

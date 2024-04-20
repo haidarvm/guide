@@ -1,10 +1,11 @@
 #!/bin/bash
 #----------------------------------------
 # OPTIONS
+# 0 */6  * * * sh /home/haidarvm/script/mysqlback.sh > /var/log/db-backup.log 1>&1
 # @daily sh /scripts/mysql-backup.sh >> /var/log/mysql-backup.log 2>&1
 #----------------------------------------
 USER='root'       # MySQL User
-PASSWORD='321dYlUrsH08B!s' # MySQL Password
+PASSWORD='Bismillah' # MySQL Password
 DAYS_TO_KEEP=30    # 0 to keep forever
 GZIP=1            # 1 = Compress
 BACKUP_PATH='/home/haidarvm/backup/mysql'

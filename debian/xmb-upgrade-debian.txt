@@ -1,0 +1,322 @@
+#!/bin/bash
+
+ [[ -v BASH ]] || {
+ [ "${tbash:-0}" = 1 ] &&
+exec printf err_no_bash\\n
+${tbash:+exec printf err2_no_bash\\n}
+tbash=1 exec "${bash:=bash}" "${@:0}" ||
+exit 2
+exit 3
+ }
+
+ [[ ${EUID:-$UID} == 0 ]] || {
+ [ "${troot:-0}" = 1 ] &&
+exec printf err_no_root\\n
+${troot:+exec printf err2_no_root\\n}
+troot=1 exec "${toroot:=sudo}" "$SHELL" "${@:0}" ||
+exit 2
+exit 3
+ }
+
+ declare -A help=(
+0 'add ssh keys to .ssh/authorized_keys'
+1 'quieten upgrades, exchange sources, and update/upgrade'
+1.1 'get and place firmware'
+2 'install sysvinit'
+2.1 'ditch systemd - needs prior reboot if exchanged ( sysvinit ) but still running'
+3 'install base sw'
+3.1 'install base dev sw'
+4 'apt cleanups, and autoremove leftover stuff'
+5 'make swap as file, good for small cheap vboxen'
+6 'get rid of cron and logrotate and such'
+
+xmb 'xmb style run - run all elements till 2, waiting for reboot and continue at xmb2'
+xmb2 'xmb style run - continued from xmb reboot, begins at point 2.1 till end without 3.1 dev packages'
+xmb2d 'same as xmb2 but with dev packages'
+
+nosysvinit 'light run, 0 1 1.1 3'
+dev '3.1 ( install base dev sw )'
+
+joeysw1 'install docker ufw ..'
+joeysw2 'install docker-compose npm ..'
+ )
+
+ nosysvinit() {
+0
+1
+1.1
+3
+ }
+
+ dev() {
+3.1
+ }
+
+ longhelp() {
+printf $'hello and welcome to my ( xmb ) debian apt upgrade script
+to upgrade existing debians to the full ( nearly.. ) power of what debian offers, officially
+not just the ( imho very wrongly named ) \'stable\' tree ( but included .. )
+
+to this script you supply as arguments the by you wanted steps done to be performed
+this script has a few optionally by user set override variables
+
+keys="newline separated list of ssh keys to put on whitelist"
+sources="newline separated list of /etc/apt/sources.list items"
+user="some username by your choise" # used in .ssh auth keys addment code, other than root
+rootuser="some other than root user" # used in .ssh in case user is empty, if you have renamed the root user or such
+swapfile=location
+swapsize=size_in_megabyte
+
+if you, the user, wants to override any of these, you have to either supply em along the cmd running this script
+or export them, before running the script
+where else they dont run in the code they are not needed
+
+meaning..
+
+export var=value var2="value other"
+bash script
+
+or
+
+var=value var2=\'bla bla\'
+export var var2
+bash script
+
+var=value var2="other .." bash script
+
+bash script is equivalent to ./script - whenever the file is chmod +x\'ed
+
+the defaults values of these supported vars are
+
+keys -> 2x keys, one mine one friend in whos name i code this script
+sources -> 5x official debian sources
+user -> not set, uses current ( root, otherwise it doesnt run .. ) .. developers may comment out the two beginning check blocks maybe for at-user stuff
+rootuser -> empty , defaults to \'root\'
+swapfile -> ~/swap.<arandomnumber>
+swapsize -> 3100
+
+please note, auto updating the system is a different parting somewhere else..
+also please note, the script doesnt abort on errors, so if something looks faulty to you, maybe control-c it
+
+so, in case of you\'r ( the users ) usage, pick wanted run elements (following), and arg em to the script
+
+for me its
+
+bash xmb-convert-debian xmb
+reboot
+bash xmb-convert-debian xmb2
+
+for you it may be
+
+keys="copypaste .ssh .pub key here" bash xmb-convert-debian 0 1 3 5
+
+i suggest you also check the files source too, ..
+
+//
+alex xmb ratchev
+ratchevalex@gmail.com
++41 77 474 24 01
+bulgarian swissish german english german
+/
+public domain open source
+26.04.2022 , swiss
+----------------------------------------\n'
+
+declare var
+menustr=
+  for var in $( compgen -A function ) ; do
+ [[ -v help[$var] ]] ||
+continue
+menustr+="$var <- ${help[$var]}"$'\n'
+  done
+
+printf %s "$menustr"
+
+exit 1
+ }
+
+IFS=$'\n'
+
+ keys=( ${keys[*]:-
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAmuJDBYNocoKxFPntmDIywIE+iO++MLwXrdCBdiyQPGla0Aa7adfl+LN88bdiwhovqTRbnkNlgjeeW7koSxUe7hdmwU0uV4988/N3pDTuNQ0vIKAXAoO3p9/A6XetU8Rn7G1185zGbgGHANq8zx3pltf9E0NJcbhwatQntn9wYBzyw0v1gCy0Ro557lQGkdY2GuK5/cA8RuAY0PWlVL4TzP4LLgpj/iRHrPi++VTcKRdXOlbX7fNmpo/x+IeKZSUul4DbsZF7SrrANGpwjA/DuQyMGB/Ys9i0koMMNlhRiEo6y8I/4jailnVNRcSo2axbL2FCa4tdsds468k9hKs0iKhTxp7IGiMx1s8JXBRAZKlF00dFhghTK9TeTFpBJUrTgNRyRkKyVpr6GCkQcgDtTMzsIlgpvGR3bbDyXe68UQgVoiWuBGYhhhsrpqEowqg51b9ALY8r9L/3Y5ENAEmbbzfSBTtQhVeVmuYWvYF7bkidWd6CesCUJtY+j+n2doiY7eX4uOppxkSSY9P0Zv6xr+lU8wuWEGS6uyv38DAXB/iIX3tPHlf3WNeh4zu6gUQktO5PnSlx4+I9yU/TvASURKz3mQgAbWhGOvzFAzaRBTIk4yjbCtkQhxFHx9idOsSw/2xx6xZgPhUcRj1ww5F0QwM91mJZroFlGqtqBuKEFj/+C0= fmb@boost
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQChFpWKJTds2cqgGys4rA4azf/rUHslBA1Ginq9KaNnK/cl2euj9h41U3qOnICOSlcjHXs/d5NQf6qOoTKBSXNNm7HhlwLFQtqIIzP2hnWUTWAigqV8z+kDx/mvC/ZeWhJ2gll8Rg56cS0ibwfybQXoV5MoCho7w+dpsY3jXhMg2r19kYsbvpdgjUFgItANBzcblT6SlthL8GYmXwfNmURVMazb3ittc9rDRHRa870LKJVqNjJE1agUCKraqP9GZ6CW/bl97SsckA5z43vqnFP0iZDbmFRl530gP+/N3WOCVkDImeLD9qBY3SVhtzNBDAwNpYBBikwK5EQPR1l+P7Rx rsa-key-20220107
+ }
+ )
+
+ sources=( ${sources[*]:-
+deb http://deb.debian.org/debian experimental main contrib non-free
+deb http://deb.debian.org/debian unstable main contrib non-free
+deb http://deb.debian.org/debian testing main contrib non-free
+deb http://deb.debian.org/debian stable main contrib non-free
+deb http://deb.debian.org/debian oldstable main contrib non-free
+
+deb-src http://deb.debian.org/debian experimental main contrib non-free
+deb-src http://deb.debian.org/debian unstable main contrib non-free
+deb-src http://deb.debian.org/debian testing main contrib non-free
+deb-src http://deb.debian.org/debian stable main contrib non-free
+deb-src http://deb.debian.org/debian oldstable main contrib non-free
+ }
+ )
+
+unset -v IFS
+
+ adfix() {
+dpkg --configure -a
+apt-get -fy install
+ }
+
+ 0() {
+ (
+ [[ -v user ]] &&
+declare "p=~${user:=${rootuser:=root}}"
+cd "$p"
+mkdir -p .ssh
+printf %s\\n >>.ssh/authorized_keys "${keys[@]}"
+chmod 700 .ssh
+chmod 600 .ssh/authorized_keys
+ [[ -v user ]] &&
+chown -R "$user". .ssh
+printf add_ssh_keys__done\\n
+ )
+ }
+
+  ## set quiet, exchange sources, upgrade
+ 1() {
+adfix
+printf 'please select in the following screens: last non interactive, and uppest critical\n'
+sleep 2
+dpkg-reconfigure debconf
+apt-get -fy --purge remove apt-listchanges console-setup\* dictionaries\* bash-comp\*
+printf %s\\n >/etc/apt/sources.list "${sources[@]}"
+apt-get update
+apt-get -fy dist-upgrade linux-image-amd64 openssh-server libcrypt1 libc6 libpam0g
+adfix
+printf apt_dpkg_upgrade__end\\n
+ }
+  ## update kernel firmware, such as w/lan and cpu micrcode ( big sized thing )
+ 1.1() {
+apt-get -fy install git
+git clone https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git fw
+cp -apu fw/* /lib/firmware
+rm -rf fw
+printf firmware_install__end\\n
+ }
+
+  ## install sysvinit, the old proven simple one
+ 2() {
+apt-get -fy install sysvinit\*
+dpkg --set-selections <<<'sysvinit-core hold'
+exec printf sysvinit_install_end__plz_reboot_and_continue_with_step_2.1_or_3\\n
+ }
+  ## ditch systemd even more in favor of sysvinit
+ 2.1() {
+apt-get --purge -fy remove systemd\* libnss-systemd
+printf ditched_systemd__end\\n
+ }
+
+  ## install base sw
+ 3() {
+# when possible not in list: sudo , but as general purpose needs it it is..
+apt-get -fy install bash gawk iptables curl wget screen sudo vim psmisc pciutils net-tools rename dialog locales man-db tmux htop linux-image-amd64
+ }
+  ## dev related packages
+ 3.1() {
+apt-get -fy install bc dc socat netcat ucspi-tcp manpages-dev pkg-config gcc cpp g++ m4 flex bison automake autoconf make cmake build-essential
+}
+
+  ## cleanups
+ 4() {
+apt-get -fy autoremove
+apt-get clean
+ }
+
+  ## make a half minimal swap as file
+ 5() {
+head -c $(( 1024 * 1024 * swapsize )) /dev/zero >"$swapfile"
+chmod 0600 "$swapfile"
+mkswap "$swapfile"
+printf >>/etc/fstab '%s swap swap default 0 0\n' "$swapfile"
+swapon -a
+printf mkswap__done\\n
+ }
+
+ 6() {
+apt-get -fy remove --purge logrotate cron at
+mkdir -p /off
+mv /etc/cron* /etc/motd /etc/issue* /etc/debian_version /off
+printf unstable\\n >/etc/debian_version
+printf rid_of_cron_logrotate__done\\n
+ }
+
+## additional functionality
+
+ xmb() {
+0
+1
+1.1
+2
+exit 0
+ }
+
+ xmb2() {
+2.1
+3
+4
+5
+6
+exit 0
+ }
+
+ xmb2d() {
+2.1
+3
+3.1
+4
+5
+6
+ }
+
+ joeysw1() {
+apt-get -fy install docker.io ufw iptables-persistent
+# docker.io might fail due to systemd mismatches
+# and wrongly coded code, hers the fix
+/etc/init.d/docker start
+apt-get -fy install
+ }
+
+ joeysw2() {
+apt-get -fy install docker-compose npm
+ }
+
+ ## runtime, configuration only
+
+ : "
+${app:=xmb-upgrade-debian}
+${log:=$HOME/.$app.log}
+
+${swapfile:=$HOME/swap.$SRANDOM}
+${swapsize:=3100}
+ "
+
+  ## todo: add failsafe redirections back by duplicating before
+ [[ $log ]] &&
+exec > >( exec tee -a "$log" ) 2>&1
+
+ ## actual runtime
+
+shopt -s assoc_expand_once
+
+ (( $# )) ||
+longhelp
+
+  for arg ; do
+ [[ -v help[$arg] ]] || {
+printf 'unsupported arg %s\n' "${arg@Q}"
+continue
+ }
+(( ++run ))
+"$arg"
+  done
+
+ (( run )) ||
+longhelp

@@ -1,5 +1,20 @@
+# use yt dlp
+
+
+
+# get youtube thumbnail
+
+https://img.youtube.com/vi/<insert-youtube-video-id-here>/0.jpg
+https://img.youtube.com/vi/<insert-youtube-video-id-here>/1.jpg
+https://img.youtube.com/vi/<insert-youtube-video-id-here>/2.jpg
+https://img.youtube.com/vi/<insert-youtube-video-id-here>/3.jpg
+
+
+
+
 sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O/usr/local/bin/youtube-dl
 sudo chmod a+rx /usr/local/bin/youtube-dl
+
  
 
 sudo pip3 install --upgrade youtube-dl

@@ -73,6 +73,10 @@ BEGIN
 END $$
 
 
+-- create new user for certain database
+CREATE USER 'user'@'localhost';
+GRANT ALL PRIVILEGES ON dbname.* To 'user'@'localhost' IDENTIFIED BY 'passwords';
+FLUSH PRIVILEGES;
 
 -- create user
 CREATE USER 'haidarvm'@'localhost';
@@ -128,6 +132,8 @@ FLUSH PRIVILEGES;
 GRANT ALL ON *.* TO 'asep'@'%' IDENTIFIED BY 'bismillah';
 GRANT ALL PRIVILEGES ON *.* TO 'asep'@'%' IDENTIFIED BY 'bismillah' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
+
+
 
 -- create new user for all IP 
 CREATE USER 'asep'@'%' IDENTIFIED BY 'bismillah';

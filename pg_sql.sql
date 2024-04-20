@@ -10,6 +10,23 @@ sudo /usr/pgsql-14/bin/postgresql-14-setup initdb || postgresql-setup --initdb
 sudo systemctl enable postgresql-14
 sudo systemctl start postgresql-14
 
+
+# rhel 9 pg 16
+# Install the repository RPM:
+sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-9-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+
+# Disable the built-in PostgreSQL module:
+sudo dnf -qy module disable postgresql
+
+# Install PostgreSQL:
+sudo dnf install -y postgresql16-server
+
+# Optionally initialize the database and enable automatic start:
+sudo /usr/pgsql-16/bin/postgresql-16-setup initdb
+sudo systemctl enable postgresql-16
+sudo systemctl start postgresql-16
+
+
 -- go to postgres bash
 sudo su - postgres
 psql
@@ -26,6 +43,8 @@ sudo systemctl restart postgresql
 -- change main conf md5
 nano /var/lib/pgsql/12/data/pg_hba.conf
 nano /etc/postgresql/13/main/pg_hba.conf
+doas vim /var/db/postgres/data15/pg_hba.conf
+
 
 local   all             postgres                                md5
 
@@ -53,7 +72,7 @@ http://localhost:88/pgadmin4/browser
 
 
 -- create databsae
-CREATE DATABASE invtcmit; 
+CREATE DATABASE news; 
 
 -- show all db
 \l
