@@ -1,0 +1,18 @@
+https://wiki.freebsd.org/MariaDB
+
+# check available
+pkg search mariadb | grep server
+
+# install
+doas pkg install mariadbXXX-server
+
+# start at boot
+doas sysrc mysql_enable=YES
+
+# start service
+doas service mysql-server start
+
+# set pass
+mysql_secure_installation
+
+# 

@@ -69,8 +69,8 @@ Tenang, nanti muncul sosok Gundala di Negeri Ini Butuh Patriot
 https://t.me/c/1119791486/144138
 
 #mkvToMp4
+ffmpeg -i LostInTranslation.mkv -codec copy LostInTranslation.mp4
 ffmpeg -i documentaryBandungMuslimAnimator3small-o3ytByGFPcU.mkv -s 1280x720 -c:a copy documentaryBandungMuslimAnimator3small-o3ytByGFPcU.mp4
-
 
 ffmpeg -i rs_sh_40001-0154.avi -s 1280x720 -c:a copy rs_sh4.mp4
 
@@ -94,6 +94,11 @@ ffmpeg -i finalEditingTanahLandTemp.mp4  -c:v dnxhd -profile:v dnxhr_hq -c:a pcm
 
 ffmpeg -i tanah.mp4  -c:v dnxhd -profile:v dnxhr_hq -c:a pcm_s16le tanah.mov                     
 
+
+#get audio
+ffmpeg -i sample.avi -q:a 0 -map a sample.mp3
+ffmpeg -i input-video.avi -vn -acodec copy output-audio.aac
+
 #replace audio
 ffmpeg -i input_video.mp4 -i replacement_audio.m4a -vcodec copy -acodec copy -map 0:0 -map 1:0 output.mp4     
 ffmpeg -i tutorInputIdKei.mp4 -i audioKei.ac3 -vcodec copy -acodec copy -map 0:0 -map 1:0 tutorInputIdKeiR.mp4
@@ -102,10 +107,13 @@ ffmpeg -i tutorInputIdKei.mp4 -i audioKei.ac3 -vcodec copy -acodec copy -map 0:0
 ffmpeg -i movie.mp4 -ss 00:08:03 -t 00:01:40 -async 1 cut.mp4
 ffmpeg -ss 00:00:01 -i tutorInputIdKeiR.mp4 -to 00:00:31 -c copy tutorInputIdKeiRs.mp4
 
+ffmpeg -ss 00:00:02 -i progressOptimize.mp4 -to 00:00:58 -c copy progressOptimize2.mp4
+
 ffmpeg -i sholawat.mp4 -ss 00:00:03 -t 00:05:08 -async 1 sholawats.mp4
 
-# cut video
+# cut / crop video
 ffmpeg -i input.mp4 -ss 00:00:04 -to 00:03:18 -c:v copy -c:a copy output2.mp4
+ffmpeg -i input.mp4 -ss 00:00:04 -to 00:03:18 -c copy output2.mp4
 
 
 #format for WA whatsapp

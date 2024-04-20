@@ -1,0 +1,82 @@
+# set default to bash
+chsh -s /usr/local/bin/bash
+chsh -s /usr/local/bin/bash root
+
+# set default to sh
+pw usermod root -s /bin/sh
+pw usermod username -s /bin/sh
+
+# doas alias
+vim .bashrc
+# add
+alias doas='doas '
+source .bashrc
+
+# sshd no pass passwordless
+doas vim /etc/ssh/sshd_config
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+UsePAM yes
+
+# add user to wheel
+pw groupmod wheel -m <username>
+
+# doas / root set alias vi to vim
+
+pw groupshow wheel
+
+# doas set no password admin
+vim /usr/local/etc/doas.conf
+permit nopass keepenv :
+
+# auto complete #
+vim  ~/.bashrc
+complete -cf doas
+
+# wrk bench
+wrk -t12 -c400 -d5s http://localhost/info.html
+wrk -t12 -c400 -d5s http://localhost:88/info.html
+wrk -t12 -c400 -d5s http://localhost/info.html
+wrk -t12 -c400 -d5s http://play.test/hai.php
+wrk -t12 -c400 -d5s http://localhost:8000
+
+# update
+freebsd-update fetch install
+pkg update && pkg upgrade
+
+freebsd-update fetch
+freebsd-update install
+
+# upgrade to 13.2
+freebsd-update -r 13.2-RELEASE upgrade
+freebsd-update install
+
+# enable service
+sysrc nginx_enable="YES"
+sudo sysrc mysql_enable=YES
+
+# nginx stop start restart
+service nginx onestart
+service nginx onestop
+service nginx onerestart
+
+# uninstall port snap
+make clean
+make deinstall
+
+# remove or reinstall config
+doas make rmconfig
+
+# pkg info version
+pkg search package_name
+pkg search openssh
+
+# list package
+pkg info | grep  postgres
+
+# check ssh login 
+w 
+who
+
+# check ssh log
+doas tail /var/log/auth.log

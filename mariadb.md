@@ -20,6 +20,8 @@ sudo dnf remove MariaDB-server
 sudo systemctl start mariadb
 sudo mariadb-upgrade -u root -p
 
+# create log folder
+chown -R mysql:mysql /var/log/mariadb
 
 #  reset root password
 sudo mariadbd-safe --skip-grant-tables --skip-networking &

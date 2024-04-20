@@ -1,0 +1,280 @@
+#!text describing installation process of debians on hetzner, by fresh not by them
+
+0. that is, we boot the hetzner box[en] to rescue mode, shifark the HD content ( due to their pre set debians ( or elses.. ) are just 'not good' ), and install and configure freshly by official debian tools ( using official debian sources )
+
+everything covered here is if not otherwise written done as root
+sudo su - is a way to gain root
+
+1. what we have, or wanna have, a one or more hetzner boxen
+1a) boot into rescue mode ( or order in rescue mode ) - may need later a second reboot to rescue mode
+1b) scrap the HDs: find the HDs whenever they are /dev/sda /dev/sdb etc or /dev/nvme0n1 /dev/nvme1n1 etc
+1b) per HD ( not partition ) - that is /dev/sda is a HD /dev/sda1 is a partition - /dev/nvme0n1 is a HD and /dev/nvme0n1p1 is a partition - so per HD not per partition run
+1b) cat /dev/urandom > "device"
+1b) and control-c it after a few seconds
+1b) and that for each HD not partition
+1b) for example
+1b) cat /dev/urandom >/dev/nvme0n1 <enter> <wait> <control-c>
+1b)                   /dev/sda
+1c) run 'partprobe' - to update kernel hd knowledge - if it complains about cant update, it is due to hetzner preset raid settings or such, reboot to rescue once more in this case to make it fixed and continue further
+
+small side info, HDs dont need to have partition, however i think to be able to properly install the grub boot loader u need to have at least one with a partition table, ..
+
+1d) craete partition table of at least the disk that will boot, with one partition ( the where it boots from .. )
+1d) cfdisk /dev/nvme0n1
+or
+1d) cfdisk /dev/sda
+maybe you wanna select by speed the speediest disk...
+hdparm -t /dev/sda /dev/sdb .. or nvme , remember your case
+and see how the HDs perform
+1d) in cfdisk it should ask you to create a new partition table, and what kind, select 'dos'
+1d) then it should display u a one entry of free space
+1d) choose 'new' and just enter the values without changing, to specify the partition take all space
+1d) depending on hetzners raid crappness u need to set the type of the partition to '83 linux'
+1d) then it should look like partition 1 done no more free space
+1d) choose with arrow keys 'bootable' once to mark it bootable, dunno if its needed but ..
+1d) choose 'write' and type 'yes' to write the updates to HD
+info) for the second and more HDs we can partition or just format later when we're in debian
+1d) run 'partprobe' - it shouldnt complain
+
+1e) now time to format the fs with the 'mkfs.ext4' command, that with partition 1 of the HD u cfdisk'ed .. like..
+1e) mkfs.ext4 /dev/sda1
+or
+1e) mkfs.ext4 /dev/nvme0n1p1
+
+2) installing debian on it
+2) this assumes you be ssh'd as root to the hetzner box in rescue - where the first partition of any disk is now formatted ( and not mounted and empty .. )
+2) if you aint in your $HOME run 'cd' once to be there
+2a) mkdir t
+2a) to create future mount point ( not so important cause temporary rescue mode boot )
+2a) mount /dev/nvme0n1p1 t
+or
+2a) mount /dev/sda1 t
+remember your HD case... uhm..
+2b) debootstrap unstable t
+2b) to install a fresh updated base [ debian ] system in t/ - the hd mount point
+
+3) creating save of some information, for net iface, and preconfig apt sources
+3a) mkdir t/a
+3a) to create sav dir
+3b) ifconfig >t/a/ifconfig
+3b) route -n >t/a/route-n
+3c) lspci >t/a/lspci
+3c) lspci -v >t/a/lspci-v
+3d) ip link >t/a/ip_link
+--)
+3d) curl http://0x0.st/oZds.txt >t/etc/apt/sources.list
+3d) to make all sources of debian available to the system
+
+file sources.list
+deb http://deb.debian.org/debian experimental main contrib non-free
+deb http://deb.debian.org/debian unstable main contrib non-free
+deb http://deb.debian.org/debian testing main contrib non-free
+deb http://deb.debian.org/debian stable main contrib non-free
+deb http://deb.debian.org/debian oldstable main contrib non-free
+
+deb-src http://deb.debian.org/debian experimental main contrib non-free
+deb-src http://deb.debian.org/debian unstable main contrib non-free
+deb-src http://deb.debian.org/debian testing main contrib non-free
+deb-src http://deb.debian.org/debian stable main contrib non-free
+deb-src http://deb.debian.org/debian oldstable main contrib non-free
+end file sources.list
+--)
+
+4) configuring the minimal debian to make it work
+4a) chroot t
+4a) 'enter' the new debian system
+4b) apt-get update
+4b) to update apt sources
+4c) apt-get dist-upgrade is not needed, a) the system is fresh unstable tree and b) the experimental sources are only by hand activated
+4d) now we have here a choise, to use sysvinit or go with systemd installed
+i do choose in every case sysvinit , you may skip this, but sysvinit is the one line config without gay long unknown format ( /etc/inittab and /etc/rc.local )
+4d) apt-get install sysvinit\*
+4d) dpkg --set-selections <<<'sysvinit-core hold'
+4d) apt-get remove --purge systemd\*
+...
+.. there is also another choosement, about questions asked when apt / dpkg stuff happens
+.. here i disable any [major] questions it might ask, for full dedicated endless updates
+
+apt-get install dialog
+
+dpkg-reconfigure debconf
+-> there select 'noninteractive'
+-> and 'critical'
+
+4e) apt-get install gawk curl wget rename net-tools psmisc vim pciutils sudo git dialog locales gcc cpp g++ build-essential libssl-dev libncurses-dev man-db clang pkg-config bc dc socat netcat ucspi-tcp screen tmux manpages-dev git htop
+4e) install some base sw
+.. whenever asked or not locales, and dialog installed or not, .. if not, do
+dpkg-reconfigure locales
+-> select 'en_US.UTF-8'
+-> ok
+-> select 'C.UTF-8'
+..
+4f) apt-get install linux-image-amd64
+4f) to install some new kernel ( at all one.. )
+4f) if you want newer kernel u can look what experimental tree has to offer
+4g) now we need grub bootloader, but we need to mount --bind from the rescue sys over to the deb
+4g) exit
+4g) to make it exit the chroot, back to the rescue sys, to $HOME
+4g) for d in dev proc run sys ; do mount --bind /$d t/$d ; done
+4g) chroot t
+4g) ps aux
+4g) should display u processes of the rescue system running
+4g) apt-get install grub2
+4g) grub-install /dev/sda
+4g- remember your HD ? this .. whenver its sda or sdb or nvme0n1 or something
+4g) update-grub
+--) now it should be ready to boot but stuff isnt configured or installed yet
+4e) apt-get install openssh-{server,client}
+4f) adduser myusername
+4f) replace myusername with your desired username
+4f) adduser myusername sudo
+4f- run again after added the user, to add to sudo group
+4g) passwd root
+4g) optionally so, set a root pass, adviserable maybe, ..
+4g) root ssh login is disabled by default, thats why create normal user with sudo
+4h) if you wanna copy your pub ssh key to the user, do this ( as root as we didnt change user here .. )
+4h) cd ~that_username
+4h) mkdir .ssh
+4h) cd .ssh
+4h) printf >>authorized_keys %s\\n '<copypaste_pub_key_line>'
+4h) chmod 600 authorized_keys
+4h) cd ..
+4h) chown -R that_username. .ssh
+4h- with the dot after username to also make it the group changed
+4h) cd
+4h- to get to /root instead of some users dir
+4i) now to configure the network, i have a premade template by an own hetzner server that needs some config modding and network should run after reboot
+4i) curl >/etc/network/interfaces http://0x0.st/oTzo.txt
+
+file interfaces
+# interfaces(5) file used by ifup(8) and ifdown(8)
+# Include files from /etc/network/interfaces.d:
+source /etc/network/interfaces.d/*
+
+auto dev
+iface dev inet static
+ address ip
+ gateway gwip
+ network 255.255.255.192
+end file interfaces
+
+4i) now, edit the file ( /etc/network/interfaces ) - the three 'dev' 'ip' and 'gwip'.. to.. or use /copypaste the after following gawk 'one liner' to exchange the values
+4i) dev is in /a/ip_link the first altname value of eth0 there
+4i) ip is the ip(v4) of eth0 in /a/ifconfig
+4i) gwip is in /a/route-n the second value ( gateway ) of where first ( destination ) is 0.0.0.0 - in my cases its the first entry that appears along a textual chapterization
+4i) gawk 'FILENAME ~ /ip_link$/ && altname == "" && $1 == "altname" { altname = $2 ; next } FILENAME ~ /ifconfig$/ && inet == "" && $1 == "inet" { inet = $2 ; next } FILENAME ~ /route-n$/ && gw == "" && $1 == "0.0.0.0" { gw = $2 ; next } FILENAME = /interfaces$/ { if ( file == "" ) file = FILENAME ; gsub( /dev/, altname ) ; gsub( / ip/ , " " inet ) ; gsub( /gwip/, gw ) ; sav = sav $0 RT } END { if ( sav ) printf "%s", sav >file }' /a/{ip_link,ifconfig,route-n} /etc/network/interfaces
+4i) for ipv6 i have to look it up currently sorry
+4i) i suppose its an inet6 instead of inet line, but dunno gw, maybe none
+--)
+--)
+4j) we still need most times at least one thing, that is firmware for everything ( such as the weird hetzner network adapters )
+4j) we fetch them all by official kernel.org git
+4j) git clone https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git /fw
+4j) cp -apu /fw/* /lib/firmware/
+4j) optionally remove the fw orig again ( as its copied to the kernels path )
+4j) rm -rf /fw
+4j) update-initramfs -u
+4j) to update the initramfs whenever its needed i dunno
+4k) as i dunno if its required to put the module name of the inet driver to /etc/modules but lets halfway assume so and cover it ( as ive always added it yet there )
+4k) that is the 'kernel driver in use' or 'kernel modules' in /a/lspci-v
+4k) gawk '/Ether/ , ! $0 { if ( /Kernel modules:/ ) print $3 >>"/etc/modules" }' /a/lspci-v
+4k) update-initramfs -u
+
+4l) erm.. name servers file needs to be replaced also, to public google ones i change or u can else.. i dunno
+4l) printf 'nameserver %s\n' >/etc/resolv.conf 8.8.4.4 8.8.8.8
+
+
+5) should it now work ?
+5) we done: deb install, lil sw install, conf net, so its ready for a test
+5) if it doesnt, reboot to rescue and examine logs in in /var/log ( of the HD not of the booted rescue system)
+5)) mkdir t
+5)) mount /dev/nvme0n1p1 t
+5)) or whatever partition story u done
+5)) optionally chroot t and go /var/log
+5)) or
+5)) cd t/var/log
+5)) and look further there, ( ls -c , less .. )
+5-)
+5a) assuming u done all the cmds, and u'r in chroot of the debian on the rescue system,
+5a) exit
+5a) reboot
+5a) to exit the chroot and reboot the hetzner system
+5b) with some luck and if i didnt forget major things here it will boot the new debian sys and kernel and start sshd already etc
+
+6) sysvinit ( vs systemGAY )
+6) is the same story as small self written fitful codes against bloated bugful wrongcodesware
+6) a small side unknown'ness note.. sysvinit boots without fstab / entry... systemd .. i dunno, i think so too, ..
+6a) sysvinit has /etc/inittab - the global init file, setting default runlevel, and what to do there ( /etc/rc .. ) and the possibility to add any app to run after boot in one simple line
+6b) sysvinit has /etc/rc.local , i'd replace the #!/bin/sh -e with #!/bin/bash there, this is run after boot ( like the boot up shell script ) however - try not to use it - cause it blocks totally , eg makes the boot process hung
+6c) i dunno soooo much about it all, sysvinit was around year 2000 debian where systemd wasnt ? it later came up - i never liked it - i had only problems with it - and i dont know and wants it gaymat format ( just as mysql , apache , and co )
+6d) /etc/inittab -> an example to start a script or a cmd after boot
+6d) the position to insert user services is around after the place where the getty's are defined
+6d) there u make a new empty line, visual separator, and then..
+6d) <very_short_uniq_name>:<runlevels>:<whatdothere>:<cmd>
+6d) example
+6d) xmat:23:respawn:su -c './xmb-apt-updated' - root
+6d) or
+6d) oipt:23:once:su -c './xmb-init-iptables' - root
+6e) /etc/rc.local -> the shell script ran after boot or the alike
+6e) well dont use it blocks, go the 6d) way , create a #!/bin/bash script that does what u want, on boot, chmod +x it, and add it like shown to /etc/inittab
+6f) telinit q
+6f) is the cmd that lets the sysvinit know to reread inittab, so it starts the services
+6f) well.. gotta write some more here but its too far off
+
+7) the system booted up and is per ip tcp ssh available
+7) login with your user account, or even key, if you done the step, and u be logged in, root rights via su - and root password or sudo su - with the user password
+7a) to get other HDs into the system...
+--) there is again a choosement... between partitioned to pieces or just the full disk
+7a) mkfs.ext4 /dev/nvme1n1
+7a) or
+7a) mkfs.ext4 /dev/sdb
+7a) to use the full disk
+7a) to partition to pieces... uhm.. one example is..
+7a) cfdisk /dev/nvme1n1
+7a) or whatever dev ( not partition of dev ) u want to partition
+7a) then create a dos partition table, then crate new paratiion blablabla
+7a) then choose 'write' and type 'yes', to write the changes to HD
+7a) the system gotta reflect those changes, for this, run
+7a) partprobe
+7a) then your partitions in /dev/nvme1n1p* should been craeted
+7a) then, mkfs the fs on it, say partition number 1
+7a) mkfs.ext4 /dev/nvme1n1p1
+7a) or maybe..
+7a) mkfs.ext4 /dev/sda1
+7b) link the HD to the fs
+7b) create dream entry mount point, my case HD 2 path /2/
+7b) mkdir /2
+7b) we need the uuid of the file system to mount it, cause the naming of sda and nvme etc is not stable
+7b) if you got the mkfs.ext4 output still on, and can even copy paste, u can copy the uuid shown there
+7b) else, we can use 'lsblk' and 'blkid' for gaining suches, copypaste the following code
+7b) printf >>/etc/fstab %s\\n "$( tr \\n = <( lsblk -o UUID /dev/nvme1n1 ) ) /2 ext4 defaults 0 0"
+7b) should then make a line in /etc/fstab.. like
+7b) UUID=<long--shit> /2 ext4 defaults 0 0
+7b) if it didnt, add one so, the UUID=<long> is important, quotes dont matter
+7c) mount /2
+7c) if that said no error, its mounted, check with
+7c) df -Th /2
+7d) to add users there, ..
+7d) adduser --home /2/desired_username desired_username
+
+8) extra software and missing else information
+8a) its adversable to have tmpfs in /tmp mounted
+8a) plain such debootstrap debian installs have an empty /etc/fstab - besides a comment line optionally to delete for whatever's sake
+8a) >>/etc/fstab printf %s\\n 'none /tmp tmpfs defaults 0 0'
+8a) it will auto activate on next reboot, if you wish earlier, run
+8a) mount /tmp
+8a) that ( mounting lately ) might cause some special dbus issues or something but if u dont run special sw it wont
+
+8b) docker and docker-compose
+8b) apt-get install docker.io docker-compose
+
+8c) golang
+8c) apt-get install golang
+
+8d) rust nightly
+8d) . <( curl -sqL https://sh.rustup.rs )
+8d) there select change
+8d) then nightly
+8d) then complete
+8d) yes to change path
+8d) yes to proceed

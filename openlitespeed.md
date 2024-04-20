@@ -18,8 +18,15 @@ certbot certonly --non-interactive --webroot -w /usr/local/lsws/example/html -d 
 sudo usermod -aG yourUserName lsadm
 sudo gpasswd -a yourUserName lsadm
 
+# cache makes web error
+change module name to caching
+
 # set html path to group and nobody owner
 chown -R username:nobody /path/to/dir/html
+
+# disable autostart automatic startup
+/usr/local/lsws/admin/misc/rc-uninst.sh
+
 
 # setup php change php setting
 https://openlitespeed.org/kb/change-php-settings-by-vhost-and-user/
@@ -135,3 +142,14 @@ systemctl restart lsws
 
 # chown
 sudo chown -R nobody:nobody /usr/local/lsws/Example/html/
+
+# freebsd
+doas mkdir -p /usr/local/lsws/lsphp81/bin/
+doas cp /usr/ports/lang/php81/work/stage/usr/local/bin/lsphp /usr/local/lsws/lsphp81/bin/
+cd /usr/local/lsws
+doas cp lsphp81/bin/lsphp fcgi-bin/
+doas cp lsphp81/bin/lsphp admin/fcgi-bin/admin_php
+doas bin/lswsctrl restart
+
+
+

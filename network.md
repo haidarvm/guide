@@ -76,6 +76,12 @@ nmcli con modify Hostspot wifi-sec.psk "rhelthink"
 # turn off eth0
 ifdown eth0
 
+# check list connection
+nmcli connection
+
+# turn off wifi
+ifdown haidar
+
 # connect wifi 
 nmcli device wifi rescan
 nmcli device wifi rescan

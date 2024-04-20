@@ -1,0 +1,19 @@
+
+
+
+conf.d
+server {
+    server_name    jbnews.id www.jbnews.id;
+    root           /var/www/public_html/test/invbio/app/public;
+    error_log      /var/log/nginx/invbio_error.log error;
+
+    index          index.php index.html;
+    location / {
+                try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    location ~ /\.  { return 403; }
+
+    include /etc/nginx/default.d/*.conf;
+}
+

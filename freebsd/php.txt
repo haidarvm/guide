@@ -1,0 +1,51 @@
+pkg install php82
+pkg install php82-extensions
+pkg install php81-xml mod_php81 php81-zip php81-mbstring php81-zlib php81-curl php81-mysqli php81-gd php81-gd php81 php81-session php81-filter
+
+
+# compile manual
+https://docs.litespeedtech.com/lsws/extapp/php/getting_started/
+
+
+# litespeed
+echo "qu+g-8QWJ-g9nx-qe0A" > serial.no
+
+
+# prepare
+pkg install libmcrypt libzip libsodium png icu
+
+#install libiconv
+# wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.17.tar.gz
+# tar zxvf ./libiconv-1.17.tar.gz
+# cd libiconv-1.16
+# ./configure --prefix=/usr
+# make & make install
+export LDFLAGS="$LDFLAGS -liconv"
+
+#
+./configure '--with-libdir=lib64' '--with-zlib' '--with-gd' '--enable-shmop' '--enable-sockets' '--enable-sysvsem' '--enable-sysvshm' '--with-curl' '--with-openssl' '--with-gettext' '--with-mcrypt' '--enable-mbstring=all' '--enable-mbregex' '--with-png-dir=/usr' '--with-jpeg-dir=/usr'  '--enable-ftp' '--with-imap=/usr' '--with-imap-ssl' '--with-mysql=/usr' '--with-mysqli=/usr/bin/mysql_config' '--enable-pcntl' '--with-freetype-dir=/usr' '--with-pdo-mysql=/usr' '--with-litespeed'
+
+# php 8.2
+./configure --prefix=/usr/local --enable-cli --enable-intl --enable-opcache --enable-mbstring --enable-opcache --enable-sockets --with-mysql-sock --with-mysqli --with-zlib --enable-gd --enable-shmop --enable-sockets --enable-sysvsem --enable-sysvshm --enable-mbstring  --with-iconv=/usr/local  --with-pdo-mysql --enable-ftp --with-pdo-pgsql --with-pdo-sqlite --with-pgsql --with-zip --with-curl --enable-soap --enable-xml --with-openssl --enable-bcmath --enable-litespeed --enable-pcntl --with-readline --enable-exif --with-sodium --enable-intl
+
+# php 74
+./configure --enable-cli --enable-intl --enable-opcache --enable-sockets --with-mysqli --with-zlib --enable-gd --enable-shmop --enable-sockets --enable-sysvsem --enable-sysvshm --enable-mbstring --with-iconv --with-pdo-mysql --enable-ftp --with-pdo-pgsql --with-pdo-sqlite --with-sqlite --with-pgsql  --enable-zip  --with-curl --enable-soap --enable-xml --with-openssl --enable-bcmath --enable-litespeed --enable-pcntl --with-readline --enable-exif --with-sodium  --with-mcrypt --enable-json 
+
+
+ --with-jpeg 
+intl, pcre, pdo, pgsql, posix, sodium,sqlite3, filter,zip, mbstring, pear
+
+# php 56
+./configure  --prefix=/usr/local/php56 --enable-cli --enable-opcache --enable-sockets --with-mysqli --with-zlib --with-gd --enable-shmop --enable-sockets --enable-sysvsem --enable-sysvshm  --with-iconv --with-pdo-mysql --enable-ftp --with-pdo-pgsql --with-pdo-sqlite --with-pgsql  --enable-zip  --with-curl --enable-soap --enable-xml --enable-bcmath --with-litespeed --enable-pcntl --with-readline --enable-exif --enable-json 
+
+
+./configure --prefix=/usr/local/lsws/lsphp81 --with-litespeed
+ #remove --disable-all
+
+#cp to lsws
+mkdir -p /usr/local/lsws/lsphp81/bin/
+cp /usr/ports/lang/php81/work/stage/usr/local/bin/lsphp /usr/local/lsws/lsphp81/bin/
+
+
+# php 7.4 change to 
+--enable-litespeed

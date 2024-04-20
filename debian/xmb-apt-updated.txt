@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# susvinit /etc/inittab startup entry
+# xmau:23:respawn:su -c 'bash xmb-apt-updated' - root
+# assuming this script is /root/xmb-apt-updated
+# add arg '1' for with experimental sources
+# // dpkg-reconfigure debconf // for critical asks only
+# // dpkg-reconfigure $( dpkg -l | awk '/^ii/ { print $2 }' ) // to reconf all
+
+ : "
+${app=xmb-apt-updated}
+
+${log=$HOME/.$app.log}
+${exp:=${1-0}}
+${interval=30m}
+
+${down=$HOME/.$app.down}
+ "
+
+ [[ " $* " != *" 0 "* ]] &&
+exec 1> >( while : ; do tee -a "$log" ; done ) 2>&1 0<&-
+
+unset -v hexp
+ [[ " $* " == *" 1 "* ]] &&
+hexp=
+
+ aptfix() {
+dpkg --configure -a
+apt-get -fy install
+ }
+
+   while : ; do
+  if ! [[ -e $down ]] ; then
+apt-get update
+ [[ -v hexp ]] &&
+apt-get -fy -t experimental upgrade
+aptfix
+apt-get -fy dist-upgrade
+ [[ -v hexp ]] && {
+apt-get -fy -t experimental upgrade
+aptfix
+apt-get -fy autoremove
+apt-get clean
+ }
+ fi
+sleep "$interval"
+  done

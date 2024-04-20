@@ -218,6 +218,11 @@ semanage permissive -d httpd_t
 # nginx-stable /etc/yum.repos.d/nginx.repo
 
 
+# repo repomd.xml GPG signature verification error 
+sudo dnf clean all
+sudo rm -r /var/cache/dnf
+sudo dnf upgrade
+
 ## https://play.google.com/store/apps/details?id=com.haidarvm.ecommerce
 ## nginx stable
 
