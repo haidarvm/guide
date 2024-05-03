@@ -28,8 +28,18 @@ systemctl status vncserver@\:1.service
 
 
 
-## ubuntu based
+## debian based
 sudo apt install tigervnc-standalone-server tigervnc-common tigervnc-xorg-extension tigervnc-viewer
 
-$ vncserver
-$ ls -l ~/.vnc 
+
+# run
+vncserver -localhost no -geometry 1440x900 -depth 24
+
+# list
+vncserver -list
+
+# kill
+vncserver -kill :1
+
+ls -l ~/.vnc 
+

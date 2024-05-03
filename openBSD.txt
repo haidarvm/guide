@@ -3,17 +3,25 @@ doas rcctl check sshd
 doas rcctl start sshd
 doas rcctl enable sshd
 sudo rcctl reload sshd
+doas rcctl list on
+doas rcctl ls started
+doas rcctl list failed
+
 
 # update
 syspatch
 pkg_add -Uu
 
 
-# pkg list ports
+# set wheel doas
+
+# pkg list ports	
 $ ls /usr/ports
 
 # pkg info pkg search
 pkg_info -Q apache2
+
+pkglocate mutool
 
 # pkg remove
 pkg_delete package
@@ -27,4 +35,17 @@ pkg_info | grep php
 
 # certbot
 certbot certonly --webroot -w /var/www/htdocs -d example.com
+
+# list open port
+netstat -na -f inet
+netstat -f inet -u
+netstat -f inet -at
+
+
+# make with cflags include for dwm st
+pkg_add rt
+export CC=cc CXX=c++
+
+make CFLAGS='-I /usr/local/include -I/usr/X11R6/include -I /usr/X11R6/include/freetype2' 
+make CFLAGS='-I /usr/local/include -I/usr/X11R6/include -I /usr/X11R6/include/freetype2' 
 

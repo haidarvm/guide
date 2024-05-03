@@ -1,0 +1,1 @@
+echo "GET http://localhost" | vegeta attack -duration=5s | vegeta report --type=text

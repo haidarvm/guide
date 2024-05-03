@@ -6,6 +6,9 @@ cd /boot
 touch ssh
 cd /rootfs/etc
 
+# picocom set
+picocom -b 115200 /dev/ttyUSB0
+
 # simple dhcpd
 sudo vi /etc/dhcpcd.conf
 cd /rootfs/etc
