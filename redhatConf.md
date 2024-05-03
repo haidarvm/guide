@@ -57,6 +57,7 @@ sudo dnf install memcached libmemcached
 dnf install setroubleshoot setools
 
 # read sealert terminal
+journalctl -t setroubleshoot
 
 # add subscription
 subscription-manager register --auto-attach

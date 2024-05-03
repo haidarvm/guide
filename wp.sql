@@ -2,6 +2,9 @@
 find . -type d -exec chmod 755 {} \;  # Change directory permissions rwxr-xr-x
 find . -type f -exec chmod 640 {} \;  # Change file permissions rw-r--r--
 
+-- disable xmlrpc in rewrite ols
+RewriteRule ^/(xmlrpc\.php|wp-trackback\.php) - [F,L,NC]
+
 
 -- wp-config.php hardening
 define('DISABLE_WP_CRON', true);

@@ -33,6 +33,8 @@ UUID=aa88ba34-bdb5-4eda-a973-401d68c5547d /media/other         xfs     defaults 
 mount -a
 mount -fav
 
+# check health speed
+sudo hdparm -t /dev/sda
 
 # mount readonly sdcard
 hdparm -r0 /dev/sda
