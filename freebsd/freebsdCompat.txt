@@ -1,0 +1,12 @@
+# login chroot
+doas chroot /compat/debian /bin/bash
+
+#asell error
+Error: /dev/null:1: The key "/usr/bin/aspell" is unknown.
+--
+apt install locales
+dkpg-reconfigure locales
+set to en_US-UTF8
+
+# add kern /etc/sysctl.conf
+kern_securelevel="3"

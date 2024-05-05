@@ -1,0 +1,209 @@
+<article id="post-732" class="post-732 post type-post status-publish format-standard hentry category-tech tag-devuan tag-freebsd tag-jails tag-linux">
+				<header class="entry-header">
+			
+						<h1 class="entry-title">FreeBSD Jail booting &#038; running Devuan GNU+Linux with OpenRC</h1>
+								</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>Two years ago I wrote a blog post named <em>&#8220;<a href="https://weblog.antranigv.am/posts/2021/08/2021-08-21-00-37/">VoidLinux in FreeBSD Jail; with init</a>&#8221;</em>, where we installed and <em>&#8220;booted&#8221;</em> VoidLinux in a FreeBSD Jail. I think it&#8217;s time to revise that post.</p>
+<p>This time we will be using <a href="https://www.devuan.org">Devuan GNU+Linux</a>, boot things using <a href="https://wiki.gentoo.org/wiki/Project:OpenRC">OpenRC</a> and put some native FreeBSD binaries inside the Linux Jail.</p>
+<p>Here&#8217;s what I&#8217;m running at the moment</p>
+<pre><code>root@srv0:~ # uname -v
+FreeBSD 13.2-RELEASE releng/13.2-n254617-525ecfdad597 GENERIC
+</code></pre>
+<p>To bootstrap the Devuan system, we need <a href="https://wiki.debian.org/Debootstrap">debootstrap</a>. Specifically, <a href="https://pkginfo.devuan.org/cgi-bin/package-query.html?c=package&#038;q=debootstrap=1.0.123+devuan3">debootstrap that ships with Devuan Chimaera</a>. We can start by installing debootstrap from ports/packages, and then we can modify the rest.</p>
+<pre><code>pkg install -y debootstrap
+</code></pre>
+<p>Now we need to fetch Devuan&#8217;s debootstrap, extract it, put some files into our debootstrap and set some symbolic links.</p>
+<pre><code class="bash"># Path might change over time, check https://pkginfo.devuan.org/ for the exact link
+fetch http://deb.devuan.org/merged/pool/DEVUAN/main/d/debootstrap/debootstrap_1.0.123+devuan3_all.deb
+
+# .deb files are messy, make a directory
+mkdir debootstrap_devuan
+mv debootstrap_1.0.123+devuan3_all.deb debootstrap_devuan/
+cd debootstrap_devuan/
+tar xf debootstrap_1.0.123+devuan3_all.deb
+tar xf data.tar.gz
+
+# We need chimaera (latest, symlink) and ceres (origin)
+cp usr/share/debootstrap/scripts/ceres usr/share/debootstrap/scripts/chimaera /usr/local/share/debootstrap/scripts/
+</code></pre>
+<p>Now we can bootstrap our system. I will be using a ZFS filesystem, but this can be done without ZFS as well.</p>
+<p>Keep in mind that my Jail&#8217;s path is going to be <code>/usr/local/jails/devuan0</code>, modify this path as needed 🙂</p>
+<pre><code>zfs create zroot/jails/devuan0
+
+debootstrap --no-check-gpg --arch=amd64 chimaera /usr/local/jails/devuan0/ http://pkgmaster.devuan.org/merged/
+</code></pre>
+<p>The installation should start now but at some point there, we&#8217;ll get the following error:</p>
+<pre><code>I: Configuring libpam-runtime...
+I: Configuring login...
+I: Configuring util-linux...
+I: Configuring mount...
+I: Configuring sysvinit-core...
+W: Failure while configuring required packages.
+W: See /usr/local/jails/devuan0/debootstrap/debootstrap.log for details (possibly the package package is at fault)
+</code></pre>
+<p>DON&#8217;T PANIC! This is fine 🙂 We just need to <code>chroot</code> inside, fix this manually and install OpenRC</p>
+<pre><code>
+chroot /usr/local/jails/devuan0 /bin/bash
+# Fix base packages
+dpkg --force-depends -i /var/cache/apt/archives/*.deb
+# Set Cache-Start
+echo &quot;APT::Cache-Start 251658240;&quot; &gt; /etc/apt/apt.conf.d/00chroot
+# Install OpenRC
+apt update
+apt install openrc
+</code></pre>
+<p>We have almost everything ready. We just need to create a password database file that the <a href="https://man.freebsd.org/cgi/man.cgi?jail"><code>jail(8)</code></a> command uses internally.</p>
+<pre><code>cd /usr/local/jails/devuan0/etc/
+echo &quot;root::0:0::0:0:Charlie &amp;:/root:/bin/bash&quot; &gt; master.passwd
+pwd_mkdb -d ./ -p master.passwd
+# Restore the Linux passwd file
+cp passwd- passwd
+</code></pre>
+<p>We can also move our statically linked FreeBSD binaries into the Linux Jail so we can use them when needed</p>
+<pre><code>cp -a /rescue /usr/local/jails/devuan0/native
+</code></pre>
+<p>Now we just need our Jail configuration file. We can put that at <code>/etc/jail.conf.d/devuan0.conf</code></p>
+<p>(This assumes that you&#8217;re network is configured similar to <a href="https://weblog.antranigv.am/posts/2021/04/2021-04-20-07-02/"><em>&#8220;VNET Jail HowTo Part 2: Networking&#8221;</em></a></p>
+<pre><code># vim: set syntax=sh:
+exec.clean;
+allow.raw_sockets;
+mount.devfs;
+
+devuan0 {
+  # ID == epair index :)
+  $id             = &quot;0&quot;;
+  $bridge         = &quot;bridge0&quot;;
+  # Set a domain :)
+  $domain         = &quot;bsd.am&quot;;
+  vnet;
+  vnet.interface = &quot;epair${id}b&quot;;
+
+  mount.fstab     = &quot;/etc/jail.conf.d/${name}.fstab&quot;;
+
+  exec.prestart   = &quot;ifconfig epair${id} create up&quot;;
+  exec.prestart  += &quot;ifconfig epair${id}a up descr vnet-${name}&quot;;
+  exec.prestart  += &quot;ifconfig ${bridge} addm epair${id}a up&quot;;
+
+  exec.start      = &quot;/sbin/openrc default&quot;;
+
+  exec.stop       = &quot;/sbin/openrc shutdown&quot;;
+
+  exec.poststop   = &quot;ifconfig ${bridge} deletem epair${id}a&quot;;
+  exec.poststop  += &quot;ifconfig epair${id}a destroy&quot;;
+
+  host.hostname   = &quot;${name}.${domain}&quot;;
+  path            = &quot;/usr/local/jails/devuan0&quot;;
+
+  # Maybe mkdir this path :)
+  exec.consolelog = &quot;/var/log/jail/${name}.log&quot;;
+
+  persist;
+  allow.socket_af;
+}
+</code></pre>
+<p>As you have guessed, we also need an <code>fstab</code> file, that should go into <code>/etc/jail.conf.d/devuan0.fstab</code></p>
+<pre><code>devfs       /usr/local/jails/devuan0/dev      devfs     rw                   0 0
+tmpfs       /usr/local/jails/devuan0/dev/shm  tmpfs     rw,size=1g,mode=1777 0 0
+fdescfs     /usr/local/jails/devuan0/dev/fd   fdescfs   rw,linrdlnk          0 0
+linprocfs   /usr/local/jails/devuan0/proc     linprocfs rw                   0 0
+linsysfs    /usr/local/jails/devuan0/sys      linsysfs  rw                   0 0
+tmpfs       /usr/local/jails/devuan0/tmp      tmpfs     rw,mode=1777         0 0
+</code></pre>
+<p>Finally, let&#8217;s load some kernel modules (in case they haven&#8217;t yet)</p>
+<pre><code>service linux enable
+service linux start
+kldload netlink
+</code></pre>
+<p>Let&#8217;s start our Jail!</p>
+<pre><code>jail -c -f /etc/jail.conf.d/devuan0.conf
+</code></pre>
+<p>Is it running?</p>
+<pre><code> # jls -N
+ JID             IP Address      Hostname                      Path
+ devuan0                         devuan0.bsd.am                /usr/local/jails/devuan0
+</code></pre>
+<p>Yes it is!</p>
+<p>Now we can <code>jexec</code> into it and run things!</p>
+<pre><code>root@srv0:~ # jexec -l devuan0 /bin/bash
+root@devuan0:~# uname -a
+Linux devuan0.bsd.am 4.4.0 FreeBSD 13.2-RELEASE releng/13.2-n254617-525ecfdad597 GENERIC x86_64 GNU/Linux
+</code></pre>
+<p>The process tree looks neat as well!</p>
+<pre><code>root@devuan0:~# ps f
+  PID TTY      STAT   TIME COMMAND
+74682 pts/1    S      0:00 /bin/bash
+78212 pts/1    R+     0:00  \_ ps f
+48412 ?        Ss     0:00 /usr/sbin/cron
+41190 ?        Ss     0:00 /usr/sbin/rsyslogd
+</code></pre>
+<p>Let&#8217;s do some networking things! Let&#8217;s setup networking and install OpenSSH.<br />
+(This assumes that you&#8217;re network is configured similar to <a href="https://weblog.antranigv.am/posts/2021/04/2021-04-20-07-02/"><em>&#8220;VNET Jail HowTo Part 2: Networking&#8221;</em></a>)</p>
+<pre><code># Setup network interfaces
+/native/ifconfig lo0 inet 127.0.0.1/8 up
+/native/ifconfig epair0b inet 10.0.0.10/24 up
+/native/route add default 10.0.0.1
+
+# Install and start OpenSSH server
+apt-get --no-install-recommends install openssh-server
+rc-service ssh start
+</code></pre>
+<p>You should be able to ping things now</p>
+<pre><code>~# ping -n -c 1 bsd.am
+ping: WARNING: setsockopt(ICMP_FILTER): Protocol not available
+PING  (37.252.73.34) 56(84) bytes of data.
+64 bytes from 37.252.73.34: icmp_seq=1 ttl=55 time=2.60 ms
+
+---  ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 2.603/2.603/2.603/0.000 ms
+</code></pre>
+<p>To make the networking configuration persistent, we can use the <code>rc.local</code> file that OpenRC executes at boot.</p>
+<pre><code>chmod +x /etc/rc.local
+echo '/native/ifconfig lo0 inet 127.0.0.1/8 up' &gt;&gt; /etc/rc.local
+echo '/native/ifconfig epair0b inet 10.0.0.10/24 up' &gt;&gt; /etc/rc.local
+echo '/native/route add default 10.0.0.1' &gt;&gt; /etc/rc.local
+</code></pre>
+<p>Do you know what this means? It means that now you can have proper ZFS, DTrace and pf firewalling with Linux. Congrats, now you have clean waters.</p>
+<p><em>That&#8217;s all folks…</em></p>
+<p>P.S. I would like to thank my mentor, <a href="http://norayr.am">norayr</a>, for showing me how to start/stop OpenRC manually, and the awesome folks at <a href="https://www.devuan.org/os/community">#devuan</a> for their help.</p>
+<p><a style="font-size: 0.85rem" href="mailto:comments@vartanian.am?subject=Comment on 'FreeBSD Jail booting &#038; running Devuan GNU+Linux with OpenRC'&body=Post link: https://antranigv.am/posts/2023/08/freebsd-jail-devuan-linux-openrc/">Reply via email</a>.</p>					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+			This entry was posted in <a href="https://antranigv.am/categories/tech/" rel="category tag">Tech</a> and tagged <a href="https://antranigv.am/tags/devuan/" rel="tag">Devuan</a>, <a href="https://antranigv.am/tags/freebsd/" rel="tag">FreeBSD</a>, <a href="https://antranigv.am/tags/jails/" rel="tag">Jails</a>, <a href="https://antranigv.am/tags/linux/" rel="tag">Linux</a> on <a href="https://antranigv.am/posts/2023/08/freebsd-jail-devuan-linux-openrc/" title="6:33 PM" rel="bookmark"><time class="entry-date" datetime="2023-08-01T18:33:59+04:00">August 1, 2023</time></a><span class="by-author"> by <span class="author vcard"><a class="url fn n" href="https://antranigv.am/posts/author/antranigv/" title="View all posts by Antranig Vartanian" rel="author">Antranig Vartanian</a></span></span>.								</footer><!-- .entry-meta -->
+	</article><!-- #post -->
+
+				<nav class="nav-single">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="https://antranigv.am/posts/2023/07/729/" rel="prev"><span class="meta-nav">&larr;</span> Previous Post</a></span>
+					<span class="nav-next"><a href="https://antranigv.am/posts/2023/09/737/" rel="next">Next Post <span class="meta-nav">&rarr;</span></a></span>
+				</nav><!-- .nav-single -->
+
+				
+<div id="comments" class="comments-area">
+
+	
+			<h2 class="comments-title">
+			3 thoughts on &ldquo;<span>FreeBSD Jail booting &#038; running Devuan GNU+Linux with OpenRC</span>&rdquo;		</h2>
+
+		<ol class="commentlist">
+					<li class="pingback even thread-even depth-1" id="comment-73">
+		<p>Pingback: <a href="https://vermaden.wordpress.com/2023/08/07/valuable-news-2023-08-07/" class="url" rel="ugc external nofollow">Valuable News &#8211; 2023/08/07 | 𝚟𝚎𝚛𝚖𝚊𝚍𝚎𝚗</a> </p>
+				</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-75">
+		<article id="comment-75" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt='' src='https://secure.gravatar.com/avatar/d443866f5a9539b59e65024b511f1ac0?s=44&#038;d=identicon&#038;r=g' srcset='https://secure.gravatar.com/avatar/d443866f5a9539b59e65024b511f1ac0?s=88&#038;d=identicon&#038;r=g 2x' class='avatar avatar-44 photo' height='44' width='44'  onerror="this.onerror=null;this.src='https://antranigv.am/wp-content/plugins/webmention/assets/img/mm.jpg';this.srcset='https://antranigv.am/wp-content/plugins/webmention/assets/img/mm.jpg';" decoding='async'/><cite><b class="fn">catav</b> </cite><a href="https://antranigv.am/posts/2023/08/freebsd-jail-devuan-linux-openrc/comment-page-1/#comment-75"><time datetime="2023-08-13T13:03:40+04:00">August 13, 2023 at 1:03 PM</time></a>				</header><!-- .comment-meta -->
+
+				
+				
+				<section class="comment-content comment">
+				<p>How can I Jailing Devuan by using BastilleBSD? It should be simple than this way.</p>
+								</section><!-- .comment-content -->
+
+				<div class="reply">
+								</div><!-- .reply -->
+			</article><!-- #comment-## -->
+				</li><!-- #comment-## -->
+		</ol><!-- .commentlist -->

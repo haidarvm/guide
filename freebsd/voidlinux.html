@@ -1,0 +1,144 @@
+<article id="post-77" class="post-77 post type-post status-publish format-standard hentry category-tech tag-freebsd tag-howto tag-jailer tag-jails tag-voidlinux">
+				<header class="entry-header">
+			
+						<h1 class="entry-title">VoidLinux in FreeBSD Jail; with init</h1>
+								</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>Two important things happened this week for me.</p>
+<p>First, <a href="https://kfv.io">Faraz</a> asked me if I can rename my Jail manager to something other than Jailio because he got that domain for his Jailer manager already. So I named it</p>
+<p>Second, I was able to run a complete Linux system using Jailer. While the repo for Jailer is not released yet (we are auditing for possible security issues), I would like to share how I was able to run <a href="https://voidlinux.org">VoidLinux</a> in a Jail.</p>
+<p>Since Jailer is not announced yet, I will give the examples using <code>jail.conf</code>, as most people either are or should be familiar with its concepts.</p>
+<p>I went with VoidLinux because I am able to run the <code>init</code> process without its need to be running as PID1.</p>
+<p>Let&rsquo;s start, shall we?</p>
+<p>First, ZFS dataset for our jail!</p>
+<pre tabindex="0"><code>zfs create zroot/jails/voidlinux
+</code></pre>
+<p>Next we need to fetch the base system of VoidLinux. Luckily they do provide it on their website.</p>
+<pre tabindex="0"><code>fetch https://alpha.de.repo.voidlinux.org/live/current/void-x86_64-ROOTFS-20210218.tar.xz
+</code></pre>
+<p>Now we can extract this into our dataset</p>
+<pre tabindex="0"><code>tar xf void-x86_64-ROOTFS-20210218.tar.xz -C /usr/local/jails/voidlinux/
+</code></pre>
+<p>You might get an error that <code>./usr/bin/iputils-ping: Cannot restore extended attributes: security.capability</code>, which is fine, I think?</p>
+<p>If you are on FreeBSD 12.2-RELEASE or later, now you need to enable the Linuxulator.</p>
+<pre tabindex="0"><code>service linux enable; service linux start
+</code></pre>
+<p>Now you can at least chroot into the system.</p>
+<pre tabindex="0"><code>chroot /usr/local/jails/voidlinux/ /bin/bash
+</code></pre>
+<p>If everything is fine until now, perfect.</p>
+<p>Now we need to <a href="https://forums.freebsd.org/threads/jail-getpwnam-no-such-file-or-directory.71635/">add a root user</a> into the system.</p>
+<pre tabindex="0"><code>root@host:~ # cd /usr/local/jails/voidlinux/etc/
+root@host:/usr/local/jails/voidlinux/etc # echo &#34;root::0:0::0:0:Charlie &amp;:/root:/bin/bash&#34; &gt; master.passwd
+root@host:/usr/local/jails/voidlinux/etc # pwd_mkdb -d ./ -p master.passwd
+pwd_mkdb: warning, unknown root shell
+</code></pre>
+<p>Execute the rest of the commands in Void.</p>
+<pre tabindex="0"><code>root@host:~ # chroot /usr/local/jails/voidlinux/ /bin/bash
+bash-5.1# cd /etc/
+bash-5.1# pwconv 
+bash-5.1# grpconv 
+bash-5.1# passwd 
+New password: 
+Retype new password: 
+passwd: password updated successfully
+bash-5.1# exit
+</code></pre>
+<p>If all went fine, then the system is ready to be run as a Jail!</p>
+<p>First we need to make an fstab for the system.</p>
+<p>Create a file at <code>/usr/local/jails/voidlinux/etc/fstab.pre</code> and insert the following inside</p>
+<pre tabindex="0"><code>devfs       /usr/local/jails/voidlinux/dev      devfs           rw                      0   0
+tmpfs       /usr/local/jails/voidlinux/dev/shm  tmpfs           rw,size=1g,mode=1777    0   0
+fdescfs     /usr/local/jails/voidlinux/dev/fd   fdescfs         rw,linrdlnk             0   0
+linprocfs   /usr/local/jails/voidlinux/proc     linprocfs       rw                      0   0
+linsysfs    /usr/local/jails/voidlinux/sys      linsysfs        rw                      0   0
+/tmp        /usr/local/jails/voidlinux/tmp      nullfs          rw                      0   0
+</code></pre>
+<p>Next, let&rsquo;s create a loopback interface for networking. Oh yes, VNET is not supported yet, but I&rsquo;m working on a patch 🙂</p>
+<pre tabindex="0"><code>ifconfig lo1 create
+ifconfig lo1 inet 10.10.0.1/24 up # sorry, 10.0.0.0/24 was unavailable :P
+</code></pre>
+<p>Okay, time to create our Jail conf!</p>
+<pre tabindex="0"><code>exec.clean;
+allow.raw_sockets;
+mount.devfs;
+
+voidlinux {
+    $id     = &#34;1&#34;;
+    $ipaddr = &#34;10.10.0.42&#34;;
+    $mask   = &#34;255.255.255.0&#34;;
+    $domain = &#34;srv0.bsd.am&#34;;
+    devfs_ruleset  = 4;
+    allow.mount;
+    allow.mount.devfs;
+    mount.fstab = &#34;${path}/etc/fstab.pre&#34;;
+
+    exec.start     = &#34;/bin/sh /etc/runit/2 &amp;&#34;;
+    exec.stop      = &#34;/bin/sh /etc/runit/3&#34;;
+
+
+    ip4.addr      = &#34;${ipaddr}&#34;;
+    interface     = &#34;lo1&#34;;
+    host.hostname = &#34;${name}.${domain}&#34;;
+    path = &#34;/usr/local/jails/voidlinux&#34;;
+    exec.consolelog = &#34;/var/log/jail-${name}.log&#34;;
+    persist;
+    allow.socket_af;
+}
+</code></pre>
+<p>Let&rsquo;s check?</p>
+<pre tabindex="0"><code># jls
+   JID  IP Address      Hostname                      Path
+     1  192.168.0.42    voidlinux.srv0.bsd.am         /usr/local/jails/voidlinux
+</code></pre>
+<p>And the process tree?</p>
+<pre tabindex="0"><code># ps auxd -J voidlinux
+USER   PID %CPU %MEM  VSZ  RSS TT  STAT STARTED    TIME COMMAND
+root 35182  0.0  0.1 2320 1428  -  SsJ  21:09   0:00.12 runsvdir -P /run/runit/runsvdir/current log: ot set SO_PASSCRED: Protocol not available\ncould not set SO_PASSCRED: Protocol
+root 35190  0.0  0.1 2168 1376  -  SsJ  21:09   0:00.02 - runsv agetty-tty6
+root 35397  0.0  0.1 2412 1704  -  SsJ  21:10   0:00.00 `-- agetty tty6 38400 linux
+root 35191  0.0  0.1 2168 1376  -  SsJ  21:09   0:00.02 - runsv agetty-tty1
+root 35396  0.0  0.1 2412 1704  -  SsJ  21:10   0:00.00 `-- agetty --noclear tty1 38400 linux
+root 35192  0.0  0.1 2168 1376  -  SsJ  21:09   0:00.02 - runsv agetty-tty5
+root 35398  0.0  0.1 2412 1704  -  SsJ  21:10   0:00.01 `-- agetty tty5 38400 linux
+root 35193  0.0  0.1 2168 1376  -  SsJ  21:09   0:00.02 - runsv agetty-tty2
+root 35393  0.0  0.1 2412 1704  -  SsJ  21:10   0:00.00 `-- agetty tty2 38400 linux
+root 35194  0.0  0.1 2168 1396  -  RsJ  21:09   0:00.12 - runsv udevd
+root 35195  0.0  0.1 2168 1376  -  SsJ  21:09   0:00.02 - runsv agetty-tty3
+root 35394  0.0  0.1 2412 1704  -  SsJ  21:10   0:00.00 `-- agetty tty3 38400 linux
+root 35196  0.0  0.1 2168 1376  -  SsJ  21:09   0:00.02 - runsv agetty-tty4
+root 35390  0.0  0.1 2412 1704  -  SsJ  21:10   0:00.00 `-- agetty tty4 38400 linux
+</code></pre>
+<p>You may <code>jexec</code> now 🙂</p>
+<pre tabindex="0"><code># jexec voidlinux /bin/bash
+bash-5.1# uname -a
+Linux voidlinux.srv0.bsd.am 3.2.0 FreeBSD 12.2-RELEASE-p6 GENERIC x86_64 GNU/Linux
+</code></pre>
+<p>Let&rsquo;s check networking?</p>
+<pre tabindex="0"><code>bash-5.1# ping -c 1 10.10.0.1
+ping: WARNING: setsockopt(ICMP_FILTER): Protocol not available
+PING 10.10.0.1 (10.10.0.1) 56(84) bytes of data.
+64 bytes from 10.10.0.1: icmp_seq=1 ttl=64 time=0.069 ms
+
+--- 10.10.0.1 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.069/0.069/0.069/0.000 ms
+</code></pre>
+<p>There you go! Well, things that are related to <code>netlink</code> might not work, but other than that it&rsquo;s okay.</p>
+<p>I did have some problems while installing packages, something about too many levels of symbolic links. Here&rsquo;s the exact output when I was trying to install the <code>curl</code> package</p>
+<pre tabindex="0"><code>[*] Unpacking packages
+libev-4.33_1: unpacking ...
+ERROR: libev-4.33_1: [unpack] failed to extract file `./usr/lib/libev.so.4&#39;: Too many levels of symbolic links
+ERROR: libev-4.33_1: [unpack] failed to extract files: Too many levels of symbolic links
+ERROR: libev-4.33_1: [unpack] failed to unpack files from archive: Too many levels of symbolic links
+Transaction failed! see above for errors.
+</code></pre>
+<p>Now, I did not find the time to fix this yet, but if you have any idea, please let me know or comment below 🙂</p>
+<p>So, what do we have here? A Linux Jail, running VoidLinux, with init, so you can also run services, and basic networking for it.</p>
+<p><em>That&rsquo;s all folks…</em></p>
+<p><a style="font-size: 0.85rem" href="mailto:comments@vartanian.am?subject=Comment on 'VoidLinux in FreeBSD Jail; with init'&body=Post link: https://antranigv.am/posts/2021/08/2021-08-21-00-37/">Reply via email</a>.</p>					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+			This entry was posted in <a href="https://antranigv.am/categories/tech/" rel="category tag">Tech</a> and tagged <a href="https://antranigv.am/tags/freebsd/" rel="tag">FreeBSD</a>, <a href="https://antranigv.am/tags/howto/" rel="tag">HowTo</a>, <a href="https://antranigv.am/tags/jailer/" rel="tag">Jailer</a>, <a href="https://antranigv.am/tags/jails/" rel="tag">Jails</a>, <a href="https://antranigv.am/tags/voidlinux/" rel="tag">VoidLinux</a> on <a href="https://antranigv.am/posts/2021/08/2021-08-21-00-37/" title="12:37 AM" rel="bookmark"><time class="entry-date" datetime="2021-08-21T00:37:51+04:00">August 21, 2021</time></a><span class="by-author"> by <span class="author vcard"><a class="url fn n" href="https://antranigv.am/posts/author/antranigv/" title="View all posts by Antranig Vartanian" rel="author">Antranig Vartanian</a></span></span>.								</footer><!-- .entry-meta -->
+	</article><!-- #post -->

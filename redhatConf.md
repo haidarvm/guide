@@ -33,9 +33,11 @@ UsePAM no
 =======
 MaxStartups 3 
 Port 2255
+
 # installl 	semanage
 dnf install policycoreutils-python-utils
 semanage port -a -t ssh_port_t -p tcp 2255
+setsebool -P nis_enabled 1
 firewall-cmd --zone=public --add-port=2255/tcp --permanent
 firewall-cmd --reload
 vi /etc/ssh/sshd_config
