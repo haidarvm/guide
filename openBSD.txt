@@ -11,12 +11,14 @@ doas rcctl list failed
 # update
 syspatch
 pkg_add -Uu
+sysmerge -d
+(dmesg; sysctl hw.sensors) | mail -s "Some information about the machine" dmesg@openbsd.org 
 
 
 # set wheel doas
 
 # pkg list ports	
-$ ls /usr/ports
+ls /usr/ports
 
 # pkg info pkg search
 pkg_info -Q apache2
@@ -46,6 +48,5 @@ netstat -f inet -at
 pkg_add rt
 export CC=cc CXX=c++
 
+make CFLAGS='-I /usr/local/include -I/usr/X11R6/include -I /usr/local/include/freetype2/ -D_DARWIN_C_SOURCE' 
 make CFLAGS='-I /usr/local/include -I/usr/X11R6/include -I /usr/X11R6/include/freetype2' 
-make CFLAGS='-I /usr/local/include -I/usr/X11R6/include -I /usr/X11R6/include/freetype2' 
-

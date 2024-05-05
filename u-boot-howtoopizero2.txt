@@ -1,0 +1,29 @@
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-linux-gnu-
+
+
+# too long
+# sudo dd if=/dev/zero of=/dev/sda bs=8M
+
+git clone https://github.com/u-boot/u-boot/
+git checkout tags/v2022.04
+#2023 version also good
+
+cd configs/
+make orangepi_zero2_defconfig
+cd ..
+make orangepi_zero2_defconfig
+make menuconfig	
+# set support usb
+make
+
+#freebsd not yet
+sudo dd if=FreeBSD-14.1-PRERELEASE-arm64-aarch64-20240425-9857f824ec77-267512-memstick.img of=/dev/da0 bs=1M conv=sync
+
+#test working good
+sudo dd if=miniroot75.img of=/dev/sda bs=1024 conv=sync
+sync
+sudo dd if=u-boot-sunxi-with-spl.bin of=/dev/sda bs=1024 seek=8 conv=sync
+
+
+>>boot

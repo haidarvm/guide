@@ -1,0 +1,1 @@
+doas sysctl hw.snd.vpc_0db=20

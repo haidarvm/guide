@@ -1,0 +1,8 @@
+check pass in :
+/usr/local/lsws/adminpasswd
+
+admin
+ZTBjODIx
+
+# permission error
+chmod 644 /usr/local/lsws/admin/conf/htpasswd

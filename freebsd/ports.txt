@@ -1,0 +1,4 @@
+cd /usr/ports
+
+portsnap fetch extract
+portsnap fetch update
