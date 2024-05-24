@@ -6,7 +6,8 @@ sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-9-
 
 sudo dnf -qy module disable postgresql
 sudo dnf install -y postgresql14-server
-sudo /usr/pgsql-14/bin/postgresql-14-setup initdb || postgresql-setup --initdb
+sudo /usr/bin/initdb
+sudo /usr/pgsql-14/bin/postgresql-14-setup initdb ||  sudo postgresql-setup --initdb
 sudo systemctl enable postgresql-14
 sudo systemctl start postgresql-14
 
@@ -48,7 +49,7 @@ doas vim /var/db/postgres/data15/pg_hba.conf
 
 local   all             postgres                                md5
 
-sudo vi /var/lib/pgsql/main/pg_ident.conf
+sudo vi /var/lib/pgsql/data/pg_ident.conf
 
 -- connect
 psql -U postgres -h localhost

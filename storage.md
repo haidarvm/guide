@@ -1,6 +1,6 @@
 # check last 10 most usage
 sudo du -hsx * | sort -rh | head -10
-doas du -hsx * | sort -rh | head -10
+
 
 #count total size folder
 du -sh .

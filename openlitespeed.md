@@ -3,6 +3,12 @@ dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.r
 rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el8.noarch.rpm
 dnf install openlitespeed lsphp80 lsphp80-common lsphp80-gd  lsphp80-imap lsphp80-mbstring lsphp80-mysqlnd lsphp80-opcache lsphp80-pdo lsphp80-process lsphp80-xml lsphp80-common 
 
+# rhel
+sudo wget -O - https://repo.litespeed.sh | sudo bash
+rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed.repo
+dnf install epel-release
+dnf install openlitespeed
+
 # set admin pass
 sudo /usr/local/lsws/admin/misc/admpass.sh
 
@@ -27,6 +33,12 @@ chown -R username:nobody /path/to/dir/html
 # disable autostart automatic startup
 /usr/local/lsws/admin/misc/rc-uninst.sh
 
+# podman docker build
+sudo wget -O - https://repo.litespeed.sh | sudo bash
+rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed.repo
+dnf install epel-release
+dnf install openlitespeed
+dnf install libxcrypt-compat
 
 # setup php change php setting
 https://openlitespeed.org/kb/change-php-settings-by-vhost-and-user/
