@@ -76,6 +76,7 @@ dnf install bash-completion
 
 # create new user
 sudo useradd -m -c "haidarvm" haidarvm -s /bin/bash 
+sudo useradd -m mark -s /bin/bash 
 
 # make sudo
 usermod -aG wheel haidarvm
@@ -161,7 +162,7 @@ yum module list
 
 
 ### openlitespeed ###
-sudo rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el8.noarch.rpm
+sudo rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el9.noarch.rpm
 
 sudo dnf install -y openlitespeed lsphp81 lsphp81-mysqlnd lsphp81-process lsphp81-mbstring lsphp81-gd lsphp81-opcache lsphp81-bcmath lsphp81-pdo lsphp81-common lsphp81-xml lsphp81-mbstring lsphp81-intl 
 

@@ -7,6 +7,11 @@ doas rcctl list on
 doas rcctl ls started
 doas rcctl list failed
 
+# wheel
+cp /etc/examples/doas.conf /etc/
+permit persist keepenv :wheel
+permit nopass haidar
+
 
 # update
 syspatch
@@ -14,8 +19,6 @@ pkg_add -Uu
 sysmerge -d
 (dmesg; sysctl hw.sensors) | mail -s "Some information about the machine" dmesg@openbsd.org 
 
-
-# set wheel doas
 
 # pkg list ports	
 ls /usr/ports
@@ -34,6 +37,10 @@ pkg_info | grep php
 
 # reset password
 
+# set to bash login
+chsh -s /usr/local/bin/bash
+chsh -s /usr/local/bin/bash haidar
+
 
 # certbot
 certbot certonly --webroot -w /var/www/htdocs -d example.com
@@ -42,6 +49,16 @@ certbot certonly --webroot -w /var/www/htdocs -d example.com
 netstat -na -f inet
 netstat -f inet -u
 netstat -f inet -at
+
+
+# add missing
+curl -LO 'https://cdn.openbsd.org/pub/OpenBSD/7.5/amd64/x{base,serv,font}75.tgz'
+tar xzf xbase75.tgz -C / 
+tar xzf xserv75.tgz -C / 
+tar xzf xfont75.tgz -C / 
+tar xzf xshare75.tgz -C / 
+rm -f xbase75.tgz xfont75.tgz xserv75.tgz xshare75.tgz
+ldconfig /usr/local/lib /usr/X11R6/lib
 
 
 # make with cflags include for dwm st

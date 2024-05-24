@@ -1,1 +1,4 @@
 xfce4-panel -r & 
+
+# check power
+xfconf-query -c xfce4-power-manager -lv

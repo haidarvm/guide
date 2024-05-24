@@ -26,6 +26,16 @@ dnf groupinstall "Cinnamon Desktop"
 vi /etc/selinux/config
 SELINUX to disabled
 
+# alias
+alias r='rpm -qa | grep'
+alias rp='sudo rpm -Uvh'
+alias up='sudo dnf5 update -y'
+alias d='sudo dnf5 install'
+alias ds='sudo dnf5 search'
+alias dr='sudo dnf5 remove'
+alias D='cd ~/Downloads'
+alias v='vim'
+alias Dc='cd ~/Documents'
 
 # remi
 dnf install https://rpms.remirepo.net/fedora/remi-release-35.rpm

@@ -1,5 +1,4 @@
 # debian
-<<<<<<< HEAD
 docker run -t -d --name debiantest debian:slim
 docker run -t -d --name centos7 centos/httpd-24-centos7 
 docker exec -it my_debian bash
@@ -10,6 +9,53 @@ docker pull debian:testing-slim
 docker run -t -d --name debiantest debian:testing-slim
 docker exec -it debiantest bash
 apt update
+
+
+# openlitespeed
+docker run --name openlitespeed -p 7080:7080 -p 80:80 -p 443:443 -it litespeedtech/openlitespeed:latest
+docker run --name ols -p 7080:7080 -p 80:80 -p 443:443 -it openlitespeed
+podman start openlitespeed
+podman exec -it openlitespeed /bin/bash 
+
+
+# devuan
+podman pull dyne/devuan:daedalus
+podman run -t -d --name deu devuan:daedalus
+
+# install in deb
+apt-get update && apt-get install -y gnupg2
+apt-key list
+wget -O - https://repo.litespeed.sh | sudo bash 
+apt-get install openlitespeed
+
+# centos stream 9
+podman pull centos:stream9 
+podman run -t -d --name cent9 centos:stream9 
+podman exec -it cent9 /bin/bash 
+podman run cent9 -p 8088:88
+podman stop cent9
+podman commit cent9 cent9a
+podman run --name cent9a -p 8080:8088 -td cent9a 
+podman exec -it cent9a /bin/bash 
+
+# add service
+vi /usr/lib/systemd/system/lsws.service
+[Unit]
+Description=openlitespeed
+
+[Service]
+ExecStart=/usr/local/lsws/bin/lswsctrl
+
+[Install]
+WantedBy=multi-user.target
+
+systemctl daemon-reload
+systemctl enable lsws.service
+
+
+# gcc 9
+alias gcc='docker run --user $(id -u):$(id -g) --rm -t -v /:/mnt -w /mnt/"$PWD" gcc:9 gcc'
+alias gcc='podman run --user $(id -u):$(id -g) --rm -t -v /:/mnt -w /mnt/"$PWD" gcc:9 gcc'
 
 # ubuntu bionic
 docker run -t -d --name bionictest ubuntu:bionic

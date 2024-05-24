@@ -7,3 +7,8 @@ restorecon -r -v /etc/openvpn
 
 # start
 sudo systemctl start openvpn-client@client.service
+
+
+
+# read log
+sudo journalctl -u openvpn-server@server.service
