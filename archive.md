@@ -10,6 +10,15 @@ dd bs=4M conv=fsync if=file.tar | tar -xf -
 dd command is for taking input faster, pipe "|" is for giving that input to tar, tar -xf is telling it to extract data,  "-" is to tell input is from stdin
 
 
+#zip
+zip archive.zip archive.sql
+
+zip -r archivefile3.zip /home/joe/papers
+
+zip -r compressed_filename.zip foldername foldername2 foldername3
+
+#zip no compress
+zip -0 -r mydir.zip mydir
 
 #compress
 tar -cvzf tarballname.tar.gz itemtocompress
@@ -63,15 +72,7 @@ tar -xf /home/haidar/Documents/distFG.tar -C /root/
 #uncompres tar.xz
 tar -xvf backup.tar.xz
 
-#zip
-zip archive.zip archive.sql
 
-zip -r archivefile3.zip /home/joe/papers
-
-zip -r compressed_filename.zip foldername foldername2 foldername3
-
-#zip no compress
-zip -0 -r mydir.zip mydir
 
 #Part zip
 zip -r -s 4G folder.zip folder.zip 

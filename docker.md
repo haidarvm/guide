@@ -22,21 +22,83 @@ podman exec -it openlitespeed /bin/bash
 podman pull dyne/devuan:daedalus
 podman run -t -d --name deu devuan:daedalus
 
-# install in deb
+# install in devuan
 apt-get update && apt-get install -y gnupg2
 apt-key list
-wget -O - https://repo.litespeed.sh | sudo bash 
+wget -O repo.sh https://repo.litespeed.sh 
+vim repo.shu
+:%s/debian/devuan/
+sh https://repo.litespeed.sh 
+#gpg --keyserver keyserver.ubuntu.com --recv-keys 011AA62DEDA1F085  
+#gpg --export --armor 011AA62DEDA1F085 |  apt-key add - &&  apt-get update
 apt-get install openlitespeed
+service lsws start
+update-rc.d lsws defaults
+podman stop devuan
+podman commit devuan devuan1
+podman run -d --name devuan1 -p 8081:8088 -p 7081:7080  devuan1
+podman run -dt --name devu -p 8081:8088 -p 7081:7080 devu
+podman exec devu /bin/bash /root/l.sh
+podman run --name devua -p 8081:8088 -p 7081:7080 deua /bin/bash /root/l.sh 
 
-# centos stream 9
+# podman create network
+podman run -dt --name webserv --net shared -p 8084:80 quay.io/libpod/banner
+
+# podman nginx
+podman run -dt --name ngi -p 8085:80/tcp registry.access.redhat.com/ubi9/nginx-124
+
+# rhel9
+podman login registry.redhat.io
+podman registry.redhat.io/ubi9/ubi
+podman run -t -d --name rhel9 registry.redhat.io/ubi9/ubi
+wget -O - https://repo.litespeed.sh
+dnf instal
+dnf install openlitespeed
+dnf install libxcrypt-compat
+
+# rocky9
+podman pull rockylinux:9.3.20231119-minimal
+docker pull rockylinux:8.9-minimal
+podman run -t -d --name rocm rockylinux:9.3.20231119-minimal
+microdnf install vi wget
+wget -O - https://repo.litespeed.sh | bash
+wget http://rpms.litespeedtech.com/centos/litespeed.repo
+mv litespeed.repo /etc/yum.conf.d/
+wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+wget https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+rpm -ivh epel-release-latest-9.noarch.rpm
+rpm -ivh remi-release-9.rpml 
+microdnf install openlitespeed
+podman stop roc
+podman commit roc roca
+podman run -dt --name roca -p 8083:8088 -p 7083:7080 roca
+podman exec devu /bin/bash /root/l.sh
+
+
+#add commit roc (8)
+
+# centos stream 9 
 podman pull centos:stream9 
-podman run -t -d --name cent9 centos:stream9 
+podman run -t -d --name cent9 centos:stream9
 podman exec -it cent9 /bin/bash 
 podman run cent9 -p 8088:88
 podman stop cent9
 podman commit cent9 cent9a
-podman run --name cent9a -p 8080:8088 -td cent9a 
+podman run -it --entrypoint /root/l.sh --name cent9a -p 8080:8088 -p 7088:7080 -td cent9a 
 podman exec -it cent9a /bin/bash 
+
+FROM cent9a:8
+RUN apt-get update && apt-get install stress-ng -y 
+ADD target/restapp.jar /restapp.jar 
+COPY dockerrun.sh /usr/local/bin/dockerrun.sh 
+RUN chmod +x /usr/local/bin/dockerrun.sh 
+CMD ["dockerrun.sh"]
+
+
+# network 
+podman network reload --all
+
+https://github.com/containers/podman/blob/main/docs/tutorials/basic_networking.md
 
 # add service
 vi /usr/lib/systemd/system/lsws.service

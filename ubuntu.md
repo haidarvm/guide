@@ -21,6 +21,9 @@ sudo sed -i 's|http://archive.ubuntu.com|http://mirrors.tuna.tsinghua.edu.cn|g' 
 sudo sed -i 's|http://mirrors.tuna.tsinghua.edu.cn|http://ports.ubuntu.com/|g' /etc/apt/sources.list
 sudo sed -i 's|http://ports.ubuntu.com/|http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports|g' /etc/apt/sources.list
 
+# timedatectl
+timedatectl set-timezone Asia/Jakarta
+
 # extras
 sudo apt-get install ubuntu-restricted-extras
 

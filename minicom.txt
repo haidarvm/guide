@@ -1,3 +1,12 @@
+# set serial read
+sudo minicom -s
+
+# how to 
+Set Hardware Flow Control to No under setting port will help you.(minicom -s; go to Serial Port Setup; last two lines are Hardware and Software Flow control; just set NO both)
+Turn on echo (ctrl + A after turn on minicom, then press E) to check whether you send something is good idea too.
+
+
+
 # test
 minicom -b 9600 -D /dev/ttyUSB1
 minicom -b 9600 -D /dev/ttyUSB1 -H --wrap

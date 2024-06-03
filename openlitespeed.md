@@ -6,6 +6,8 @@ dnf install openlitespeed lsphp80 lsphp80-common lsphp80-gd  lsphp80-imap lsphp8
 # rhel
 sudo wget -O - https://repo.litespeed.sh | sudo bash
 rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed.repo
+#or
+mv litespeed.repo /etc/yum.repos.d/
 dnf install epel-release
 dnf install openlitespeed
 
@@ -26,6 +28,12 @@ sudo gpasswd -a yourUserName lsadm
 
 # cache makes web error
 change module name to caching
+
+
+# error libcrypt
+error while loading shared libraries: libcrypt.so.1: cannot open shared object
+dnf install libxcrypt-compat
+
 
 # set html path to group and nobody owner
 chown -R username:nobody /path/to/dir/html
