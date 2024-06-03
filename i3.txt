@@ -1,0 +1,19 @@
+# keyboard bind
+
+# open menu
+Mod d
+
+# how to restart i3 after changes config
+i3-msg restart 
+Ctrl+shift+R
+
+# use flameshot
+bindsym Print       exec flameshot full
+bindsym Shift+Print exec flameshot gui
+
+#maximize
+
+
+# how to move to other workspace
+
+bindsym $mod+Shift+1 move container to workspace 1 

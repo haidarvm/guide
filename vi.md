@@ -29,6 +29,9 @@ dd
 3dd
 d$
 
+# delete start from cursor
+d$
+
 # find and replace , current line, replace all, replace all in file, find and delete all
 :s/foo/bar/
 :s/foo/bar/g
@@ -41,3 +44,4 @@ d$
 uu
 
 # redo
+ctrl+r

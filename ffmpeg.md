@@ -43,6 +43,8 @@ ffmpeg -f x11grab -y -framerate 30 -s 1920x1080 -i $DISPLAY -c:v libx264 -preset
 # video recorder screen with cuda 
 ffmpeg -f x11grab -framerate 60 -i $DISPLAY -c:v h264_nvenc -profile:v high444p -b:v 8M vid.mp4
 
+# combine multiple mp3
+ffmpeg -i "concat:file1.mp3|file2.mp3" -acodec copy output.mp3
 
 # combine two vid
 $ cat files.txt
@@ -51,6 +53,8 @@ file 'file 2.mkv'
 file 'file 3.mkv'
 file 'file 4.mkv'
 ffmpeg -f concat -safe 0 -i files.txt -c copy output.mkv
+
+
 
 # remove sound
 ffmpeg -i VID20210602153511.mp4 -c copy -an VID20210602153511_no_sound.mp4

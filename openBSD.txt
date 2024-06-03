@@ -12,6 +12,13 @@ cp /etc/examples/doas.conf /etc/
 permit persist keepenv :wheel
 permit nopass haidar
 
+#change hostname
+vi /etc/myname
+hostname ohai.id
+
+# pkg install
+pkg_add nginx
+
 
 # update
 syspatch
@@ -19,6 +26,9 @@ pkg_add -Uu
 sysmerge -d
 (dmesg; sysctl hw.sensors) | mail -s "Some information about the machine" dmesg@openbsd.org 
 
+# create user
+doas adduser
+adduser -group USER -batch jsmith staff
 
 # pkg list ports	
 ls /usr/ports

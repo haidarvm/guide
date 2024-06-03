@@ -1,6 +1,7 @@
 # check last 10 most usage
 sudo du -hsx * | sort -rh | head -10
-
+sudo du -ah . | sort -n -r | head -n 20
+sudo du -cksh * | sort -rn | head -n 20
 
 #count total size folder
 du -sh .
@@ -13,6 +14,19 @@ hwinfo --disk
 sudo cfdisk /dev/sdb
 
 sudo parted -l
+
+
+#rsync backup everything
+rsync -avxHAX --progress / /new-disk/
+rsync -avxHAX --progress / /new-disk/
+
+
+#rsync
+rsync -avzh /root/rpmpkgs /tmp/backups/
+rsync -avzh 'Kali Linux amd64 1' /media/haidar/kali
+rsync -avzh '/media/haidar/Lubuntu 18.04.5 LTS i386' /media/haidar/lubuntu
+rsync -avzh '/home/haidar/Documents/backup/iso/ubuntu-20.04.1-live-server-amd64.iso' /media/haidar/livehaidar
+rsync -avzh '/media/haidar/GParted-live/' /media/haidar/gparted
 
 #woeusb
 woeusb

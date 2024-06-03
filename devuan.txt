@@ -1,0 +1,7 @@
+dpkg-reconfigure locales tzdata
+
+gpg --keyserver keyserver.ubuntu.com --recv-keys 011AA62DEDA1F085  
+gpg --export --armor 011AA62DEDA1F085 |  apt-key add - &&  apt-get update 
+
+
+   wget -qO- https://repo.litespeed.sh |  tee

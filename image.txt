@@ -1,0 +1,10 @@
+trace image to svg
+
+# I am using ImageMagick convert command to convert PNG to BMP
+convert foo.png foo.bmp
+
+# Invoke potrace command with SVG backend
+potrace -b svg foo.bmp
+
+# autotrace
+autotrace -input-format bmp -output-format svg -output-file bear.svg bear.bmp
