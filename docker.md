@@ -72,7 +72,7 @@ microdnf install openlitespeed
 podman stop roc
 podman commit roc roca
 podman run -dt --name roca -p 8083:8088 -p 7083:7080 roca
-podman exec devu /bin/bash /root/l.sh
+podman exec roca /bin/bash /root/l.sh
 
 
 #add commit roc (8)
