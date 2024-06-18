@@ -30,6 +30,7 @@ vi /etc/selinux/config
 SELINUX to disabled
 
 # alias
+
 alias r='rpm -qa | grep'
 alias rp='sudo rpm -Uvh'
 alias up='sudo dnf5 update -y'
@@ -39,6 +40,7 @@ alias dr='sudo dnf5 remove'
 alias D='cd ~/Downloads'
 alias v='vim'
 alias Dc='cd ~/Documents'
+alias js='journalctl -t setroubleshoot'
 
 # remi
 dnf install https://rpms.remirepo.net/fedora/remi-release-35.rpm

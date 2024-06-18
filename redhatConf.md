@@ -53,10 +53,15 @@ journalctl -t sshd
 # install memcahed
 sudo dnf install memcached libmemcached
 
+
+# check cpu 
+lscpu | egrep 'Model name|Socket|Thread|NUMA|CPU\(s\)'
+
 # zRAM
 
-# sealert setroubleshoot
+# sealert setroubleshoot gui
 dnf install setroubleshoot setools
+dnf remove setroubleshoot setools
 
 # read sealert terminal
 journalctl -t setroubleshoot
@@ -225,7 +230,17 @@ semanage permissive -d httpd_t
 # repo repomd.xml GPG signature verification error 
 sudo dnf clean all
 sudo rm -r /var/cache/dnf
+sudo dnf check
+sudo dnf check-update
+sudo dnf update
 sudo dnf upgrade
+
+dnf --enablerepo=* clean all
+dnf upgrade --refresh
+cd /var/lib/rpm/ 
+sudo rm -vf __db*
+sudo rpm --rebuilddb -vv
+sudo rpm --rebuilddb
 
 ## https://play.google.com/store/apps/details?id=com.haidarvm.ecommerce
 ## nginx stable
@@ -367,8 +382,6 @@ wget https://dl.eff.org/certbot-auto
 sudo mv certbot-auto /usr/local/bin/certbot-auto
 sudo chown root /usr/local/bin/certbot-auto
 sudo chmod 0755 /usr/local/bin/certbot-auto
-
-
 sudo /usr/local/bin/certbot-auto --nginx
 
 sudo /usr/local/bin/certbot-auto --nginx --verbose --debug --email haidarvm@gmail.com -d haidarvm.com -d www.haidarvm.com -d ali.haidarvm.com
@@ -898,6 +911,16 @@ dnf repolist all
 dnf repolist all --enabled
 dnf repository-packages epel list
 dnf repolist
+dnf repoquery --requires nginx
+dnf search --showduplicates vim #checkversion available
+sudo dnf config-manager --set-disabled  rpmfusion-free-updates rpmfusion-free-updates-testing  rpmfusion-nonfree-updates rpmfusion-nonfree-updates-testing epel-modular epel epel-testing-modular epel-testing
+
+#dnf function
+dnf repoquery --requires nginx
+dnf search --showduplicates vim 
+dnf whatprovides libgconf-2.so.4
+dnf deplist curl
+dnf provides libcrypt.so.1
 
 # remove dnf repo
 rm /etc/yum.repos.d/file_name.repo
@@ -926,6 +949,51 @@ systemctl list-unit-files
 systemctl list-units --type=service --state=running
 systemctl list-unit-files --state=enabled
 systemctl list-units --state=failed
+
+#alias
+alias r='rpm -qa | grep'                                                                                             
+alias sudo='sudo'                                                                                                    
+alias rp='rpm -Uvh'                                                                                                  
+alias rl='rpm -ql'                                                                                                   
+alias up='sudo dnf update -y'
+alias d='sudo dnf install'
+alias dr='sudo dnf remove'
+alias ds='sudo dnf search'
+alias D='cd ~/Downloads'
+alias v='vim'
+alias Dc='cd ~/Documents'
+alias p='cd ~/public_html'
+alias dh='df -h'
+alias bc='vim ~/.bashrc'
+alias ne='sudo netstat -ntlp' 
+alias dx='sudo du -hsx * | sort -rh | head -20'
+alias dua='sudo du -a . | sort -n -r | head -n 20'
+alias duck='sudo du -cks * | sort -rn | head -n 20'
+alias n='sudo systemctl restart nginx'
+alias sp='sudo systemctl restart postgresql'
+alias sr='sudo systemctl restart'
+alias st='sudo systemctl status'
+alias sto='sudo systemctl stop'
+alias sy='systemctl status'
+alias s='sudo'
+alias sv='sudo vim'
+alias dm='sudo dmesg'
+alias sl='sudo lsd -lah'
+alias g='sudo tail -200 /var/log/messages'
+alias jx='journalctl -xe | grep -i'
+alias px='ps aux | grep -i'
+alias py='python'
+alias uv='uvicorn --workers 4 --log-level critical'
+alias wk='wrk -t12 -c400 -d5s'
+alias gc='git clone'
+alias gr='grep -r'
+alias pi='pip install'
+alias docker='podman'
+alias ya="yt-dlp -f140"
+alias pp="sudo cpupower frequency-set -g performance"
+alias pc="cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
+alias ps="sudo cpupower frequency-set -g powersave"
+alias pd="sudo cpupower frequency-set -g schedutil"
 
 
 #generate ssl

@@ -11,6 +11,9 @@ mv litespeed.repo /etc/yum.repos.d/
 dnf install epel-release
 dnf install openlitespeed
 
+# deb
+wget -O - https://repo.litespeed.sh | bash
+
 # set admin pass
 sudo /usr/local/lsws/admin/misc/admpass.sh
 
@@ -29,11 +32,24 @@ sudo gpasswd -a yourUserName lsadm
 # cache makes web error
 change module name to caching
 
+# error libexpat
 
 # error libcrypt
 error while loading shared libraries: libcrypt.so.1: cannot open shared object
 dnf install libxcrypt-compat
 
+# error libonig.so.105
+  - nothing provides libonig.so.105()(64bit) needed by lsphp74-mbstring-7.4.32-2.el9.x86_64 
+error libonig.so.105
+sudo dnf whatprovides libonig.so*
+dnf install libxcrypt-compat libnsl -y
+
+
+# disable webadmin
+sudo vim /usr/local/lsws/conf/httpd_config.conf
+#add after adminEmails
+adminEmails
+disableWebAdmin           1
 
 # set html path to group and nobody owner
 chown -R username:nobody /path/to/dir/html
@@ -63,6 +79,44 @@ firewall-cmd --reload
 # logs
 $VH_ROOT/logs/$VH_NAME_error.log
 $VH_ROOT/logs/$VH_NAME_access.log
+
+
+## setup cors
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Content-Security-Policy "upgrade-insecure-requests;connect-src *"
+Referrer-Policy strict-origin-when-cross-origin
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options: nosniff
+X-XSS-Protection 1;mode=block
+Permissions-Policy: geolocation=(self "")
+
+# copy paste this on vhosts
+context exp:^.*(css|gif|ico|jpeg|jpg|js|png|webp|woff|woff2|fon|fot|ttf)$ {                                                                                                                                                                  
+	location                $DOC_ROOT/$0                                                                                                                                                                                                       
+	allowBrowse             1                                                                                                                                                                                                                  
+	enableExpires           1                                                                                                                                                                                                                  
+	expiresByType           application/javascript=A15552000, text/css=A15552000                                                                                                                                                               
+	extraHeaders            <<<END_extraHeaders                                                                                                                                                                                                
+	unset Cache-control                                                                                                                                                                                                                          
+	set Cache-control public, max-age=15552000                                                                                                                                                                                                   
+	END_extraHeaders                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+	addDefaultCharset       off                                                                                                                                                                                                                
+}                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                             
+context / {                                                                                                                                                                                                                                  
+	location                $DOC_ROOT/                                                                                                                                                                                                         
+	allowBrowse             1                                                                                                                                                                                                                  
+	extraHeaders            <<<END_extraHeaders                                                                                                                                                                                                
+	Strict-Transport-Security: max-age=31536000; includeSubDomains                                                                                                                                                                               
+	Content-Security-Policy "upgrade-insecure-requests;connect-src *"                                                                                                                                                                            
+	Referrer-Policy strict-origin-when-cross-origin                                                                                                                                                                                              
+	X-Frame-Options: SAMEORIGIN
+	X-Content-Type-Options: nosniff
+	X-XSS-Protection 1;mode=block
+	Permissions-Policy: geolocation=(self "")
+	END_extraHeaders
+}
+
 
 #### create new vhost ####
 
@@ -107,7 +161,7 @@ HTTPS Port 443 Click Magnifier
 Virtual Host Mappings click + 
 Virtual Host * = choose example
 Domains * = example.com
- 
+================================================================= 
 
 # create vhost with proxy reverse
 
@@ -159,6 +213,23 @@ chmod 640 .htaccess
 chown nobody:nobody html/.htaccess
 
 systemctl restart lsws
+
+#fedora build php
+sudo dnf install libzip-devel oniguruma-devel libcurl-devel
+
+# add external app for compile and build php
+Server Configuration > External App
+extprocessor lsphp8 {
+  type                    lsapi
+  address                 uds://tmp/lshttpd/lsphp.sock
+  maxConns                10
+  initTimeout             60
+  retryTimeout            0
+  respBuffer              0
+  autoStart               2
+  path                    fcgi-bin/lsphp8
+}
+
 
 # chown
 sudo chown -R nobody:nobody /usr/local/lsws/Example/html/

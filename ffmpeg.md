@@ -12,12 +12,14 @@ ffmpeg -i teaser.mp4 -s 320x240 -c:a copy -strict -2 teasers.mp4
 
 ffmpeg -i 45NoSupers_1_smalls.mp4 -s 426x240 -c:a copy -strict -2 45NoSupers_1_small240.mp4
 
-# whatsapp
 ffmpeg -i 20220808_1756151.MP4 -s 720x1280 -c:a copy binamarga.mp4
+
+
+# whatsapp
+ffmpeg -i bumperOutroTL.avi -c:v libx264 -pix_fmt yuv420p bumperOutroTL.mp4
 
 ffmpeg -i houseFailedRotate.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p houseFailedRotate.mp4
 
-ffmpeg -i houseWorksRotate.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p houseWorksRotate.mp4
 
 ffmpeg -i MeningkatkanKecerdasan.avi -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p MeningkatkanKecerdasan.mp4
 
@@ -26,7 +28,6 @@ ffmpeg -i modernHousePreview.avi -c:v libx264 -profile:v baseline -level 3.0 -pi
 ffmpeg -i finalfinalfinalfinal.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p finalfinalfinalfinalSmall.mp4
 
 ffmpeg -i agusMeet2.mkv -s 480x270 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p agusMeetUiUx.mp4      
-ffmpeg -i rhelZ230Demo500gb.mkv -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p rhelZ230Demo500gb.mp4
 
 ffmpeg -i 45NoSupers_1_small.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p 45NoSupers_1_smalls.mp4
 
@@ -54,7 +55,8 @@ file 'file 3.mkv'
 file 'file 4.mkv'
 ffmpeg -f concat -safe 0 -i files.txt -c copy output.mkv
 
-
+# m4a to flac
+ffmpeg -i filein.m4a -f flac fileout.flac
 
 # remove sound
 ffmpeg -i VID20210602153511.mp4 -c copy -an VID20210602153511_no_sound.mp4
@@ -98,6 +100,8 @@ ffmpeg -i finalEditingTanahLandTemp.mp4  -c:v dnxhd -profile:v dnxhr_hq -c:a pcm
 
 ffmpeg -i tanah.mp4  -c:v dnxhd -profile:v dnxhr_hq -c:a pcm_s16le tanah.mov                     
 
+#convert ogg to mp3
+ffmpeg -i file.ogg file.mp3
 
 #get audio
 ffmpeg -i sample.avi -q:a 0 -map a sample.mp3
