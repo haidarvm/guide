@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#BismillAh
 cd /var/www/html/guide
 /usr/bin/git add -A 
 /usr/bin/git commit -am "Daily update"
