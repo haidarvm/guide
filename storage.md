@@ -25,6 +25,9 @@ sudo dd if=FreeBSD-13.1-RELEASE-amd64-memstick.img of=/dev/da0 bs=1M conv=sync
 rsync -avxHAX --progress / /new-disk/
 rsync -avxHAX --progress / /new-disk/
 
+# mount iso
+
+
 
 #rsync
 rsync -avzh /root/rpmpkgs /tmp/backups/
