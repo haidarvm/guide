@@ -16,9 +16,17 @@ sudo cfdisk /dev/sdb
 sudo parted -l
 
 
+# dd if of
+sudo dd if=Clover-5159-X64.iso of=/dev/sda bs=1M status=progress
+
+sudo dd if=FreeBSD-13.1-RELEASE-amd64-memstick.img of=/dev/da0 bs=1M conv=sync
+
 #rsync backup everything
 rsync -avxHAX --progress / /new-disk/
 rsync -avxHAX --progress / /new-disk/
+
+# mount iso
+
 
 
 #rsync
@@ -37,6 +45,7 @@ sudo woeusb --tgt-fs NTFS -d /home/haidar/Documents/backup/iso/Win10_20H2_Englis
 
 # move multiple folder
 mv -t DESTINATION file1 file2 file3
+
 
 
 # auto mount fstab
@@ -65,7 +74,8 @@ sudo efibootmgr -b 1 -B
 # copy sdcard
 sudo fdisk -l
 sudo umount /dev/mmcblk0 || /dev/sda1
-sudo dd if=/dev/mmcblk0 of=~/sd-card-copy.img bs=1M status=progress
+sudo dd if= of=~/sd-card-copy.img bs=1M status=progress
+sudo dd if=/dev/sdb of=~/Downloads/haidar.img bs=1m status=progress
 # insert new one
 sudo fdisk -l
 sudo umount /dev/mmcblk0

@@ -3,6 +3,9 @@
 # open menu
 Mod d
 
+# restart or shutdown
+
+
 # how to restart i3 after changes config
 i3-msg restart 
 Ctrl+shift+R
