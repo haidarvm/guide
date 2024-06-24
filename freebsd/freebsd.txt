@@ -95,6 +95,9 @@ who
 # check ssh log
 doas tail /var/log/auth.log
 
+# check hardware version
+pciconf -v
+ls
 
 # doas autocomplete in ~/.bashrc
 complete -cf doas
