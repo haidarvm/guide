@@ -19,12 +19,12 @@ zip -r compressed_filename.zip foldername foldername2 foldername3
 #zip no compress
 zip -0 -r mydir.zip mydir
 
-#compress
+#compress to gz (z)                          
+tar -cf archive.tar file1 file2 file3
 tar -cvzf tarballname.tar.gz itemtocompress
 tar -cvzf pcimahpindai.tar.gz pcimah
-tar -cf archive.tar file1 file2 file3
 
-# no compress
+#no compress
 tar -cvf myfolder.tar myfolder
 
 #extract tar
