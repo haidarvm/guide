@@ -6,7 +6,6 @@ tar -xvzf community_images.tar.gz
 dd bs=4M conv=fsync if=file.tar | tar -xf -
 
 # 
-
 dd command is for taking input faster, pipe "|" is for giving that input to tar, tar -xf is telling it to extract data,  "-" is to tell input is from stdin
 
 
@@ -23,11 +22,12 @@ zip -0 -r mydir.zip mydir
 #compress
 tar -cvzf tarballname.tar.gz itemtocompress
 tar -cvzf pcimahpindai.tar.gz pcimah
+tar -cf archive.tar file1 file2 file3
 
 # no compress
 tar -cvf myfolder.tar myfolder
 
-#tar
+#extract tar
 tar -xf archive.tar -C /target/directory
 
 
