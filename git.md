@@ -14,6 +14,10 @@ git push origin master
 # reset to commit version
 git reset --hard 7fa4976
 
+# git allow pull unrelated history
+Sgit pull --allow-unrelated-histories
+
+
 # rm one big file SIMPLE ONE
 git filter-branch --tree-filter 'rm -rf path/to/your/file' HEAD
 
@@ -23,14 +27,16 @@ git filter-branch --index-filter 'git rm -rf --cached --ignore-unmatch path_to_f
 # remove one file
 git filter-branch --force --index-filter "git rm --cached --ignore-unmatch soffice.bin.core" --prune-empty --tag-name-filter cat -- --all
 
-git filter-branch --force --index-filter "git rm -rf --cached --ignore-unmatch soffice.bin.core" --prune-empty --tag-name-filter cat -- --all
 
 pip3 install git-filter-repo
 git filter-repo --path <path to the file or directory> --invert-paths
 git push origin --force --all
 
+
 # remove big files history
 git reflog expire --expire=now --all && git gc --prune=now --aggressive
+
+
 
 # begin git
 git branch exercise6
