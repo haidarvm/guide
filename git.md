@@ -14,6 +14,9 @@ git push origin master
 # reset to commit version
 git reset --hard 7fa4976
 
+# rm one big file SIMPLE ONE
+git filter-branch --tree-filter 'rm -rf path/to/your/file' HEAD
+
 # remove with history
 git filter-branch --index-filter 'git rm -rf --cached --ignore-unmatch path_to_file' HEAD
 
