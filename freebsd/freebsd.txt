@@ -96,6 +96,7 @@ who
 doas tail /var/log/auth.log
 
 # check hardware version
+pciconf -lv
 pciconf -v
 ls
 
