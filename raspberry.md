@@ -9,6 +9,10 @@ cd /rootfs/etc
 # picocom set
 picocom -b 115200 /dev/ttyUSB0
 
+# picocom exit
+Ctrl + a
+Ctrl + x
+
 # simple dhcpd
 sudo vi /etc/dhcpcd.conf
 cd /rootfs/etc
