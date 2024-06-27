@@ -43,9 +43,6 @@ complete -cf doas
 
 # wrk bench
 wrk -t12 -c400 -d5s http://localhost/info.html
-wrk -t12 -c400 -d5s http://localhost:88/info.html
-wrk -t12 -c400 -d5s http://localhost/info.html
-wrk -t12 -c400 -d5s http://play.test/hai.php
 wrk -t12 -c400 -d5s http://localhost:8000
 
 # update
@@ -78,6 +75,26 @@ doas make rmconfig
 # pkg info version
 pkg search package_name
 pkg search openssh
+
+# alias
+alias h='fc -l'
+alias j=jobs
+alias m="$PAGER"
+alias ls='eza'
+alias in='doas pkg install'
+alias ps='doas pkg search'
+alias pr='doas pkg remove'
+alias v='vim'
+alias vi='vim'
+alias ll='ls -laFo'
+alias l='ls -l'
+alias g='egrep -i' 
+alias dv='doas vim'
+alias ds='doas service'
+alias d='doas'
+alias ds='doas service'
+alias doc='doas chroot /compat/debian /bin/bash'
+
 
 # list package
 pkg info | grep  postgres

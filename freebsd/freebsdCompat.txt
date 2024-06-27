@@ -10,3 +10,6 @@ set to en_US-UTF8
 
 # add kern /etc/sysctl.conf
 kern_securelevel="3"
+
+# mount
+mount -t proc proc /proc
