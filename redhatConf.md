@@ -86,6 +86,19 @@ sudo useradd -m mark -s /bin/bash
 # make sudo
 usermod -aG wheel haidarvm
 
+# add to wheel
+visudo
+# add haidar 
+haidar ALL=(ALL) NOPASSWD:ALL
+
+# go to root
+sudo su -
+
+# disable sudo promt 
+sudo visudo
+# uncomment
+%wheel  ALL=(ALL)       NOPASSWD: ALL
+
 # createswapfile 
 https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-centos-7
 sudo dd if=/dev/zero of=/swapfile count=4096 bs=1MiB
@@ -346,10 +359,7 @@ best=False
 skip_if_unavailable=True
 fastestmirror=1
 
-# disable sudo promt 
-sudo visudo
-# uncomment
-%wheel  ALL=(ALL)       NOPASSWD: ALL
+
  
  
 ## ocs url gnome look

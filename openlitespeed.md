@@ -3,6 +3,10 @@ dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.r
 rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el8.noarch.rpm
 dnf install openlitespeed lsphp80 lsphp80-common lsphp80-gd  lsphp80-imap lsphp80-mbstring lsphp80-mysqlnd lsphp80-opcache lsphp80-pdo lsphp80-process lsphp80-xml lsphp80-common 
 
+#php 8.3
+dnf install openlitespeed lsphp83 lsphp83-common lsphp83-gd  lsphp83-imap lsphp83-mbstring lsphp83-mysqlnd lsphp83-opcache lsphp83-pdo lsphp83-process lsphp83-xml lsphp83-common 
+
+
 # rhel
 sudo wget -O - https://repo.litespeed.sh | sudo bash
 rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed.repo

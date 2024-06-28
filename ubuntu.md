@@ -36,6 +36,11 @@ sudo update-locale LANG=en_US.UTF-8
 # install php8.1
 sudo apt install php8.1-fpm php8.1-cli php8.1-mysql  php8.1-gd php8.1-mbstring php8.1-xml php8.1-curl php8.1-zip php8.1-fpm php8.1-readline
 
+
+# install php8.3
+sudo apt install php8.1-fpm php8.1-cli php8.1-mysql  php8.1-gd php8.1-mbstring php8.1-xml php8.1-curl php8.1-zip php8.1-fpm php8.1-readline
+
+
 # default php
 sudo apt install php7.4-fpm php7.4-cli php7.4-mysql  php7.4-gd php7.4-mbstring php7.4-xml php7.4-curl php7.4-zip php7.4-fpm php7.4-readline
 

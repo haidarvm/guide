@@ -7,8 +7,9 @@ obmenu generator
 sudo grub2-mkconfig -o /etc/grub2-efi.cfg
 
 # dnf install gui
-
-
+systemctl set-default graphical.target
+systemctl enable lightdm.service
+ 
 # alternatives config 
 
 # install rpmfusion
@@ -19,8 +20,18 @@ sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free
 sudo dnf install rpmfusion-free-release-tainted
 sudo dnf install rpmfusion-nonfree-release-tainted
 
+# go to root
+sudo su -
+
+# make sudo
+usermod -aG wheel haidarvm
+
 #disable selinux
 sudo setenforce 0
+
+# go to sudo without passwd
+sudo su -i
+
 
 # install gui
 dnf groupinstall "Cinnamon Desktop"

@@ -95,6 +95,12 @@ alias d='doas'
 alias ds='doas service'
 alias doc='doas chroot /compat/debian /bin/bash'
 
+# fusefs mount usb drive 
+pkg install fusefs-ntfs
+
+ /boot/loader.conf
+fuse_load="YES"
+
 
 # list package
 pkg info | grep  postgres
