@@ -17,6 +17,8 @@ dnf install openlitespeed
 
 # deb
 wget -O - https://repo.litespeed.sh | bash
+apt install lsphp83 lsphp83-common lsphp83-opcache lsphp83-mysql lsphp83-imagick
+
 
 # set admin pass
 sudo /usr/local/lsws/admin/misc/admpass.sh

@@ -10,6 +10,8 @@ usermod -aG sudo username
 # change user
 su - haidar
 
+#change to bin/bash
+chsh -s /bin/bash
 
 # dnsmasq
 sudo apt install dnsmasq

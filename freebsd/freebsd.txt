@@ -35,7 +35,11 @@ pw groupshow wheel
 
 # doas set no password admin
 vim /usr/local/etc/doas.conf
-permit nopass keepenv :
+permit nopass haidar as root
+
+# go to root
+doas su
+
 
 # auto complete #
 vim  ~/.bashrc
@@ -93,7 +97,12 @@ alias dv='doas vim'
 alias ds='doas service'
 alias d='doas'
 alias ds='doas service'
+alias pil='doas pkg info | grep'
 alias doc='doas chroot /compat/debian /bin/bash'
+
+
+# package search
+pkg search nginx
 
 # fusefs mount usb drive 
 pkg install fusefs-ntfs
@@ -101,6 +110,7 @@ pkg install fusefs-ntfs
  /boot/loader.conf
 fuse_load="YES"
 
+# update to latest
 
 # list package
 pkg info | grep  postgres

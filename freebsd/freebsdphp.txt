@@ -1,1 +1,7 @@
-pkg install vim php83-xml mod_php83 php83-zip php83-mbstring php83-zlib php83-curl php83-mysqli php83-gd php83-dpkg php83-session php83-filter
+pkg install vim php83-xml mod_php83 php83-zip php83-mbstring php83-zlib php83-curl php83-mysqli php83-gd php83-session php83-filter php83-fpm
+
+# vim /etc/rc.conf
+php_fpm_enable="YES"
+
+
+https://www.digitalocean.com/community/tutorials/how-to-install-an-nginx-mysql-and-php-femp-stack-on-freebsd-10-1

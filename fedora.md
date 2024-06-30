@@ -6,6 +6,10 @@ obmenu generator
 #update grub2
 sudo grub2-mkconfig -o /etc/grub2-efi.cfg
 
+# verbose grub
+sudo vim /etc/default/grub 
+## remove rhgb silent
+
 # dnf install gui
 systemctl set-default graphical.target
 systemctl enable lightdm.service
@@ -41,7 +45,6 @@ vi /etc/selinux/config
 SELINUX to disabled
 
 # alias
-
 alias r='rpm -qa | grep'
 alias rp='sudo rpm -Uvh'
 alias up='sudo dnf5 update -y'
@@ -57,6 +60,8 @@ alias js='journalctl -t setroubleshoot'
 dnf install https://rpms.remirepo.net/fedora/remi-release-35.rpm
 dnf install https://rpms.remirepo.net/fedora/remi-release-35.rpm
 
+# resize xfs lvm2
+xfs_growfs /dev/mapper/fedora-root
 
 # enable wayland screenshare
 Make sure you have enabled pipewire screenshare in chrome://flags.

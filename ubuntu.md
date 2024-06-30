@@ -68,6 +68,7 @@ sudo add-apt-repository --remove ppa:mozillateam/ppa
 
 # upgrade grub2
 
+
 # add user to nginx www-data
 sudo usermod -aG www-data yourUserName
 sudo gpasswd -a www-data haidar
