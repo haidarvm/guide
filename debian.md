@@ -15,3 +15,7 @@ chsh -s /bin/bash
 
 # dnsmasq
 sudo apt install dnsmasq
+
+# date time sync
+apt install systemd-timesyncd
+systemctl status systemd-timesyncd.service

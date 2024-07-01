@@ -56,6 +56,8 @@ pkg update && pkg upgrade
 freebsd-update fetch
 freebsd-update install
 
+# check available version upgrade
+
 # upgrade to 13.2
 freebsd-update -r 13.2-RELEASE upgrade
 freebsd-update install

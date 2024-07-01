@@ -1,6 +1,10 @@
 # tmux kill session
 tmux kill-session
 
+# tmux restore single session
+tmux a
+
+
 # add mouse  add ~/.tmux.conf
 setw -g mouse on
 
