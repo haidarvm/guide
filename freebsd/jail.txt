@@ -1,1 +1,80 @@
-doas jexec devuan /bin/bashzz
+doas jexec devuan /bin/bash
+
+# fetch https://download.freebsd.org/ftp/releases/amd64/amd64/13.3-RELEASE/base.txz -o /usr/local/jails/media/13.3-RELEASE-base.txz
+
+debootstrap --no-check-gpg --arch=amd64 chimaera /usr/local/jails/containers/devuan0/ http://pkgmaster.devuan.org/merged/
+
+jail -cm \
+    name=ubuntu \
+    host.hostname="ubuntu" \
+    path="/usr/local/jails/containers/ubuntu" \
+    interface="bridge0" \
+    exec.start="/bin/sh /etc/rc" \
+    exec.stop="/bin/sh /etc/rc.shutdown" \
+    mount.devfs \
+    devfs_ruleset=4 \
+    allow.mount \
+    allow.mount.devfs \
+    allow.mount.fdescfs \
+    allow.mount.procfs \
+    allow.mount.linprocfs \
+    allow.mount.linsysfs \
+    allow.mount.tmpfs \
+    enforce_statfs=1
+
+
+
+    ip4.addr="192.168.1.22" \
+
+
+exec.clean;
+allow.raw_sockets;
+mount.devfs;
+
+devuan0 {
+  # ID == epair index :)
+
+  interface       = ue0;
+  ip4.addr        = 127.0.0.5;
+  mount.fstab     = "/etc/jail.conf.d/${name}.fstab";
+
+
+  exec.start      = "/sbin/openrc default";
+
+  exec.stop       = "/sbin/openrc shutdown";
+  persist;
+  mount.devfs;
+  allow.mount;
+  allow.mount.devfs;
+  host.hostname   = "${name}.${domain}";
+  path            = "/usr/local/jails/containers/devuan0";
+
+  # Maybe mkdir this path :)
+  exec.consolelog = "/var/log/jail/${name}.log";
+
+  allow.socket_af;
+}
+
+
+
+
+devfs       /usr/local/jails/containers/devuan0/dev      devfs     rw                   0 0
+tmpfs       /usr/local/jails/containers/devuan0/dev/shm  tmpfs     rw,size=1g,mode=1777 0 0
+fdescfs     /usr/local/jails/containers/devuan0/dev/fd   fdescfs   rw,linrdlnk          0 0
+linprocfs   /usr/local/jails/containers/devuan0/proc     linprocfs rw                   0 0
+linsysfs    /usr/local/jails/containers/devuan0/sys      linsysfs  rw                   0 0
+tmpfs       /usr/local/jails/containers/devuan0/tmp      tmpfs     rw,mode=1777         0 0
+
+
+Linux {
+    host.hostname="Ubuntu";
+    ip4.addr= 192.168.1.111;
+    interface = ue0;
+    path="/usr/local/jails/containers/ubuntu";
+    allow.raw_sockets=1;
+    exec.start='/bin/true';
+    exec.stop='/bin/true';
+    persist;
+    mount.fstab="/usr/local/jails/containers/ubuntu/etc/fstab";
+}
+

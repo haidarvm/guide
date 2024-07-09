@@ -22,6 +22,7 @@ $cfg['Servers'][$i]['AllowNoPassword'] = true;
 //$cfg['Servers'][$i]['password'] = 'Bismillah';
 $cfg['Servers'][$i]['extension'] = 'mysqli';
 $cfg['CaptchaMethod'] = 'checkbox';
+$cfg['blowfish_secret'] = 'Bismillah65L1DALH!cDugiBismillah';
 $cfg['CaptchaApi'] = 'https://www.google.com/recaptcha/api.js';
 $cfg['Lang'] = 'en';
 $cfg['UploadDir'] = '/tmp';

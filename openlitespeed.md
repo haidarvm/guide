@@ -6,6 +6,8 @@ dnf install openlitespeed lsphp80 lsphp80-common lsphp80-gd  lsphp80-imap lsphp8
 #php 8.3
 dnf install openlitespeed lsphp83 lsphp83-common lsphp83-gd  lsphp83-imap lsphp83-mbstring lsphp83-mysqlnd lsphp83-opcache lsphp83-pdo lsphp83-process lsphp83-xml lsphp83-common 
 
+# deb
+wget -O - https://repo.litespeed.sh | bash
 
 # rhel
 sudo wget -O - https://repo.litespeed.sh | sudo bash
@@ -81,6 +83,14 @@ sudo certbot certonly -d www.example.com -d example.com
 firewall-cmd --zone=public --add-port=7080/tcp --permanent
 firewall-cmd --reload
 
+# compile php
+https://docs.litespeedtech.com/lsws/extapp/php/getting_started/
+
+# compile php debian ubuntu
+apt install build-essential libxml2-devel
+apt install libpng-dev libjpeg-dev 
+apt install libmysqlclient-dev libonig-dev libzip-dev
+apt install libssl-dev libsqlite3-dev  libcurl4-openssl-dev
 
 # logs
 $VH_ROOT/logs/$VH_NAME_error.log

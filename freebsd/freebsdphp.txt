@@ -1,4 +1,7 @@
-pkg install vim php83-xml mod_php83 php83-zip php83-mbstring php83-zlib php83-curl php83-mysqli php83-gd php83-session php83-filter php83-fpm
+pkg install php83-xml php83-gd php83-zip php83-mbstring php83-zlib php83-session php83-ctype php83-curl php83-mysqli php83-gd php83-session php83-filter php83-composer php83-pdo_mysql
+
+
+pkg install php81-xml php81-gd php81-zip php81-mbstring php81-zlib php81-session php81-ctype php81-curl php81-mysqli php81-gd php81-session php81-filter php81-composer php81-pdo_mysql
 
 # vim /etc/rc.conf
 php_fpm_enable="YES"

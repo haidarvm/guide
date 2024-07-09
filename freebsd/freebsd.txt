@@ -1,6 +1,7 @@
 ssh-copy-id -i ~/.ssh/id_rsa.pub tim@just.some.other.server
 
-ssh-copy-id -i ~/.ssh/id_rsa.pub tim@just.some.other.server
+ssh-copy-id -i ~/.ssh/id_rsa.pub haidar@example.com
+
 
 wrk -t12 -c400 -d5s http://localhost
 rewrk -c 400 -t 12 -d 5s -h http://localhost
@@ -82,6 +83,10 @@ doas make rmconfig
 pkg search package_name
 pkg search openssh
 
+# edittor default vim crontab
+export EDITOR=/usr/local/bin/vim
+
+
 # alias
 alias h='fc -l'
 alias j=jobs
@@ -92,8 +97,8 @@ alias ps='doas pkg search'
 alias pr='doas pkg remove'
 alias v='vim'
 alias vi='vim'
-alias ll='ls -laFo'
-alias l='ls -l'
+alias l='eza -l'
+alias la='ls -lah'
 alias g='egrep -i' 
 alias dv='doas vim'
 alias ds='doas service'
@@ -101,6 +106,8 @@ alias d='doas'
 alias ds='doas service'
 alias pil='doas pkg info | grep'
 alias doc='doas chroot /compat/debian /bin/bash'
+alias wk='wrk -t12 -c400 -d5s'
+
 
 
 # package search
@@ -130,6 +137,12 @@ who
 # check ssh log
 doas tail /var/log/auth.log
 
+# add user to group
+pw usermod haidar -G www
+pw group mod wwww -m haidar
+
+# check usb 
+usbconfig
 
 # check hardware version
 pciconf -lv

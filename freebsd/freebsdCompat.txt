@@ -1,6 +1,14 @@
 # login chroot
 doas chroot /compat/debian /bin/bash
 
+debootstrap --arch=amd64 --no-check-gpg focal /compat/ubuntu
+
+printf "APT::Cache-Start 251658240;" > /compat/linux/etc/apt/apt.conf.d/00aptitude
+
+printf "APT::Cache-Start 251658240;" > /compat/ubuntu/etc/apt/apt.conf.d/00aptitude
+
+printf "deb http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse" > /compat/linux/etc/apt/sources.list
+
 #asell error
 Error: /dev/null:1: The key "/usr/bin/aspell" is unknown.
 --

@@ -2,3 +2,7 @@ xfce4-panel -r &
 
 # check power
 xfconf-query -c xfce4-power-manager -lv
+
+
+# terminal color theme scheme
+https://github.com/morhetz/gruvbox-contrib/blob/master/xfce4-terminal/README.org

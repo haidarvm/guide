@@ -8,7 +8,7 @@ Mod d
 
 # how to restart i3 after changes config
 i3-msg restart 
-Ctrl+shift+R
+mod / Ctrl+shift+R
 
 # use flameshot
 bindsym Print       exec flameshot full
