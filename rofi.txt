@@ -1,0 +1,4 @@
+rofi -show drun  -theme solarized_alternate -font "Hack 12" -icon-theme "Papirus" -show-icons
+
+#wiki arch
+rofi -combi-modi window,drun,ssh -theme solarized -font "Hack 10" -show combi -icon-theme "Papirus" -show-icons
