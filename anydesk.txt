@@ -1,0 +1,2 @@
+http://rpm.anydesk.com/rhel/8/x86_64/Packages/anydesk-6.3.2-1.el8.x86_64.rpm
+https://forums.fedoraforum.org/showthread.php?328899-anydesk-6-2-on-Fedora-(missing-libgtkglext-x11-1_0-0)
