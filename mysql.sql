@@ -96,6 +96,11 @@ INSERT INTO `users` (`user_login`, `user_pass`, `user_nicename`, `user_email`, `
 
 
 --  create user =====
+CREATE USER 'haidar'@'localhost' IDENTIFIED BY 'bismillah';
+GRANT ALL PRIVILEGES ON haidar.* To 'haidar'@'localhost';
+GRANT ALL ON haidar.* TO 'haidar'@'localhost';
+FLUSH PRIVILEGES;
+
 CREATE USER 'jabarnewscom'@'206.189.153.114' IDENTIFIED BY 'bismillah';
 GRANT ALL PRIVILEGES ON jabarnews.* To 'jabarnewscom'@'206.189.153.114' IDENTIFIED BY 'bismillah';
 GRANT ALL ON jabarnews.* TO 'jabarnewscom'@'206.189.153.114';
@@ -108,14 +113,9 @@ DROP USER 'username'@'localhost';
 mysql -u userName -p -f -D dbName < script.sql
 
 -- change root pass
-CREATE USER 'root'@'%' IDENTIFIED BY 'Bismillah';
-GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'Bismillah';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Bismillah' WITH GRANT OPTION;
-
-
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'bismillah';
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'bismillah';
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyN3wP4ssw0rd';
 FLUSH PRIVILEGES;
+exit;
 
 -- change pass
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'bismillah';
@@ -210,9 +210,12 @@ ALTER TABLE `whatevertable` ADD `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ALTER TABLE whatevertable  CHANGE whatevercolumn  whatevercolumn TIMESTAMP NOT NULL  DEFAULT CURRENT_TIMESTAMP   ON UPDATE CURRENT_TIMESTAMP;
 
 ALTER TABLE whatevertable  CHANGE whatevercolumn  TIMESTAMP NOT NULL  DEFAULT CURRENT_TIMESTAMP   ON UPDATE CURRENT_TIMESTAMP;
->>>>>>> 8cef044602effe8b251fbcc74e653179e50bdb06
+
 -- alter change data type
 ALTER TABLE post_data MODIFY body JSON;
+
+--alter unique
+ALTER TABLE Employees ADD UNIQUE `EmpCode`(`Employee_Code`); 
 
 -- select json
 ALTER TABLE post_date CHANGE body 
@@ -335,6 +338,12 @@ INSERT IGNORE INTO city(province_name, city_name) SELECT province, city FROM dis
 SELECT p.province_id, p.province_name, c.province_name
 FROM city c
 INNER JOIN province p ON p.province_name = c.province_name 
+
+-- insert into from other tables
+INSERT INTO post_total (ID, total)
+SELECT ID, '0' 
+FROM posts
+
 
 -- Update city with provicen id
 UPDATE city c

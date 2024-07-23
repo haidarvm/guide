@@ -1,6 +1,10 @@
 # tmux kill session
 tmux kill-session
 
+# tmux restore single session
+tmux a
+
+
 # add mouse  add ~/.tmux.conf
 setw -g mouse on
 
@@ -25,3 +29,16 @@ Ctrl + b n
 ctrl + b ,
 # close  current
 ctrl + b &
+
+# tmux plugin
+https://github.com/tmux-plugins/tpm
+
+# install tmux plugin / theme
+Ctrl + B + I 
+
+
+# tmux theme  list
+https://github.com/rothgar/awesome-tmux
+
+# tmux gruvbox
+https://github.com/egel/tmux-gruvbox

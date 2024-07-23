@@ -3,6 +3,25 @@ dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.r
 rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el8.noarch.rpm
 dnf install openlitespeed lsphp80 lsphp80-common lsphp80-gd  lsphp80-imap lsphp80-mbstring lsphp80-mysqlnd lsphp80-opcache lsphp80-pdo lsphp80-process lsphp80-xml lsphp80-common 
 
+#php 8.3
+dnf install openlitespeed lsphp83 lsphp83-common lsphp83-gd  lsphp83-imap lsphp83-mbstring lsphp83-mysqlnd lsphp83-opcache lsphp83-pdo lsphp83-process lsphp83-xml lsphp83-common 
+
+# deb
+wget -O - https://repo.litespeed.sh | bash
+
+# rhel
+sudo wget -O - https://repo.litespeed.sh | sudo bash
+rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed.repo
+#or
+mv litespeed.repo /etc/yum.repos.d/
+dnf install epel-release
+dnf install openlitespeed
+
+# deb
+wget -O - https://repo.litespeed.sh | bash
+apt install lsphp83 lsphp83-common lsphp83-opcache lsphp83-mysql lsphp83-imagick
+
+
 # set admin pass
 sudo /usr/local/lsws/admin/misc/admpass.sh
 
@@ -21,12 +40,37 @@ sudo gpasswd -a yourUserName lsadm
 # cache makes web error
 change module name to caching
 
+# error libexpat
+
+# error libcrypt
+error while loading shared libraries: libcrypt.so.1: cannot open shared object
+dnf install libxcrypt-compat
+
+# error libonig.so.105
+  - nothing provides libonig.so.105()(64bit) needed by lsphp74-mbstring-7.4.32-2.el9.x86_64 
+error libonig.so.105
+sudo dnf whatprovides libonig.so*
+dnf install libxcrypt-compat libnsl -y
+
+
+# disable webadmin
+sudo vim /usr/local/lsws/conf/httpd_config.conf
+#add after adminEmails
+adminEmails
+disableWebAdmin           1
+
 # set html path to group and nobody owner
 chown -R username:nobody /path/to/dir/html
 
 # disable autostart automatic startup
 /usr/local/lsws/admin/misc/rc-uninst.sh
 
+# podman docker build
+sudo wget -O - https://repo.litespeed.sh | sudo bash
+rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed.repo
+dnf install epel-release
+dnf install openlitespeed
+dnf install libxcrypt-compat
 
 # setup php change php setting
 https://openlitespeed.org/kb/change-php-settings-by-vhost-and-user/
@@ -39,10 +83,56 @@ sudo certbot certonly -d www.example.com -d example.com
 firewall-cmd --zone=public --add-port=7080/tcp --permanent
 firewall-cmd --reload
 
+# compile php
+https://docs.litespeedtech.com/lsws/extapp/php/getting_started/
+
+# compile php debian ubuntu
+apt install build-essential libxml2-devel
+apt install libpng-dev libjpeg-dev 
+apt install libmysqlclient-dev libonig-dev libzip-dev
+apt install libssl-dev libsqlite3-dev  libcurl4-openssl-dev
 
 # logs
 $VH_ROOT/logs/$VH_NAME_error.log
 $VH_ROOT/logs/$VH_NAME_access.log
+
+
+## setup cors
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Content-Security-Policy "upgrade-insecure-requests;connect-src *"
+Referrer-Policy strict-origin-when-cross-origin
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options: nosniff
+X-XSS-Protection 1;mode=block
+Permissions-Policy: geolocation=(self "")
+
+# copy paste this on vhosts
+context exp:^.*(css|gif|ico|jpeg|jpg|js|png|webp|woff|woff2|fon|fot|ttf)$ {                                                                                                                                                                  
+	location                $DOC_ROOT/$0                                                                                                                                                                                                       
+	allowBrowse             1                                                                                                                                                                                                                  
+	enableExpires           1                                                                                                                                                                                                                  
+	expiresByType           application/javascript=A15552000, text/css=A15552000                                                                                                                                                               
+	extraHeaders            <<<END_extraHeaders                                                                                                                                                                                                
+	unset Cache-control                                                                                                                                                                                                                          
+	set Cache-control public, max-age=15552000                                                                                                                                                                                                   
+	END_extraHeaders                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+	addDefaultCharset       off                                                                                                                                                                                                                
+}                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                             
+context / {                                                                                                                                                                                                                                  
+	location                $DOC_ROOT/                                                                                                                                                                                                         
+	allowBrowse             1                                                                                                                                                                                                                  
+	extraHeaders            <<<END_extraHeaders                                                                                                                                                                                                
+	Strict-Transport-Security: max-age=31536000; includeSubDomains                                                                                                                                                                               
+	Content-Security-Policy "upgrade-insecure-requests;connect-src *"                                                                                                                                                                            
+	Referrer-Policy strict-origin-when-cross-origin                                                                                                                                                                                              
+	X-Frame-Options: SAMEORIGIN
+	X-Content-Type-Options: nosniff
+	X-XSS-Protection 1;mode=block
+	Permissions-Policy: geolocation=(self "")
+	END_extraHeaders
+}
+
 
 #### create new vhost ####
 
@@ -87,7 +177,7 @@ HTTPS Port 443 Click Magnifier
 Virtual Host Mappings click + 
 Virtual Host * = choose example
 Domains * = example.com
- 
+================================================================= 
 
 # create vhost with proxy reverse
 
@@ -139,6 +229,23 @@ chmod 640 .htaccess
 chown nobody:nobody html/.htaccess
 
 systemctl restart lsws
+
+#fedora build php
+sudo dnf install libzip-devel oniguruma-devel libcurl-devel
+
+# add external app for compile and build php
+Server Configuration > External App
+extprocessor lsphp8 {
+  type                    lsapi
+  address                 uds://tmp/lshttpd/lsphp.sock
+  maxConns                10
+  initTimeout             60
+  retryTimeout            0
+  respBuffer              0
+  autoStart               2
+  path                    fcgi-bin/lsphp8
+}
+
 
 # chown
 sudo chown -R nobody:nobody /usr/local/lsws/Example/html/

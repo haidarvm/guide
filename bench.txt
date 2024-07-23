@@ -8,7 +8,10 @@ wrk -t12 -c400 -d30s -R2000 http://haidar.id:8989/api/department
 wrk -t12 -c400 -d30s -R2000 https://info.haidar.id/api/department
 
 # wrk
-wrk -t12 -c400 -d5s http://localhost
+wrk -t12 -c500 -d5s http://localhost
+
+# ab
+ab -n 1000 -c 500 -k http://localhost/
 
 # go
 go-wrk -c 100 -d 5  http://localhost

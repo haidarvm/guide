@@ -1,5 +1,12 @@
 # use yt dlp
 
+yt-dlp https://music.youtube.com/watch?v=5
+
+# audio only
+yt-dlp -f 140  https://music.youtube.com/watch?v=5
+
+
+
 
 
 # get youtube thumbnail

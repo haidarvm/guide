@@ -1,0 +1,10 @@
+dpkg-reconfigure locales tzdata
+
+gpg --keyserver keyserver.ubuntu.com --recv-keys 011AA62DEDA1F085  
+gpg --export --armor 011AA62DEDA1F085 |  apt-key add - &&  apt-get update 
+
+
+   sudo wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | sudo bash
+wget http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh
+sh enable_lst_debian_repo.sh 
+   wget -qO- https://repo.litespeed.sh |  tee

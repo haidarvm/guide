@@ -4,7 +4,7 @@ curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
 dnf update
 dnf install MariaDB-server
 sudo systemctl start mariadb
-mariadb-secure-installation
+sudo mariadb-secure-installation
 
 # on deb
 curl -LsS -O https://downloads.mariadb.com/MariaDB/mariadb_repo_setup

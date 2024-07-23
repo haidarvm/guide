@@ -6,7 +6,15 @@ obmenu generator
 #update grub2
 sudo grub2-mkconfig -o /etc/grub2-efi.cfg
 
+# verbose grub
+sudo vim /etc/default/grub 
+## remove rhgb silent
+
 # dnf install gui
+systemctl set-default graphical.target
+systemctl enable lightdm.service
+ 
+# alternatives config 
 
 # install rpmfusion
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
@@ -16,8 +24,18 @@ sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free
 sudo dnf install rpmfusion-free-release-tainted
 sudo dnf install rpmfusion-nonfree-release-tainted
 
+# go to root
+sudo su -
+
+# make sudo
+usermod -aG wheel haidarvm
+
 #disable selinux
 sudo setenforce 0
+
+# go to sudo without passwd
+sudo su -i
+
 
 # install gui
 dnf groupinstall "Cinnamon Desktop"
@@ -26,11 +44,24 @@ dnf groupinstall "Cinnamon Desktop"
 vi /etc/selinux/config
 SELINUX to disabled
 
+# alias
+alias r='rpm -qa | grep'
+alias rp='sudo rpm -Uvh'
+alias up='sudo dnf5 update -y'
+alias d='sudo dnf5 install'
+alias ds='sudo dnf5 search'
+alias dr='sudo dnf5 remove'
+alias D='cd ~/Downloads'
+alias v='vim'
+alias Dc='cd ~/Documents'
+alias js='journalctl -t setroubleshoot'
 
 # remi
 dnf install https://rpms.remirepo.net/fedora/remi-release-35.rpm
 dnf install https://rpms.remirepo.net/fedora/remi-release-35.rpm
 
+# resize xfs lvm2
+xfs_growfs /dev/mapper/fedora-root
 
 # enable wayland screenshare
 Make sure you have enabled pipewire screenshare in chrome://flags.

@@ -1,11 +1,10 @@
 ssh-copy-id -i ~/.ssh/id_rsa.pub tim@just.some.other.server
 
-ssh-copy-id -i ~/.ssh/id_rsa.pub tim@just.some.other.server
+ssh-copy-id -i ~/.ssh/id_rsa.pub haidar@example.com
+
 
 wrk -t12 -c400 -d5s http://localhost
-
 rewrk -c 400 -t 12 -d 5s -h http://localhost
-
 wrk -t12 -c400 -d5s http://localhost/cpa.php
 
 # set default to bash
@@ -37,7 +36,11 @@ pw groupshow wheel
 
 # doas set no password admin
 vim /usr/local/etc/doas.conf
-permit nopass keepenv :
+permit nopass haidar as root
+
+# go to root
+doas su
+
 
 # auto complete #
 vim  ~/.bashrc
@@ -45,9 +48,6 @@ complete -cf doas
 
 # wrk bench
 wrk -t12 -c400 -d5s http://localhost/info.html
-wrk -t12 -c400 -d5s http://localhost:88/info.html
-wrk -t12 -c400 -d5s http://localhost/info.html
-wrk -t12 -c400 -d5s http://play.test/hai.php
 wrk -t12 -c400 -d5s http://localhost:8000
 
 # update
@@ -56,6 +56,8 @@ pkg update && pkg upgrade
 
 freebsd-update fetch
 freebsd-update install
+
+# check available version upgrade
 
 # upgrade to 13.2
 freebsd-update -r 13.2-RELEASE upgrade
@@ -81,6 +83,44 @@ doas make rmconfig
 pkg search package_name
 pkg search openssh
 
+# edittor default vim crontab
+export EDITOR=/usr/local/bin/vim
+
+
+# alias
+alias h='fc -l'
+alias j=jobs
+alias m="$PAGER"
+alias ls='eza'
+alias in='doas pkg install'
+alias ps='doas pkg search'
+alias pr='doas pkg remove'
+alias v='vim'
+alias vi='vim'
+alias l='eza -l'
+alias la='ls -lah'
+alias g='egrep -i' 
+alias dv='doas vim'
+alias ds='doas service'
+alias d='doas'
+alias ds='doas service'
+alias pil='doas pkg info | grep'
+alias doc='doas chroot /compat/debian /bin/bash'
+alias wk='wrk -t12 -c400 -d5s'
+
+
+
+# package search
+pkg search nginx
+
+# fusefs mount usb drive 
+pkg install fusefs-ntfs
+
+ /boot/loader.conf
+fuse_load="YES"
+
+# update to latest
+
 # list package
 pkg info | grep  postgres
 
@@ -96,6 +136,16 @@ who
 
 # check ssh log
 doas tail /var/log/auth.log
+
+# add user to group
+pw usermod haidar -G www
+pw group mod wwww -m haidar
+
+# check usb 
+usbconfig
+
+# check hardware version
+pciconf -lv
 
 
 # doas autocomplete in ~/.bashrc

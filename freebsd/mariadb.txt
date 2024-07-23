@@ -13,6 +13,8 @@ doas sysrc mysql_enable=YES
 doas service mysql-server start
 
 # set pass
-mysql_secure_installation
+mariadb-secure-installation
 
 # 
+
+change localhost to 127.0.0.1

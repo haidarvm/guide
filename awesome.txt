@@ -1,0 +1,7 @@
+mkdir -p ~/.config/awesome/
+
+cp /etc/xdg/awesome/rc.lua ~/.config/awesome/rc.lua
+
+awesome -k
+
+echo 'awesome.restart()' | awesome-client

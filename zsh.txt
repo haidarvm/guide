@@ -1,0 +1,11 @@
+# Improve autocompletion style
+zstyle ':completion:*' menu select # select completions with arrow keys
+zstyle ':completion:*' group-name '' # group results by category
+zstyle ':completion:::::' completer _expand _complete _ignored _approximate # enable approximate matches for completion
+
+
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+bindkey '^ ' autosuggest-accept
+
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
