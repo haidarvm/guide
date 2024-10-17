@@ -5,7 +5,11 @@ tmux kill-session
 tmux a
 
 # tmux list session
+tmux ls
+tmux attach-session -t 0
 
+# exit tmux 
+ctrl + b d
 
 # add mouse  add ~/.tmux.conf
 setw -g mouse on
