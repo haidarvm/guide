@@ -6,7 +6,8 @@
 /copyright\c 
 /copyri\cght
 
-
+# set copy paste
+:set paste
 # copy one line copy current line, 
 yy
 3yy
