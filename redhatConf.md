@@ -155,6 +155,7 @@ firewall-cmd --zone=public --add-service=mysql --permanent
 
 # firewall-cmd remove port
 firewall-cmd --zone=public --remove-port=8484/tcp
+firewall-cmd --remove-service=ssh --permanent
 firewall-cmd --runtime-to-permanent 
 firewall-cmd --reload
 
