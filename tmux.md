@@ -23,6 +23,9 @@ run-shell ~/tmux-plugins/resurrect.tmux
 # add plugin into .tmux.conf
 set -g @plugin 'tmux-plugins/tmux-resurrect' 
 
+# tmux convert to vertical / horizontal swap
+ctrl + b space
+
 
 # command
 
