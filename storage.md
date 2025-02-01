@@ -17,6 +17,11 @@ sudo cfdisk /dev/sdb
 sudo parted -l
 
 
+lsblk 
+
+#fedora 
+sudo dd if=/path/to/fedora.iso of=/dev/sdX bs=4M status=progress && sync
+
 # dd if of
 sudo dd if=Clover-5159-X64.iso of=/dev/sda bs=1M status=progress
 
