@@ -300,6 +300,8 @@ gpgcheck=1
 sestatus 
 vi /etc/selinux/config
 SELINUX to disabled
+sudo setenforce 0
+
 
 ## composer ###
 curl -o composer-installer.php https://getcomposer.org/installer
