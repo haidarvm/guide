@@ -60,6 +60,13 @@ alias js='journalctl -t setroubleshoot'
 dnf install https://rpms.remirepo.net/fedora/remi-release-35.rpm
 dnf install https://rpms.remirepo.net/fedora/remi-release-35.rpm
 
+# remove wildcard
+sudo dnf remove 'libreoffice-*'
+sudo dnf remove 'liberation-*'
+
+# check latest remove packages
+sudo dnf history info last
+
 # resize xfs lvm2
 xfs_growfs /dev/mapper/fedora-root
 
