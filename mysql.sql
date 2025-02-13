@@ -12,10 +12,12 @@ apt-get --purge remove "mariadb*"
 mysqlcheck -uusername -p databasename
 
 -- all database
+mariadb-check -c -u root -p --all-databases
 mysqlcheck -c -u root -p --all-databases
 
 
 -- repair  database
+mariadb-check dbname table tbname
 mysqlcheck dbname table tbname
 
 -- import database ignore error 
