@@ -35,6 +35,7 @@ pw groupmod wheel -m <username>
 pw groupshow wheel
 
 # doas set no password admin
+cp /usr/local/etc/doas.conf.sample /usr/local/etc/doas.conf
 vim /usr/local/etc/doas.conf
 permit nopass haidar as root
 
