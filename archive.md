@@ -30,6 +30,8 @@ tar -cvf myfolder.tar myfolder
 #extract tar
 tar -xf archive.tar -C /target/directory
 
+# compress exclude
+zip -r myarchive.zip dir1 -x dir1/ignoreDir1/**\* dir1/ignoreDir2/**\*
 
 #atau di bash nya arahin ke root dulu
 cd /root
