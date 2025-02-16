@@ -26,16 +26,12 @@ sudo pip install --upgrade youtube_dl
   --with-zlib \
   --with-bz2 \
   --with-iconv \
-  --with-mcrypt \
   --with-mhash \
   --with-xmlrpc \
   --with-xsl \
   --with-pear \
-  --with-gd \
   --with-jpeg-dir=/usr/local \
-  --with-png-dir=/usr/local \
   --with-freetype-dir=/usr/local \
   --with-gettext \
   --with-readline \
-  --with-libedit \
-  --with-re2c
+  --with-libedit 
