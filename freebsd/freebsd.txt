@@ -164,3 +164,21 @@ pkg query -a '%v%o' | grep telegram
 sysctl dev.cpu.0.freq_levels 
 sysctl dev.cpu.0.freq
 sysctl dev.cpu.0.freq=2561
+
+
+# install for compile php
+doas pkg install -y \
+  autoconf \
+  automake \
+  libtool \
+  libxml2 \
+  libiconv \
+  libmcrypt \
+  libmhash \
+  libcurl \
+  libssl \
+  libyaml \
+  readline \
+  libedit \
+  libevent \
+  mysql57-client
