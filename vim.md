@@ -25,10 +25,14 @@ p
 # cut line
 dd
 
+
 # delete line
 dd
 3dd
 d$
+
+# delete all
+d G
 
 # delete start from cursor
 d$
