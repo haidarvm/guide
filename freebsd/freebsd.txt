@@ -87,6 +87,8 @@ pkg search openssh
 # edittor default vim crontab
 export EDITOR=/usr/local/bin/vim
 
+# check running port
+sockstat -4 -l
 
 # alias
 alias h='fc -l'
