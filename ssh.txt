@@ -10,3 +10,17 @@ netstat -tulpn | grep ssh
 sshd
 ClientAliveInterval 60
 ClientAliveCountMax 3
+
+
+On the client-side (~/.ssh/config or /etc/ssh/ssh_config):
+
+Host *
+    ServerAliveCountMax 5
+    ServerAliveInterval 60
+    
+   
+On the Server (/etc/ssh/sshd_config):
+
+ClientAliveInterval 60
+ClientAliveCountMax 5
+TCPKeepAlive yes
