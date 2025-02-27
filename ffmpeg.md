@@ -4,6 +4,8 @@ ffmpeg -i modernHousePreview.avi -s 1280x720 -c:a copy modernHousePreview.mp4
 # resize 360 
 ffmpeg -i 45NoSupers_1_smalls.mp4 -s 426x240 -c:a copy -strict -2 45NoSupers_1_small240.mp4
 
+ffmpeg -i espresso.mp4 -s 480x270 -c:a copy -strict -2 espresso2.mp4
+
 ffmpeg -i teaser.mp4 -s 640x480 -c:a copy -strict -2 teasers.mp4
 ffmpeg -i teaser.mp4 -s 320x240 -c:a copy -strict -2 teasers.mp4
 
