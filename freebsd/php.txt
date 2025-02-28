@@ -1,7 +1,7 @@
 pkg install php82
 pkg install php82-extensions
-pkg install php81-xml mod_php81 php81-zip php81-mbstring php81-zlib php81-curl php81-mysqli php81-gd php81-gd php81 php81-session php81-filter
-pkg install php83-xml mod_php83 php83-zip php83-mbstring php83-zlib php83-curl php83-mysqli php83-gd php83-gd php83 php83-session php83-filter
+pkg install php81-xml mod_php81 php81-zip php81-mbstring php81-zlib php81-curl php81-mysqli php81-gd php81-gd php81 php81-session php81-filter php81-fileinfo php81-pcntl
+pkg install php83-xml mod_php83 php83-zip php83-mbstring php83-zlib php83-curl php83-mysqli php83-gd php83-gd php83 php83-session php83-filter php83-fileinfo php83-pcntl
 
 
 # compile manual
