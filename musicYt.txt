@@ -1,0 +1,2 @@
+yt-dlp -x --audio-format mp3 -o "%(title)s.%(ext)s" --batch-file songs.txt -s youtube
+
