@@ -149,6 +149,18 @@ pw group mod wwww -m haidar
 # check usb 
 usbconfig
 
+
+#change from quarterly to latest
+1.Create or Copy the Configuration File:
+If the /usr/local/etc/pkg/repos/FreeBSD.conf file doesn't exist, create it. You can also copy the default configuration file from /etc/pkg/FreeBSD.conf to /usr/local/etc/pkg/repos/FreeBSD.conf. 
+
+2. Edit the Configuration File:
+Open the /usr/local/etc/pkg/repos/FreeBSD.conf file using a text editor (e.g., nano, vi, vim). 
+
+Locate the line containing the URL for the FreeBSD package repository. It will look something like this: url = http://pkg.freebsd.org/quarterly/. 
+Change "quarterly" to "latest" in that line, so it becomes url = http://pkg.freebsd.org/latest/. 
+
+
 # check hardware version
 pciconf -lv
 
