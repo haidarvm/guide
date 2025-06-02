@@ -4,7 +4,7 @@ https://wiki.freebsd.org/MariaDB
 pkg search mariadb | grep server
 
 # install
-doas pkg install mariadbXXX-server
+doas pkg install mariadb114-server
 
 # start at boot
 doas sysrc mysql_enable=YES
