@@ -25,6 +25,29 @@ jail -cm \
 
 
     ip4.addr="192.168.1.22" \
+    
+    
+# simple network ip4 ipv4 address
+ ip4 = inherit;
+thinjail {
+  # STARTUP/LOGGING
+  exec.start = "/bin/sh /etc/rc";
+  exec.stop = "/bin/sh /etc/rc.shutdown";
+  exec.consolelog = "/var/log/jail_console_${name}.log";
+
+  # PERMISSIONS
+  allow.raw_sockets;
+  exec.clean;
+  mount.devfs;
+
+  # HOSTNAME/PATH
+  host.hostname = "${name}";
+  path = "/usr/local/jails/containers/${name}";
+
+  # NETWORK
+  ip4 = inherit;
+  interface = em0;
+}
 
 
 exec.clean;
