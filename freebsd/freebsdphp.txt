@@ -13,10 +13,10 @@ https://www.digitalocean.com/community/tutorials/how-to-install-an-nginx-mysql-a
 git log --before="2023-01-01" -1 --format="%H %ci"
 git checkout f457c7ddad0eb9321a9bc7c1b223d1486138364c
 
-pkg install libxml2 libiconv libedit pcre2 openssl  curl bzip2 libjpeg-turbo  freetype2 libzip icu sqlite3 pkgconf
-pkg install autoconf automake pkgconf libtool re2c libargon2 gcc11
-pkg install libgd curl libxml2 libiconv autoconf libedit gmake
-pkg install  gettext icu sqlite3 
+pkg install libxml2 libiconv libedit pcre2 openssl  curl bzip2 libjpeg-turbo freetype2 libzip icu sqlite3 pkgconf
+pkg install libgd curl libxml2 libiconv libtool re2c libargon2 oniguruma
+pkg install automake pkgconf  autoconf libedit gmake cmake  gcc11
+pkg install gettext icu sqlite3 
 
 vim /etc/make.conf
 DEFAULT_VERSIONS+=ssl=openssl
