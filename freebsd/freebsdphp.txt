@@ -8,3 +8,8 @@ php_fpm_enable="YES"
 
 
 https://www.digitalocean.com/community/tutorials/how-to-install-an-nginx-mysql-and-php-femp-stack-on-freebsd-10-1
+
+
+git log --before="2023-01-01" -1 --format="%H %ci"
+git checkout f457c7ddad0eb9321a9bc7c1b223d1486138364c
+
