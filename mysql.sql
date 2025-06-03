@@ -34,6 +34,7 @@ SELECT * FROM posts WHERE match(post_title) against('+persib bandung' IN BOOLEAN
 
 -- mysql check variables
 SHOW VARIABLES;
+SHOW VARIABLES LIKE 'datadir';
 SHOW VARIABLES LIKE '%max_connect%';
 
 -- show create tables sql format
