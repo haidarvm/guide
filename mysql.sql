@@ -37,6 +37,12 @@ SHOW VARIABLES;
 SHOW VARIABLES LIKE 'datadir';
 SHOW VARIABLES LIKE '%max_connect%';
 
+-- rename all table prefix
+SELECT 
+    CONCAT('RENAME TABLE ', GROUP_CONCAT('`', TABLE_SCHEMA, '`.`', TABLE_NAME, '` TO `', TABLE_SCHEMA, '`.`prefix_', TABLE_NAME, '`')) AS q
+FROM 
+    `information_schema`.`Tables` WHERE TABLE_SCHEMA='test';
+    
 -- show create tables sql format
 SHOW CREATE TABLE `customer_address`;
 
