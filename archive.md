@@ -75,6 +75,9 @@ tar -xf /home/haidar/Documents/distFG.tar -C /root/
 tar -xvf backup.tar.xz
 
 
+# unzip to path
+unzip file.zip -d /path/to/destination
+
 
 #Part zip
 zip -r -s 4G folder.zip folder.zip 
