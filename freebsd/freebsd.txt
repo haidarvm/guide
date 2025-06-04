@@ -69,6 +69,7 @@ pkg install portsnap
 
 # enable service
 sysrc nginx_enable="YES"
+sysrc php_fpm_enable=YES
 sudo sysrc mysql_enable=YES
 
 # nginx stop start restart
