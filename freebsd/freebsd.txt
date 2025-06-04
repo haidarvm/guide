@@ -109,7 +109,7 @@ alias l='eza -l'
 alias la='ls -lah'
 alias dv='doas vim'
 alias ds='doas service'
-alias dt='doas tail'
+alias dt='doas tail -100'
 alias d='doas'
 alias ds='doas service'
 alias pil='doas pkg info | grep'
@@ -140,6 +140,12 @@ pkg info --list-file chromium
 
 # query 
 pkg query
+
+# add user to www
+doas pw groupmod www -m username
+id username
+doas chmod g+w /path/to/file
+doas chmod -R g+rw /path/to/directory
 
 # check ssh login 
 w 
