@@ -19,7 +19,11 @@ zip -r compressed_filename.zip foldername foldername2 foldername3
 #zip no compress
 zip -0 -r mydir.zip mydir
 
-#compress to gz (z)                          
+# compress tar.xz
+tar -cJf archive.tar.xz foldername/
+xz -9e input.file
+
+#compress to gz (z)         	                 
 tar -cf archive.tar file1 file2 file3
 tar -cvzf tarballname.tar.gz itemtocompress
 tar -cvzf pcimahpindai.tar.gz pcimah
