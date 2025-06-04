@@ -39,7 +39,9 @@ SHOW VARIABLES LIKE '%max_connect%';
 
 -- rename all table prefix
 
-    
+
+-- monitor realtime mariadb
+mariadb-admin -u root -p processlist status
 
     
 -- show create tables sql format
