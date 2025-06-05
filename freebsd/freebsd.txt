@@ -88,6 +88,9 @@ doas make rmconfig
 pkg search package_name
 pkg search openssh
 
+# vi enable backspace / delete
+stty erase ^?
+
 # edittor default vim crontab
 export EDITOR=/usr/local/bin/vim
 
@@ -182,6 +185,9 @@ Change "quarterly" to "latest" in that line, so it becomes url = http://pkg.free
 
 # check hardware version
 pciconf -lv
+dmesg | grep ^CPU
+sysctl -a hw.model
+sysctl -a | grep -i hw.*cpu
 
 
 # doas autocomplete in ~/.bashrc
