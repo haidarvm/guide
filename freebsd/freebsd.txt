@@ -182,6 +182,20 @@ Open the /usr/local/etc/pkg/repos/FreeBSD.conf file using a text editor (e.g., n
 Locate the line containing the URL for the FreeBSD package repository. It will look something like this: url = http://pkg.freebsd.org/quarterly/. 
 Change "quarterly" to "latest" in that line, so it becomes url = http://pkg.freebsd.org/latest/. 
 
+# fail2ban
+doas sysrc fail2ban_enable="YES"
+doas service fail2ban start
+doas vi /usr/local/etc/fail2ban/jail.local
+
+
+[sshd]
+enabled = true
+port    = ssh
+filter  = sshd
+logpath = /var/log/auth.log
+maxretry = 5
+bantime  = 600
+findtime = 600
 
 # check hardware version
 pciconf -lv
