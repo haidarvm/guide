@@ -197,6 +197,8 @@ maxretry = 5
 bantime  = 600
 findtime = 600
 
+doas fail2ban-client status sshd
+
 # check hardware version
 pciconf -lv
 dmesg | grep ^CPU
