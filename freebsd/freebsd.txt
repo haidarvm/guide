@@ -102,6 +102,7 @@ sockstat -4 -l
 # alias
 alias h='fc -l'
 alias j=jobs
+alias to='nice top -j -P -a'
 alias m="$PAGER"
 alias g='egrep -i' 
 alias sudo='doas'
