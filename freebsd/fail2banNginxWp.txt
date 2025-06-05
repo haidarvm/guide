@@ -1,0 +1,71 @@
+access_log /var/log/nginx/access.log combined;
+
+1. Ensure Nginx Logs WordPress Access
+
+Make sure your Nginx access_log is enabled and verbose enough.
+
+Example Nginx config (likely in /usr/local/etc/nginx/nginx.conf or your site-specific file):
+
+access_log /var/log/nginx/access.log combined;
+
+Reload Nginx after confirming:
+
+service nginx reload
+
+2. Install Fail2Ban
+
+pkg install fail2ban
+sysrc fail2ban_enable="YES"
+service fail2ban start
+
+3. Create a Custom Filter for WordPress Login Attempts
+
+Create the file:
+/usr/local/etc/fail2ban/filter.d/wordpress-login.conf
+
+[Definition]
+failregex = <HOST> -.* "(POST|GET) /wp-login.php HTTP.*" 200
+ignoreregex =
+
+    Note: This filter assumes a brute-force bot is getting HTTP 200 on wp-login.php. You may want to make this more specific depending on false positives.
+
+4. Create the Jail
+
+Edit or create /usr/local/etc/fail2ban/jail.local:
+
+[wordpress-login]
+enabled = true
+filter = wordpress-login
+action = iptables[name=wordpress, port=http, protocol=tcp]
+logpath = /var/log/nginx/access.log
+findtime = 600
+maxretry = 5
+bantime = 3600
+
+5. Enable iptables (or firewall alternative)
+
+FreeBSD doesn't use iptables — you'll likely want to use pf or ipfw.
+
+Replace the action line in jail.local with the correct one for your firewall:
+Example for pf:
+
+action = pf[name=wordpress, protocol=tcp, port="http,https"]
+
+Then ensure your /etc/pf.conf includes a table to be updated by Fail2Ban, like:
+
+table <wordpress> persist
+block in quick from <wordpress> to any
+
+Reload pf:
+
+pfctl -f /etc/pf.conf
+
+6. Restart Fail2Ban
+
+service fail2ban restart
+
+7. Test Your Filter
+
+Run:
+
+fail2ban-regex /var/log/nginx/access.log /usr/local/etc/fail2ban/filter.d/wordpress-login.conf
