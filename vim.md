@@ -1,3 +1,10 @@
+# edit
+~/.vimrc
+
+set paste
+set nocompatible
+syntax on
+
 #  find
 /findhere
 
