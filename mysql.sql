@@ -15,6 +15,7 @@ mysqlcheck -uusername -p databasename
 mariadb-check -c -u root -p --all-databases
 mysqlcheck -c -u root -p --all-databases
 
+mariadb-check --ssl=0 --all-databases --check
 
 -- repair  database
 mariadb-check dbname table tbname
