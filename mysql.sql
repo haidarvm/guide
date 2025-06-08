@@ -335,6 +335,9 @@ LOAD XML LOCAL INFILE 'Tags.xml'
 INTO TABLE Tags
 ROWS IDENTIFIED BY 'Tags';
 
+-- export exept table
+mysqldump -u root -p mydatabase --ignore-table=mydatabase.logs > mydatabase_dump.sql
+
 -- export csv
 mysqldump -u root -p -t  -T/tmp  stack Posts --fields-terminated-by=','
 
