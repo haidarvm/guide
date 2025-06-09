@@ -226,4 +226,10 @@ sysctl dev.cpu.0.freq
 sysctl dev.cpu.0.freq=2561
 
 
-
+# goAccess
+goaccess /var/log/nginx/access.log \
+  --log-format='%v %h %^ %e [%d:%t %^] "%r" %s %b "%R" "%u"' \
+  --date-format='%d/%b/%Y' \
+  --time-format='%H:%M:%S' \
+  -o report.html
+  
