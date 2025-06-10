@@ -91,6 +91,9 @@ pkg search openssh
 # vi enable backspace / delete
 stty erase ^?
 
+# doas crontab -e
+doas env EDITOR=vim crontab -e
+
 # edittor default vim crontab
 export EDITOR=/usr/local/bin/vim
 
