@@ -112,6 +112,7 @@ alias to='nice top -j -P -a'
 alias m="$PAGER"
 alias g='egrep -i' 
 alias sudo='doas'
+alias dh='df -h'
 alias ls='eza'
 alias in='doas pkg install'
 alias pse='doas pkg search'
