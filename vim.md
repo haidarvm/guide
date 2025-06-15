@@ -62,4 +62,5 @@ uu
 ctrl+r
 
 # go end
+shift+g
 
