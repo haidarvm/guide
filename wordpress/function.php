@@ -1,5 +1,3 @@
-
-
 function disable_wp_community_events() {
     remove_meta_box('dashboard_primary', 'dashboard', 'side');
     remove_action('wp_ajax_get_community_events', 'wp_ajax_get_community_events');
