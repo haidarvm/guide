@@ -61,7 +61,7 @@ freebsd-update install
 # check available version upgrade
 
 # upgrade to 13.2
-freebsd-update -r 13.2-RELEASE upgrade
+freebsd-update -r 14.3-RELEASE upgrade
 freebsd-update install
 
 # ports
