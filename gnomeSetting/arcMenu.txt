@@ -1,0 +1,20 @@
+[/]
+arc-menu-icon=69
+category-icon-type='Full_Color'
+disable-tooltips=true
+left-panel-width=240
+menu-background-color='rgb(61,56,70)'
+menu-border-radius=13
+menu-border-width=0
+menu-button-icon='Menu_Icon'
+menu-font-size=11
+menu-height=725
+menu-item-grid-icon-size='Default'
+menu-layout='Brisk'
+override-menu-theme=true
+pinned-apps=[{'id': 'firefox.desktop'}, {'id': 'org.gnome.Nautilus.desktop'}, {'id': 'org.gnome.Ptyxis.desktop'}, {'id': 'google-chrome.desktop'}, {'id': 'pcmanfm.desktop'}, {'id': 'org.gnome.Calculator.desktop'}, {'id': 'geany.desktop'}, {'id': 'org.libreoffice.LibreOffice.calc.desktop'}]
+prefs-visible-page=0
+right-panel-width=200
+search-entry-border-radius=(true, 25)
+show-hidden-recent-files=false
+update-notifier-project-version=66
