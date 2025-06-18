@@ -1,5 +1,7 @@
+# ptyxis
 ctrl + alt + T
-ptyxis
 
+
+# volume mute
 Super + c
-mute
+
