@@ -179,6 +179,8 @@ pw group mod wwww -m haidar
 # check usb 
 usbconfig
 
+# openvpn
+doas openvpn --config /usr/local/etc/openvpn/server.conf
 
 #change from quarterly to latest
 1.Create or Copy the Configuration File:
