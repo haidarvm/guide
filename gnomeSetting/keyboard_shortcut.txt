@@ -1,0 +1,5 @@
+ctrl + alt + T
+ptyxis
+
+Super + c
+mute
