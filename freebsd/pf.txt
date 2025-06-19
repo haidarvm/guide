@@ -1,0 +1,13 @@
+
+sysrc pf_enable=yes
+sysrc pflog_enable=yes
+service pf start
+service pflog start
+
+sysctl net.inet.ip.forwarding=1
+# sysctl net.inet6.ip6.forwarding=1
+# sysrc gateway_enable=yes
+# sysrc ipv6_gateway_enable=yes
+
+pfctl -f /etc/pf.conf
+pfctl -e 
