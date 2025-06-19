@@ -13,6 +13,7 @@ ctrl + b d
 
 # add mouse  add ~/.tmux.conf
 setw -g mouse on
+set -g escape-time 0
 
 # ressurect
 git clone https://github.com/tmux-plugins/tmux-resurrect ~/tmux-plugins
