@@ -213,6 +213,9 @@ SHOW VARIABLES LIKE '%query%';
 --- delete old data
 DELETE from kks_dsensor_air where id_dSensor_air < 24821000;
 
+-- update int to string
+ALTER TABLE dosen MODIFY COLUMN nidn VARCHAR(20);
+
 -- create table with updated_at
 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
