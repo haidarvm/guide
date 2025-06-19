@@ -50,6 +50,10 @@ woeusb
 sudo woeusb --tgt-fs NTFS -d /home/haidar/Documents/backup/iso/Win10_20H2_EnglishInternational_x64.iso /dev/sdc
 
 # hdd health check
+sudo smartctl -a /dev/sda | less
+
+# check bad block 
+sudo badblocks -v /dev/sda -s
 
 # move multiple folder
 mv -t DESTINATION file1 file2 file3
