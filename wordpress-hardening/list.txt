@@ -1,0 +1,35 @@
+Hardening WP 
+1. Edit file wp-config.php tambah 
+define('DISALLOW_FILE_EDIT', true);
+define('ALLOW_UNFILTERED_UPLOADS', false);
+
+2. Set file permission strict
+find . -type d -exec chmod 755 {} \;
+find . -type f -exec chmod 644 {} \;
+
+3. Tambah plugin :
+wps hide login, arahkan login nya ke yg lain contoh /login-secret
+
+4. php hardening di php.ini :
+php_admin_value[disable_functions] = exec
+
+5. nginx hardening, tambah ini setelah location / {:
+if ($request_method !~ ^(GET|POST)$ )
+{
+ return 405;
+}
+
+add_header Content-Security-Policy "default-src 'self';";
+add_header Strict-Transport-Security "max-age=31536000";
+add_header X-Frame-Options "SAMEORIGIN";
+add_header X-XSS-Protection "1; mode=block";
+add_header X-Content-Type-Options "nosniff";
+add_header Referrer-Policy 'strict-origin';
+add_header Feature-Policy "microphone 'none'; geolocation 'none'";
+add_header Expect-CT "max-age=86400";
+add_header Referrer-Policy 'strict-origin';
+
+location = /xmlrpc.php {
+        deny all;
+}
+
