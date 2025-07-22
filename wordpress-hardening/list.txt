@@ -3,7 +3,7 @@ Hardening WP
 define('DISALLOW_FILE_EDIT', true);
 define('ALLOW_UNFILTERED_UPLOADS', false);
 
-2. Set file permission strict
+2. Set file permission strict :
 find . -type d -exec chmod 755 {} \;
 find . -type f -exec chmod 644 {} \;
 
@@ -14,6 +14,7 @@ wps hide login, arahkan login nya ke yg lain contoh /login-secret
 php_admin_value[disable_functions] = exec
 
 5. nginx hardening, tambah ini setelah location / {:
+
 if ($request_method !~ ^(GET|POST)$ )
 {
  return 405;
