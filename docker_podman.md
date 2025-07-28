@@ -12,6 +12,15 @@ docker exec -it debiantest bash
 apt update
 
 
+# podman custom network
+podman network create \
+  --subnet=192.168.100.0/24 \
+  --gateway=192.168.100.1 \
+  customnet
+podman run --rm -it --network customnet alpine sh
+podman run --rm -it --network customnet -v /var/www/public_html/app:/var/www/:Z  alpine bash
+
+
 # openlitespeed
 docker run --name openlitespeed -p 7080:7080 -p 80:80 -p 443:443 -it litespeedtech/openlitespeed:latest
 docker run --name ols -p 7080:7080 -p 80:80 -p 443:443 -it openlitespeed
