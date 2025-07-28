@@ -3,11 +3,14 @@ docker run -t -d --name debiantest debian:slim
 docker run -t -d --name centos7 centos/httpd-24-centos7 
 docker exec -it my_debian bash
 
-#pull centos 7
+#pull  
 docker pull centos:7
 docker pull debian:testing-slim
+
+# run
 docker run -t -d --name debiantest debian:testing-slim
 docker run -t -d --name debapp -v /var/www/public_html/app:/var/www/:Z debian:testing-slim
+podman run -it --name myapp --network customnet --ip 192.168.100.3  -v /var/www/public_html/myapp/:/var/www/mrs:Z  -td myapp
 docker exec -it debiantest bash
 apt update
 
