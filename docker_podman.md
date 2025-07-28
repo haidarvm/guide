@@ -8,10 +8,11 @@ docker pull centos:7
 docker pull debian:testing-slim
 
 # run
+docker run --network bridge -itd --name=contain debian:testing-slim
 docker run -t -d --name debiantest debian:testing-slim
 docker run -t -d --name debapp -v /var/www/public_html/app:/var/www/:Z debian:testing-slim
-docker run -dit --name debtest --network customnet --ip 192.168.100.33 debian:testing-slim
-podman run -it --name myapp --network customnet --ip 192.168.100.3  -v /var/www/public_html/myapp/:/var/www/mrs:Z  -td myapp
+docker run -dit --name debtest --network bridge --ip 192.168.100.33 debian:testing-slim
+podman run -it --name myapp --network bridge --ip 192.168.100.3  -v /var/www/public_html/myapp/:/var/www/mrs:Z  -td myapp
 docker exec -it debiantest bash
 apt update
 
