@@ -7,6 +7,7 @@ docker exec -it my_debian bash
 docker pull centos:7
 docker pull debian:testing-slim
 docker run -t -d --name debiantest debian:testing-slim
+docker run -t -d --name debapp -v /var/www/public_html/app:/var/www/:Z debian:testing-slim
 docker exec -it debiantest bash
 apt update
 
