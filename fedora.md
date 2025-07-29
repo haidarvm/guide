@@ -27,6 +27,9 @@ sudo dnf install rpmfusion-nonfree-release-tainted
 # go to root
 sudo su -
 
+# fedora cloud change password qcow2
+virt-customize -a Fedora-Cloud-Base-42.x86_64.qcow2 --root-password password:bismillah
+
 # make sudo
 usermod -aG wheel haidarvm
 
