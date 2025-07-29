@@ -12,7 +12,7 @@ docker run --network bridge -itd --name=debs debian:testing-slim
 docker run -t -d --name debiantest debian:testing-slim
 docker run -t -d --name debapp -v /var/www/public_html/app:/var/www/:Z debian:testing-slim
 docker run -dit --name debtest --network bridge --ip 192.168.100.33 debian:testing-slim
-docker run -it --name myapp --network bridge -v /var/www/public_html/myapp/:/var/www/myapp:Z  -td myapp
+docker run -it --name myapp --network bridge -v /var/www/public_html/myapp/:/var/www/myapp:Z -td myapp
 docker exec -it debiantest bash
 apt update
 
