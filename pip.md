@@ -7,6 +7,9 @@ sudo chmod a+rx /usr/local/bin/youtube-dl
 sudo apt install python3-pip
 pip3 --version
 
+# upgrade pip
+python3 -m pip install --upgrade pip --user
+
 sudo pip install --upgrade youtube_dl
 
 
