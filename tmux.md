@@ -15,6 +15,11 @@ ctrl + b d
 setw -g mouse on
 set -g escape-time 0
 
+bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "wl-copy"
+bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "wl-copy" #vi style copy
+bind-key -T copy-mode-vi Space send-keys -X copy-pipe-and-cancel "wl-copy"
+
+
 # ressurect
 git clone https://github.com/tmux-plugins/tmux-resurrect ~/tmux-plugins
 
@@ -23,6 +28,12 @@ run-shell ~/tmux-plugins/resurrect.tmux
 
 # add plugin into .tmux.conf
 set -g @plugin 'tmux-plugins/tmux-resurrect' 
+
+# install plugin
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'egel/tmux-gruvbox'
+set -g @tmux-gruvbox 'dark' # or 'light'
+
 
 # tmux convert to vertical / horizontal swap
 ctrl + b space
