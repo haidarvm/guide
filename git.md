@@ -14,6 +14,12 @@ git push origin master
 # reset to commit version
 git reset --hard 7fa4976
 
+# change https to ssh
+url = https://github.com/haidarvm/guide.git
+# to this
+url= git@github.com:username/repo.git
+
+
 # git allow pull unrelated history
 Sgit pull --allow-unrelated-histories
 
