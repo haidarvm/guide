@@ -2,6 +2,7 @@
 fusefs_enable="YES"
 fuse_load="YES" 
 
- kldload fuse
- 
-doas ntfs-3g /dev/da0p3 /mnt -o ro
+kldload fuse
+doas kldload fusefs
+doas ntfs-3g /dev/da1p3 /mnt/seext4tb_data/
+
