@@ -1,0 +1,8 @@
+# install 
+sudo dnf install wakeonlan
+
+# check mac pc
+ip link
+
+# wake
+wakeonlan 00:11:22:33:44:55
