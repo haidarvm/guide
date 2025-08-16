@@ -25,6 +25,7 @@ git clone https://github.com/tmux-plugins/tmux-resurrect ~/tmux-plugins
 
 # Add this line to the bottom of .tmux.conf:
 run-shell ~/tmux-plugins/resurrect.tmux
+run '~/.tmux/plugins/tpm/tpm'
 
 # add plugin into .tmux.conf
 set -g @plugin 'tmux-plugins/tmux-resurrect' 
