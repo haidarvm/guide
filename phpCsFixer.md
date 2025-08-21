@@ -18,5 +18,8 @@ sudo php-cs-fixer self-update
 
 
 # set visual studio code
-"php-cs-fixer.config": "/var/www/public_html/guide/php/config.php_cs"
+"php-cs-fixer.config": "~/guide/php/config.php_cs"
 
+
+
+php-cs-fixer fix app/controller/Auth.php --config=/home/haidar/.php-cs-fixer.php --using-cache=no --diff -vvv
