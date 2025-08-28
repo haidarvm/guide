@@ -21,17 +21,17 @@ bind-key -T copy-mode-vi Space send-keys -X copy-pipe-and-cancel "wl-copy"
 
 
 # ressurect
-git clone https://github.com/tmux-plugins/tmux-resurrect ~/tmux-plugins
+git clone https://github.com/tmux-plugins/tmux-resurrect ~/tmux/plugins
 
 # Add this line to the bottom of .tmux.conf:
-run-shell ~/tmux-plugins/resurrect.tmux
-run '~/.tmux/plugins/tpm/tpm'
+run-shell ~/tmux/plugins/resurrect.tmux
+run '~/tmux/plugins/tpm/tpm'
 
 # add plugin into .tmux.conf
-set -g @plugin 'tmux-plugins/tmux-resurrect' 
-
 # install plugin
-set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux/plugins/tmux-sensible'
+set -g @plugin 'tmux/plugins/tmux-resurrect' 
 set -g @plugin 'egel/tmux-gruvbox'
 set -g @tmux-gruvbox 'dark' # or 'light'
 
