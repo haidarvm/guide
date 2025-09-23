@@ -1,8 +1,35 @@
 #!/bin/bash
-#BismillAh
-cd /var/www/html/guide
-/usr/bin/git add -A 
-/usr/bin/git commit -am "Daily update"
-/usr/bin/git push 
+# BismillAh
+set -e  # stop on errors
 
-#*/25 * * * *  XDG_RUNTIME_DIR=/run/user/$(id -u) /var/www/html/guide/autoCommitPush.sh
+cd /home/haidar/guide || exit 1
+
+# First, make sure we’re on the correct branch
+branch="main"   # or master, check with: git branch
+
+# Fetch remote changes
+/usr/bin/git fetch origin "$branch"
+
+# Check if remote has new commits
+LOCAL=$(/usr/bin/git rev-parse "$branch")
+REMOTE=$(/usr/bin/git rev-parse "origin/$branch")
+
+if [ "$LOCAL" != "$REMOTE" ]; then
+    echo "Remote has new commits, pulling..."
+    /usr/bin/git pull --rebase origin "$branch"
+else
+    echo "No new remote commits"
+fi
+
+# Then handle local changes
+if ! /usr/bin/git diff --quiet || ! /usr/bin/git diff --cached --quiet; then
+    /usr/bin/git add -A
+    /usr/bin/git commit -m "Daily update"
+    /usr/bin/git push origin "$branch"
+else
+    echo "No local changes"
+fi
+
+
+#*/25 * * * *  XDG_RUNTIME_DIR=/run/user/$(id -u) /home/haidar/guide/autoCommitPush.sh
+#*/25 * * * * cd /home/haidar/guide && /bin/bash /home/haidar/guide/autoCommitPush.sh >> /home/haidar/guide/autoCommitPush.log 2>&1
