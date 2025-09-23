@@ -22,6 +22,12 @@ y%
 y^
 yiw
 
+# copy multiple line
+v
+j
++y
+
+
 # paste paste before cursor, paste after cursor
 P
 p

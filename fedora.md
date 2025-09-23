@@ -17,7 +17,8 @@ systemctl enable lightdm.service
 # alternatives config 
 
 # change fedora mirror add sg singapore
-
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch&country=SG
+metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-released-f$releasever&arch=$basearch&country=SG
 
 # install rpmfusion
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
@@ -61,6 +62,7 @@ alias D='cd ~/Downloads'
 alias v='vim'
 alias Dc='cd ~/Documents'
 alias js='journalctl -t setroubleshoot'
+alias gru='sudo grub2-mkconfig -o /etc/grub2-efi.cfg'
 
 # remi
 dnf install https://rpms.remirepo.net/fedora/remi-release-35.rpm
