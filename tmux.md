@@ -1,6 +1,9 @@
 # tmux kill session
 tmux kill-session
 
+# tmux close session
+tmux detach
+
 # tmux restore single session
 tmux a
 
