@@ -1,0 +1,1 @@
+stress-ng --cpu 4 --vm 2 --io 2 --hdd 2 --timeout 2m --metrics-brief --exclude stack
