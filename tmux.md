@@ -22,12 +22,16 @@ bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "wl-copy"
 bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "wl-copy" #vi style copy
 bind-key -T copy-mode-vi Space send-keys -X copy-pipe-and-cancel "wl-copy"
 
+# tmux load config
+tmux source ~/.tmux.conf
+
 
 # ressurect
-git clone https://github.com/tmux-plugins/tmux-resurrect ~/tmux/plugins
+git clone https://github.com/tmux-plugins/tmux-resurrect ~/tmux/plugins/ressurect
 
 # Add this line to the bottom of .tmux.conf:
-run-shell ~/tmux/plugins/resurrect.tmux
+#run-shell ~/tmux/plugins/resurrect/resurrect.tmux
+run '~/tmux/plugins/resurrect/resurrect'
 run '~/tmux/plugins/tpm/tpm'
 
 # add plugin into .tmux.conf
@@ -57,6 +61,7 @@ ctrl + b &
 
 # tmux plugin
 https://github.com/tmux-plugins/tpm
+git clone https://github.com/tmux-plugins/tpm ~/tmux/plugins/tpm
 
 # install tmux plugin / theme
 Ctrl + B + I 
@@ -85,7 +90,7 @@ set -g @plugin 'egel/tmux-gruvbox'
 set -g @tmux-gruvbox 'dark' # or 'light'
 #set -g @tmux2k-theme 'onedark'
 
-run '~/.tmux/plugins/tpm/tpm'
+run '~/tmux/plugins/tpm/tpm'
 
 
 
