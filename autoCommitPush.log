@@ -256,3 +256,177 @@ To github.com:haidarvm/guide.git
 From github.com:haidarvm/guide
  * branch            main       -> FETCH_HEAD
 No new remote commits
+[main 6d2b62b] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   980ce69..6d2b62b  main -> main
+ssh: Could not resolve hostname github.com: Temporary failure in name resolution
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+   6d2b62b..2cf40f3  main       -> origin/main
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+   2cf40f3..9f7837d  main       -> origin/main
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
