@@ -1,1 +1,26 @@
 stress-ng --cpu 4 --vm 2 --io 2 --hdd 2 --timeout 2m --metrics-brief --exclude stack
+
+# 6 Core and 12 threads CPU only
+stress-ng --cpu 12 --cpu-method all --metrics-brief --timeout 60s
+
+# running all system
+sudo stress-ng --all 0 --timeout 60s --metrics-brief
+
+
+
+
+# FreeBSD 14.3 RYzen 5675U
+
+stress-ng --cpu 12 --cpu-method all --metrics-brief --timeout 60s
+stress-ng: info:  [3625] setting to a 1 min run per stressor
+stress-ng: info:  [3625] dispatching hogs: 12 cpu
+stress-ng: metrc: [3625] stressor       bogo ops real time  usr time  sys time   bogo ops/s     bogo ops/s
+stress-ng: metrc: [3625]                           (secs)    (secs)    (secs)   (real time) (usr+sys time)
+stress-ng: metrc: [3625] cpu              499596     60.00    719.52      0.02      8326.20         694.32
+stress-ng: info:  [3625] skipped: 0
+stress-ng: info:  [3625] passed: 12: cpu (12)
+stress-ng: info:  [3625] failed: 0
+stress-ng: info:  [3625] metrics untrustworthy: 0
+stress-ng: info:  [3625] successful run completed in 1 min
+
+# Fedora 42 RYzen 5675U

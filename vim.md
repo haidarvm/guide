@@ -1,6 +1,7 @@
 # edit
 ~/.vimrc
 
+set number
 set paste
 set nocompatible
 syntax on
