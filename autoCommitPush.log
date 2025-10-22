@@ -438,3 +438,43 @@ To github.com:haidarvm/guide.git
 From github.com:haidarvm/guide
  * branch            main       -> FETCH_HEAD
 No new remote commits
+[main d94226e] Daily update
+ 1 file changed, 8 insertions(+)
+To github.com:haidarvm/guide.git
+   c179f6b..d94226e  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+   d94226e..66b41ae  main       -> origin/main
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.

@@ -1,7 +1,8 @@
 https://github.com/vinceliuice/WhiteSur-gtk-theme
-
+./install.sh -l
 ./install.sh -t all            # install all available theme accents
 
+gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
 
 #Icon
 https://github.com/vinceliuice/WhiteSur-icon-theme
