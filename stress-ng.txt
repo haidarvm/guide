@@ -1,1 +1,19 @@
 stress-ng --cpu 4 --vm 2 --io 2 --hdd 2 --timeout 2m --metrics-brief --exclude stack
+
+
+
+
+
+
+Fedora 42 Ryzen 5650U
+stress-ng --cpu 12 --cpu-method all --metrics-brief --timeout 60s
+stress-ng: info:  [9722] setting to a 1 min run per stressor
+stress-ng: info:  [9722] dispatching hogs: 12 cpu
+stress-ng: metrc: [9722] stressor       bogo ops real time  usr time  sys time   bogo ops/s     bogo ops/s
+stress-ng: metrc: [9722]                           (secs)    (secs)    (secs)   (real time) (usr+sys time)
+stress-ng: metrc: [9722] cpu              928158     60.00    716.98      0.05     15469.21        1294.45
+stress-ng: info:  [9722] skipped: 0
+stress-ng: info:  [9722] passed: 12: cpu (12)
+stress-ng: info:  [9722] failed: 0
+stress-ng: info:  [9722] metrics untrustworthy: 0
+stress-ng: info:  [9722] successful run completed in 1 min
