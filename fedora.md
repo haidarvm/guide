@@ -17,6 +17,7 @@ systemctl enable lightdm.service
 # alternatives config 
 
 # dnf5 command
+dnf info postgresql-server
 
 
 
