@@ -28,6 +28,12 @@ tar -cf archive.tar file1 file2 file3
 tar -cvzf tarballname.tar.gz itemtocompress
 tar -cvzf pcimahpindai.tar.gz pcimah
 
+# compress multiple files
+tar -czvf my_archive.tar.gz document.txt photo.jpg
+
+# compress multiple folders
+tar -czvf MyBackup.tar.gz Documents Pictures Scripts
+
 #no compress
 tar -cvf myfolder.tar myfolder
 

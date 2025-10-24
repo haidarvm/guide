@@ -1,0 +1,16 @@
+server {
+    server_name    <%= @server_name %>;
+    root           <%= @root_dir %>;
+    error_log      /var/log/nginx/<%= @server_name %>_error.log error;
+
+    index          index.php index.html;
+
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    location ~ /\.  { return 403; }
+
+    include /etc/nginx/default.d/*.conf;
+}
+

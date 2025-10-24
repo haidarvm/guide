@@ -1,0 +1,591 @@
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main fcbabb6] Daily update
+ 3 files changed, 6 insertions(+)
+ create mode 100644 autoCommitPush.log
+ rename autocommitpush.sh => autoCommitPush.sh (100%)
+To github.com:haidarvm/guide.git
+   39c496a..fcbabb6  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 38549fb] Daily update
+ 1 file changed, 9 insertions(+)
+To github.com:haidarvm/guide.git
+   fcbabb6..38549fb  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main c2c4c83] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   38549fb..c2c4c83  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main bcaf1e5] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   c2c4c83..bcaf1e5  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 67d7450] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   bcaf1e5..67d7450  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 4c88235] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   67d7450..4c88235  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 070c3ad] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   4c88235..070c3ad  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 6367561] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   070c3ad..6367561  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 40a0885] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   6367561..40a0885  main -> main
+ssh: Could not resolve hostname github.com: Temporary failure in name resolution
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main dc9b7f6] Daily update
+ 1 file changed, 12 insertions(+)
+To github.com:haidarvm/guide.git
+   40a0885..dc9b7f6  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main cb4aadb] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   dc9b7f6..cb4aadb  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 6f68c17] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   cb4aadb..6f68c17  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main f5f5aeb] Daily update
+ 2 files changed, 10 insertions(+)
+To github.com:haidarvm/guide.git
+   6f68c17..f5f5aeb  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 2f27fda] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   f5f5aeb..2f27fda  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main e6a1ad7] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   2f27fda..e6a1ad7  main -> main
+ssh: Could not resolve hostname github.com: Temporary failure in name resolution
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main d1e3945] Daily update
+ 1 file changed, 12 insertions(+)
+To github.com:haidarvm/guide.git
+   e6a1ad7..d1e3945  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 0f4eca5] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   d1e3945..0f4eca5  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 981429e] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   0f4eca5..981429e  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main aa3baca] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   981429e..aa3baca  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main a06f2a0] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   aa3baca..a06f2a0  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main d36f63c] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   a06f2a0..d36f63c  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 0443ab0] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   d36f63c..0443ab0  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main b152508] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   0443ab0..b152508  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 506f5d3] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   b152508..506f5d3  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 36e6793] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   506f5d3..36e6793  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main a7ebd1c] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   36e6793..a7ebd1c  main -> main
+ssh: Could not resolve hostname github.com: Temporary failure in name resolution
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 618ccd6] Daily update
+ 1 file changed, 12 insertions(+)
+To github.com:haidarvm/guide.git
+   a7ebd1c..618ccd6  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 541be9f] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   618ccd6..541be9f  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main d2c0799] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   541be9f..d2c0799  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 2e6f99f] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   d2c0799..2e6f99f  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 291149b] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   2e6f99f..291149b  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main e29e11c] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   291149b..e29e11c  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 2f505f6] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   e29e11c..2f505f6  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 980ce69] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   2f505f6..980ce69  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 6d2b62b] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   980ce69..6d2b62b  main -> main
+ssh: Could not resolve hostname github.com: Temporary failure in name resolution
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+   6d2b62b..2cf40f3  main       -> origin/main
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+   2cf40f3..9f7837d  main       -> origin/main
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main c179f6b] Daily update
+ 2 files changed, 386 insertions(+)
+ create mode 100644 btop.conf
+To github.com:haidarvm/guide.git
+   a51b20b..c179f6b  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main d94226e] Daily update
+ 1 file changed, 8 insertions(+)
+To github.com:haidarvm/guide.git
+   c179f6b..d94226e  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+   d94226e..66b41ae  main       -> origin/main
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+Remote has new commits, pulling...
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+=======
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main dab6026] Daily update
+ 2 files changed, 3 insertions(+)
+ create mode 100755 haidar_curriculum_vitae2024.pdf
+To github.com:haidarvm/guide.git
+   d94226e..dab6026  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 11fda13] Daily update
+ 1 file changed, 8 insertions(+)
+To github.com:haidarvm/guide.git
+   dab6026..11fda13  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main cc18cb2] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   11fda13..cc18cb2  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 2d0a511] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   cc18cb2..2d0a511  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main e906469] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   2d0a511..e906469  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 1b32733] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   e906469..1b32733  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main c9b2af8] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   1b32733..c9b2af8  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 1a9c091] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   c9b2af8..1a9c091  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main df7d7b1] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   1a9c091..df7d7b1  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main ebe729c] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   df7d7b1..ebe729c  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 2d5ab60] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   ebe729c..2d5ab60  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main 3be3c32] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   2d5ab60..3be3c32  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main b4865d6] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   3be3c32..b4865d6  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main be2a04e] Daily update
+ 1 file changed, 7 insertions(+)
+To github.com:haidarvm/guide.git
+   b4865d6..be2a04e  main -> main
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+From github.com:haidarvm/guide
+ * branch            main       -> FETCH_HEAD
+No new remote commits
+[main ddeb67b] Daily update
+ 1 file changed, 3 insertions(+)
+To github.com:haidarvm/guide.git
+   04e8e75..ddeb67b  main -> main
+test
