@@ -16,6 +16,11 @@ systemctl enable lightdm.service
  
 # alternatives config 
 
+# dnf5 command
+dnf info postgresql-server
+
+
+
 # change fedora mirror add sg singapore
 metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch&country=SG
 metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-released-f$releasever&arch=$basearch&country=SG
@@ -43,6 +48,11 @@ sudo setenforce 0
 # go to sudo without passwd
 sudo su -i
 
+# relabel clear old definition
+sudo dnf upgrade selinux-policy selinux-policy-targeted
+sudo fixfiles onboot
+sudo touch /.autorelabel
+sudo reboot
 
 # install gui
 dnf groupinstall "Cinnamon Desktop"

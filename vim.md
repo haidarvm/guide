@@ -45,7 +45,7 @@ dd
 3dd
 d$
 
-# delete all
+# delete all make sure first line
 d G
 
 # delete start from cursor

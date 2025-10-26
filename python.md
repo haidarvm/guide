@@ -25,3 +25,11 @@ uvicorn da:app --workers 4 --log-level critical
 uvicorn --workers 4 --log-level critical dao:app 
 
 wrk -t12 -c400 -d10s http://localhost:8088
+
+
+# install python3.11 with pip
+sudo dnf install python3.11
+curl -sS https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+sudo python3.11 get-pip.py
+python3.11 -m pip list
+which pip3.11
