@@ -54,6 +54,23 @@ sudo fixfiles onboot
 sudo touch /.autorelabel
 sudo reboot
 
+
+# repair fedora chroot
+sudo umount -R /mnt/fedora 2>/dev/null
+sudo vgchange -ay
+sudo mount /dev/fedora/root /mnt/fedora
+sudo mkdir -p /mnt/fedora/boot
+sudo mount /dev/nvme0n1p1 /mnt/fedora/boot
+sudo mount -t proc /proc /mnt/fedora/proc
+sudo mount -t sysfs /sys /mnt/fedora/sys
+for dir in /dev /proc /sys /run; do
+  sudo mount --rbind $dir /mnt/fedora$dir
+done
+sudo mount --make-rslave /mnt/fedora/dev
+sudo mount -t devpts devpts /mnt/fedora/dev/pts
+sudo chroot /mnt/fedora /bin/bash
+
+
 # install gui
 dnf groupinstall "Cinnamon Desktop"
 
