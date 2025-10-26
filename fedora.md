@@ -70,6 +70,14 @@ sudo mount --make-rslave /mnt/fedora/dev
 sudo mount -t devpts devpts /mnt/fedora/dev/pts
 sudo chroot /mnt/fedora /bin/bash
 
+# unmount chroot
+sudo umount /mnt/fedora/dev/pts
+sudo umount /mnt/fedora/dev
+sudo umount /mnt/fedora/proc
+sudo umount /mnt/fedora/sys
+sudo umount /mnt/fedora/run
+ 
+
 
 # install gui
 dnf groupinstall "Cinnamon Desktop"
