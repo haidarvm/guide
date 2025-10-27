@@ -76,7 +76,7 @@ sudo umount /mnt/fedora/dev
 sudo umount /mnt/fedora/proc
 sudo umount /mnt/fedora/sys
 sudo umount /mnt/fedora/run
- 
+ sudo umount /dev/mapper/fedora-root 
 
 
 # install gui
