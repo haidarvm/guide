@@ -33,6 +33,10 @@ doas pkg install tigervnc-server
 vncpasswd ~/.vnc/passwd
 x0vncserver -display :0 -rfbauth ~/.vnc/passwd -rfbport 5903 -SecurityTypes VncAuth,TLSNone -NeverShared=0 -AlwaysShared=1
 
+# low quality
+
+
+
 # enable vnc service
 systemctl enable vncserver@:1.service
 systemctl start vncserver@:1.service
