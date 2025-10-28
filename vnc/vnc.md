@@ -28,8 +28,10 @@ sudo firewall-cmd --add-rich-rule='rule family="ipv4" source address="192.168.1.
 firewall-cmd  --reload
 
 # shared vnc
+sudo dnf install tigervnc
+doas pkg install tigervnc-server
 vncpasswd ~/.vnc/passwd
-x0vncserver -display :0 -rfbauth ~/.vnc/passwd -rfbport 5900 -SecurityTypes VncAuth,TLSNone -NeverShared=0 -AlwaysShared=1
+x0vncserver -display :0 -rfbauth ~/.vnc/passwd -rfbport 5903 -SecurityTypes VncAuth,TLSNone -NeverShared=0 -AlwaysShared=1
 
 # enable vnc service
 systemctl enable vncserver@:1.service
