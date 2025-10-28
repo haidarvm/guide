@@ -27,7 +27,9 @@ sudo fc-cache -f
 sudo firewall-cmd --add-rich-rule='rule family="ipv4" source address="192.168.1.17" service name=vnc-server accept' --permanent
 firewall-cmd  --reload
 
-
+# shared vnc
+vncpasswd ~/.vnc/passwd
+x0vncserver -display :0 -rfbauth ~/.vnc/passwd -rfbport 5900 -SecurityTypes VncAuth,TLSNone -NeverShared=0 -AlwaysShared=1
 
 # enable vnc service
 systemctl enable vncserver@:1.service
