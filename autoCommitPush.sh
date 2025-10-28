@@ -32,5 +32,4 @@ fi
 
 
 #*/25 * * * *  XDG_RUNTIME_DIR=/run/user/$(id -u) /home/haidar/guide/autoCommitPush.sh
-#*/25 * * * * cd /home/haidar/guide && /bin/bash /home/haidar/guide/autoCommitPush.sh >> /home/haidar/autoCommitPush.log 2>&1
-#*/25 * * * * cd /home/haidar/guide && /bin/bash /home/haidar/guide/autoCommitPush.sh >> /home/haidar/guide/autoCommitPush.log 2>&1
+#*/10 * * * * cd /home/haidar/guide && /bin/bash /home/haidar/guide/autoCommitPush.sh >> /home/haidar/autoCommitPush.log 2>&1
