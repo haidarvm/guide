@@ -1,5 +1,8 @@
 sudo /usr/bin/certbot-auto renew --dry-run
 
+# renew certain domain
+certbot renew --cert-name klikjabar.co
+
 
 # Certonly Tobias using acme.sh
 
@@ -24,3 +27,7 @@ sudo certbot delete --cert-name $mydomain
 
 #check expire date certbot
 nmap -p 443 --script ssl-cert gnupg.org
+
+
+# cron
+30 2 * * 1 /usr/local/bin/certbot renew --quiet --deploy-hook "/usr/sbin/service nginx reload"
