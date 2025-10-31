@@ -39,6 +39,8 @@ p
 # cut line
 dd
 
+# comment out multi line
+:10,20s/^/\/\//
 
 # delete line
 dd
