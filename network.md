@@ -16,6 +16,9 @@ sudo nmap -sTU -O -Pn 192.168.1.1
 # display TCP information,
 ss -t
 
+#change ip manual fedora 43
+nmcli connection show shared | grep ipv4.addresses
+
 #setting dns globally
 vi /etc/systemd/resolved.conf
 DNS=67.207.67.2 67.207.67.3
