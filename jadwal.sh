@@ -29,7 +29,6 @@ fi
 
 # Ambil data dari API
 RESPONSE=$(curl -s "$API_URL")
-echo $RESPONSE
 # Cek apakah response kosong
 if [ -z "$RESPONSE" ]; then
     echo "Error: Tidak dapat mengambil data dari API"
@@ -37,24 +36,23 @@ if [ -z "$RESPONSE" ]; then
 fi
 
 # Tampilkan hasil dengan format yang rapi
-echo "$RESPONSE" | jq '
+echo "$RESPONSE" | jq -r --arg tanggal "$TANGGAL" '
 if .status == true then
-    "Lokasi: \(.data.lokasi)",
-    "Tanggal: \(.data.jadwal.tanggal)",
+    .data.jadwal[$tanggal] as $jadwal |
+    "Lokasi: \(.data.kabko), \(.data.prov)",
+    "Tanggal: \($jadwal.tanggal)",
     "",
-    "Jadwal Sholat: .data.id",
-    "  Imsak  : \(.data.jadwal.imsak)",
-    "  Subuh  : \(.data.jadwal.subuh)",
-    "  Terbit : \(.data.jadwal.terbit)",
-    "  Dhuha  : \(.data.jadwal.dhuha)",
-    "  Dzuhur : \(.data.jadwal.dzuhur)",
-    "  Ashar  : \(.data.jadwal.ashar)",
-    "  Maghrib: \(.data.jadwal.maghrib)",
-    "  Isya   : \(.data.jadwal.isya)"
+    "Jadwal Sholat:",
+    "  Imsak  : \($jadwal.imsak)",
+    "  Subuh  : \($jadwal.subuh)",
+    "  Terbit : \($jadwal.terbit)",
+    "  Dhuha  : \($jadwal.dhuha)",
+    "  Dzuhur : \($jadwal.dzuhur)",
+    "  Ashar  : \($jadwal.ashar)",
+    "  Maghrib: \($jadwal.maghrib)",
+    "  Isya   : \($jadwal.isya)"
 else
     "Error: \(.message // "Gagal mengambil data")"
 end
-' -r
+'
 
-# Atau tampilkan raw JSON jika ingin output asli
-# echo "$RESPONSE" | jq
