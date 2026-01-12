@@ -1,30 +1,60 @@
-function ceksholat() {
-    # ID Kota Bandung = 1219
-    # Ganti ID ini jika ingin kota lain (lihat cara cari ID di bawah)
-    local ID="1219" 
-    local TANGGAL=$(date +"%Y-%m-%d")
-    
-    # Simpan respon ke variabel dulu untuk cek error
-    local RESPON=$(curl -s "https://api.myquran.com/v3/sholat/jadwal/${ID}/${TANGGAL}")
+#!/bin/bash
 
-    # Cek apakah respon berhasil (status: true)
-    if echo "$RESPON" | grep -q '"status":true'; then
-        echo "$RESPON" | jq -r '
-          .data.jadwal | 
-          "=======================",
-          "   JADWAL SHOLAT",
-          "   \(.tanggal)",
-          "=======================",
-          "Subuh   : \(.subuh)",
-          "Dzuhur  : \(.dzuhur)",
-          "Ashar   : \(.ashar)",
-          "Maghrib : \(.maghrib)",
-          "Isya    : \(.isya)",
-          "======================="
-        '
-    else
-        echo "Gagal mengambil data. Pastikan koneksi internet lancar atau ID Kota benar."
-        # Debugging: Tampilkan pesan error asli dari API jika perlu
-        # echo "$RESPON" | jq . 
-    fi
-}
+# Script untuk mengambil jadwal sholat dari API MyQuran
+# Penggunaan: ./jadwal_sholat.sh [tanggal]
+# Format tanggal: YYYY-MM-DD (opsional, default: hari ini)
+
+# Kode kota (contoh: fc221309746013ac554571fbd180e1c8)
+KOTA_ID="fc221309746013ac554571fbd180e1c8"
+
+# Gunakan tanggal dari parameter atau tanggal hari ini
+if [ -z "$1" ]; then
+    TANGGAL=$(date +%Y-%m-%d)
+else
+    TANGGAL="$1"
+fi
+
+# URL API
+API_URL="https://api.myquran.com/v3/sholat/jadwal/${KOTA_ID}/${TANGGAL}"
+
+echo "Mengambil jadwal sholat untuk tanggal: $TANGGAL"
+echo "================================================"
+
+# Cek apakah jq terinstall
+if ! command -v jq &> /dev/null; then
+    echo "Error: jq tidak terinstall"
+    echo "Install dengan: sudo apt install jq (Ubuntu/Debian) atau sudo yum install jq (CentOS/RHEL)"
+    exit 1
+fi
+
+# Ambil data dari API
+RESPONSE=$(curl -s "$API_URL")
+echo $RESPONSE
+# Cek apakah response kosong
+if [ -z "$RESPONSE" ]; then
+    echo "Error: Tidak dapat mengambil data dari API"
+    exit 1
+fi
+
+# Tampilkan hasil dengan format yang rapi
+echo "$RESPONSE" | jq '
+if .status == true then
+    "Lokasi: \(.data.lokasi)",
+    "Tanggal: \(.data.jadwal.tanggal)",
+    "",
+    "Jadwal Sholat: .data.id",
+    "  Imsak  : \(.data.jadwal.imsak)",
+    "  Subuh  : \(.data.jadwal.subuh)",
+    "  Terbit : \(.data.jadwal.terbit)",
+    "  Dhuha  : \(.data.jadwal.dhuha)",
+    "  Dzuhur : \(.data.jadwal.dzuhur)",
+    "  Ashar  : \(.data.jadwal.ashar)",
+    "  Maghrib: \(.data.jadwal.maghrib)",
+    "  Isya   : \(.data.jadwal.isya)"
+else
+    "Error: \(.message // "Gagal mengambil data")"
+end
+' -r
+
+# Atau tampilkan raw JSON jika ingin output asli
+# echo "$RESPONSE" | jq
