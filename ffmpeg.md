@@ -1,5 +1,17 @@
+# sound to bass
+ffmpeg -i 013028.mp3 -af "rubberband=pitch=0.90,equalizer=f=40:width_type=o:width=2:g=4" 013028.mp3
+
+# higher volume
+ffmpeg -i input.mp3 -filter:a "volume=2.0" output.mp3
+ffmpeg -i 01_013028_id.mp3 -ac 2 -filter:a "volume=2.5" 01_013028_id0.mp3
+
+# combine 
+
+
 ffmpeg -i modernHousePreview.avi -s 1280x720 -c:a copy modernHousePreview.mp4
 
+#combine mp3
+ffmpeg -i "concat:013028.mp3|013029.mp3|016106.mp3|010062|013011.mp3|048018.mp3|048034.mp3|05077.mp3||" -acodec copy output.mp3
 
 # resize 360 
 ffmpeg -i 45NoSupers_1_smalls.mp4 -s 426x240 -c:a copy -strict -2 45NoSupers_1_small240.mp4
@@ -48,6 +60,7 @@ ffmpeg -f x11grab -framerate 60 -i $DISPLAY -c:v h264_nvenc -profile:v high444p 
 
 # combine multiple mp3
 ffmpeg -i "concat:file1.mp3|file2.mp3" -acodec copy output.mp3
+ffmpeg -i "concat:lagu1.mp3|lagu2.mp3" -codec:a libmp3lame -q:a 0 output.mp3
 
 # combine two vid
 $ cat files.txt
