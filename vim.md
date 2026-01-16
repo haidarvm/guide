@@ -1,6 +1,7 @@
 # edit
 ~/.vimrc
 
+set number
 set paste
 set nocompatible
 syntax on
@@ -22,6 +23,12 @@ y%
 y^
 yiw
 
+# copy multiple line
+v
+j
++y
+
+
 # paste paste before cursor, paste after cursor
 P
 p
@@ -32,13 +39,15 @@ p
 # cut line
 dd
 
+# comment out multi line
+:10,20s/^/\/\//
 
 # delete line
 dd
 3dd
 d$
 
-# delete all
+# delete all make sure first line
 d G
 
 # delete start from cursor

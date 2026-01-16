@@ -1,0 +1,9 @@
+#server_names = ['adguard-dns']
+server_names = ['cloudflare']
+#server_names = ['cs-singapore']
+
+log_level = 0
+
+log_file = '/var/log/dnscrypt-proxy/dnscrypt-proxy.log'
+log_file_latest = true
+use_syslog = false

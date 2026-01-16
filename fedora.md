@@ -16,9 +16,18 @@ systemctl enable lightdm.service
  
 # alternatives config 
 
+# dnf command
+dnf info postgresql-server
+
+
+
+# change fedora mirror add sg singapore
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch&country=SG
+metalink=https://mirrors.fedoraproject.org/metalink?repo=updates-released-f$releasever&arch=$basearch&country=SG
+
 # install rpmfusion
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+# no at 42 sudo rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 # install rpmfusion non free
 sudo dnf install rpmfusion-free-release-tainted
@@ -39,6 +48,36 @@ sudo setenforce 0
 # go to sudo without passwd
 sudo su -i
 
+# relabel clear old definition
+sudo dnf upgrade selinux-policy selinux-policy-targeted
+sudo fixfiles onboot
+sudo touch /.autorelabel
+sudo reboot
+
+
+# repair fedora chroot
+sudo umount -R /mnt/fedora 2>/dev/null
+sudo vgchange -ay
+sudo mount /dev/fedora/root /mnt/fedora
+sudo mkdir -p /mnt/fedora/boot
+sudo mount /dev/nvme0n1p1 /mnt/fedora/boot
+sudo mount -t proc /proc /mnt/fedora/proc
+sudo mount -t sysfs /sys /mnt/fedora/sys
+for dir in /dev /proc /sys /run; do
+  sudo mount --rbind $dir /mnt/fedora$dir
+done
+sudo mount --make-rslave /mnt/fedora/dev
+sudo mount -t devpts devpts /mnt/fedora/dev/pts
+sudo chroot /mnt/fedora /bin/bash
+
+# unmount chroot
+sudo umount /mnt/fedora/dev/pts
+sudo umount /mnt/fedora/dev
+sudo umount /mnt/fedora/proc
+sudo umount /mnt/fedora/sys
+sudo umount /mnt/fedora/run
+ sudo umount /dev/mapper/fedora-root 
+
 
 # install gui
 dnf groupinstall "Cinnamon Desktop"
@@ -50,14 +89,15 @@ SELINUX to disabled
 # alias
 alias r='rpm -qa | grep'
 alias rp='sudo rpm -Uvh'
-alias up='sudo dnf5 update -y'
-alias d='sudo dnf5 install'
-alias ds='sudo dnf5 search'
-alias dr='sudo dnf5 remove'
+alias up='sudo dnf update -y'
+alias d='sudo dnf install'
+alias ds='sudo dnf search'
+alias dr='sudo dnf remove'
 alias D='cd ~/Downloads'
 alias v='vim'
 alias Dc='cd ~/Documents'
 alias js='journalctl -t setroubleshoot'
+alias gru='sudo grub2-mkconfig -o /etc/grub2-efi.cfg'
 
 # remi
 dnf install https://rpms.remirepo.net/fedora/remi-release-35.rpm

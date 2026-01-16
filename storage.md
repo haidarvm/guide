@@ -1,5 +1,6 @@
 # check last 10 most usage
 sudo du -hsx * | sort -rh | head -10
+du -h . | sort -rh | head -n 20
 
 du -hsx * | sort -rh | head -10
 

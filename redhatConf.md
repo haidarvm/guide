@@ -323,7 +323,11 @@ dnf install net-tools
 
 
 
-### php-fpm-8.0 ###
+### php8.0 ###
+sudo dnf install php80-php php80-php-fpm php80-php-mysqlnd php80-php-gd php80-php-xml php80-php-mbstring php80-php-json php80-php-curl  php80-php-process -y
+### php8.1 ###
+sudo dnf install php81-php php81-php-fpm php81-php-mysqlnd php81-php-gd php81-php-xml php81-php-mbstring php81-php-json php81-php-curl php81-php-process -y
+
 ### php-fpm-7.4.14 ###
 dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 rpm -qa | grep epel
@@ -335,6 +339,8 @@ dnf module enable php:remi-8.1
 dnf install php-process  php-cli php-pgsql php-mysqlnd php-json php-intl php-gd php-mbstring php-xml php-fpm php-curl php-opcache php-devel php-fpm php-zip php-readline php-sodium -y
 firewall-cmd --zone=public --add-port=8787/tcp --permanent
 firewall-cmd --reload
+
+
 
 # to downgrade php 8.1 or 7.4
 dnf downgrade php\*

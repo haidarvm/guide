@@ -2,3 +2,7 @@ kldload acpi_video
 sysctl -a |grep backlight
 sysctl -a | grep brightness
 doas sysctl hw.acpi.video.lcd0.brightness=80
+
+
+# brightness
+doas xrandr --output eDP --brightness 0.5

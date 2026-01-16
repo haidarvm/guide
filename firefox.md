@@ -1,3 +1,8 @@
+# about:config
+
+# sensitify tab 
+
+
 # disable https redirect
 
 The solution that worked for me:

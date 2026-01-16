@@ -27,6 +27,14 @@ sudo fc-cache -f
 sudo firewall-cmd --add-rich-rule='rule family="ipv4" source address="192.168.1.17" service name=vnc-server accept' --permanent
 firewall-cmd  --reload
 
+# shared vnc
+sudo dnf install tigervnc
+doas pkg install tigervnc-server
+vncpasswd ~/.vnc/passwd
+x0vncserver -display :0 -rfbauth ~/.vnc/passwd -rfbport 5903 -SecurityTypes VncAuth,TLSNone -NeverShared=0 -AlwaysShared=1
+
+# low quality
+
 
 
 # enable vnc service

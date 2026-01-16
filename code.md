@@ -4,7 +4,7 @@
 Ctrl + Shift + Down / Up
 
 # open editor left sidebar
-Click on  Top Right on Left Sidebar
+Click on Top Right on Left Sidebar
 
 # show hint parameters
 Ctrl + shift + space
