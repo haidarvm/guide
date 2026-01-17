@@ -16,7 +16,7 @@ systemctl enable lightdm.service
  
 # alternatives config 
 
-# dnf5 command
+# dnf command
 dnf info postgresql-server
 
 
@@ -89,10 +89,10 @@ SELINUX to disabled
 # alias
 alias r='rpm -qa | grep'
 alias rp='sudo rpm -Uvh'
-alias up='sudo dnf5 update -y'
-alias d='sudo dnf5 install'
-alias ds='sudo dnf5 search'
-alias dr='sudo dnf5 remove'
+alias up='sudo dnf update -y'
+alias d='sudo dnf install'
+alias ds='sudo dnf search'
+alias dr='sudo dnf remove'
 alias D='cd ~/Downloads'
 alias v='vim'
 alias Dc='cd ~/Documents'
