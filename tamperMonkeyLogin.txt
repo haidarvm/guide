@@ -1,0 +1,30 @@
+// ==UserScript==
+// @name        FiberHome Auto Login (Correct)
+// @match       http://192.168.1.1/html/login_inter.html
+// @grant       none
+// ==/UserScript==
+
+(function () {
+  const USER = "user";
+  const PASS = "user1234";
+
+  function tryLogin() {
+    const u = document.getElementById("user_name");
+    const p = document.getElementById("loginpp");
+
+    if (!u || !p) return false;
+    if (typeof onlogin !== "function") return false;
+
+    u.value = USER;
+    p.value = PASS;
+
+    // FiberHome expects this exact call
+    onlogin(1);
+    return true;
+  }
+
+  // Retry until FiberHome JS finishes loading
+  const timer = setInterval(() => {
+    if (tryLogin()) clearInterval(timer);
+  }, 300);
+})();
