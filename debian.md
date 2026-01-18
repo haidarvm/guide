@@ -45,3 +45,4 @@ sudo apt install spice-vdagent qemu-guest-agent
 sudo apt install spice-webdavd
 sudo systemctl enable --now spice-vdagent
 sudo systemctl enable --now qemu-guest-agent
+rm ~/.config/monitors.xml
