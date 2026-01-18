@@ -41,3 +41,7 @@ sudo systemctl enable --now gdm3  # Or lightdm/gdm3/sddm
 sudo systemctl set-default multi-user.target
 sudo systemctl set-default graphical.target
 sudo systemctl isolate graphical.target
+sudo apt install spice-vdagent qemu-guest-agent
+sudo apt install spice-webdavd
+sudo systemctl enable --now spice-vdagent
+sudo systemctl enable --now qemu-guest-agent
