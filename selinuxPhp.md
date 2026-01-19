@@ -3,7 +3,10 @@ setsebool -P httpd_can_network_connect_db 1
 
 
 #/var/www web app
-sudo semanage fcontext -a -t httpd_sys_rw_content_t "/home/haidar/www(/.*)?"
+sudo chown -R haidar:haidar /var/www
+sudo semanage fcontext -a -t httpd_sys_rw_content_t "/var/www(/.*)?"
+sudo restorecon -Rv /var/www
+sudo setsebool -P httpd_unified on
 
 #qemu
 sudo setsebool -P virt_use_home_run_res 1

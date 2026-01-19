@@ -125,3 +125,7 @@ wget -c 'https://download.anydesk.com/linux/anydesk_6.2.0-1_x86_64.rpm' -P /tmp
 sudo rpm -Uvh --nodeps /tmp/anydesk_6.2.0-1_x86_64.rpm
 # if fresh install
 sudo rpm -ivh --nodeps /tmp/anydesk_6.2.0-1_x86_64.rpm
+
+# ask password 24 hours
+sudo visudo
+Defaults env_reset, timestamp_timeout=1440
