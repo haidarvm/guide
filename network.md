@@ -66,6 +66,11 @@ gateway 192.168.1.1
 #dns-nameservers 192.168.1.1
 dns-nameservers 1.1.1.1 192.168.1.1
 
+#set ip
+ip addr add 192.168.50.1/24 dev wlan0
+
+#check wifi
+iw dev
 # change IP nmcli
 nmcli con mod enps03 ipv4.addresses 192.168.2.20/24
 
