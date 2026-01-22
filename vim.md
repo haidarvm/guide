@@ -72,6 +72,11 @@ uu
 # redo
 ctrl+r
 
+# go to first top
+
+
 # go end
 shift+g
+
+
 
