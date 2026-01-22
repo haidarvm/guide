@@ -73,7 +73,7 @@ uu
 ctrl+r
 
 # go to first top
-
+gg
 
 # go end
 shift+g
