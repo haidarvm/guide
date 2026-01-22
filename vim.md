@@ -4,6 +4,8 @@
 set number
 set paste
 set nocompatible
+set ignorecase
+set smartcase
 syntax on
 
 #  find
