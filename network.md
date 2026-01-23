@@ -147,6 +147,8 @@ $ sudo /usr/sbin/dnscrypt-proxy --daemonize
 
 Lalu test buka http://vimeo.com
 
+# hostapd check
+
 
 blocked site
 vimeo.com
