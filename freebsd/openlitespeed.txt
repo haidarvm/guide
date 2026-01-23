@@ -6,3 +6,6 @@ ZTBjODIx
 
 # permission error
 chmod 644 /usr/local/lsws/admin/conf/htpasswd
+
+
+umount /usr/jails/debian/dev
