@@ -1,6 +1,9 @@
 # install
 sudo dnf install tigervnc-server tigervnc
 
+# debian based
+sudo apt install tightvncserver
+
 # new vnc user
 useradd vncuser1
 passwd vncuser1
@@ -15,6 +18,10 @@ echo ':1=vncuser1' >> /etc/tigervnc/vncserver.users
 
 # create systemd
 cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service
+
+# armbian
+sudo apt install x11vnc
+x11vnc -display :0 -forever -nopw
 
 
 #fedora 40
