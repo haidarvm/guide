@@ -21,7 +21,7 @@ cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.servi
 
 # armbian
 sudo apt install x11vnc
-x11vnc -display :0 -forever -nopw
+x11vnc -auth /home/haidar/.Xauthority -display :0 -forever -nopw
 
 
 #fedora 40
