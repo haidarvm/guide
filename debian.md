@@ -35,7 +35,7 @@ sudo growpart /dev/vda 1
 #genericcloud
 ip addr add 192.168.122.50/24 dev enp1s0
 ip route add default via 192.168.122.1
-
+ip link set enp1s0 up
 # 1. Remove the existing file/symlink completely
 rm -f /etc/resolv.conf
 
