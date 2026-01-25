@@ -21,3 +21,5 @@ growpart /dev/vda 4
 sudo pvresize /dev/vda4
 sudo lvextend -l +100%FREE /dev/mapper/systemVG-LVRoot -r
 xfs_growfs /
+
+#resize ext4
