@@ -13,3 +13,11 @@ virt-customize -a debian-13-genericcloud-amd64-20260112-2355.qcow2 --root-passwo
 ip addr add 192.168.122.50/24 dev enp1s0
 ip route add default via 192.168.122.1
 ip link set enp1s0 up
+
+
+# resize fedora xfs llvm
+sgdisk -e /dev/vda
+growpart /dev/vda 4
+sudo pvresize /dev/vda4
+sudo lvextend -l +100%FREE /dev/mapper/systemVG-LVRoot -r
+xfs_growfs /
