@@ -7,6 +7,10 @@ docker exec -it my_debian bash
 docker pull centos:7
 docker pull debian:testing-slim
 
+# openlitespeed
+docker run --name openlitespeed -p 7081:7080 -p 82:80 -it litespeedtech/openlitespeed:latest
+
+
 # run
 docker run --network bridge -itd --name=debs debian:testing-slim
 podman run --network podman -itd --name deb debian:testing-slim
