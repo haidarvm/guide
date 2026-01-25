@@ -21,6 +21,8 @@ docker run -it --name myapp --network bridge -v /var/www/public_html/myapp/:/var
 docker exec -it debiantest bash
 apt update
 
+# check ip
+podman inspect -f '{{.NetworkSettings.IPAddress}}' debtest
 
 # podman custom network
 podman network create \
