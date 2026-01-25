@@ -5,3 +5,6 @@ qemu-img convert -O qcow2 ubuntu-16.04-server-cloudimg-amd64-disk1.img ubuntu-16
 
 #resize
 qemu-img resize ubuntu-16.04-server-cloudimg-amd64-disk1.qcow2 +50G
+
+#password
+virt-customize -a debian-13-genericcloud-amd64-20260112-2355.qcow2 --root-password password:YourNewPassword
