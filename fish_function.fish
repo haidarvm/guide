@@ -40,7 +40,10 @@ end
 
 # 5. Benchmarking
 function wk
-    wrk -t12 -c400 -d5s "http://$argv[1]"
+    # Remove any existing protocol prefix
+    set -l clean_url (string replace -r '^https?://' '' $argv[1])
+    
+    wrk -t12 -c400 -d5s "http://$clean_url"
 end
 
 # 6. Unmount & Power Off Harddisk
