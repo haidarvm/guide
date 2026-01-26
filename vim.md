@@ -78,5 +78,5 @@ gg
 # go end
 shift+g
 
-
+# copy all lines
 
