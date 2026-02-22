@@ -66,7 +66,6 @@ if [ $DIFF -gt 0 ]; then
     
     # Contoh command untuk adzan otomatis (opsional)
     # Anda bisa menggunakan 'at' command atau loop 'sleep'
-    echo "Tips: Gunakan 'ffplay -nodisp -autoexit adzan.mp3' saat waktu tiba."
 elif [ $DIFF -le 0 ] && [ $DIFF -gt -3600 ]; then
     echo "Selamat berbuka puasa! Waktu Maghrib sudah tiba."
 else
