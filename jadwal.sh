@@ -36,23 +36,39 @@ if [ -z "$RESPONSE" ]; then
 fi
 
 # Tampilkan hasil dengan format yang rapi
+# ... (kode sebelumnya tetap sama sampai baris 38)
+
+# Ambil waktu Maghrib dari JSON
+MAGHRIB=$(echo "$RESPONSE" | jq -r ".data.jadwal.\"$TANGGAL\".maghrib")
+
+if [ "$MAGHRIB" == "null" ] || [ -z "$MAGHRIB" ]; then
+    echo "Gagal mengambil waktu Maghrib."
+    exit 1
+fi
+
+# Tampilkan Jadwal (Sama seperti sebelumnya)
 echo "$RESPONSE" | jq -r --arg tanggal "$TANGGAL" '
-if .status == true then
-    .data.jadwal[$tanggal] as $jadwal |
-    "Lokasi: \(.data.kabko), \(.data.prov)",
-    "Tanggal: \($jadwal.tanggal)",
-    "",
-    "Jadwal Sholat:",
-    "  Imsak  : \($jadwal.imsak)",
-    "  Subuh  : \($jadwal.subuh)",
-    "  Terbit : \($jadwal.terbit)",
-    "  Dhuha  : \($jadwal.dhuha)",
-    "  Dzuhur : \($jadwal.dzuhur)",
-    "  Ashar  : \($jadwal.ashar)",
-    "  Maghrib: \($jadwal.maghrib)",
-    "  Isya   : \($jadwal.isya)"
-else
-    "Error: \(.message // "Gagal mengambil data")"
-end
+    .data.jadwal[$tanggal] as $j |
+    "Lokasi: \(.data.kabko)\nTanggal: \($j.tanggal)\n\nJadwal:\n Imsak  : \($j.imsak)\n Subuh  : \($j.subuh)\n Dzuhur : \($j.dzuhur)\n Ashar  : \($j.ashar)\n Maghrib: \($j.maghrib)\n Isya   : \($j.isya)"
 '
 
+# --- LOGIKA HITUNG MUNDUR (TIMEDIFF) ---
+NOW_EPOCH=$(date +%s)
+MAGHRIB_EPOCH=$(date -d "$TANGGAL $MAGHRIB" +%s)
+DIFF=$(( MAGHRIB_EPOCH - NOW_EPOCH ))
+
+echo "------------------------------------------------"
+
+if [ $DIFF -gt 0 ]; then
+    HOURS=$(( DIFF / 3600 ))
+    MINS=$(( (DIFF % 3600) / 60 ))
+    echo "Menuju Maghrib (Buka Puasa): $HOURS jam $MINS menit lagi."
+    
+    # Contoh command untuk adzan otomatis (opsional)
+    # Anda bisa menggunakan 'at' command atau loop 'sleep'
+    echo "Tips: Gunakan 'ffplay -nodisp -autoexit adzan.mp3' saat waktu tiba."
+elif [ $DIFF -le 0 ] && [ $DIFF -gt -3600 ]; then
+    echo "Selamat berbuka puasa! Waktu Maghrib sudah tiba."
+else
+    echo "Waktu Maghrib sudah lewat untuk hari ini."
+fi
