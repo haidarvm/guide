@@ -4,6 +4,8 @@ https://www.tokopedia.com/aquarius-id/tp-link-tp-link-tl-wn725n-nano-usb-wireles
 # reset dhcpclient
 dhclient re0
 
+# drill google.com
+
 # ntpd
 doas service ntpd restart
 doas ntpdate -v -b in.pool.ntp.org
