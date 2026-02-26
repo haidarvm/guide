@@ -38,6 +38,9 @@ p
 # go to line 
 :27
 
+# delete multi lines
+:7,33d
+
 # cut line
 dd
 
