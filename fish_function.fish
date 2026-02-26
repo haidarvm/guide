@@ -99,3 +99,20 @@ function ceksholat
       end
     '
 end
+
+function apim
+    set orientation $argv[1]
+    set output $argv[2]
+
+    switch $orientation
+        case v
+            magick ./*.jpg -append $output
+            echo "✅ Sprite vertikal dibuat: $output"
+        case h
+            magick ./*.jpg +append $output
+            echo "✅ Sprite horizontal dibuat: $output"
+        case '*'
+            echo "Penggunaan: sprite [v|h] nama_file.jpg"
+            echo "Contoh: sprite h nav-sprite.jpg"
+    end
+end
