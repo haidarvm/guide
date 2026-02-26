@@ -101,18 +101,18 @@ function ceksholat
 end
 
 function apim
-    set orientation $argv[1]
-    set output $argv[2]
+    set mode $argv[1]        # h atau v
+    set output $argv[-1]     # Ambil argumen paling terakhir sebagai output
+    set inputs $argv[2..-2]  # Ambil semua argumen di antara mode dan output
 
-    switch $orientation
-        case v
-            magick ./*.jpg -append $output
-            echo "✅ Sprite vertikal dibuat: $output"
+    switch $mode
         case h
-            magick ./*.jpg +append $output
-            echo "✅ Sprite horizontal dibuat: $output"
+            magick $inputs +append $output
+            echo "✅ Sprite Horizontal dibuat: $output"
+        case v
+            magick $inputs -append $output
+            echo "✅ Sprite Vertikal dibuat: $output"
         case '*'
-            echo "Penggunaan: sprite [v|h] nama_file.jpg"
-            echo "Contoh: sprite h nav-sprite.jpg"
+            echo "Cara pakai: apim [h|v] file1.png file2.png output.png"
     end
 end
