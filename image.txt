@@ -13,5 +13,5 @@ autotrace -input-format bmp -output-format svg -output-file bear.svg bear.bmp
 # combine image vertical
 magick ./icons/*.jpg -append nav-sprite.jpg
 
-# combine image vertical
+# combine image horizontal
 magick ./icons/*.jpg +append nav-sprite.jpg
