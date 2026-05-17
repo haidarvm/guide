@@ -1,0 +1,11 @@
+# change to colemak
+setxkbmap us -variant colemak
+
+# ubuntu
+sudo dpkg-reconfigure keyboard-configuration
+setupcon
+
+# conf
+sudo nano /etc/default/keyboard
+#change to
+XKBVARIANT="colemak"

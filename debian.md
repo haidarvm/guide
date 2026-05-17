@@ -37,6 +37,28 @@ ip addr add 192.168.122.50/24 dev enp1s0
 ip route add default via 192.168.122.1
 ip link set enp1s0 up
 
+# edit network
+vim /etc/systemd/network/10-static-enp1s0.network
+#change 1
+[Match]
+Name=enp1s0
+
+[Network]
+DHCP=yes
+
+#change 2
+[Match]
+Name=enp1s0
+
+[Network]
+Address=192.168.122.100/24
+Gateway=192.168.122.1
+DNS=8.8.8.8
+DNS=1.1.1.1
+
+# restart network
+systemctl restart systemd-networkd
+
 # 1. Remove the existing file/symlink completely
 rm -f /etc/resolv.conf
 
