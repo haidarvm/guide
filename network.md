@@ -1,5 +1,9 @@
 # show ip address
 ip a
+ip r
+
+# show driver
+lspci -nnk | grep -i net -A3
 
 #list all network
 arp -a
@@ -18,6 +22,15 @@ ss -t
 
 #change ip manual fedora 43
 nmcli connection show shared | grep ipv4.addresses
+
+# change dns
+nmcli connection show
+sudo nmcli connection modify "OLD_NAME" connection.id "NEW_NAME"
+sudo nmcli connection reload
+sudo nmcli connection modify "NAMA_KONEKSI" ipv4.dns "8.8.8.8,1.1.1.1"
+sudo nmcli connection modify "NAMA_KONEKSI" ipv4.ignore-auto-dns yes
+sudo nmcli connection up "NAMA_KONEKSI"
+resolvectl status
 
 #setting dns globally
 vi /etc/systemd/resolved.conf

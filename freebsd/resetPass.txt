@@ -1,0 +1,8 @@
+# Set agar dataset root bisa ditulis
+zfs set readonly=off zroot/ROOT/default
+
+# Mount ulang filesystem agar sinkron
+mount -u /
+
+# (Opsional) Jika butuh akses ke dataset lain
+zfs mount -a

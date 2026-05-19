@@ -1,5 +1,5 @@
 # create rsa
-ssh-keygen -t rsa -b 4096 -C "haidarvm@gmail.com"
+ssh-keygen -t rsa -b 4096 -C "haidar.mukmin@gmail.com"
 # new
 ssh-keygen -t ed25519 -C "haidarvm@gmail.com"
 eval "$(ssh-agent -s)"

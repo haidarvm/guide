@@ -30,6 +30,11 @@ v
 j
 +y
 
+# hide numbers
+:set nonu
+
+# show numbers
+:set nu 
 
 # paste paste before cursor, paste after cursor
 P
@@ -60,6 +65,12 @@ d$
 
 # clear last search
 :noh
+
+# find next 
+n
+
+# find prev
+N
 
 # find and replace , current line, replace all, replace all in file, find and delete all
 :s/foo/bar/

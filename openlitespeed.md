@@ -17,6 +17,56 @@ mv litespeed.repo /etc/yum.repos.d/
 dnf install epel-release
 dnf install openlitespeed
 
+
+### step ####
+
+wget https://github.com/litespeedtech/openlitespeed/archive/refs/tags/v1.8.3.tar.gz
+ 
+# compile source build
+apt-get install -y \
+  # Build tools
+  cmake \
+  g++ \
+  make \
+  git \
+  # Crypto & SSL
+  libcrypt-dev \
+  libssl-dev \
+  # Compression
+  zlib1g-dev \
+  libbrotli-dev \
+  # PCRE
+  libpcre2-dev \
+  # Misc libraries
+  libexpat1-dev \
+  libgeoip-dev \
+  libpam0g-dev \
+  libxml2-dev \
+  libpq-dev \
+  libudns-dev \
+  libyajl-dev
+
+git clone https://github.com/google/brotli.git
+cd brotli && mkdir build && cd build
+cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX=/usr/local ..
+make && make install
+
+# Buat symlink nama yang dibutuhkan OLS
+ln -sf /usr/local/lib/libbrotlidec.a /usr/local/lib/libbrotlidec-static.a
+ln -sf /usr/local/lib/libbrotlienc.a /usr/local/lib/libbrotlienc-static.a
+ln -sf /usr/local/lib/libbrotlicommon.a /usr/local/lib/libbrotlicommon-static.a
+
+# Fix mismatch deklarasi fungsi
+sed -i 's/int nspersist_init();/int nspersist_init(lscgid_t *pCGI);/' \
+  src/extensions/cgi/nspersist.h
+
+cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+      -DMODSECURITY=OFF \
+      -DCMAKE_EXE_LINKER_FLAGS="-L/usr/local/lib" ..
+      
+      
+#### end ###
+
 # deb
 wget -O - https://repo.litespeed.sh | bash
 apt install lsphp83 lsphp83-common lsphp83-opcache lsphp83-mysql lsphp83-imagick
