@@ -61,6 +61,12 @@ d$
 # clear last search
 :noh
 
+# find next 
+n
+
+# find prev
+N
+
 # find and replace , current line, replace all, replace all in file, find and delete all
 :s/foo/bar/
 :s/foo/bar/g
