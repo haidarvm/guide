@@ -1,3 +1,7 @@
+# linux fedora
+localectl list-keymaps | grep colemak
+localectl set-keymap us-colemak
+
 # change to colemak
 setxkbmap us -variant colemak
 
