@@ -1,5 +1,9 @@
 # show ip address
 ip a
+ip r
+
+# show driver
+lspci -nnk | grep -i net -A3
 
 #list all network
 arp -a
