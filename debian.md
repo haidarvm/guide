@@ -24,6 +24,11 @@ sudo apt install dnsmasq
 apt install systemd-timesyncd
 systemctl status systemd-timesyncd.service
 
+#set colemak
+apt update
+apt install console-setup keyboard-configuration
+dpkg-reconfigure keyboard-configuration
+setupcon
 
 # expand grow qcow2
 qemu-img resize nama-file-anda.qcow2 +7G
