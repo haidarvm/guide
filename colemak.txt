@@ -9,3 +9,6 @@ setupcon
 sudo nano /etc/default/keyboard
 #change to
 XKBVARIANT="colemak"
+
+# freebsd
+kbdcontrol -l colemak.acc
