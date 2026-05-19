@@ -52,6 +52,12 @@ dd
 # comment out multi line
 :10,20s/^/\/\//
 
+# comment out multi line
+:10,15s/^/#/
+
+# uncomment multi line
+:10,20s/^#//
+
 # delete line
 dd
 3dd
