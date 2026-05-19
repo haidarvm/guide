@@ -1,0 +1,26 @@
+root@freebsd:/usr/ports/www/nginx # uname -a
+FreeBSD freebsd 14.4-RELEASE-p3 FreeBSD 14.4-RELEASE-p3 GENERIC amd64
+root@freebsd:/usr/ports/www/nginx # nginx -v
+nginx version: nginx/1.30.1
+root@freebsd:/usr/ports/www/nginx # wrk -t4 -c100 -d5s http://localhost
+Running 5s test @ http://localhost
+  4 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   295.61us  257.08us   5.60ms   82.58%
+    Req/Sec    79.26k    37.23k  233.82k    78.43%
+  1608456 requests in 5.10s, 380.42MB read
+Requests/sec: 315279.86
+Transfer/sec:     74.57MB
+
+FreeBSD freebsd 15.0-RELEASE-p8 FreeBSD 15.0-RELEASE-p8 releng/15.0-n281036-53054229dcb3 GENERIC amd64
+root@freebsd:~ # nginx -v
+nginx version: nginx/1.30.1
+root@freebsd:~ # wrk -t4 -c100 -d5s http://localhost
+Running 5s test @ http://localhost
+  4 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   285.74us  253.98us   6.47ms   90.53%
+    Req/Sec    79.43k    22.68k  176.41k    77.94%
+  1612034 requests in 5.10s, 381.26MB read
+Requests/sec: 316070.41
+Transfer/sec:     74.75MB
