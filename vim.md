@@ -30,6 +30,11 @@ v
 j
 +y
 
+# hide numbers
+:set nonu
+
+# show numbers
+:set nu 
 
 # paste paste before cursor, paste after cursor
 P
