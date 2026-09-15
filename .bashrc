@@ -10,8 +10,8 @@ if [ -f ~/guide/bash_alias.conf ]; then
     . ~/guide/bash_alias.conf
 fi
 
-if [ -f ~/guide/alias_fedora.conf ]; then
-    . ~/guide/alias_fedora.conf
+if [ -f ~/guide/bash_alias_fedora.conf ]; then
+    . ~/guide/bash_alias_fedora.conf
 fi
 
 if [ -f ~/guide/bash_function.conf ]; then
