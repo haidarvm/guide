@@ -30,6 +30,9 @@ apt install console-setup keyboard-configuration
 dpkg-reconfigure keyboard-configuration
 setupcon
 
+# list info package
+dpkg -l | grep linux 
+
 # expand grow qcow2
 qemu-img resize nama-file-anda.qcow2 +7G
 
